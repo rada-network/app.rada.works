@@ -55,7 +55,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-unused-vars': [
-      'error',
+      'warn',
       {
         argsIgnorePattern: '^_',
       },
@@ -63,7 +63,7 @@ module.exports = {
     'no-console': [
       'error',
       {
-        allow: ['warn', 'error'],
+        allow: ['warn', 'error', 'log', 'info'],
       },
     ],
     'react/self-closing-comp': 'error',
