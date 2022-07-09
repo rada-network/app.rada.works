@@ -32,6 +32,9 @@ export default async function auth(
             email: 'jsmith@example.com',
             ...credentials,
           };
+          //connect to directus create user & get access token
+
+          //lay access token vao session
           return user;
         } catch (e) {
           return null;
