@@ -6,11 +6,17 @@ import Logo from '../Logo';
 import TextLink from '../../atoms/TextLink';
 import ConnectWallet from '../ConnectWallet';
 import { DEFAULT_LINKS } from './sampleData';
+import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 
 const Header = (props) => {
   const { links } = props;
 
+  const { t } = useTranslation('common');
+
   // const {welcomeText} = useHeader();
+
+  const { status } = useSession();
 
   const menuItems = Array.from(links, ([groupKey, linkProps]) => {
     const linkElements = Array.from(linkProps, ([text, pathInfo]) => {
@@ -24,7 +30,7 @@ const Header = (props) => {
       const itemKey = `text: ${text} path:${path}`;
       const child = path ? (
         <TextLink className={classes.link} href={path}>
-          {text}
+          {t(text)}
         </TextLink>
       ) : (
         <span className={classes.label}>{text}</span>
@@ -37,9 +43,21 @@ const Header = (props) => {
       );
     });
 
+    const createJobLink =
+      status === 'authenticated' ? (
+        <Fragment>
+          <li className={classes.linkItem}>
+            <TextLink className={classes.link} href={`/create-job`}>
+              {t('Create Job')}
+            </TextLink>
+          </li>
+        </Fragment>
+      ) : null;
+
     return (
       <ul key={groupKey} className={classes.linkGroup}>
         {linkElements}
+        {createJobLink}
       </ul>
     );
   });
@@ -48,7 +66,9 @@ const Header = (props) => {
     <Fragment>
       <header className={classes.root}>
         <div className={`${classes.logoContainer} flex-1 w-48`}>
-          <Logo classes={{ logo: classes.logo }} />
+          <TextLink className={classes.link} href={`/`}>
+            <Logo classes={{ logo: classes.logo }} />
+          </TextLink>
         </div>
         <div className={classes.topMenu}>{menuItems}</div>
         <div className="container mx-auto">

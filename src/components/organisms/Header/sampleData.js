@@ -1,5 +1,5 @@
 const menuItems = new Map()
-  .set('Browse contest', '/search-contest')
+  .set('Browse contest', '/search-job')
   .set('Find a artist', '/search-artist')
   .set('How it works', '/how-it-works');
 
