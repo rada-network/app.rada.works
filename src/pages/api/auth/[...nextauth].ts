@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { utils } from 'ethers';
@@ -64,6 +65,7 @@ export default async function auth(
     callbacks: {
       async session({ session, token }) {
         console.log(session);
+        console.log(token);
         return session;
       },
     },
