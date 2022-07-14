@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 import styles from './NounInfo.module.css';
 import Web3 from 'web3';
 import { formatISO, isAfter, isBefore } from 'date-fns';
-import ConnectWallet from './ConnectWallet';
 import { getCurrentTime } from 'src/libs/dateUtil';
 import { useDispatch, useSelector } from 'react-redux';
 import { settleAuction } from 'src/ducks/wallets/wallets.operations';
@@ -100,11 +99,6 @@ const NounInfo: FunctionComponent<NounInfoProps> = ({
 
   return (
     <Fragment>
-      <div className="container mx-auto">
-        <div className="flex m-8 ">
-          <ConnectWallet />
-        </div>
-      </div>
       <div className="container mx-auto">
         <div className="flex m-8">
           <div className={`${styles['c-NounInfoImage']} flex-1 w-64`}>

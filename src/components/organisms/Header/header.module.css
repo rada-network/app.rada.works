@@ -1,5 +1,4 @@
 .root {
-    color:red;
     padding: 20px;
     background-color: lightgray;
     border-bottom: solid 1px #d6d6d6;
@@ -12,3 +11,21 @@
 .logoContainer {
 
 }
+
+.root .topMenu {
+
+}
+
+.root .topMenu .link {
+
+}
+
+.root .topMenu .label {
+
+}
+
+.root .topMenu .linkGroup {
+
+}
+
+.root .topMenu .linkGroup .linkItem {}

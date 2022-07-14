@@ -1,9 +1,9 @@
 import React, { FunctionComponent, Fragment } from 'react';
-import Button from '../atoms/Button';
 import Web3 from 'web3';
-import Web3Modal, { providers } from 'web3modal';
-import { useDispatch, useSelector } from 'react-redux';
+import Web3Modal /*, { providers }*/ from 'web3modal';
+import { useDispatch /*, useSelector*/ } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
+import Button from '../../atoms/Button';
 import styles from './ConnectWallet.module.css';
 import { useSession, getCsrfToken, signIn, signOut } from 'next-auth/react';
 import { ethers } from 'ethers';
