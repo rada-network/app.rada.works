@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FunctionComponent, Fragment } from 'react';
 import Button from '../atoms/Button';
 import Web3 from 'web3';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import Web3Modal, { providers } from 'web3modal';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { useDispatch, useSelector } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
 import styles from './ConnectWallet.module.css';
@@ -67,7 +72,10 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
       )}
       {status === 'authenticated' && <div>Account: {session?.user?.name}</div>}
       {status === 'authenticated' && (
-        <Button className={styles['btn-connect-wallet']} onClick={signOut}>
+        <Button
+          className={styles['btn-connect-wallet']}
+          onClick={() => signOut()}
+        >
           Sign out
         </Button>
       )}
