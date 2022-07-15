@@ -50,9 +50,6 @@ const CreateJobForm = (props) => {
 CreateJobForm.propTypes = {
   classes: shape({
     root: string,
-    title: string,
-    subtitle: string,
-    form: string,
   }),
 };
 

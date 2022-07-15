@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import CreateJob from '../components/templates/CreateJob';
+import CreateJobTmpl from '../components/templates/CreateJobTmpl';
 import ConnectWallet from '../components/organisms/ConnectWallet';
 
 const CreateJobPage: NextPage = () => {
@@ -15,7 +15,7 @@ const CreateJobPage: NextPage = () => {
   }, [router.isReady]);
 
   const child =
-    status == 'authenticated' ? <CreateJob classes={{}} /> : <ConnectWallet />;
+    status == 'authenticated' ? <CreateJobTmpl /> : <ConnectWallet />;
 
   return child;
 };

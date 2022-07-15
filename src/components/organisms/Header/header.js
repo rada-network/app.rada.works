@@ -39,8 +39,7 @@ const Header = (props) => {
 
     const connectWalletButton = (
       <li className={classes.linkItem}>
-        {' '}
-        <ConnectWallet />{' '}
+        <ConnectWallet />
       </li>
     );
 

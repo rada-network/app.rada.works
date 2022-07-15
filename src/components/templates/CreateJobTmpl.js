@@ -10,7 +10,7 @@ const styles = css`
   /* stylelint-disable */
 `;
 
-const CreateJob = (props) => {
+const CreateJobTmpl = (props) => {
   return (
     <Fragment>
       <Header />
@@ -21,13 +21,10 @@ const CreateJob = (props) => {
   );
 };
 
-CreateJob.propTypes = {
+CreateJobTmpl.propTypes = {
   classes: shape({
     root: string,
-    title: string,
-    subtitle: string,
-    form: string,
   }),
 };
 
-export default CreateJob;
+export default CreateJobTmpl;
