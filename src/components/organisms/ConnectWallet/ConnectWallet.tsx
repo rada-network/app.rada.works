@@ -58,6 +58,10 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     }
   };
 
+  const disConnect = async () => {
+    await signOut();
+  };
+
   return (
     <Fragment>
       {status !== 'authenticated' && (
@@ -67,7 +71,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
       )}
       {status === 'authenticated' && <div>Account: {session?.user?.name}</div>}
       {status === 'authenticated' && (
-        <Button className={styles['btn-connect-wallet']} onClick={signOut}>
+        <Button className={styles['btn-connect-wallet']} onClick={disConnect}>
           Sign out
         </Button>
       )}
