@@ -59,7 +59,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
   };
 
   const disConnect = async () => {
-    await signOut();
+    await signOut({ callbackUrl: '/' });
   };
 
   return (
