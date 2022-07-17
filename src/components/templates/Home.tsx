@@ -15,8 +15,10 @@ const Home: FunctionComponent<HomeProps> = ({ nounInfo, nounAuctionInfo }) => {
   return (
     <Fragment>
       <Header />
-      <Hero />
+      <Hero types="multichain" />
       <NounInfo nounInfo={nounInfo} nounAuctionInfo={nounAuctionInfo} />
+      <Hero types="experienced" />
+      <Hero types="reward" />
       <Footer />
       <style jsx>{styles}</style>
     </Fragment>
