@@ -12,9 +12,9 @@ const HomeTmpl = (props) => {
   return (
     <Fragment>
       <Header />
-      <Hero types="multichain" />
-      <Hero types="experienced" />
-      <Hero types="reward" />
+      <Hero type="type-1" />
+      <Hero type="type-2" />
+      <Hero type="type-3" />
       <Footer />
       <style jsx>{styles}</style>
     </Fragment>

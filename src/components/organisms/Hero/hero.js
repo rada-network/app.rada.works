@@ -6,22 +6,27 @@ import { useHeroData } from 'src/hooks/useHeroData';
 import { Data } from './sampleData';
 
 const Hero = (props) => {
-  const { types } = props;
-  const data = useHeroData(types, Data);
-  const checked = types == 'experienced' ? 'content-right' : 'content-left';
+  const { type } = props;
+
+  const data = useHeroData({
+    type,
+    Data,
+  });
+
+  const btnReadMore = type === 'type-1' ? <button>Read more...</button> : null;
+
+  //const checked = type == 'experienced' ? 'content-right' : 'content-left';
   return (
     <Fragment>
-      <section className="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
+      <section className={`${classes[type]}`}>
         <div className="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6">
-          <div className="font-bold text-3xl my-4">
-            <h1 dangerouslySetInnerHTML={{ __html: data.get('title') }} />
+          <div className={classes.title}>
+            <h2 dangerouslySetInnerHTML={{ __html: data.get('title') }} />
           </div>
-          <div className="leading-normal mb-4">
+          <div className={classes.desc}>
             <p>{data.get('desc')}</p>
           </div>
-          <button className="bg-transparent hover:bg-black text-black hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-black hover:border-transparent">
-            Button
-          </button>
+          {btnReadMore}
         </div>
         <div className="w-full lg:w-1/2 lg:py-6 text-center hero-decor">
           <Image src="/hero-decor.png" alt="me" width="736" height="736" />
@@ -35,8 +40,7 @@ Hero.propTypes = {
   classes: shape({
     root: string,
   }),
-  types: string.isRequired,
-  data: string,
+  type: string.isRequired,
 };
 
 export default Hero;
