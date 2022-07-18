@@ -1,4 +1,8 @@
 {
-  "singleQuote": true,
+  "singleQuote": true,  
+	"parser": "flow",
+	"useTabs": true,
+	"tabWidth": 2,
+	"endOfLine": "auto",
   "trailingComma": "all"
 }
