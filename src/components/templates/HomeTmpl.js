@@ -7,21 +7,21 @@ import Footer from '../organisms/Footer';
 import css from 'styled-jsx/css';
 
 const styles = css`
-	/* stylelint-disable */
+  /* stylelint-disable */
 `;
 
 const HomeTmpl = (props) => {
-	return (
-		<Fragment>
-			<Header />
-			<Hero type="type-1" />
-			<JobListing />
-			<Hero type="type-2" />
-			<Hero type="type-3" />
-			<Footer />
-			<style jsx>{styles}</style>
-		</Fragment>
-	);
+  return (
+    <Fragment>
+      <Header />
+      <Hero type="type-1" />
+      <JobListing />
+      <Hero type="type-2" />
+      <Hero type="type-3" />
+      <Footer />
+      <style jsx>{styles}</style>
+    </Fragment>
+  );
 };
 
 HomeTmpl.propTypes = {};

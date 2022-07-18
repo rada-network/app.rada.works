@@ -62,12 +62,9 @@ module.exports = {
 				argsIgnorePattern: '^_',
 			},
 		],
-		'prettier/prettier': [
-			'error',
-			{
-				endOfLine: 'auto',
-			},
-		],
+		"prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
 		'no-console': [
 			'error',
 			{
