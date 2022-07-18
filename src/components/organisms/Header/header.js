@@ -53,8 +53,8 @@ const Header = (props) => {
 
   return (
     <Fragment>
-      <header className={classes.root}>
-        <div className={`${classes.logoContainer} flex-1 w-48`}>
+      <header className={`${classes.root}`}>
+        <div className={`${classes.logoContainer}`}>
           <TextLink className={classes.link} href={`/`}>
             <Logo classes={{ logo: classes.logo }} />
           </TextLink>
