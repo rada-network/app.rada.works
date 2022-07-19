@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import Header from '../organisms/Header';
@@ -23,8 +24,8 @@ const CreateJobTmpl = (props) => {
 
 CreateJobTmpl.propTypes = {
   classes: shape({
-    root: string,
-  }),
+    root: string
+  })
 };
 
 export default CreateJobTmpl;
