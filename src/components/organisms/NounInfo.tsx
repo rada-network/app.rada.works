@@ -36,7 +36,7 @@ export type NounInfoProps = {
 
 const NounInfo: FunctionComponent<NounInfoProps> = ({
   nounInfo,
-  nounAuctionInfo,
+  nounAuctionInfo
 }) => {
   const router = useRouter();
   const web3Context = useWeb3Context();
@@ -47,7 +47,7 @@ const NounInfo: FunctionComponent<NounInfoProps> = ({
   const dispatch = useDispatch();
 
   const goLeft: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void = (
-    event,
+    event
   ) => {
     event.preventDefault();
     if (!currentTokenId || currentTokenId === 1) {
@@ -56,12 +56,12 @@ const NounInfo: FunctionComponent<NounInfoProps> = ({
 
     router.push({
       pathname: router.pathname,
-      query: { ...router.query, tokenId: (currentTokenId - 1).toString() },
+      query: { ...router.query, tokenId: (currentTokenId - 1).toString() }
     });
   };
 
   const goRight: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void = (event) => {
     event.preventDefault();
 
@@ -71,12 +71,12 @@ const NounInfo: FunctionComponent<NounInfoProps> = ({
 
     router.push({
       pathname: router.pathname,
-      query: { ...router.query, tokenId: (currentTokenId + 1).toString() },
+      query: { ...router.query, tokenId: (currentTokenId + 1).toString() }
     });
   };
 
   const settleAuctionClick: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void = (event) => {
     event.preventDefault();
 
@@ -89,7 +89,7 @@ const NounInfo: FunctionComponent<NounInfoProps> = ({
       router,
       web3Context.bscWeb3 as Web3,
       walletsSelector.walletInfo?.web3 as Web3,
-      walletsSelector.walletInfo?.account as string,
+      walletsSelector.walletInfo?.account as string
     );
   };
 
@@ -144,7 +144,7 @@ const NounInfo: FunctionComponent<NounInfoProps> = ({
                     <Text>
                       {Web3.utils.fromWei(
                         nounAuctionInfo.amount.toString(),
-                        'ether',
+                        'ether'
                       )}{' '}
                       BNB
                     </Text>

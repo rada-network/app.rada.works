@@ -4,7 +4,6 @@ import classes from './JobListing.module.css';
 
 const JobListing = (props: { job: any }) => {
   const { job } = props;
-  const data = job ? job.data : { title: 'hahaha', desc: 'hahaha' };
   console.log(job);
   const Heading = () => (
     <Fragment>
