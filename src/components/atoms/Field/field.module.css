@@ -1,0 +1,23 @@
+.root {
+    /*for example only*/
+    display: block;
+    border: 1px solid #d6d6d6;
+    margin: 10px;
+    padding: 10px;
+}
+
+.label {
+    display: block;
+}
+
+.input {
+    border: 1px solid #d6d6d6;
+}
+
+.input:disabled {
+
+}
+
+.optional {
+
+}

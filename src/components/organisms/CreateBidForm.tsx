@@ -49,7 +49,11 @@ const CreateBidForm: FunctionComponent<CreateBidFormProps> = ({ tokenId }) => {
             />
           </div>
 
-          <Button type="submit" className={styles['form-btn-submit']}>
+          <Button
+            type="submit"
+            priority="high"
+            className={styles['form-btn-submit']}
+          >
             Create Bid
           </Button>
         </form>
