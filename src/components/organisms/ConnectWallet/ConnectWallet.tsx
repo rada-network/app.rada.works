@@ -4,9 +4,10 @@ import Web3Modal /*, { providers }*/ from 'web3modal';
 import { useDispatch /*, useSelector*/ } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
 import Button from '../../atoms/Button';
-import styles from './ConnectWallet.module.css';
 import { useSession, getCsrfToken, signIn, signOut } from 'next-auth/react';
 import { ethers } from 'ethers';
+import { useTranslation } from 'next-i18next';
+import classes from './ConnectWallet.module.css';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -16,11 +17,13 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
 
+  const { t } = useTranslation('common');
+
   const connect = async () => {
     try {
       const web3Modal = new Web3Modal({
         cacheProvider: false,
-        providerOptions: {},
+        providerOptions: {}
       });
       const provider = await web3Modal.connect();
       const web3 = new Web3(provider);
@@ -50,7 +53,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
         redirect: false,
         address: accounts[0],
         signedMessage,
-        callbackUrl,
+        callbackUrl
       });
       connectWallet(dispatch, provider, web3, accounts[0]);
     } catch (e) {
@@ -62,21 +65,31 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     await signOut({ callbackUrl: '/' });
   };
 
-  return (
-    <Fragment>
-      {status !== 'authenticated' && (
-        <Button className={styles['btn-connect-wallet']} onClick={connect}>
-          Connect metamask
+  const child =
+    status === 'authenticated' ? (
+      <div>
+        <div>Account: {session?.user?.name}</div>
+        <Button
+          priority="high"
+          type="button"
+          className={classes.btnLogout}
+          onClick={disConnect}
+        >
+          {t('Sign out')}
         </Button>
-      )}
-      {status === 'authenticated' && <div>Account: {session?.user?.name}</div>}
-      {status === 'authenticated' && (
-        <Button className={styles['btn-connect-wallet']} onClick={disConnect}>
-          Sign out
-        </Button>
-      )}
-    </Fragment>
-  );
+      </div>
+    ) : (
+      <Button
+        priority="high"
+        type="button"
+        className={classes.btnLogin}
+        onClick={connect}
+      >
+        {t('Connect Metamask')}
+      </Button>
+    );
+
+  return <Fragment>{child}</Fragment>;
 };
 
 export default ConnectWallet;

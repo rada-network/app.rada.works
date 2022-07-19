@@ -8,24 +8,24 @@ import CreateJobForm from '../organisms/CreateJobForm';
 import css from 'styled-jsx/css';
 
 const styles = css`
-	/* stylelint-disable */
+  /* stylelint-disable */
 `;
 
 const CreateJobTmpl = (props) => {
-	return (
-		<Fragment>
-			<Header />
-			<CreateJobForm />
-			<Footer />
-			<style jsx>{styles}</style>
-		</Fragment>
-	);
+  return (
+    <Fragment>
+      <Header />
+      <CreateJobForm />
+      <Footer />
+      <style jsx>{styles}</style>
+    </Fragment>
+  );
 };
 
 CreateJobTmpl.propTypes = {
-	classes: shape({
-		root: string,
-	}),
+  classes: shape({
+    root: string
+  })
 };
 
 export default CreateJobTmpl;

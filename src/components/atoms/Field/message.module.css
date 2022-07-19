@@ -1,0 +1,11 @@
+.root {
+}
+
+.root:empty {
+    display: none;
+}
+
+.root_error {
+    composes: root;
+    color: red;
+}

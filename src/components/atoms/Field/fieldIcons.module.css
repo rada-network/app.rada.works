@@ -1,0 +1,35 @@
+.root {
+    grid-template-areas: 'before input after';
+    grid-template-columns: auto 1fr auto;
+}
+
+.input {
+    grid-column: before-start / after-end;
+    grid-row: input-start / input-end;
+}
+
+.input > input {
+
+}
+
+.before,
+.after {
+
+}
+
+.before:empty,
+.after:empty {
+    display: none;
+}
+
+.before {
+    grid-area: before;
+}
+
+.after {
+    grid-area: after;
+}
+
+.before svg {
+
+}
