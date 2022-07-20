@@ -10,42 +10,46 @@ export default (props) => {
 
   const formApiRef = useRef(null);
 
-  const client = getApolloClient();
-  console.log(client);
-  // let {loading, errors, data} = await client.mutate({
-  //     mutation : createJobMutation,
-  //     variables: {
-  //         title,
-  //         short_desc,
-  //         description
-  //     }
-  // });
-
-  const [submitForm, { data, error: createJobError, loading: submitLoading }] =
-    useMutation(createJobMutation, {
-      fetchPolicy: 'no-cache'
-    });
-
   const setFormApi = useCallback((api) => (formApiRef.current = api), []);
 
+  const [
+    submitCreateJobForm,
+    { data, error: createJobError, loading: submitLoading }
+  ] = useMutation(createJobMutation, {
+    fetchPolicy: 'no-cache'
+  });
+
   const handleSubmit = useCallback(
-    async ({ title, short_desc, description }) => {
+    async (formValues) => {
       try {
-        await submitForm({
+        await submitCreateJobForm({
           variables: {
-            title,
-            short_desc,
-            description
+            title: formValues.title,
+            short_desc: formValues.short_desc,
+            description: formValues.description
           }
         });
+
+        /*const client = getApolloClient();
+                const {data, loading: submitLoading, errors: createJobError} = await client.mutate({
+                    mutation : createJobMutation,
+                    variables: {
+                        title: formValues.title,
+                        short_desc: formValues.short_desc,
+                        description: formValues.description
+                    }
+                });*/
+
         if (formApiRef.current) {
           formApiRef.current.reset();
         }
       } catch (error) {
-        console.error(error);
+        if (process.env.NODE_ENV !== 'production') {
+          console.error(error);
+        }
       }
     },
-    [submitForm]
+    [submitCreateJobForm]
   );
 
   const errors = useMemo(
@@ -59,6 +63,5 @@ export default (props) => {
     isBusy: submitLoading,
     setFormApi,
     response: data
-    //response: data && data.createJob
   };
 };

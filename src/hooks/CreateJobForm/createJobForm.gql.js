@@ -8,7 +8,7 @@ export const SUBMIT_JOB_FORM = gql`
   ) {
     createJob(
       input: {
-        title: $name
+        title: $title
         short_desc: $short_desc
         description: $description
       }

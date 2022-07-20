@@ -18,14 +18,8 @@ const CreateJobForm = (props) => {
 
   const { t } = useTranslation('common');
 
-  const { errors, handleSubmit, isBusy, isLoading, setFormApi, response } =
+  const { errors, handleSubmit, isBusy, setFormApi, response } =
     useCreateJobForm({});
-
-  if (isLoading) {
-    return t('Loading...');
-  }
-
-  console.log(response);
 
   return (
     <Fragment>
@@ -42,6 +36,9 @@ const CreateJobForm = (props) => {
               field="title"
               id="job-title"
               validate={isRequired}
+              validateOnBlur
+              mask={(value) => value && value.trim()}
+              maskOnBlur={true}
               placeholder={t('Title')}
               data-cy="title"
             />
@@ -53,6 +50,9 @@ const CreateJobForm = (props) => {
               field="short_desc"
               id="job-short-desc"
               validate={isRequired}
+              validateOnBlur
+              mask={(value) => value && value.trim()}
+              maskOnBlur={true}
               placeholder={t('Overview')}
               data-cy="short-desc"
             />
@@ -64,6 +64,7 @@ const CreateJobForm = (props) => {
               field="description"
               id="job-description"
               validate={isRequired}
+              validateOnBlur
               placeholder={t('Details')}
               data-cy="description"
             />
