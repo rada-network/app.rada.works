@@ -9,6 +9,7 @@ const nextConfig = {
     RADA_AUCTION_HOUSE_CONTRACT_ADDRESS:
       process.env.RADA_AUCTION_HOUSE_CONTRACT_ADDRESS,
     BSC_EXPLORER_URL: process.env.BSC_EXPLORER_URL,
+      GRAPHQL_ENDPOINT_URL: process.env.GRAPHQL_ENDPOINT_URL
   },
 };
 

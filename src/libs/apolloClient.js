@@ -7,6 +7,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
+      useGETForQueries: true,
       uri: process.env.GRAPHQL_ENDPOINT_URL //GraphQl endpoint URL
     }),
     cache: new InMemoryCache()
