@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Fragment } from 'react';
 import MainTmpl from './_mainTmpl';
-import JobListing from '../organisms/JobListing';
+import JobList from '../organisms/JobList';
 import Hero from '../organisms/Hero';
 import css from 'styled-jsx/css';
 
@@ -14,7 +14,7 @@ const HomeTmpl = (props) => {
     <Fragment>
       <MainTmpl>
         <Hero type="type-1" />
-        <JobListing />
+        <JobList />
         <Hero type="type-2" />
         <Hero type="type-3" />
       </MainTmpl>
