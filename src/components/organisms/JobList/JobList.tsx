@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
-import classes from './JobListing.module.css';
+import classes from './JobList.module.css';
 import myData from './sampleData.json';
-const JobListing = (props) => {
+const JobList = (props) => {
   const { job } = props;
   const Heading = () => (
     <Fragment>
@@ -17,10 +17,10 @@ const JobListing = (props) => {
   const JobList = Array.from(myData, (data, key) => {
     return (
       <Fragment key={key}>
-        <div className={`${classes.jobListing}`}>
-          <div className={classes.jobListing__author}>{data['author']}</div>
-          <h2 className={classes.jobListing__title}>{data['title']}</h2>
-          <div className={classes.jobListing__desc}>{data['description']}</div>
+        <div className={`${classes.jobList}`}>
+          <div className={classes.author}>{data['author']}</div>
+          <h2 className={classes.title}>{data['title']}</h2>
+          <div className={classes.desc}>{data['description']}</div>
         </div>
       </Fragment>
     );
@@ -38,13 +38,13 @@ const JobListing = (props) => {
     </Fragment>
   );
 };
-JobListing.defaultProps = {
+JobList.defaultProps = {
   job: myData
 };
-JobListing.propTypes = {
+JobList.propTypes = {
   classes: shape({
     root: string
   })
 };
 
-export default JobListing;
+export default JobList;
