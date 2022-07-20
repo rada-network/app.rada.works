@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
-import Header from '../organisms/Header';
-import Footer from '../organisms/Footer';
+import MainTmpl from './_mainTmpl';
 import CreateJobForm from '../organisms/CreateJobForm';
 
 import css from 'styled-jsx/css';
@@ -14,9 +13,9 @@ const styles = css`
 const CreateJobTmpl = (props) => {
   return (
     <Fragment>
-      <Header />
-      <CreateJobForm />
-      <Footer />
+      <MainTmpl>
+        <CreateJobForm />
+      </MainTmpl>
       <style jsx>{styles}</style>
     </Fragment>
   );
