@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import classes from './JobListing.module.css';
-
-const JobListing = (props: { job: any }) => {
+import myData from './sampleData.json';
+const JobListing = (props) => {
   const { job } = props;
-  console.log(job);
   const Heading = () => (
     <Fragment>
       <h2 className={classes.heading}>Featured Contests</h2>
@@ -15,22 +14,32 @@ const JobListing = (props: { job: any }) => {
       </div>
     </Fragment>
   );
+  const JobList = Array.from(myData, (data, key) => {
+    return (
+      <Fragment key={key}>
+        <div className={`${classes.jobListing}`}>
+          <div className={classes.jobListing__author}>{data['author']}</div>
+          <h2 className={classes.jobListing__title}>{data['title']}</h2>
+          <div className={classes.jobListing__desc}>{data['description']}</div>
+        </div>
+      </Fragment>
+    );
+  });
+
   return (
     <Fragment>
       <section className={classes.section}>
         <div className="container mx-auto">
           <Heading />
           <div> Job listing </div>
+          {JobList}
         </div>
       </section>
     </Fragment>
   );
 };
-JobListing.propDefs = {
-  job: shape({
-    title: string,
-    desc: string
-  })
+JobListing.defaultProps = {
+  job: myData
 };
 JobListing.propTypes = {
   classes: shape({
