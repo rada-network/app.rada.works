@@ -1,28 +1,24 @@
 [
-	{
-		"title": "test1 title",
-		"description": "test1 desc",
-		"image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-		"link": "https://www.google.com",
-		"date": "2020-01-01",
-		"tags": ["test1", "test2"],
-		"category": "test1",
-		"author": "test1 author",
-		"source": "test1 source",
-		"curency": "USD",
-		"price": "100"
-	},
-	{
-    "title": "test2 title",
-    "description": "test2 desc",
-    "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-    "link": "https://www.google.com",
-    "date": "2020-01-01",
-    "tags": ["test2", "test3"],
-    "category": "test2 category",
-    "author": "test2 author",
-    "source": "test2 source",
-    "curency": "USD",
-		"price": "100"
+  {
+    "description": "<p>test contest</p>",
+    "owner_id": "xxx",
+    "short_desc": "test contest",
+    "title": "test contest",
+    "status": "published",
+    "date_updated": "2022-07-19",
+    "user_id": {
+      "email": "createuser@rada.works"
+    }
+  },
+  {
+    "description": "<p>test contest description</p>",
+    "owner_id": "xxx",
+    "short_desc": "test contest w",
+    "title": "test contest 1",
+    "status": "published",
+    "date_updated": "2022-07-19",
+    "user_id": {
+      "email": "createuser@rada.works"
+    }
   }
 ]

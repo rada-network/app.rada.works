@@ -1,9 +1,16 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
+import Job from './job';
 import classes from './JobList.module.css';
 import myData from './sampleData.json';
 const JobList = (props) => {
   const { job } = props;
+  const diffDays = (date, otherDate) =>
+    Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
+
+  // Example
+  const test = diffDays(new Date('2014-12-19'), new Date('2020-01-01')); // 1839
+  console.log(test);
   const Heading = () => (
     <Fragment>
       <h2 className={classes.heading}>Featured Contests</h2>
@@ -14,16 +21,8 @@ const JobList = (props) => {
       </div>
     </Fragment>
   );
-  const JobList = Array.from(myData, (data, key) => {
-    return (
-      <Fragment key={key}>
-        <div className={`${classes.jobList}`}>
-          <div className={classes.author}>{data['author']}</div>
-          <h2 className={classes.title}>{data['title']}</h2>
-          <div className={classes.desc}>{data['description']}</div>
-        </div>
-      </Fragment>
-    );
+  const JobList = Array.from(myData, (item, key) => {
+    return <Job itemkey={key} data={item} />;
   });
 
   return (

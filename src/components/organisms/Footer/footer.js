@@ -8,7 +8,7 @@ import { DEFAULT_LINKS, socialData, menuItemsData } from './sampleData';
 const Footer = (_props) => {
   const { t } = useTranslation('common');
   const date = new Date();
-
+  const year = date.getFullYear();
   function buildLink(data, htmlTag = 'li') {
     return Array.from(data, ([text, pathInfo]) => {
       let path = pathInfo;
@@ -43,7 +43,7 @@ const Footer = (_props) => {
       <footer className={classes.root}>
         <div>
           <div className={classes.copyrights}>
-            <span>{date.getFullYear()} Rada.works</span>
+            <span>{year} Rada.works</span>
           </div>
           <div className={classes.menuItems}>{menuItems}</div>
           <div className={classes.social}>{socialItem}</div>
