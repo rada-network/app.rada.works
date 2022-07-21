@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import MainTmpl from './_mainTmpl';
 import JobList from '../organisms/JobList';
 import Hero from '../organisms/Hero';
+import Steps from '../organisms/HowItWork';
 import css from 'styled-jsx/css';
 
 const styles = css`
@@ -15,6 +16,7 @@ const HomeTmpl = (props) => {
       <MainTmpl>
         <Hero type="type-1" />
         <JobList />
+        <Steps />
         <Hero type="type-2" />
         <Hero type="type-3" />
       </MainTmpl>
