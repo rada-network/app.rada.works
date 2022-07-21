@@ -7,13 +7,18 @@ export const SUBMIT_JOB_FORM = gql`
     $description: String!
   ) {
     createJob(
-      input: {
+      data: {
         title: $title
         short_desc: $short_desc
         description: $description
       }
     ) {
-      status
+      data {
+        id
+        attributes {
+          title
+        }
+      }
     }
   }
 `;

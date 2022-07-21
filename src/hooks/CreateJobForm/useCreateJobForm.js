@@ -1,6 +1,5 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMutation } from '@apollo/client';
-import getApolloClient from '../../utils/client';
 import mergeOperations from '../../utils/shallowMerge';
 import DEFAULT_OPERATIONS from './createJobForm.gql';
 
@@ -29,16 +28,17 @@ export default (props) => {
             description: formValues.description
           }
         });
-
-        /*const client = getApolloClient();
-                const {data, loading: submitLoading, errors: createJobError} = await client.mutate({
-                    mutation : createJobMutation,
-                    variables: {
-                        title: formValues.title,
-                        short_desc: formValues.short_desc,
-                        description: formValues.description
-                    }
-                });*/
+        /*
+        //Another way
+        const client = getApolloClient();
+        const {data, loading: submitLoading, errors: createJobError} = await client.mutate({
+            mutation : createJobMutation,
+            variables: {
+                title: formValues.title,
+                short_desc: formValues.short_desc,
+                description: formValues.description
+            }
+        });*/
 
         if (formApiRef.current) {
           formApiRef.current.reset();

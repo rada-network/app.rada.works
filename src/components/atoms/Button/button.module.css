@@ -9,6 +9,10 @@
 
 }
 
+.root:disabled {
+    pointer-events: none;
+}
+
 .root:hover:disabled {
     pointer-events: none;
 }

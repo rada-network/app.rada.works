@@ -1,15 +1,43 @@
 import { useMemo } from 'react';
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient,
+  createHttpLink,
+  /*HttpLink,*/ InMemoryCache
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 let apolloClient;
+
+const GRAPHQL_ENDPOINT_URL = process.env.GRAPHQL_ENDPOINT_URL;
+const GRAPHQL_API_TOKEN = process.env.GRAPHQL_ENDPOINT_API_TOKEN;
+
+const httpLink = createHttpLink({
+  useGETForQueries: true,
+  uri: GRAPHQL_ENDPOINT_URL
+});
+
+const authLink = setContext((_, { headers }) => {
+  let token = GRAPHQL_API_TOKEN !== undefined ? GRAPHQL_API_TOKEN : false;
+
+  /*if (typeof document !== 'undefined') { //coming soon
+        token = getCookie('access_token');
+    }*/
+
+  if (token) {
+    // return the headers to the context so httpLink can read them
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    };
+  }
+});
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      useGETForQueries: true,
-      uri: process.env.GRAPHQL_ENDPOINT_URL //GraphQl endpoint URL
-    }),
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache()
   });
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { Form } from 'informed';
@@ -20,6 +20,15 @@ const CreateJobForm = (props) => {
 
   const { errors, handleSubmit, isBusy, setFormApi, response } =
     useCreateJobForm({});
+
+  const addToast = null; //coming soon.
+  useEffect(() => {
+    if (response && response.createJob.data.id) {
+      console.log(response);
+      console.log(t('You have submitted a new Job successfully.'));
+      alert('You have submitted a new Job successfully.');
+    }
+  }, [addToast, response]);
 
   return (
     <Fragment>
