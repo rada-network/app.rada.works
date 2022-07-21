@@ -19,7 +19,7 @@ const Logo = (props) => {
     <Image
       classes={{ image: classes.logo }}
       height={height}
-      src={'https://rada.works/images/radaworks-logo.png'}
+      src={'/logo.png'}
       title={'Rada.Works'}
       width={width}
     />
@@ -28,15 +28,15 @@ const Logo = (props) => {
 
 Logo.propTypes = {
   classes: PropTypes.shape({
-    logo: PropTypes.string,
+    logo: PropTypes.string
   }),
   height: PropTypes.number,
-  width: PropTypes.number,
+  width: PropTypes.number
 };
 
 Logo.defaultProps = {
   height: 18,
-  width: 102,
+  width: 102
 };
 
 export default Logo;
