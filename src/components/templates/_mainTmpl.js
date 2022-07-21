@@ -14,7 +14,7 @@ const MainTmpl = (props) => {
   return (
     <Fragment>
       <Header />
-      {children}
+      <main>{children}</main>
       <Footer />
       <style jsx>{styles}</style>
     </Fragment>
