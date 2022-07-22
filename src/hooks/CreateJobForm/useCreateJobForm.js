@@ -25,20 +25,10 @@ export default (props) => {
           variables: {
             title: formValues.title,
             short_desc: formValues.short_desc,
-            description: formValues.description
+            description: formValues.description,
+            status: 'draft' //default value
           }
         });
-        /*
-        //Another way
-        const client = getApolloClient();
-        const {data, loading: submitLoading, errors: createJobError} = await client.mutate({
-            mutation : createJobMutation,
-            variables: {
-                title: formValues.title,
-                short_desc: formValues.short_desc,
-                description: formValues.description
-            }
-        });*/
 
         if (formApiRef.current) {
           formApiRef.current.reset();

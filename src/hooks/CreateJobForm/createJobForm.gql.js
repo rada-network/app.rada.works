@@ -5,20 +5,19 @@ export const SUBMIT_JOB_FORM = gql`
     $title: String!
     $short_desc: String!
     $description: String!
+    $status: String!
   ) {
-    createJob(
+    create_job_item(
       data: {
         title: $title
         short_desc: $short_desc
         description: $description
+        status: $status
       }
     ) {
-      data {
-        id
-        attributes {
-          title
-        }
-      }
+      id
+      title
+      status
     }
   }
 `;

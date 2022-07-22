@@ -23,9 +23,9 @@ const CreateJobForm = (props) => {
 
   const addToast = null; //coming soon.
   useEffect(() => {
-    if (response && response.createJob.data.id) {
-      console.log(response);
+    if (response && response.create_job_item) {
       console.log(t('You have submitted a new Job successfully.'));
+      console.log(response.create_job_item);
       alert('You have submitted a new Job successfully.');
     }
   }, [addToast, response]);
