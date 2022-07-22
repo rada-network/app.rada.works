@@ -39,7 +39,7 @@ const Hero = (props) => {
   return (
     <Fragment>
       <section className={`${classes[type]}`}>
-        <div className="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6">
+        <div className={classes[type].heading}>
           <div className={classes.title}>
             <h2 dangerouslySetInnerHTML={{ __html: data.get('title') }} />
           </div>
@@ -48,7 +48,7 @@ const Hero = (props) => {
           </div>
           {btnReadMore}
         </div>
-        <div className="w-full lg:w-1/2 lg:py-6 text-center hero-decor">
+        <div className={classes[type].image_decor}>
           <Image src="/hero-decor.png" alt="me" width="736" height="736" />
         </div>
       </section>

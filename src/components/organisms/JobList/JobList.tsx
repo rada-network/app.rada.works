@@ -20,8 +20,8 @@ const JobList = (props) => {
       </div>
     </Fragment>
   );
-  const JobList = Array.from(myData, (item, idx) => {
-    return <Job key={idx} data={item} />;
+  const JobList = Array.from(myData, (data, Itemkey) => {
+    return <Job key={Itemkey} itemId={Itemkey} data={data} />;
   });
 
   return (
@@ -30,7 +30,7 @@ const JobList = (props) => {
         <div className="container mx-auto">
           <Heading />
           <div> Job listing </div>
-          {JobList}
+          <div className={classes.itemlist}>{JobList}</div>
         </div>
       </section>
     </Fragment>

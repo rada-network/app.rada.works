@@ -3,28 +3,28 @@ import { shape, string, number, object } from 'prop-types';
 import classes from './JobList.module.css';
 
 const Job = (props: any) => {
-  const { key, data } = props;
-  console.log(key);
+  const { itemId, data } = props;
   return (
-    <Fragment key={key}>
-      <div className={classes.jobList}>
-        <div className={classes.author}>{data['user_id']['email']}</div>
-        <h2 className={classes.title}>{data['title']}</h2>
-        <div
-          className={classes.desc}
-          dangerouslySetInnerHTML={{ __html: data['description'] }}
-        />
+    <Fragment key={itemId}>
+      <div className={classes.item}>
+        <div className={classes.item_inner}>
+          <div className={classes.author}>{data['user_id']['email']}</div>
+          <h2 className={classes.title}>{data['title']}</h2>
+          <div
+            className={classes.desc}
+            dangerouslySetInnerHTML={{ __html: data['description'] }}
+          />
+        </div>
       </div>
     </Fragment>
   );
 };
-Job.defaultProps = {
-  key: number,
-  data: object
-};
+
 Job.propTypes = {
   classes: shape({
     root: string
-  })
+  }),
+  itemId: number,
+  data: object
 };
 export default Job;
