@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
-import classes from './Steps.module.css';
+import classes from './steps.module.css';
 
 const Steps = () => {
   const t = useTranslation('common');

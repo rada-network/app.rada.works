@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import { shape, string } from 'prop-types';
+import { shape, string, number, object } from 'prop-types';
 import classes from './JobList.module.css';
 
 const Job = (props: any) => {
-  const { itemkey, data } = props;
+  const { key, data } = props;
+  console.log(key);
   return (
-    <Fragment key={itemkey}>
+    <Fragment key={key}>
       <div className={classes.jobList}>
         <div className={classes.author}>{data['user_id']['email']}</div>
         <h2 className={classes.title}>{data['title']}</h2>
@@ -18,9 +19,8 @@ const Job = (props: any) => {
   );
 };
 Job.defaultProps = {
-  title: string,
-  description: string,
-  user_id: string
+  key: number,
+  data: object
 };
 Job.propTypes = {
   classes: shape({

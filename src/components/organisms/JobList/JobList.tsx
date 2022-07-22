@@ -10,7 +10,6 @@ const JobList = (props) => {
 
   // Example
   const test = diffDays(new Date('2014-12-19'), new Date('2020-01-01')); // 1839
-  console.log(test);
   const Heading = () => (
     <Fragment>
       <h2 className={classes.heading}>Featured Contests</h2>
@@ -21,8 +20,8 @@ const JobList = (props) => {
       </div>
     </Fragment>
   );
-  const JobList = Array.from(myData, (item, key) => {
-    return <Job itemkey={key} data={item} />;
+  const JobList = Array.from(myData, (item, idx) => {
+    return <Job key={idx} data={item} />;
   });
 
   return (
