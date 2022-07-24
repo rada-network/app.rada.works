@@ -5,7 +5,7 @@ export const SUBMIT_JOB_FORM = gql`
     $title: String!
     $short_desc: String!
     $description: String!
-    $status: String!
+    $status: String! #        $startDate: String! #        $endDate: String!
   ) {
     create_job_item(
       data: {
@@ -13,6 +13,8 @@ export const SUBMIT_JOB_FORM = gql`
         short_desc: $short_desc
         description: $description
         status: $status
+        #                date_started: $startDate,
+        #                date_ends: $endDate
       }
     ) {
       id

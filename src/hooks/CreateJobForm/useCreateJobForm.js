@@ -26,6 +26,8 @@ export default (props) => {
             title: formValues.title,
             short_desc: formValues.short_desc,
             description: formValues.description,
+            // date_started: new Date(props.startDate),
+            // date_ends: new Date(props.endDate),
             status: 'draft' //default value
           }
         });

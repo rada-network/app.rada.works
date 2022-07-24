@@ -6,6 +6,13 @@
     @apply block;
 }
 
+.title {
+
+}
+.tip{
+    display: block;
+}
+
 .buttonsContainer {
     margin: 10px;
     padding: 10px;
