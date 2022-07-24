@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react';
 import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
+import Toast from '../organisms/Toast';
 import css from 'styled-jsx/css';
 
 const styles = css`
@@ -16,6 +17,7 @@ const MainTmpl = (props) => {
       <Header />
       <main>{children}</main>
       <Footer />
+      <Toast />
       <style jsx>{styles}</style>
     </Fragment>
   );

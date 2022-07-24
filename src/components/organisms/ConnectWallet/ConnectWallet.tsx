@@ -65,29 +65,34 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     await signOut({ callbackUrl: '/' });
   };
 
-  const child =
-    status === 'authenticated' ? (
-      <div>
-        <div>Account: {session?.user?.name}</div>
+  let child = null;
+  if (status === 'loading') {
+    child = 'Session loading...'; //coming soon with Skeleton loading.
+  } else {
+    child =
+      status === 'authenticated' ? (
+        <div>
+          <div>Account: {session?.user?.name}</div>
+          <Button
+            priority="high"
+            type="button"
+            className={classes.btnLogout}
+            onClick={disConnect}
+          >
+            {t('Sign out')}
+          </Button>
+        </div>
+      ) : (
         <Button
           priority="high"
           type="button"
-          className={classes.btnLogout}
-          onClick={disConnect}
+          className={classes.btnLogin}
+          onClick={connect}
         >
-          {t('Sign out')}
+          {t('Connect Metamask')}
         </Button>
-      </div>
-    ) : (
-      <Button
-        priority="high"
-        type="button"
-        className={classes.btnLogin}
-        onClick={connect}
-      >
-        {t('Connect Metamask')}
-      </Button>
-    );
+      );
+  }
 
   return <Fragment>{child}</Fragment>;
 };

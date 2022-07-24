@@ -7,6 +7,7 @@ import Field from '../../atoms/Field';
 import TextInput from '../../atoms/TextInput';
 import TextArea from '../../atoms/TextArea';
 import Button from '../../atoms/Button';
+import { toast } from 'react-toastify';
 import { useCreateJobForm } from '../../../hooks/CreateJobForm';
 import { useStyle } from '../../classify';
 import { isRequired } from '../../../utils/formValidators';
@@ -21,14 +22,11 @@ const CreateJobForm = (props) => {
   const { errors, handleSubmit, isBusy, setFormApi, response } =
     useCreateJobForm({});
 
-  const addToast = null; //coming soon.
   useEffect(() => {
     if (response && response.create_job_item) {
-      console.log(t('You have submitted a new Job successfully.'));
-      console.log(response.create_job_item);
-      alert('You have submitted a new Job successfully.');
+      toast(t('You have just submitted a new Job successfully.'), {});
     }
-  }, [addToast, response]);
+  }, [response, toast]);
 
   return (
     <Fragment>
@@ -52,7 +50,6 @@ const CreateJobForm = (props) => {
               data-cy="title"
             />
           </Field>
-
           <Field id="job-short-desc" label={t('Overview')}>
             <TextArea
               autoComplete="short-desc"
@@ -66,7 +63,6 @@ const CreateJobForm = (props) => {
               data-cy="short-desc"
             />
           </Field>
-
           <Field id="job-description" label={t('Details')}>
             <TextArea
               autoComplete="description"
@@ -78,7 +74,6 @@ const CreateJobForm = (props) => {
               data-cy="description"
             />
           </Field>
-
           <div className={classes.buttonsContainer}>
             <Button
               priority="high"

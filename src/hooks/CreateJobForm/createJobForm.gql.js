@@ -16,7 +16,6 @@ export const SUBMIT_JOB_FORM = gql`
       }
     ) {
       id
-      title
       status
     }
   }
