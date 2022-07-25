@@ -23,7 +23,7 @@ const CreateJobForm = (props) => {
   const { t } = useTranslation('common');
 
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState();
+  const [endDate, setEndDate] = useState(new Date());
 
   const { errors, handleSubmit, isBusy, setFormApi, response } =
     useCreateJobForm({});
@@ -42,7 +42,12 @@ const CreateJobForm = (props) => {
         <Form
           getApi={setFormApi}
           className={classes.form}
-          onSubmit={handleSubmit}
+          onSubmit={() =>
+            handleSubmit({
+              startDate,
+              endDate
+            })
+          }
         >
           <Field id="job-title" label={t('Job title')}>
             <TextInput
@@ -88,29 +93,30 @@ const CreateJobForm = (props) => {
               )}
             </span>
           </Field>
-
           <Field id="job-date_started" label={t('Start date')}>
             <DatePicker
               selected={startDate}
               onChange={(date) => setStartDate(date)}
               minDate={new Date()}
-              //maxDate={addMonths(new Date(), 6)}
               showDisabledMonthNavigation
-              showTimeSelect
+              locale="en-GB"
               dateFormat="yyyy/MM/dd h:mm aa"
               placeholderText={t('Select one date...')}
+              showTimeSelect
+              timeIntervals={15}
             />
           </Field>
-
           <Field id="job-date_ends" label={t('End date')}>
             <DatePicker
               selected={endDate}
               onChange={(date) => setEndDate(date)}
               minDate={new Date()}
               showDisabledMonthNavigation
-              showTimeSelect
+              locale="en-GB"
               dateFormat="yyyy/MM/dd h:mm aa"
               placeholderText={t('Select one date...')}
+              showTimeSelect
+              timeIntervals={15}
             />
           </Field>
 

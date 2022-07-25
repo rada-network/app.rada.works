@@ -19,15 +19,15 @@ export default (props) => {
   });
 
   const handleSubmit = useCallback(
-    async (formValues) => {
+    async (extraValues) => {
       try {
         await submitCreateJobForm({
           variables: {
-            title: formValues.title,
-            short_desc: formValues.short_desc,
-            description: formValues.description,
-            // date_started: new Date(props.startDate),
-            // date_ends: new Date(props.endDate),
+            title: formApiRef.current.getValue('title'),
+            shortDesc: formApiRef.current.getValue('short_desc'),
+            description: formApiRef.current.getValue('description'),
+            startDate: extraValues.startDate,
+            endDate: extraValues.endDate,
             status: 'draft' //default value
           }
         });
