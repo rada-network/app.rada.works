@@ -3,15 +3,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body.dark {
-	color: #fff;
-	background: #363537;
-
-}
-
-body.light {
-	color: #363537;
-	background: #fafafa;
-
-}
