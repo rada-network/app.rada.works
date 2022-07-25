@@ -6,6 +6,7 @@ import { connectWallet } from 'src/ducks/wallets/wallets.operations';
 import Button from '../../atoms/Button';
 import { useSession, getCsrfToken, signIn, signOut } from 'next-auth/react';
 import { ethers } from 'ethers';
+import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
 import classes from './ConnectWallet.module.css';
 
@@ -72,7 +73,9 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     child =
       status === 'authenticated' ? (
         <div>
-          <div>Account: {session?.user?.name}</div>
+          <div>
+            Account: {subString({ str: session?.user?.name, start: 5, end: 3 })}
+          </div>
           <Button
             priority="high"
             type="button"
