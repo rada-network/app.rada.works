@@ -7,7 +7,7 @@ const Job = (props: any) => {
   return (
     <Fragment key={itemId}>
       <div className={classes.item}>
-        <div className={classes.item_inner}>
+        <div className="text-white bg-black hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg dark:bg-white dark:text-slate-400 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 p-5">
           <div className={classes.author}>{data['user_id']['email']}</div>
           <h2 className={classes.title}>{data['title']}</h2>
           <div

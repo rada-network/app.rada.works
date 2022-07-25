@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-
+import { useTheme } from 'next-themes';
+import classes from './toggleTheme.module.css';
 const ToggleTheme = () => {
-  const [theme, setTheme] = useState(
-    typeof window !== 'undefined' ? localStorage.theme : 'dark'
-  );
+  const { theme, setTheme } = useTheme();
 
   const colorTheme = theme === 'dark' ? 'light' : 'dark';
   const toggleTheme = () => {
@@ -14,14 +13,13 @@ const ToggleTheme = () => {
 
     root.classList.remove(colorTheme);
     root.classList.add(theme);
-
     if (typeof window !== 'undefined') {
       localStorage.setItem('theme', theme);
     }
   }, [colorTheme, theme]);
-  console.log(colorTheme);
+
   return (
-    <div className="toggle-theme">
+    <div className={classes.toggleTheme}>
       <button onClick={toggleTheme}>
         {theme === 'light' ? 'Dark' : 'Light'}
       </button>
