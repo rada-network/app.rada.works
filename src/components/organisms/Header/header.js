@@ -6,6 +6,7 @@ import TextLink from '../../atoms/TextLink';
 import ConnectWallet from '../ConnectWallet';
 import { useTranslation } from 'next-i18next';
 import { DEFAULT_LINKS } from './sampleData';
+import ToggleTheme from '../ToggleTheme';
 
 const Header = (props) => {
   const { links } = props;
@@ -60,19 +61,20 @@ const Header = (props) => {
           </TextLink>
         </div>
         <div className={`${classes.topMenu}`}>{menuItems}</div>
+        <ToggleTheme />
       </header>
     </Fragment>
   );
 };
 
 Header.defaultProps = {
-  links: DEFAULT_LINKS,
+  links: DEFAULT_LINKS
 };
 
 Header.propTypes = {
   classes: shape({
-    root: string,
-  }),
+    root: string
+  })
 };
 
 export default Header;
