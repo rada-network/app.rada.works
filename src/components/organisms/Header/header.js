@@ -38,16 +38,16 @@ const Header = (props) => {
       );
     });
 
-    const connectWalletButton = (
-      <li className={classes.linkItem}>
-        <ConnectWallet />
-      </li>
-    );
+    // const connectWalletButton = (
+    //   <li className={classes.linkItem}>
+    //     <ConnectWallet />
+    //   </li>
+    // );
 
     return (
       <ul key={groupKey} className={classes.linkGroup}>
         {linkElements}
-        {connectWalletButton}
+        {/* {connectWalletButton} */}
       </ul>
     );
   });
@@ -60,8 +60,11 @@ const Header = (props) => {
             <Logo classes={{ logo: classes.logo }} />
           </TextLink>
         </div>
-        <div className={`${classes.topMenu}`}>{menuItems}</div>
-        <ToggleTheme />
+        <div className={`${classes.menuContainer}`}>
+          <div className={`${classes.topMenu}`}>{menuItems}</div>
+          <ConnectWallet />
+          <ToggleTheme />
+        </div>
       </header>
     </Fragment>
   );

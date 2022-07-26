@@ -1,8 +1,6 @@
 .root {
-    /*for example only */
-    @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium;
-    @apply rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700;
-    @apply focus:outline-none dark:focus:ring-blue-800;
+  @apply text-gray-700 bg-gray-200 hover:bg-gray-400 font-medium;
+  @apply rounded-lg px-4 py-2;
 }
 
 .root:active {
@@ -10,32 +8,32 @@
 }
 
 .root:disabled {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .root:hover:disabled {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .root_lowPriority {
-    composes: root;
+  composes: root;
 }
 
 .root_normalPriority {
-    composes: root;
+  composes: root;
 }
 
 .root_highPriority {
-    composes: root;
+  composes: root;
 }
 
 .root_lowPriorityNegative,
 .root_normalPriorityNegative {
-    composes: root;
+  composes: root;
 }
 
 .root_highPriorityNegative {
-    composes: root;
+ composes: root;
 }
 
 .content {

@@ -1,33 +1,24 @@
 .root {
-    /*for example only */
-    padding: 20px;
-    border-bottom: solid 1px #d6d6d6;
+  @apply sticky flex justify-between items-center px-4 py-2;
 }
 
-.root .logoContainer {
-    @apply block w-48;
+.logoContainer {
+  @apply block w-48;
 }
 
-.root .logoContainer .logo {
-
+.menuContainer {
+  @apply flex items-center;
 }
 
-.root .topMenu {
-
+/* Main Nav */
+.topMenu {
+  @apply flex justify-between items-center;
 }
 
-.root .topMenu .link {
-
+.linkGroup {
+  @apply flex;
 }
 
-.root .topMenu .label {
-
-}
-
-.root .topMenu .linkGroup {
-
-}
-
-.root .topMenu .linkGroup .linkItem {
-
+.linkGroup li {
+  @apply flex justify-center align-middle px-4 py-2;
 }
