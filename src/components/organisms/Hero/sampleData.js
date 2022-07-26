@@ -3,7 +3,7 @@ const multichain = new Map()
   .set('title', 'A multichain <span>NFT design</span> platform')
   .set(
     'desc',
-    'Our platform makes it possible for every artist to kickstart their Web3 career. Whether it is to take part in a NFT project or a Metaverse Game, artists can freely contribute and reap the reward in a completely trustless way.',
+    'A multi-function platform where anyone can make money, simply by working.',
   )
   .set('img', null)
   .set('button', { text: 'learn more' });

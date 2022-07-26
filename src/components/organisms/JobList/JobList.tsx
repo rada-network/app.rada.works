@@ -15,12 +15,12 @@ const JobList = (props) => {
       <Fragment key={page}>
         {page === 'joblist' ? (
           <>
-            <h2 className={classes.heading}>Browse Jobs</h2>
+            <h2 className={classes.heading}>🎉 Browse Jobs</h2>
           </>
         ) : (
           <>
-            <h2 className={classes.heading}>Browse Jobs</h2>
-            <p className={'opacity-50'}>
+            <h2 className={classes.heading}>🎉 Browse Jobs</h2>
+            <p className={'opacity-70 text-center mt-2'}>
               Complete with other contributors and win prizes!
             </p>
           </>

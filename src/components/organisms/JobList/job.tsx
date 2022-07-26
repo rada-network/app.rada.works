@@ -6,15 +6,25 @@ const Job = (props) => {
   const { itemId, data } = props;
   return (
     <Fragment key={itemId}>
-      <div className={classes.item}>
-        <div className="text-white bg-black hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg dark:bg-white dark:text-slate-400 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 p-5">
-          <div className={classes.author}>{data['user_id']['email']}</div>
-          <h2 className={classes.title}>{data['title']}</h2>
-          <div
-            className={classes.desc}
-            dangerouslySetInnerHTML={{ __html: data['description'] }}
+      <div
+        className={
+          'border border-gray-200 p-8 rounded-xl hover:shadow-lg transition-shadow'
+        }
+      >
+        <div className={'flex items-center'}>
+          <img
+            className={'avatar-sm w-6 h-6 rounded-full mr-2'}
+            src="https://picsum.photos/200"
           />
+          <div className={'text-sm font-medium'}>
+            {data['user_id']['email']}
+          </div>
         </div>
+        <h2 className={'text-lg font-semibold'}>{data['title']}</h2>
+        <div
+          className={'text-sm opacity-70'}
+          dangerouslySetInnerHTML={{ __html: data['description'] }}
+        />
       </div>
     </Fragment>
   );

@@ -3,7 +3,7 @@
 }
 
 .type-1 h2 {
-  @apply text-4xl font-medium mb-4;
+  @apply text-4xl font-semibold mb-4;
 }
 
 .type-1 > div {
