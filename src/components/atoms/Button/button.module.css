@@ -25,6 +25,7 @@
 
 .root_highPriority {
   composes: root;
+  @apply bg-purple-500 text-white hover:bg-purple-800 hover:text-white;
 }
 
 .root_lowPriorityNegative,
@@ -37,4 +38,5 @@
 }
 
 .content {
+  @apply flex items-center;
 }

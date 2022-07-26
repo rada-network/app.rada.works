@@ -20,5 +20,27 @@
     "user_id": {
       "email": "createuser@rada.works"
     }
+  },
+  {
+    "description": "<p>test contest description</p>",
+    "owner_id": "xxx",
+    "short_desc": "test contest w",
+    "title": "test contest 1",
+    "status": "published",
+    "date_updated": "2022-07-19",
+    "user_id": {
+      "email": "createuser@rada.works"
+    }
+  },
+  {
+    "description": "<p>test contest description</p>",
+    "owner_id": "xxx",
+    "short_desc": "test contest w",
+    "title": "test contest 1",
+    "status": "published",
+    "date_updated": "2022-07-19",
+    "user_id": {
+      "email": "createuser@rada.works"
+    }
   }
 ]

@@ -1,9 +1,20 @@
 .root {
-    padding: 20px;
-    border-top: solid 1px #d6d6d6;
-		@apply flex w-full;
+  @apply flex items-center px-4 py-8 z-10 text-sm space-x-4;
+  @apply bg-white dark:bg-gray-900 border-t border-t-gray-200 dark:border-t-gray-700;
 }
-.topmenu {
-		@apply flex;
+
+.menuItems ul {
+	@apply flex space-x-4;
+}
+
+.menuItems {
+  @apply flex-1;
+}
+
+.social {
+}
+
+.social > div {
+  @apply flex space-x-4;
 }
 

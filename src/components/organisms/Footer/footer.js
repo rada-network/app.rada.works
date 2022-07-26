@@ -41,19 +41,16 @@ const Footer = (_props) => {
   return (
     <Fragment>
       <footer className={classes.root}>
-        <div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-          <div className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            <span>
-              {year}{' '}
-              <a href="https://rada.works/" className="hover:underline">
-                Rada.works
-              </a>
-            </span>
-          </div>
-          <div className={classes.menuItems}>{menuItems}</div>
-          <div className={classes.social}>{socialItem}</div>
+        <div className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span>
+            {year}{' '}
+            <a href="https://rada.works/" className="hover:underline">
+              Rada.Works
+            </a>
+          </span>
         </div>
+        <div className={classes.menuItems}>{menuItems}</div>
+        <div className={classes.social}>{socialItem}</div>
       </footer>
     </Fragment>
   );
