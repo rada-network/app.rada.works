@@ -19,7 +19,7 @@ const Logo = (props) => {
     <Image
       classes={{ image: classes.logo }}
       height={height}
-      src={'/logo.png'}
+      src={'/logo-animate.svg'}
       title={'Rada.Works'}
       width={width}
     />
@@ -35,8 +35,8 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-  height: 18,
-  width: 102
+  height: 12,
+  width: 12
 };
 
 export default Logo;

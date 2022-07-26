@@ -62,8 +62,8 @@ const Header = (props) => {
         </div>
         <div className={`${classes.menuContainer}`}>
           <div className={`${classes.topMenu}`}>{menuItems}</div>
-          <ConnectWallet />
           <ToggleTheme />
+          <ConnectWallet />
         </div>
       </header>
     </Fragment>
