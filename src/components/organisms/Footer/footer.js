@@ -9,7 +9,7 @@ const Footer = (_props) => {
   const { t } = useTranslation('common');
   const date = new Date();
   const year = date.getFullYear();
-  function buildLink(data, htmlTag = 'li') {
+  function buildLink(data, type, htmlTag) {
     return Array.from(data, ([text, pathInfo]) => {
       let path = pathInfo;
       let Component = Fragment;
@@ -34,16 +34,22 @@ const Footer = (_props) => {
       return <Component key={itemKey}>{elem}</Component>;
     });
   }
-  const menuItem = buildLink(menuItemsData, 'li');
-  const socialElements = buildLink(socialData, '');
+  const menuItem = buildLink(menuItemsData, 'menu', 'li');
+  const socialElements = buildLink(socialData, 'social', '');
   const socialItem = <div className={classes.linkGroup}>{socialElements}</div>;
   const menuItems = <ul className={classes.linkGroup}>{menuItem}</ul>;
   return (
     <Fragment>
       <footer className={classes.root}>
         <div>
-          <div className={classes.copyrights}>
-            <span>{year} Rada.works</span>
+          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <div className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            <span>
+              {year}{' '}
+              <a href="https://rada.works/" className="hover:underline">
+                Rada.works
+              </a>
+            </span>
           </div>
           <div className={classes.menuItems}>{menuItems}</div>
           <div className={classes.social}>{socialItem}</div>
