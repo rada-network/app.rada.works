@@ -21,7 +21,7 @@ const Hero = (props) => {
   };
   const btnReadMore =
     type === 'type-1' ? (
-      <Button className="btn-blue" priority="high" onClick={handleClick}>
+      <Button priority="high" onClick={handleClick}>
         Learn more
         <svg
           xmlns="http://www.w3.org/2000/svg"
