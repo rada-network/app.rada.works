@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { shape, string, number, object } from 'prop-types';
 import classes from './JobList.module.css';
 
-const Job = (props: any) => {
+const Job = (props) => {
   const { itemId, data } = props;
   return (
     <Fragment key={itemId}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import classes from './toggleTheme.module.css';
 const ToggleTheme = () => {
@@ -19,8 +19,8 @@ const ToggleTheme = () => {
   }, [colorTheme, theme]);
 
   return (
-    <div className={classes.toggleTheme}>
-      <button onClick={toggleTheme}>
+    <div className={classes.root}>
+      <button className={classes.toggleThemeBtn} onClick={toggleTheme}>
         {theme === 'light' ? 'Dark' : 'Light'}
       </button>
     </div>
