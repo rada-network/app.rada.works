@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import Job from './job';
-import classes from './JobList.module.css';
+import classes from './jobList.module.css';
 import myData from './sampleData.json';
 const JobList = (props) => {
   const { page } = props;
   const diffDays = (date, otherDate) => {
     Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
   };
-  console.log(page);
+
   const Heading = (props) => {
     const { page } = props;
     return (
