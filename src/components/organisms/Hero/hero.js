@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import Image from 'next/image';
-import ButtonLink from '../../atoms/ButtonLink';
+import Router from 'next/router';
+import Button from '../../atoms/Button';
 import classes from './hero.module.css';
 import { useHeroData } from 'src/hooks/useHeroData';
 import { Data } from './sampleData';
@@ -13,10 +14,14 @@ const Hero = (props) => {
     type,
     Data
   });
-
+  const handleClick = () => {
+    console.log('clicked');
+    let path = `/test-1`;
+    Router.push(path);
+  };
   const btnReadMore =
     type === 'type-1' ? (
-      <ButtonLink className="btn-blue" href={`/`}>
+      <Button className="btn-blue" priority="high" onClick={handleClick}>
         Learn more
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +37,7 @@ const Hero = (props) => {
             d="M14 5l7 7m0 0l-7 7m7-7H3"
           />
         </svg>
-      </ButtonLink>
+      </Button>
     ) : null;
 
   //const checked = type == 'experienced' ? 'content-right' : 'content-left';
