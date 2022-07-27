@@ -1,4 +1,4 @@
-import CreateJobLink from '../CreateJobForm/createJobtLink';
+import CreateJobLink from '../CreateJob/createJobtLink';
 
 const menuItems = new Map()
   .set('Browse jobs', '/search-job')
