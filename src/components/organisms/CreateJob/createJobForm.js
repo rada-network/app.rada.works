@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { shape, string } from 'prop-types';
+import { shape, string, func } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { Form } from 'informed';
 import FormError from '../../atoms/FormError';
@@ -11,13 +11,13 @@ import { toast } from 'react-toastify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 //import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import { useCreateJobForm } from '../../../hooks/CreateJobForm';
+import { useCreateJobForm } from '../../../hooks/CreateJob';
 import { useStyle } from '../../classify';
 import { isRequired } from '../../../utils/formValidators';
 import defaultClasses from './createJobForm.module.css';
 
 const CreateJobForm = (props) => {
-  const { classes: propClasses } = props;
+  const { classes: propClasses, setCurrentJobId } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('common');
@@ -31,8 +31,10 @@ const CreateJobForm = (props) => {
   useEffect(() => {
     if (response && response.create_job_item) {
       toast.success(t('You have just submitted a new Job successfully.'), {});
+      setCurrentJobId(response.create_job_item.id);
+      response.create_job_item = null;
     }
-  }, [t, response]);
+  }, [t, response, setCurrentJobId]);
 
   return (
     <Fragment>
@@ -93,33 +95,42 @@ const CreateJobForm = (props) => {
               )}
             </span>
           </Field>
-          <Field id="job-date_started" label={t('Start date')}>
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              minDate={new Date()}
-              showDisabledMonthNavigation
-              locale="en-GB"
-              dateFormat="yyyy/MM/dd h:mm aa"
-              placeholderText={t('Select one date...')}
-              showTimeSelect
-              timeIntervals={15}
-            />
-          </Field>
-          <Field id="job-date_ends" label={t('End date')}>
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              minDate={new Date()}
-              showDisabledMonthNavigation
-              locale="en-GB"
-              dateFormat="yyyy/MM/dd h:mm aa"
-              placeholderText={t('Select one date...')}
-              showTimeSelect
-              timeIntervals={15}
-            />
-          </Field>
-
+          <div className={`flex`}>
+            <Field
+              id="job-date_started"
+              classes={{ root: classes.datePickerField }}
+              label={t('Start date')}
+            >
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                minDate={new Date()}
+                showDisabledMonthNavigation
+                locale="en-GB"
+                dateFormat="yyyy/MM/dd h:mm aa"
+                placeholderText={t('Select one date...')}
+                showTimeSelect
+                timeIntervals={15}
+              />
+            </Field>
+            <Field
+              id="job-date_ends"
+              classes={{ root: classes.datePickerField }}
+              label={t('End date')}
+            >
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                minDate={new Date()}
+                showDisabledMonthNavigation
+                locale="en-GB"
+                dateFormat="yyyy/MM/dd h:mm aa"
+                placeholderText={t('Select one date...')}
+                showTimeSelect
+                timeIntervals={15}
+              />
+            </Field>
+          </div>
           <div className={classes.buttonsContainer}>
             <Button priority="high" type="submit" disabled={isBusy}>
               {t('Submit Job')}
@@ -134,7 +145,8 @@ const CreateJobForm = (props) => {
 CreateJobForm.propTypes = {
   classes: shape({
     root: string
-  })
+  }),
+  setCurrentJobId: func
 };
 
 export default CreateJobForm;

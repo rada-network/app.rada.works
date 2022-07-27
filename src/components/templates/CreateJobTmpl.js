@@ -2,7 +2,8 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import MainTmpl from './_mainTmpl';
-import CreateJobForm from '../organisms/CreateJobForm';
+import { CreateJobForm, Success } from '../organisms/CreateJob';
+import useCreateJob from '../../hooks/CreateJob/useCreateJob';
 
 import css from 'styled-jsx/css';
 
@@ -11,11 +12,17 @@ const styles = css`
 `;
 
 const CreateJobTmpl = (props) => {
+  const { currentJobId, setCurrentJobId } = useCreateJob({});
+
+  const child = currentJobId ? (
+    <Success jobId={currentJobId} />
+  ) : (
+    <CreateJobForm setCurrentJobId={setCurrentJobId} />
+  );
+
   return (
     <Fragment>
-      <MainTmpl>
-        <CreateJobForm />
-      </MainTmpl>
+      <MainTmpl> {child} </MainTmpl>
       <style jsx>{styles}</style>
     </Fragment>
   );
