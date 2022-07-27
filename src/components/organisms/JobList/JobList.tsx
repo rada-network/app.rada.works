@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import Job from './job';
-import classes from './jobList.module.css';
+import classes from './JobList.module.css';
 import myData from './sampleData.json';
 const JobList = (props) => {
   const { page } = props;
