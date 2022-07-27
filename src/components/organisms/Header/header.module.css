@@ -9,7 +9,7 @@
 }
 
 .logoContainer {
-  @apply w-12 p-1;
+  @apply w-8;
 }
 
 .menuContainer {
