@@ -14,13 +14,15 @@ const Success = (props) => {
 
   const { status } = useSession();
 
-  function editJob() {
+  const editJob = () => {
     console.log('Edit...');
-  }
+    console.log('JobId:' + jobId);
+  };
 
-  function viewJob() {
+  const viewJob = () => {
     console.log('View...');
-  }
+    console.log('JobId:' + jobId);
+  };
 
   const child =
     status === 'authenticated' ? (
@@ -46,7 +48,7 @@ const Success = (props) => {
             priority="high"
             type="button"
             className={classes.btnView}
-            onClick={viewJob()}
+            onClick={viewJob}
           >
             {t('View Job')}
           </Button>
