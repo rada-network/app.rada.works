@@ -7,11 +7,15 @@ import ConnectWallet from '../ConnectWallet';
 import { useTranslation } from 'next-i18next';
 import { DEFAULT_LINKS } from './sampleData';
 import ToggleTheme from '../ToggleTheme';
+import { useTheme } from 'next-themes';
 
 const Header = (props) => {
   const { links } = props;
 
   const { t } = useTranslation('common');
+
+  const { theme } = useTheme();
+  const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
 
   const menuItems = Array.from(links, ([groupKey, linkProps]) => {
     const linkElements = Array.from(linkProps, ([text, pathInfo]) => {
@@ -54,7 +58,7 @@ const Header = (props) => {
 
   return (
     <Fragment>
-      <header className={`${classes.root}`}>
+      <header className={`${classes[rootClassName]}`}>
         <div className={`${classes.logoContainer}`}>
           <TextLink className={classes.link} href={`/`}>
             <Logo classes={{ logo: classes.logo }} />

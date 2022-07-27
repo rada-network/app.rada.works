@@ -1,6 +1,11 @@
 .root {
   @apply sticky top-0 flex justify-between items-center px-4 py-2 space-x-4 z-10 text-sm font-medium;
-  @apply bg-white dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700;
+  @apply bg-white /*dark:bg-gray-900*/ border-b border-b-gray-200 /*dark:border-b-gray-700*/;
+}
+
+.rootDark {
+  composes: root;
+  @apply bg-gray-900 border-b-gray-700;
 }
 
 .logoContainer {
