@@ -8,8 +8,9 @@ export default (props) => {
   const { createJobMutation } = mergeOperations(DEFAULT_OPERATIONS, operations);
 
   const formApiRef = useRef(null);
-
   const setFormApi = useCallback((api) => (formApiRef.current = api), []);
+
+  const detailsEditorRef = useRef(null);
 
   const [
     submitCreateJobForm,
@@ -25,7 +26,7 @@ export default (props) => {
           variables: {
             title: formApiRef.current.getValue('title'),
             shortDesc: formApiRef.current.getValue('short_desc'),
-            description: formApiRef.current.getValue('description'),
+            description: detailsEditorRef.current.getContent(),
             startDate: extraValues.startDate,
             endDate: extraValues.endDate,
             status: 'draft' //default value
@@ -54,6 +55,7 @@ export default (props) => {
     handleSubmit,
     isBusy: submitLoading,
     setFormApi,
+    detailsEditorRef,
     response: data
   };
 };

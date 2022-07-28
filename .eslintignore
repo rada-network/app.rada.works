@@ -7,3 +7,4 @@ jest.storyshots.config.js
 src/generated/graphql.tsx
 stories
 tailwind.config.js
+postinstall.js
