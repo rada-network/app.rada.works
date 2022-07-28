@@ -2,14 +2,32 @@ import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import Job from './job';
 import classes from './JobList.module.css';
+import { useJobList } from '../../../hooks/JobList';
 import myData from './sampleData.json';
-const JobList = (props) => {
+const JobList = (props: { page: string }) => {
   const { page } = props;
-  const diffDays = (date, otherDate) => {
-    Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
-  };
+  let filter = {};
+  if (page === 'joblist') {
+    filter = {
+      id: { _gt: 0 }
+    };
+  } else {
+    filter = {
+      is_featured: { _eq: true }
+      // title: { _eq: 'asd' }
+    };
+  }
 
-  const Heading = (props) => {
+  const { data, error } = useJobList({
+    filter,
+    operations: ''
+  });
+  console.log('data:', data, 'error:', error);
+  // const diffDays = (date: number, otherDate: number) => {
+  //   Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
+  // };
+
+  const Heading = (props: { page: string }) => {
     const { page } = props;
     return (
       <Fragment key={page}>
@@ -29,6 +47,7 @@ const JobList = (props) => {
     );
   };
   const JobList = Array.from(myData, (data, Itemkey) => {
+    if (typeof data.is_featured === 'undefined') data.is_featured = false;
     return <Job key={Itemkey} itemId={Itemkey} data={data} />;
   });
 

@@ -1,16 +1,35 @@
 import React, { Fragment } from 'react';
-import { shape, string, number, object } from 'prop-types';
+import { shape, string } from 'prop-types';
 import Image from 'next/image';
-import classes from './jobList.module.css';
+import Router from 'next/router';
 
-const Job = (props) => {
+const Job = (props: {
+  itemId: number;
+  data: {
+    id: number;
+    user_id: { email: string /*token: number; avatar: string */ };
+    description: string;
+    owner_id: string;
+    short_desc: string;
+    title: string;
+    status: string;
+    date_updated: string;
+    is_featured: boolean;
+  };
+}) => {
   const { itemId, data } = props;
+  const handleClick = () => {
+    console.log('clicked');
+    const path = `/job-details/${data.id}`;
+    Router.push(path);
+  };
   return (
     <Fragment key={itemId}>
       <div
         className={
           'border border-gray-200 p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch'
         }
+        onClick={handleClick}
       >
         <div className={'flex items-center justify-between mb-2'}>
           <div className={'flex items-center'}>
@@ -18,9 +37,7 @@ const Job = (props) => {
               className={'avatar-sm w-6 h-6 rounded-full mr-2'}
               src="https://picsum.photos/200"
             />
-            <div className={'text-sm font-medium'}>
-              {data['user_id']['email']}
-            </div>
+            <div className={'text-sm font-medium'}>{data?.user_id?.email}</div>
             <span className={'opacity-70 text-xs ml-2 -mb-0.5'}>
               Posted 16 days ago
             </span>
@@ -35,12 +52,12 @@ const Job = (props) => {
         </div>
 
         <h2 className={'text-lg font-semibold text-gray-900 mb-2'}>
-          {data['title']}
+          {data?.title}
         </h2>
 
         <div
           className={'text-sm opacity-70 mb-4'}
-          dangerouslySetInnerHTML={{ __html: data['description'] }}
+          dangerouslySetInnerHTML={{ __html: data?.description }}
         />
         <div className={'mt-auto flex items-center justify-between'}>
           <div className={'mt-auto flex items-center'}>
@@ -75,8 +92,6 @@ const Job = (props) => {
 Job.propTypes = {
   classes: shape({
     root: string
-  }),
-  itemId: number,
-  data: object
+  })
 };
 export default Job;

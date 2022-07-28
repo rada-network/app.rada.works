@@ -3,9 +3,8 @@ import { useTheme } from 'next-themes';
 import classes from './toggleTheme.module.css';
 const ToggleTheme = () => {
   const { theme, setTheme } = useTheme();
-
   const colorTheme = theme === 'dark' ? 'light' : 'dark';
-  const toggleTheme = () => {
+  const toggleThemeClick = () => {
     theme == 'light' ? setTheme('dark') : setTheme('light');
   };
   useEffect(() => {
@@ -20,7 +19,7 @@ const ToggleTheme = () => {
 
   return (
     <div className={classes.root}>
-      <button className="" onClick={toggleTheme}>
+      <button className="" onClick={toggleThemeClick}>
         {theme === 'light' ? (
           <svg
             aria-hidden="true"
