@@ -1,5 +1,6 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useMutation } from '@apollo/client';
+import slugify from 'slugify';
 import mergeOperations from '../../utils/shallowMerge';
 import DEFAULT_OPERATIONS from './createJobForm.gql';
 
@@ -25,6 +26,7 @@ export default (props) => {
         await submitCreateJobForm({
           variables: {
             title: formApiRef.current.getValue('title'),
+            slug: slugify(formApiRef.current.getValue('title')).toLowerCase(),
             shortDesc: formApiRef.current.getValue('short_desc'),
             description: detailsEditorRef.current.getContent(),
             startDate: extraValues.startDate,
