@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 
-const jobDetail = (props: { child: object; jobid: number }) => {
-  const { child, jobid } = props;
+const jobDetail = (props: { slug: [] }) => {
+  const { slug } = props;
   return (
     <>
       <div>test</div>
-      <div>{jobid}</div>
+      <div>{JSON.stringify(slug)}</div>
     </>
   );
 };

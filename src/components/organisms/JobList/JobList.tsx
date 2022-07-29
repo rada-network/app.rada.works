@@ -18,7 +18,7 @@ const JobList = (props: { page: string }) => {
     };
   }
 
-  const { data, error } = useJobList({
+  const { loading, data, error } = useJobList({
     filter,
     operations: ''
   });

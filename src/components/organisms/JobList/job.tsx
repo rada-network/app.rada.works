@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import Image from 'next/image';
 import Router from 'next/router';
+import slugify from 'slugify';
 
 const Job = (props: {
   itemId: number;
@@ -20,7 +21,7 @@ const Job = (props: {
   const { itemId, data } = props;
   const handleClick = () => {
     console.log('clicked');
-    const path = `/job-details/${data.id}`;
+    const path = `/job-details/${slugify(data.title).toLowerCase()}`;
     Router.push(path);
   };
   return (
