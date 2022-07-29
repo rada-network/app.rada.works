@@ -8,3 +8,4 @@ src/generated/graphql.tsx
 stories
 tailwind.config.js
 postinstall.js
+server.js
