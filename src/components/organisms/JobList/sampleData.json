@@ -1,66 +1,78 @@
 [
   {
+		"id": 1,
     "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac leo dui. Sed porttitor augue erat, a hendrerit neque viverra et.</p>",
     "owner_id": "xxx",
     "short_desc": "test contest",
     "title": "10000 NFT in 2d/3d",
     "status": "published",
     "date_updated": "2022-07-19",
+		"is_featured": false,
     "user_id": {
       "email": "createuser@rada.works"
     }
   },
   {
+    "id": 2,
     "description": "<p>Make memes on NFTs and post them on Twitter.</p>",
     "owner_id": "xxx",
     "short_desc": "test contest w",
     "title": "NFT memes with Insight.io",
     "status": "published",
     "date_updated": "2022-07-19",
+    "is_featured": false,
     "user_id": {
       "email": "createuser@rada.works"
     }
   },
   {
+    "id": 3,
     "description": "<p>🔷 Meme the upcoming Ethereum Merge 🔷 ✨ Winners are drawn every week ✨ [https://emojipedia.org/sparkles/]</p>",
     "owner_id": "xxx",
     "short_desc": "Make ETH 2.0 Memes With SSV 💠 #1",
     "title": "Make ETH 2.0 Memes With SSV 💠 #1",
     "status": "published",
     "date_updated": "2022-07-19",
+    "is_featured": false,
     "user_id": {
       "email": "createuser@rada.works"
     }
   },
   {
+    "id": 4,
     "description": "<p>Cras convallis tempus ex nec euismod. Proin pretium metus mauris.</p>",
     "owner_id": "xxx",
     "short_desc": "test contest w",
     "title": "Gamefi Review Platform for Genz",
     "status": "published",
     "date_updated": "2022-07-19",
+    "is_featured": false,
     "user_id": {
       "email": "createuser@rada.works"
     }
   },
   {
+    "id": 5,
     "description": "<p>Make memes on NFTs and post them on Twitter.</p>",
     "owner_id": "xxx",
     "short_desc": "test contest w",
     "title": "NFT memes with Insight.io",
     "status": "published",
     "date_updated": "2022-07-19",
+    "is_featured": false,
     "user_id": {
       "email": "createuser@rada.works"
     }
   },
   {
+    "id": 6,
     "description": "<p>Sed et tristique quam. Ut in nibh sapien. Fusce posuere nec ipsum a volutpat. In at dictum est, at pulvinar mauris.</p>",
     "owner_id": "xxx",
     "short_desc": "NFT for music community",
     "title": "NFT for music community",
     "status": "published",
     "date_updated": "2022-07-19",
+    "is_featured": false,
     "user_id": {
       "email": "createuser@rada.works"
     }

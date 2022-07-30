@@ -10,7 +10,7 @@ import Button from '../../atoms/Button';
 import { toast } from 'react-toastify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-//import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import { Editor } from '@tinymce/tinymce-react';
 import { useCreateJobForm } from '../../../hooks/CreateJob';
 import { useStyle } from '../../classify';
 import { isRequired } from '../../../utils/formValidators';
@@ -25,8 +25,14 @@ const CreateJobForm = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const { errors, handleSubmit, isBusy, setFormApi, response } =
-    useCreateJobForm({});
+  const {
+    errors,
+    handleSubmit,
+    isBusy,
+    setFormApi,
+    detailsEditorRef,
+    response
+  } = useCreateJobForm({});
 
   useEffect(() => {
     if (response && response.create_job_item) {
@@ -81,13 +87,41 @@ const CreateJobForm = (props) => {
             </span>
           </Field>
           <Field id="job-description" label={t('Job detail')}>
-            <TextArea
-              autoComplete="description"
-              field="description"
-              id="job-description"
-              validate={isRequired}
-              validateOnBlur
-              placeholder={t('Enter job detail')}
+            <Editor
+              tinymceScriptSrc={
+                process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'
+              }
+              onInit={(evt, editor) => (detailsEditorRef.current = editor)}
+              initialValue={t('Enter job detail')}
+              init={{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist',
+                  'autolink',
+                  'lists',
+                  'link',
+                  'image',
+                  'charmap',
+                  'anchor',
+                  'searchreplace',
+                  'visualblocks',
+                  'code',
+                  'fullscreen',
+                  'insertdatetime',
+                  'media',
+                  'table',
+                  'preview',
+                  'wordcount'
+                ],
+                toolbar:
+                  'undo redo | blocks | ' +
+                  'bold italic forecolor | alignleft aligncenter ' +
+                  'alignright alignjustify | bullist numlist outdent indent | ' +
+                  'removeformat',
+                content_style:
+                  'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+              }}
             />
             <span className={classes.tip}>
               {t(

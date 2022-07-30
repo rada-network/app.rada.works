@@ -6,12 +6,12 @@
 
 .root .actions {
     display: block;
-    border: solid 1px #d6d6d6;
+    margin-top: 20px;
 }
 
 .btnEdit {
     composes: root_lowPriority from '../../atoms/Button/button.module.css';
-
+    margin-right: 20px;
 }
 
 .btnView {
