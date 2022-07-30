@@ -8,7 +8,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 // https://next-auth.js.org/configuration/options
 export default async function auth(
   req: NextApiRequest,
-  res: NextApiResponse<any>,
+  res: NextApiResponse<any>
 ) {
   const providers = [
     CredentialsProvider({
@@ -20,7 +20,7 @@ export default async function auth(
           const nonce = '0x' + credentials?.csrfToken;
           const address = utils.verifyMessage(
             nonce,
-            credentials?.signedMessage,
+            credentials?.signedMessage
           );
           console.log(credentials?.address?.toLowerCase());
           console.log(address);
@@ -31,7 +31,7 @@ export default async function auth(
             id: 1,
             name: address,
             email: 'jsmith@example.com',
-            ...credentials,
+            ...credentials
           };
           //connect to directus create user & get access token
 
@@ -40,8 +40,8 @@ export default async function auth(
         } catch (e) {
           return null;
         }
-      },
-    }),
+      }
+    })
   ];
 
   const isDefaultSigninPage =
@@ -56,10 +56,10 @@ export default async function auth(
     // https://next-auth.js.org/configuration/providers/oauth
     providers,
     session: {
-      strategy: 'jwt',
+      strategy: 'jwt'
     },
     jwt: {
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_SECRET
     },
     secret: process.env.NEXT_AUTH_SECRET,
     callbacks: {
@@ -67,7 +67,7 @@ export default async function auth(
         console.log(session);
         console.log(token);
         return session;
-      },
-    },
+      }
+    }
   });
 }
