@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import CreateJobTmpl from '../components/templates/CreateJobTmpl';
@@ -21,3 +22,12 @@ const CreateJobPage: NextPage = () => {
 };
 
 export default CreateJobPage;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'createjob']))
+      // Will be passed to the page component as props
+    }
+  };
+}

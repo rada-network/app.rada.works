@@ -13,14 +13,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Editor } from '@tinymce/tinymce-react';
 import { useCreateJobForm } from '../../../hooks/CreateJob';
 import { useStyle } from '../../classify';
-import { isRequired } from '../../../utils/formValidators';
+import { isRequired, hasLengthAtMost } from '../../../utils/formValidators';
+import combine from '../../../utils/combineValidators';
 import defaultClasses from './createJobForm.module.css';
 
 const CreateJobForm = (props) => {
   const { classes: propClasses, setCurrentJobId } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('createjob');
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -37,7 +38,7 @@ const CreateJobForm = (props) => {
   useEffect(() => {
     if (response && response.create_job_item) {
       toast.success(t('You have just submitted a new Job successfully.'), {});
-      setCurrentJobId(response.create_job_item.id);
+      setCurrentJobId(parseInt(response.create_job_item.id));
       response.create_job_item = null;
     }
   }, [t, response, setCurrentJobId]);
@@ -45,7 +46,7 @@ const CreateJobForm = (props) => {
   return (
     <Fragment>
       <div className={`${classes.formWrapper}`}>
-        <h1 className={classes.title}>{t('Job introduction')}</h1>
+        <h2 className={classes.title}>{t('Job introduction')}</h2>
         <FormError allowErrorMessages errors={Array.from(errors.values())} />
         <Form
           getApi={setFormApi}
@@ -74,7 +75,7 @@ const CreateJobForm = (props) => {
               autoComplete="short-desc"
               field="short_desc"
               id="job-short-desc"
-              validate={isRequired}
+              validate={combine([isRequired, [hasLengthAtMost, 200]])}
               validateOnBlur
               mask={(value) => value && value.trim()}
               maskOnBlur={true}
@@ -103,6 +104,7 @@ const CreateJobForm = (props) => {
                   'link',
                   'image',
                   'charmap',
+                  'preview',
                   'anchor',
                   'searchreplace',
                   'visualblocks',
@@ -111,14 +113,14 @@ const CreateJobForm = (props) => {
                   'insertdatetime',
                   'media',
                   'table',
-                  'preview',
+                  'help',
                   'wordcount'
                 ],
                 toolbar:
                   'undo redo | blocks | ' +
-                  'bold italic forecolor | alignleft aligncenter ' +
+                  'bold italic backcolor | alignleft aligncenter ' +
                   'alignright alignjustify | bullist numlist outdent indent | ' +
-                  'removeformat',
+                  'removeformat | help',
                 content_style:
                   'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
               }}
@@ -140,7 +142,6 @@ const CreateJobForm = (props) => {
                 onChange={(date) => setStartDate(date)}
                 minDate={new Date()}
                 showDisabledMonthNavigation
-                locale="en-GB"
                 dateFormat="yyyy/MM/dd h:mm aa"
                 placeholderText={t('Select one date...')}
                 showTimeSelect
@@ -157,7 +158,6 @@ const CreateJobForm = (props) => {
                 onChange={(date) => setEndDate(date)}
                 minDate={new Date()}
                 showDisabledMonthNavigation
-                locale="en-GB"
                 dateFormat="yyyy/MM/dd h:mm aa"
                 placeholderText={t('Select one date...')}
                 showTimeSelect

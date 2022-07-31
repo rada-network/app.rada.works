@@ -1,5 +1,6 @@
 import '../../styles/globals.css';
 import type { AppProps } from 'next/app';
+import { appWithTranslation } from 'next-i18next';
 import { MoralisProvider } from 'react-moralis';
 import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'react-redux';
@@ -35,4 +36,4 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

@@ -15,7 +15,7 @@ const Message = (props) => {
   let translatedErrorMessage;
 
   if (error) {
-    translatedErrorMessage = t(error.defaultMessage);
+    translatedErrorMessage = t(error.message);
   }
 
   return <p className={className}>{translatedErrorMessage || children}</p>;
@@ -35,9 +35,7 @@ Message.propTypes = {
   }),
   fieldState: shape({
     error: shape({
-      id: string,
-      defaultMessage: string,
-      value: oneOfType([number, string])
+      message: string
     })
   })
 };
