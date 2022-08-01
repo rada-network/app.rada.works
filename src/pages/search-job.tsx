@@ -3,7 +3,6 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import FindaJob from '../components/templates/FindaJob';
-import ConnectWallet from '../components/organisms/ConnectWallet';
 
 const SearchJob: NextPage = () => {
   const router = useRouter();
@@ -14,9 +13,7 @@ const SearchJob: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
-  const child = status == 'authenticated' ? <FindaJob /> : <ConnectWallet />;
-
-  return child;
+  return <FindaJob />;
 };
 
 export default SearchJob;

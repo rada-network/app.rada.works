@@ -5,6 +5,7 @@ export const GET_JOBS = gql`
     job(filter: $filter) {
       id
       title
+      short_desc
       description
       date_created
     }
