@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import classes from './header.module.css';
 import Logo from '../Logo';
@@ -14,7 +14,15 @@ const Header = (props) => {
 
   const { t } = useTranslation('common');
 
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    return () => {
+      window.localStorage.getItem('theme');
+    };
+  }, [theme]);
+
+  setTheme(theme);
   const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
 
   const menuItems = Array.from(links, ([groupKey, linkProps]) => {
