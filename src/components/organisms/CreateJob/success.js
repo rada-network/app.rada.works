@@ -8,15 +8,14 @@ import { useStyle } from '../../classify';
 import Button from '../../atoms/Button';
 
 const Success = (props) => {
-  const { classes: propClasses, jobId, jobTitle } = props;
+  const { classes: propClasses, jobId } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('common');
 
   const { status } = useSession();
 
-  const editJob = (e) => {
-    e.preventDefault();
+  const editJob = () => {
     console.log('Edit...');
     console.log('JobId:' + jobId);
     Router.push(`/edit-job/${jobId}`);

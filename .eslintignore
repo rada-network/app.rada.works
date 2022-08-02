@@ -9,3 +9,4 @@ stories
 tailwind.config.js
 postinstall.js
 server.js
+src/utils/simplePersistence.js

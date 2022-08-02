@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import BrowserPersistence from '../utils/simplePersistence';
+
 import {
   ApolloClient,
   createHttpLink,
@@ -19,9 +21,8 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   let token = GRAPHQL_API_TOKEN !== undefined ? GRAPHQL_API_TOKEN : false;
 
-  /*if (typeof document !== 'undefined') { //coming soon
-        token = getCookie('access_token');
-    }*/
+  const storage = new BrowserPersistence();
+  token = storage.getItem('access_token');
 
   if (token) {
     // return the headers to the context so httpLink can read them

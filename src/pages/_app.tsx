@@ -9,9 +9,19 @@ import { Web3Provider } from 'src/libs/web3-context';
 import { SessionProvider } from 'next-auth/react';
 import { useApollo } from '../libs/apolloClient';
 import { ThemeProvider } from 'next-themes';
+import { getSession } from 'next-auth/react';
+import BrowserPersistence from '../utils/simplePersistence';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const store = useStore();
+
+  getSession().then((session) => {
+    if (session && session.access_token) {
+      const storage = new BrowserPersistence();
+      storage.setItem('access_token', session.access_token);
+    }
+  });
+
   const apolloClient = useApollo(
     pageProps.initialApolloState ? pageProps.initialApolloState : null
   );

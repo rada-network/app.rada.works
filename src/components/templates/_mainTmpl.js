@@ -3,11 +3,6 @@ import React, { Fragment } from 'react';
 import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
 import Toast from '../organisms/Toast';
-import css from 'styled-jsx/css';
-
-const styles = css`
-  /* stylelint-disable */
-`;
 
 const MainTmpl = (props) => {
   const { children } = props;
@@ -18,7 +13,6 @@ const MainTmpl = (props) => {
       <main className="mx-auto max-w-screen-xl py-12">{children}</main>
       <Footer />
       <Toast />
-      <style jsx>{styles}</style>
     </Fragment>
   );
 };
