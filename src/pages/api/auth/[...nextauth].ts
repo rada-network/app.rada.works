@@ -42,7 +42,7 @@ export default async function auth(
               enforce_tfa: false
             },
             provider: 'default',
-            status: 'acitve'
+            status: 'active'
           });
           const user = {
             email: address,
@@ -80,6 +80,7 @@ export default async function auth(
           email: user.email,
           password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
         });
+        console.log(directusToken);
         user.access_token = directusToken.auth_login.access_token;
         return true;
       },

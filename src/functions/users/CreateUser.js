@@ -16,8 +16,10 @@ export const createUser = async (data) => {
       mutation: CREATE_USER_GQL,
       variables: { data }
     });
+    console.log(res);
     return res;
   } catch (error) {
+    console.log(error);
     return error;
   }
 };
