@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { shape, string, number, func } from 'prop-types';
+import Router from 'next/router';
+import { shape, string } from 'prop-types';
 import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './success.module.css';
@@ -14,9 +15,11 @@ const Success = (props) => {
 
   const { status } = useSession();
 
-  const editJob = () => {
+  const editJob = (e) => {
+    e.preventDefault();
     console.log('Edit...');
     console.log('JobId:' + jobId);
+    Router.push(`/edit-job/${jobId}`);
   };
 
   const viewJob = () => {
@@ -34,13 +37,12 @@ const Success = (props) => {
           typeface without relying on meaningful content. Lorem ipsum may be
           used as a placeholder before final copy is available.
         </div>
-        Created a Job Successfully: {`${jobId}`}
         <div className={`${classes.actions}`}>
           <Button
             priority="low"
             type="button"
             className={classes.btnEdit}
-            onClick={editJob}
+            onClick={() => editJob()}
           >
             {t('Edit Job')}
           </Button>
@@ -48,7 +50,7 @@ const Success = (props) => {
             priority="high"
             type="button"
             className={classes.btnView}
-            onClick={viewJob}
+            onClick={() => viewJob()}
           >
             {t('View Job')}
           </Button>
@@ -63,7 +65,7 @@ Success.propTypes = {
   classes: shape({
     root: string
   }),
-  jobId: number.isRequired
+  jobId: string.isRequired
 };
 
 export default Success;
