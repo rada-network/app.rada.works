@@ -4,6 +4,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import slugify from 'slugify';
 import mergeOperations from '../../utils/shallowMerge';
 import DEFAULT_OPERATIONS from './createJobForm.gql';
+import BrowserPersistence from '../../utils/simplePersistence';
 
 export default (props) => {
   const { operations, jobId } = props;
@@ -11,10 +12,12 @@ export default (props) => {
   const { createJobMutation, editJobMutation, loadJobByIdQuery } =
     mergeOperations(DEFAULT_OPERATIONS, operations);
 
+  const storage = new BrowserPersistence();
+
+  const submittingJob = storage.getItem('submittingJob');
+  let initialValues = submittingJob ? submittingJob : {};
+
   //load job information for initial values on form
-  let initialValues = props.initialValues ? props.initialValues : {};
-  console.log('Start:');
-  console.log(initialValues);
   const {
     loading: jobLoading,
     error: jobLoadError,
@@ -35,7 +38,9 @@ export default (props) => {
 
   const formApiRef = useRef(initialValues);
   const setFormApi = useCallback((api) => (formApiRef.current = api), []);
-  const detailsEditorRef = useRef('');
+  const detailsEditorRef = useRef(
+    initialValues.description ? initialValues.description : null
+  );
 
   const mutationQuery = jobId ? editJobMutation : createJobMutation;
   const [
@@ -48,25 +53,24 @@ export default (props) => {
   const handleSubmit = useCallback(
     async (submittedValues) => {
       try {
+        //saving submitted data to local storage
+        storage.setItem('submittingJob', submittedValues, 3600);
+
         await submitCreateJobForm({
           variables: {
             id: jobId,
-            title: formApiRef.current.getValue('title'),
-            slug: slugify(formApiRef.current.getValue('title')).toLowerCase(),
-            shortDesc: formApiRef.current.getValue('short_desc'),
-            description: detailsEditorRef.current.getContent(),
-            startDate: submittedValues.startDate,
-            endDate: submittedValues.endDate,
-            status: 'draft' //default value
+            slug: slugify(submittedValues.title).toLowerCase(),
+            status: 'pending',
+            isFeatured: false,
+            ...submittedValues
           }
         });
 
-        // if (formApiRef.current) {
-        //   // formApiRef.current.reset();
-        // }
-        /*if (detailsEditorRef.current) {
-            detailsEditorRef.current = null;
-        }*/
+        //Reset form fields state
+        if (formApiRef.current) {
+          formApiRef.current.reset();
+        }
+        storage.removeItem('submittingJob');
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(error);
@@ -74,7 +78,7 @@ export default (props) => {
       }
     },
 
-    [submitCreateJobForm]
+    [submitCreateJobForm, storage]
   );
 
   const handleCancel = useCallback(() => {

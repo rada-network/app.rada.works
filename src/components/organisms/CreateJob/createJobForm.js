@@ -17,6 +17,7 @@ import { isRequired, hasLengthAtMost } from '../../../utils/formValidators';
 import combine from '../../../utils/combineValidators';
 import Success from './success';
 import defaultClasses from './createJobForm.module.css';
+import { now } from 'next-auth/client/_utils';
 
 const CreateJobForm = (props) => {
   const { classes: propClasses, jobId } = props;
@@ -30,9 +31,6 @@ const CreateJobForm = (props) => {
     title: null
   });
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-
   const {
     errors,
     handleSubmit,
@@ -43,7 +41,14 @@ const CreateJobForm = (props) => {
     detailsEditorRef,
     initialValues,
     response
-  } = useCreateJobForm({ jobId, initialValues });
+  } = useCreateJobForm({ jobId });
+
+  const [startDate, setStartDate] = useState(
+    new Date(initialValues.startDate ? initialValues.startDate : new Date())
+  );
+  const [endDate, setEndDate] = useState(
+    new Date(initialValues.endDate ? initialValues.endDate : new Date())
+  );
 
   useEffect(() => {
     if (response) {
@@ -85,6 +90,8 @@ const CreateJobForm = (props) => {
               handleSubmit({
                 startDate,
                 endDate,
+                shortDesc: formApiRef.current.getValue('short_desc'),
+                description: detailsEditorRef.current.getContent(),
                 ...formApiRef.current.getValues()
               })
             }
