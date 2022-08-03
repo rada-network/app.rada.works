@@ -8,6 +8,8 @@ import classes from './jobDetail.module.css';
 import { Brief } from './brief';
 import { SubmitArtworks } from './submitArtworks';
 import { Discussion } from './discussion';
+import Sidebars from '../Sidebars';
+
 const JobDetail = (props: { slug: string }) => {
   const { slug } = props;
   const { loading, data, error } = useJobList({
@@ -26,6 +28,9 @@ const JobDetail = (props: { slug: string }) => {
       id: data?.job[0]?.id,
       title: data?.job[0]?.title,
       description: data?.job[0]?.description
+    };
+    const owner = {
+      address: '0x947b3337aC64d4676F11431AA67BDE90E63B11E9'
     };
     return (
       <Fragment>
@@ -66,20 +71,28 @@ const JobDetail = (props: { slug: string }) => {
             <Tab>Submit Artworks</Tab>
             <Tab>Discussion</Tab>
           </TabList>
-          <div className="flex">
-            <TabPanels className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 pr-16">
-              <TabPanel>
-                <Brief data={dataBrief} />
-              </TabPanel>
-              <TabPanel>
-                <SubmitArtworks />
-              </TabPanel>
-              <TabPanel>
-                <Discussion />
-              </TabPanel>
-            </TabPanels>
-            <div className="basis-1/4 pl-16 flex items-center">hello world</div>
-          </div>
+          <TabPanels>
+            <TabPanel>
+              <div className="flex">
+                <div className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 pr-16">
+                  <Brief data={dataBrief} />
+                </div>
+                <div className="basis-1/4 pl-16 flex items-center">
+                  <Sidebars
+                    owner={owner}
+                    artist={{ a: true }}
+                    joinContest={{ demo: true }}
+                  />
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <SubmitArtworks />
+            </TabPanel>
+            <TabPanel>
+              <Discussion />
+            </TabPanel>
+          </TabPanels>
         </Tabs>
       </Fragment>
     );
