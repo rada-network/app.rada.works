@@ -137,6 +137,7 @@ const CreateJobForm = (props) => {
                 init={{
                   height: 500,
                   menubar: false,
+                  placeholder: t('Enter the details information'),
                   plugins: [
                     'advlist',
                     'autolink',
