@@ -6,9 +6,10 @@ import { useTranslation } from 'next-i18next';
 import defaultClasses from './success.module.css';
 import { useStyle } from '../../classify';
 import Button from '../../atoms/Button';
+import slugify from 'slugify';
 
 const Success = (props) => {
-  const { classes: propClasses, jobId } = props;
+  const { classes: propClasses, jobId, jobTitle } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('common');
@@ -16,14 +17,11 @@ const Success = (props) => {
   const { status } = useSession();
 
   const editJob = () => {
-    console.log('Edit...');
-    console.log('JobId:' + jobId);
     Router.push(`/edit-job/${jobId}`);
   };
 
   const viewJob = () => {
-    console.log('View...');
-    console.log('JobId:' + jobId);
+    Router.push(`/job-details/${slugify(jobTitle).toLowerCase()}`);
   };
 
   const child =
@@ -64,7 +62,8 @@ Success.propTypes = {
   classes: shape({
     root: string
   }),
-  jobId: string.isRequired
+  jobId: string.isRequired,
+  jobTitle: string.isRequired
 };
 
 export default Success;

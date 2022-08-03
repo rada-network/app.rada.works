@@ -22,6 +22,7 @@ export const SUBMIT_CREATE_JOB_FORM = gql`
       }
     ) {
       id
+      title
     }
   }
 `;
@@ -50,6 +51,7 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
       }
     ) {
       id
+      title
     }
   }
 `;

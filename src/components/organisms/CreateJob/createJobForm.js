@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { shape, string, number } from 'prop-types';
+import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { Form } from 'informed';
 import FormError from '../../atoms/FormError';
@@ -25,6 +25,11 @@ const CreateJobForm = (props) => {
 
   const { t } = useTranslation('createjob');
 
+  const [currentJob, setCurrentJob] = useState({
+    id: null,
+    title: null
+  });
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -34,14 +39,11 @@ const CreateJobForm = (props) => {
     handleCancel,
     isBusy,
     setFormApi,
+    formApiRef,
     detailsEditorRef,
     initialValues,
     response
-  } = useCreateJobForm({ jobId });
-
-  const [result, setResult] = useState({
-    jobId: null
-  });
+  } = useCreateJobForm({ jobId, initialValues });
 
   useEffect(() => {
     if (response) {
@@ -50,20 +52,25 @@ const CreateJobForm = (props) => {
           t("You have just updated job's information successfully."),
           {}
         );
-        setResult({ jobId: response.update_job_item.id });
+        setCurrentJob({
+          id: response.update_job_item.id,
+          title: response.update_job_item.title
+        });
         response.update_job_item = null;
       } else if (response.create_job_item) {
         toast.success(t("You have just created a job's successfully."), {});
-        setResult({ jobId: response.create_job_item.id });
+        setCurrentJob({
+          id: response.create_job_item.id,
+          title: response.create_job_item.title
+        });
         response.create_job_item = null;
       }
     }
-  }, [t, response, setResult]);
+  }, [t, response, setCurrentJob]);
 
   let child = null;
-  if (result.jobId) {
-    child = <Success jobId={result.jobId} />;
-    // setResult({"jobId": null});
+  if (currentJob.id) {
+    child = <Success jobId={currentJob.id} jobTitle={currentJob.title} />;
   } else {
     if (!isBusy) {
       child = (
@@ -77,7 +84,8 @@ const CreateJobForm = (props) => {
             onSubmit={() =>
               handleSubmit({
                 startDate,
-                endDate
+                endDate,
+                ...formApiRef.current.getValues()
               })
             }
           >

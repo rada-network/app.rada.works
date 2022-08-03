@@ -6,16 +6,19 @@ import mergeOperations from '../../utils/shallowMerge';
 import DEFAULT_OPERATIONS from './createJobForm.gql';
 
 export default (props) => {
-  const { operations, jobId, initialValues = {} } = props;
+  const { operations, jobId } = props;
 
   const { createJobMutation, editJobMutation, loadJobByIdQuery } =
     mergeOperations(DEFAULT_OPERATIONS, operations);
 
   //load job information for initial values on form
+  let initialValues = props.initialValues ? props.initialValues : {};
+  console.log('Start:');
+  console.log(initialValues);
   const {
     loading: jobLoading,
     error: jobLoadError,
-    data: jobData
+    data: jobLoaded
   } = useQuery(loadJobByIdQuery, {
     /*fetchPolicy: 'cache-and-network',
       nextFetchPolicy: 'cache-first',*/
@@ -26,13 +29,8 @@ export default (props) => {
     }
   });
 
-  if (!jobLoading && jobData && jobData.job_by_id.id) {
-    initialValues.id = jobData.job_by_id.id;
-    initialValues.title = jobData.job_by_id.title;
-    initialValues.short_desc = jobData.job_by_id.short_desc;
-    initialValues.date_started = jobData.job_by_id.date_started;
-    initialValues.date_ends = jobData.job_by_id.date_ends;
-    initialValues.description = jobData.job_by_id.description;
+  if (!jobLoading && jobLoaded && jobLoaded.job_by_id.id) {
+    initialValues = jobLoaded.job_by_id;
   }
 
   const formApiRef = useRef(initialValues);
@@ -48,7 +46,7 @@ export default (props) => {
   });
 
   const handleSubmit = useCallback(
-    async (extraValues) => {
+    async (submittedValues) => {
       try {
         await submitCreateJobForm({
           variables: {
@@ -57,14 +55,14 @@ export default (props) => {
             slug: slugify(formApiRef.current.getValue('title')).toLowerCase(),
             shortDesc: formApiRef.current.getValue('short_desc'),
             description: detailsEditorRef.current.getContent(),
-            startDate: extraValues.startDate,
-            endDate: extraValues.endDate,
+            startDate: submittedValues.startDate,
+            endDate: submittedValues.endDate,
             status: 'draft' //default value
           }
         });
 
         // if (formApiRef.current) {
-        //   formApiRef.current.reset();
+        //   // formApiRef.current.reset();
         // }
         /*if (detailsEditorRef.current) {
             detailsEditorRef.current = null;
@@ -80,7 +78,6 @@ export default (props) => {
   );
 
   const handleCancel = useCallback(() => {
-    console.log('handleCancel()...');
     Router.push('/');
   }, []);
 
@@ -99,6 +96,7 @@ export default (props) => {
     handleSubmit,
     handleCancel,
     setFormApi,
+    formApiRef,
     detailsEditorRef,
     initialValues,
     response: data
