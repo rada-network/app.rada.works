@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { shape, string } from 'prop-types';
 import classes from './JobList.module.css';
 import { useJobList } from '../../../hooks/JobList';
@@ -7,13 +7,33 @@ import Job from './job';
 
 const JobList = (props: { page: string }) => {
   const { page } = props;
-
+  const [isLoading, setLoading] = useState(false);
+  const [isError, setError] = useState(false);
+  const [jobLists, setJobLists] = useState<any>();
   const { loading, data, error } = useJobList({
     page,
     slug: '',
     operations: ''
   });
-  console.log('data:', data, 'error:', error);
+  // useEffect(() => {
+  //   const useJobLists = () => {
+  //     const { loading, data, error } = useJobList({
+  //       page,
+  //       slug: '',
+  //       operations: ''
+  //     });
+  //     if (loading) {
+  //       setLoading(true);
+  //     } else if (error) {
+  //       setError(true);
+  //     } else {
+  //       setJobLists(data);
+  //     }
+  //   };
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //   useJobLists();
+  // }, [jobLists, page]);
+  console.log('data:', data, 'error:', isError);
   // const diffDays = (date: number, otherDate: number) => {
   //   Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
   // };

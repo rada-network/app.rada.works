@@ -1,22 +1,28 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import classes from './toggleTheme.module.css';
 const ToggleTheme = () => {
-  const { theme, setTheme } = useTheme();
-  const colorTheme = theme === 'dark' ? 'light' : 'dark';
-  const toggleThemeClick = () => {
-    theme == 'light' ? setTheme('dark') : setTheme('light');
-  };
+  const { theme, resolvedTheme, setTheme } = useTheme();
+  const [isDark, setIsDark] = useState<any | null>(null);
+
+  // useEffect(() => {
+  //   const root = window.document.body;
+
+  //   root.classList.remove(colorTheme);
+  //   root.classList.add(theme);
+  //   if (typeof window !== 'undefined') {
+  //     localStorage.setItem('theme', theme);
+  //   }
+  // }, [colorTheme, theme]);
+
   useEffect(() => {
-    const root = window.document.body;
-
-    root.classList.remove(colorTheme);
-    root.classList.add(theme);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', theme);
-    }
-  }, [colorTheme, theme]);
-
+    resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    return () => {};
+  }, [resolvedTheme]);
+  const toggleThemeClick = () => {
+    isDark ? setTheme('light') : setTheme('dark');
+  };
   return (
     <div className={classes.root}>
       <button className="" onClick={toggleThemeClick}>

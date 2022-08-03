@@ -1,11 +1,22 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { shape, string } from 'prop-types';
 import TextLink from '../../atoms/TextLink';
 import { useTranslation } from 'next-i18next';
 import classes from './footer.module.css';
+import { useTheme } from 'next-themes';
 import { DEFAULT_LINKS, socialData, menuItemsData } from './sampleData';
 
 const Footer = (_props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { theme, resolvedTheme, setTheme } = useTheme();
+
+  const [isDark, setIsDark] = useState();
+
+  useEffect(() => {
+    resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    return () => {};
+  }, [resolvedTheme]);
   const { t } = useTranslation('common');
   const date = new Date();
   const year = date.getFullYear();
@@ -35,12 +46,28 @@ const Footer = (_props) => {
     });
   }
   const menuItem = buildLink(menuItemsData, 'menu', 'li');
-  const socialElements = buildLink(socialData, 'social', '');
+  const socialElements = socialData.map((data, idx) => {
+    return (
+      <div key={idx} className={classes.linkItem}>
+        <TextLink
+          className={isDark ? 'dark' : 'light'}
+          href={data.link}
+          target="_blank"
+        >
+          <span className={isDark ? data.iconDark : data.icon}>
+            {t(data.title)}
+          </span>
+        </TextLink>
+      </div>
+    );
+  });
   const socialItem = <div className={classes.linkGroup}>{socialElements}</div>;
   const menuItems = <ul className={classes.linkGroup}>{menuItem}</ul>;
   return (
     <Fragment>
-      <footer className={classes.root}>
+      <footer
+        className={`flex justify-between items-center px-4 py-2 space-x-4 z-10 text-sm font-medium bg-white dark:bg-gray-900 border-t border-t-gray-200 dark:border-b-gray-700`}
+      >
         <div className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
           <span>
             {year}{' '}

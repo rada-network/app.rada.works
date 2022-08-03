@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import classes from './header.module.css';
 import Logo from '../Logo';
@@ -14,16 +14,17 @@ const Header = (props) => {
 
   const { t } = useTranslation('common');
 
-  const { theme, setTheme } = useTheme();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { theme, resolvedTheme, setTheme } = useTheme();
+  const [isDark, setIsDark] = useState();
 
   useEffect(() => {
-    return () => {
-      window.localStorage.getItem('theme');
-    };
-  }, [theme]);
+    resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    return () => {};
+  }, [resolvedTheme]);
 
-  setTheme(theme);
-  const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
+  const rootClassName = isDark ? 'rootDark' : 'root';
 
   const menuItems = Array.from(links, ([groupKey, linkProps]) => {
     const linkElements = Array.from(linkProps, ([text, pathInfo]) => {
@@ -50,16 +51,9 @@ const Header = (props) => {
       );
     });
 
-    // const connectWalletButton = (
-    //   <li className={classes.linkItem}>
-    //     <ConnectWallet />
-    //   </li>
-    // );
-
     return (
       <ul key={groupKey} className={classes.linkGroup}>
         {linkElements}
-        {/* {connectWalletButton} */}
       </ul>
     );
   });

@@ -1,7 +1,23 @@
-export const socialData = new Map()
-  .set('Telegram', 'https://rada.works/telegram')
-  .set('Twitter', 'https://rada.works/Twitter')
-  .set('Facebook', 'https://rada.works/Facebook');
+export const socialData = [
+  {
+    title: 'Telegram',
+    link: 'https://rada.works/telegram',
+    icon: 'Light',
+    iconDark: 'Dark'
+  },
+  {
+    title: 'Twitter',
+    link: 'https://rada.works/telegram',
+    icon: 'Light',
+    iconDark: 'Dark'
+  },
+  {
+    title: 'Facebook',
+    link: 'https://rada.works/telegram',
+    icon: 'Light',
+    iconDark: 'Dark'
+  }
+];
 
 export const menuItemsData = new Map()
   .set('Term of Service', '/term-of-service')

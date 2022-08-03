@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from '../../atoms/Image';
+// import Image from '../../atoms/Image';
+import Image from 'next/image';
 // import logo from './logo.png';
 
 /**
@@ -17,8 +18,9 @@ const Logo = (props) => {
 
   return (
     <Image
-      classes={{ image: classes.logo }}
+      className={classes.logo}
       height={height}
+      // layout="fill"
       src={'/logo-animate.svg'}
       title={'Rada.Works'}
       width={width}

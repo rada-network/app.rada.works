@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import { useJobList } from '../../../hooks/JobList';
 import Image from 'next/image';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
@@ -8,24 +8,18 @@ import classes from './jobDetail.module.css';
 import { Brief } from './brief';
 import { SubmitArtworks } from './submitArtworks';
 import { Discussion } from './discussion';
-const JobDetail = (props: { slug: [] }) => {
+const JobDetail = (props: { slug: string }) => {
   const { slug } = props;
-  const [isLoading, setLoading] = useState(false);
   const { loading, data, error } = useJobList({
     page: 'jobdetail',
-    slug: slug ? slug[0] : '',
+    slug: slug ?? '',
     operations: ''
   });
-  useEffect(() => {
-    setLoading(true);
-    if (data) {
-      setLoading(false);
-    }
-  }, [data, data?.jobs]);
 
-  console.log(data);
   if (loading) {
     return <div>Loading...</div>;
+  } else if (error || !data?.job?.[0]) {
+    return <div>Job not found...</div>;
   } else {
     const dataBrief = {
       classes: '',
@@ -37,7 +31,7 @@ const JobDetail = (props: { slug: [] }) => {
       <Fragment>
         <div>
           <div className="font-bold text-4xl dark:text-white">
-            10000 NFT in 2d/3d
+            {data?.job[0]?.title}
           </div>
           <div className={'flex items-center justify-between mb-2'}>
             <div className={'flex items-center'}>
@@ -72,18 +66,20 @@ const JobDetail = (props: { slug: [] }) => {
             <Tab>Submit Artworks</Tab>
             <Tab>Discussion</Tab>
           </TabList>
-          <hr />
-          <TabPanels>
-            <TabPanel>
-              <Brief data={dataBrief} />
-            </TabPanel>
-            <TabPanel>
-              <SubmitArtworks />
-            </TabPanel>
-            <TabPanel>
-              <Discussion />
-            </TabPanel>
-          </TabPanels>
+          <div className="flex">
+            <TabPanels className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 pr-16">
+              <TabPanel>
+                <Brief data={dataBrief} />
+              </TabPanel>
+              <TabPanel>
+                <SubmitArtworks />
+              </TabPanel>
+              <TabPanel>
+                <Discussion />
+              </TabPanel>
+            </TabPanels>
+            <div className="basis-1/4 pl-16 flex items-center">hello world</div>
+          </div>
         </Tabs>
       </Fragment>
     );

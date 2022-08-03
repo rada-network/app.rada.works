@@ -10,7 +10,7 @@ const styles = css`
   /* stylelint-disable */
 `;
 
-const FindaJob = (props) => {
+const FindaJob = () => {
   return (
     <Fragment>
       <MainTmpl>
