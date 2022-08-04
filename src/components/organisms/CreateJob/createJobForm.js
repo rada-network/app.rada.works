@@ -17,7 +17,6 @@ import { isRequired, hasLengthAtMost } from '../../../utils/formValidators';
 import combine from '../../../utils/combineValidators';
 import Success from './success';
 import defaultClasses from './createJobForm.module.css';
-import { now } from 'next-auth/client/_utils';
 
 const CreateJobForm = (props) => {
   const { classes: propClasses, jobId } = props;
@@ -43,11 +42,10 @@ const CreateJobForm = (props) => {
     response
   } = useCreateJobForm({ jobId });
 
-  const [startDate, setStartDate] = useState(
-    new Date(initialValues.startDate ? initialValues.startDate : new Date())
-  );
-  const [endDate, setEndDate] = useState(
-    new Date(initialValues.endDate ? initialValues.endDate : new Date())
+  const [deliveryDate, setDeliveryDate] = useState(
+    new Date(
+      initialValues.deliveryDate ? initialValues.deliveryDate : new Date()
+    )
   );
 
   useEffect(() => {
@@ -81,122 +79,60 @@ const CreateJobForm = (props) => {
       child = (
         <div className={`${classes.formWrapper}`}>
           <h2 className={classes.title}>{t('Job introduction')}</h2>
+
           <FormError allowErrorMessages errors={Array.from(errors.values())} />
+
           <Form
             getApi={setFormApi}
             className={classes.form}
             initialValues={initialValues}
             onSubmit={() =>
               handleSubmit({
-                startDate,
-                endDate,
+                deliveryDate,
                 shortDesc: formApiRef.current.getValue('short_desc'),
                 description: detailsEditorRef.current.getContent(),
                 ...formApiRef.current.getValues()
               })
             }
           >
-            <Field id="job-title" label={t('Job title')}>
-              <TextInput
-                autoComplete="title"
-                field="title"
-                id="job-title"
-                validate={isRequired}
-                validateOnBlur
-                mask={(value) => value && value.trim()}
-                maskOnBlur={true}
-                placeholder={t('E.g 10000 NFT in 2d/3d')}
-              />
-            </Field>
-            <Field id="job-short-desc" label={t('Introduce your job')}>
-              <TextArea
-                autoComplete="short-desc"
-                field="short_desc"
-                id="job-short-desc"
-                validate={combine([isRequired, [hasLengthAtMost, 200]])}
-                validateOnBlur
-                mask={(value) => value && value.trim()}
-                maskOnBlur={true}
-                placeholder={t('Enter the introduce')}
-              />
-              <span className={classes.tip}>
-                {t(
-                  'Introducing an overview of the job as well as the organizer personally so that participant can better understand you.'
-                )}
-              </span>
-            </Field>
-            <Field id="job-description" label={t('Job detail')}>
-              <Editor
-                tinymceScriptSrc={
-                  process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'
-                }
-                onInit={(evt, editor) => (detailsEditorRef.current = editor)}
-                initialValue={
-                  initialValues.description ? initialValues.description : ''
-                }
-                init={{
-                  height: 500,
-                  menubar: false,
-                  placeholder: t('Enter the details information'),
-                  plugins: [
-                    'advlist',
-                    'autolink',
-                    'lists',
-                    'link',
-                    'image',
-                    'charmap',
-                    'preview',
-                    'anchor',
-                    'searchreplace',
-                    'visualblocks',
-                    'code',
-                    'fullscreen',
-                    'insertdatetime',
-                    'media',
-                    'table',
-                    'help',
-                    'wordcount'
-                  ],
-                  toolbar:
-                    'undo redo | blocks | ' +
-                    'bold italic backcolor | alignleft aligncenter ' +
-                    'alignright alignjustify | bullist numlist outdent indent | ' +
-                    'removeformat | help',
-                  content_style:
-                    'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                }}
-              />
-              <span className={classes.tip}>
-                {t(
-                  'Describe the job in detail, the background, the reason for the organization as well as the meaning of this job for you and the community.'
-                )}
-              </span>
-            </Field>
-            <div className={`flex`}>
+            <div className={classes.fields}>
+              <Field id="job-title" label={t('Job title')}>
+                <TextInput
+                  autoComplete="title"
+                  field="title"
+                  id="job-title"
+                  validate={isRequired}
+                  validateOnBlur
+                  mask={(value) => value && value.trim()}
+                  maskOnBlur={true}
+                  placeholder={t('E.g 10000 NFT in 2d/3d')}
+                />
+              </Field>
+              <Field id="job-short-desc" label={t('Introduce your job')}>
+                <TextArea
+                  autoComplete="short-desc"
+                  field="short_desc"
+                  id="job-short-desc"
+                  validate={combine([isRequired, [hasLengthAtMost, 200]])}
+                  validateOnBlur
+                  mask={(value) => value && value.trim()}
+                  maskOnBlur={true}
+                  placeholder={t('Enter the introduce')}
+                />
+                <span className={classes.tip}>
+                  {t(
+                    'Introducing an overview of the job as well as the organizer personally so that participant can better understand you.'
+                  )}
+                </span>
+              </Field>
               <Field
                 id="job-date_started"
                 classes={{ root: classes.datePickerField }}
-                label={t('Start date')}
+                label={t('Delivery date')}
               >
                 <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  minDate={new Date()}
-                  showDisabledMonthNavigation
-                  dateFormat="yyyy/MM/dd h:mm aa"
-                  placeholderText={t('Select one date...')}
-                  showTimeSelect
-                  timeIntervals={15}
-                />
-              </Field>
-              <Field
-                id="job-date_ends"
-                classes={{ root: classes.datePickerField }}
-                label={t('End date')}
-              >
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date)}
+                  selected={deliveryDate}
+                  onChange={(date) => setDeliveryDate(date)}
                   minDate={new Date()}
                   showDisabledMonthNavigation
                   dateFormat="yyyy/MM/dd h:mm aa"
@@ -206,6 +142,81 @@ const CreateJobForm = (props) => {
                 />
               </Field>
             </div>
+            <div className={classes.fields}>
+              <h3 className={classes.priceTitle}>
+                {t('What is your budget for this services?')}
+              </h3>
+              <Field id="job-price" label={t('Price')}>
+                <TextInput
+                  autoComplete="price"
+                  field="price"
+                  id="job-price"
+                  validate={isRequired}
+                  validateOnBlur
+                  mask={(value) => value && parseFloat(value)}
+                  maskOnBlur={true}
+                  placeholder={t('E.g 0.02')}
+                />
+              </Field>
+              <span className={classes.tip}>
+                {t('Price does not include service fee.')}
+              </span>
+            </div>
+
+            <div className={classes.fields}>
+              <h3 className={classes.detailsTitle}>{t('Other')}</h3>
+              <Field
+                id="job-description"
+                label={t('Is there any detail you would provide?')}
+              >
+                <Editor
+                  tinymceScriptSrc={
+                    process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'
+                  }
+                  onInit={(evt, editor) => (detailsEditorRef.current = editor)}
+                  initialValue={
+                    initialValues.description ? initialValues.description : ''
+                  }
+                  init={{
+                    height: 500,
+                    menubar: false,
+                    placeholder: t('Other detail for creator?'),
+                    plugins: [
+                      'advlist',
+                      'autolink',
+                      'lists',
+                      'link',
+                      'image',
+                      'charmap',
+                      'preview',
+                      'anchor',
+                      'searchreplace',
+                      'visualblocks',
+                      'code',
+                      'fullscreen',
+                      'insertdatetime',
+                      'media',
+                      'table',
+                      'help',
+                      'wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | blocks | ' +
+                      'bold italic backcolor | alignleft aligncenter ' +
+                      'alignright alignjustify | bullist numlist outdent indent | ' +
+                      'removeformat | help',
+                    content_style:
+                      'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                  }}
+                />
+                <span className={classes.tip}>
+                  {t(
+                    'Describe the job in detail, the background, the reason for the organization as well as the meaning of this job for you and the community.'
+                  )}
+                </span>
+              </Field>
+            </div>
+
             <div className={classes.buttonsContainer}>
               <Button
                 priority="normal"

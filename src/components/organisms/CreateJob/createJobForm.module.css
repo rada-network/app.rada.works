@@ -2,14 +2,25 @@
   display: block;
 }
 
-.form {
+.formWrapper .form {
     @apply block;
 }
 
-.title {
-
+.formWrapper .title {
+    font-weight: bold;
 }
-.tip{
+
+.formWrapper .form .fields {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.formWrapper .form .fields .priceTitle,
+.formWrapper .form .fields .detailsTitle
+{
+    font-weight: bold;
+}
+
+.tip {
     display: block;
 }
 

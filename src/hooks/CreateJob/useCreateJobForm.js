@@ -34,6 +34,7 @@ export default (props) => {
 
   if (!jobLoading && jobLoaded && jobLoaded.job_by_id.id) {
     initialValues = jobLoaded.job_by_id;
+    initialValues.deliveryDate = jobLoaded.job_by_id.date_delivery;
   }
 
   const formApiRef = useRef(initialValues);
@@ -53,6 +54,8 @@ export default (props) => {
   const handleSubmit = useCallback(
     async (submittedValues) => {
       try {
+        submittedValues.price = parseFloat(submittedValues.price);
+
         //saving submitted data to local storage
         storage.setItem('submittingJob', submittedValues, 3600);
 

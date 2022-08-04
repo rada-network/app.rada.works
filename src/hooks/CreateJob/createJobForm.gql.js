@@ -6,8 +6,8 @@ export const SUBMIT_CREATE_JOB_FORM = gql`
     $slug: String!
     $shortDesc: String!
     $description: String!
-    $startDate: Date!
-    $endDate: Date!
+    $deliveryDate: Date!
+    $price: Float!
     $status: String!
     $isFeatured: Boolean!
   ) {
@@ -16,11 +16,11 @@ export const SUBMIT_CREATE_JOB_FORM = gql`
         title: $title
         slug: $slug
         short_desc: $shortDesc
+        price: $price
         description: $description
         status: $status
         is_featured: $isFeatured
-        date_started: $startDate
-        date_ends: $endDate
+        date_delivery: $deliveryDate
       }
     ) {
       id
@@ -35,10 +35,10 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
     $title: String!
     $slug: String!
     $shortDesc: String!
+    $price: Float!
     $description: String!
     $status: String!
-    $startDate: Date!
-    $endDate: Date!
+    $deliveryDate: Date!
   ) {
     update_job_item(
       id: $id
@@ -48,8 +48,8 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
         short_desc: $shortDesc
         description: $description
         status: $status
-        date_started: $startDate
-        date_ends: $endDate
+        price: $price
+        date_delivery: $deliveryDate
       }
     ) {
       id
@@ -64,10 +64,10 @@ export const LOAD_JOB_BY_ID = gql`
       id
       title
       short_desc
+      price
       description
       status
-      date_started
-      date_ends
+      date_delivery
     }
   }
 `;
