@@ -1,17 +1,13 @@
 import { useMemo } from 'react';
 import BrowserPersistence from '../utils/simplePersistence';
 
-import {
-  ApolloClient,
-  createHttpLink,
-  /*HttpLink,*/ InMemoryCache
-} from '@apollo/client';
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 let apolloClient;
 
 const GRAPHQL_ENDPOINT_URL = process.env.GRAPHQL_ENDPOINT_URL;
-const GRAPHQL_API_TOKEN = process.env.GRAPHQL_ENDPOINT_API_TOKEN;
+const GRAPHQL_ACCESS_TOKEN = process.env.GRAPHQL_ENDPOINT_GUEST_API_TOKEN;
 
 const httpLink = createHttpLink({
   useGETForQueries: true,
@@ -19,10 +15,11 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  let token = GRAPHQL_API_TOKEN !== undefined ? GRAPHQL_API_TOKEN : false;
+  let token = GRAPHQL_ACCESS_TOKEN !== undefined ? GRAPHQL_ACCESS_TOKEN : false;
 
   const storage = new BrowserPersistence();
-  token = storage.getItem('access_token');
+  const accessToken = storage.getItem('access_token');
+  token = accessToken ? accessToken : token;
 
   if (token) {
     // return the headers to the context so httpLink can read them
