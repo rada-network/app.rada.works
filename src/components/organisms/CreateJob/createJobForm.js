@@ -69,8 +69,8 @@ const CreateJobForm = (props) => {
   } else {
     if (!isBusy) {
       child = (
-        <div className={`${classes.formWrapper}`}>
-          <h2 className={classes.title}>{t('Job introduction')}</h2>
+        <div className={`${classes.root}`}>
+          <h2 className={classes.pageTitle}>{t('Job introduction')}</h2>
 
           <FormError allowErrorMessages errors={Array.from(errors.values())} />
 
@@ -148,6 +148,21 @@ const CreateJobForm = (props) => {
               <span className={classes.tip}>
                 {t('Price does not include service fee.')}
               </span>
+            </div>
+
+            <div className={classes.fields}>
+              <h3 className={classes.visualTitle}>{t('Visual style')}</h3>
+              <h4 className={`${classes.visualSubTitle}`}>
+                {t('In what type of art  do you want?')}
+              </h4>
+              <span className={classes.tip}>
+                {t(
+                  'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.'
+                )}
+              </span>
+              <Field id="job-visual-style">
+                ...Coming soon with multiple checkboxes.
+              </Field>
             </div>
 
             <div className={classes.fields}>

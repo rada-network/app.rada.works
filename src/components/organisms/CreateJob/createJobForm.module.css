@@ -1,23 +1,33 @@
-.formWrapper {
+.root {
   display: block;
 }
 
-.formWrapper .form {
+.root .form {
     @apply block;
 }
 
-.formWrapper .title {
+.root .pageTitle {
     font-weight: bold;
 }
 
-.formWrapper .form .fields {
+.root .form .fields {
     border-bottom: 1px solid #d6d6d6;
+    margin: 0px 0px 20px 0px;
 }
 
-.formWrapper .form .fields .priceTitle,
-.formWrapper .form .fields .detailsTitle
+.priceTitle {
+    composes: pageTitle;
+}
+
+.detailsTitle {
+    composes: pageTitle;
+}
+.visualTitle
 {
-    font-weight: bold;
+    composes: pageTitle;
+}
+.visualSubTitle {
+    composes: visualTitle;
 }
 
 .unit {
