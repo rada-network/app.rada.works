@@ -1,24 +1,33 @@
-import React from 'react';
-export const heading = (props: {
-  children: React.ReactNode;
-  classes: string;
-  level: number;
+import React, { Fragment, FunctionComponent } from 'react';
+import defaultClases from './heading.module.css';
+import { useStyle } from '../../classify';
+interface HeadingProps {
+  children?: React.ReactNode;
+  headingCls?: string;
+  HeadingType?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  subHeading?: string;
+}
+export const Heading: FunctionComponent<HeadingProps> = ({
+  children,
+  headingCls,
+  HeadingType,
+  subHeading
 }) => {
-  const { children, classes, level } = props;
-  switch (level) {
-    case 1:
-      return <h1 className={`${classes}`}>{children}</h1>;
-    case 2:
-      return <h2 className={`${classes}`}>{children}</h2>;
-    case 3:
-      return <h3 className={`${classes}`}>{children}</h3>;
-    case 4:
-      return <h4 className={`${classes}`}>{children}</h4>;
-    case 5:
-      return <h5 className={`${classes}`}>{children}</h5>;
-    case 6:
-      return <h6 className={`${classes}`}>{children}</h6>;
-    default:
-      return null;
-  }
+  const classes = useStyle(defaultClases, { heading: headingCls });
+  console.log(classes);
+  const child = HeadingType ? (
+    <HeadingType className={classes.heading}>{children}</HeadingType>
+  ) : null;
+  const SubHeading = subHeading ? (
+    <div className={classes.subHeading}>
+      <p>{subHeading}</p>
+    </div>
+  ) : null;
+
+  return (
+    <Fragment>
+      {child}
+      {SubHeading}
+    </Fragment>
+  );
 };
