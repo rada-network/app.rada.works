@@ -8,8 +8,6 @@ import TextInput from '../../atoms/TextInput';
 import TextArea from '../../atoms/TextArea';
 import Button from '../../atoms/Button';
 import { toast } from 'react-toastify';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { Editor } from '@tinymce/tinymce-react';
 import { useCreateJobForm } from '../../../hooks/CreateJob';
 import { useStyle } from '../../classify';
@@ -41,12 +39,6 @@ const CreateJobForm = (props) => {
     initialValues,
     response
   } = useCreateJobForm({ jobId });
-
-  const [deliveryDate, setDeliveryDate] = useState(
-    new Date(
-      initialValues.deliveryDate ? initialValues.deliveryDate : new Date()
-    )
-  );
 
   useEffect(() => {
     if (response) {
@@ -88,8 +80,6 @@ const CreateJobForm = (props) => {
             initialValues={initialValues}
             onSubmit={() =>
               handleSubmit({
-                deliveryDate,
-                shortDesc: formApiRef.current.getValue('short_desc'),
                 description: detailsEditorRef.current.getContent(),
                 ...formApiRef.current.getValues()
               })
@@ -125,21 +115,18 @@ const CreateJobForm = (props) => {
                   )}
                 </span>
               </Field>
-              <Field
-                id="job-date_started"
-                classes={{ root: classes.datePickerField }}
-                label={t('Delivery date')}
-              >
-                <DatePicker
-                  selected={deliveryDate}
-                  onChange={(date) => setDeliveryDate(date)}
-                  minDate={new Date()}
-                  showDisabledMonthNavigation
-                  dateFormat="yyyy/MM/dd h:mm aa"
-                  placeholderText={t('Select one date...')}
-                  showTimeSelect
-                  timeIntervals={15}
+              <Field id="job-duration" label={t('Job Duration')}>
+                <TextInput
+                  autoComplete="duration"
+                  field="duration"
+                  id="job-duration"
+                  validate={isRequired}
+                  validateOnBlur
+                  mask={(value) => value && parseInt(value)}
+                  maskOnBlur={true}
+                  placeholder={t('E.g 7')}
                 />
+                <span className={classes.unit}>{t('days')}</span>
               </Field>
             </div>
             <div className={classes.fields}>

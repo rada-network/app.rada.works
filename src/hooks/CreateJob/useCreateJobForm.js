@@ -32,9 +32,8 @@ export default (props) => {
     }
   });
 
-  if (!jobLoading && jobLoaded && jobLoaded.job_by_id.id) {
+  if (!jobLoading && jobLoaded && jobLoaded.job_by_id) {
     initialValues = jobLoaded.job_by_id;
-    initialValues.deliveryDate = jobLoaded.job_by_id.date_delivery;
   }
 
   const formApiRef = useRef(initialValues);
@@ -55,6 +54,7 @@ export default (props) => {
     async (submittedValues) => {
       try {
         submittedValues.price = parseFloat(submittedValues.price);
+        submittedValues.duration = parseInt(submittedValues.duration);
 
         //saving submitted data to local storage
         storage.setItem('submittingJob', submittedValues, 3600);
@@ -64,7 +64,7 @@ export default (props) => {
             id: jobId,
             slug: slugify(submittedValues.title).toLowerCase(),
             status: 'pending',
-            isFeatured: false,
+            is_featured: false,
             ...submittedValues
           }
         });

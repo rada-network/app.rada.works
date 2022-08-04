@@ -20,6 +20,9 @@
     font-weight: bold;
 }
 
+.unit {
+    margin: 0px 0px 0px 10px;
+}
 .tip {
     display: block;
 }

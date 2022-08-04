@@ -4,23 +4,23 @@ export const SUBMIT_CREATE_JOB_FORM = gql`
   mutation SubmitCreateJobForm(
     $title: String!
     $slug: String!
-    $shortDesc: String!
+    $short_desc: String!
     $description: String!
-    $deliveryDate: Date!
+    $duration: Int!
     $price: Float!
     $status: String!
-    $isFeatured: Boolean!
+    $is_featured: Boolean!
   ) {
     create_job_item(
       data: {
         title: $title
         slug: $slug
-        short_desc: $shortDesc
+        short_desc: $short_desc
+        duration: $duration
         price: $price
         description: $description
         status: $status
-        is_featured: $isFeatured
-        date_delivery: $deliveryDate
+        is_featured: $is_featured
       }
     ) {
       id
@@ -34,22 +34,22 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
     $id: ID!
     $title: String!
     $slug: String!
-    $shortDesc: String!
+    $short_desc: String!
     $price: Float!
     $description: String!
     $status: String!
-    $deliveryDate: Date!
+    $duration: Int!
   ) {
     update_job_item(
       id: $id
       data: {
         title: $title
         slug: $slug
-        short_desc: $shortDesc
+        short_desc: $short_desc
+        duration: $duration
         description: $description
         status: $status
         price: $price
-        date_delivery: $deliveryDate
       }
     ) {
       id
@@ -67,7 +67,7 @@ export const LOAD_JOB_BY_ID = gql`
       price
       description
       status
-      date_delivery
+      duration
     }
   }
 `;
