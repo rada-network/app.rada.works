@@ -16,7 +16,7 @@ module.exports = (phase) => {
       process.env.RADA_AUCTION_HOUSE_CONTRACT_ADDRESS,
       BSC_EXPLORER_URL: process.env.BSC_EXPLORER_URL,
       GRAPHQL_ENDPOINT_URL: process.env.GRAPHQL_ENDPOINT_URL,
-      GRAPHQL_ENDPOINT_API_TOKEN: process.env.GRAPHQL_ENDPOINT_API_TOKEN,
+      GRAPHQL_ENDPOINT_GUEST_API_TOKEN: process.env.GRAPHQL_ENDPOINT_GUEST_API_TOKEN,
       PUBLIC_URL: process.env.PUBLIC_URL,
     },
     i18n,
