@@ -7,6 +7,7 @@ import Field from '../../atoms/Field';
 import TextInput from '../../atoms/TextInput';
 import TextArea from '../../atoms/TextArea';
 import Button from '../../atoms/Button';
+import Checkbox from '../../atoms/Checkbox';
 import { toast } from 'react-toastify';
 import { Editor } from '@tinymce/tinymce-react';
 import { useCreateJobForm } from '../../../hooks/CreateJob';
@@ -37,8 +38,25 @@ const CreateJobForm = (props) => {
     formApiRef,
     detailsEditorRef,
     initialValues,
+    visualStyleFieldData,
     response
   } = useCreateJobForm({ jobId });
+
+  //generate visual style selection
+  const visualStyleField = visualStyleFieldData
+    ? visualStyleFieldData.fields_by_name.meta.options.choices.map(
+        (option, key) => (
+          <li key={`${key}`}>
+            <Checkbox
+              id={`visual_style_${key}`}
+              field={`visual_style__${option.value}`}
+              value={`${option.value}`}
+              label={option.text}
+            />
+          </li>
+        )
+      )
+    : null;
 
   useEffect(() => {
     if (response) {
@@ -70,7 +88,7 @@ const CreateJobForm = (props) => {
     if (!isBusy) {
       child = (
         <div className={`${classes.root}`}>
-          <h2 className={classes.pageTitle}>{t('Job introduction')}</h2>
+          <h2 className={`${classes.pageTitle}`}>{t('Job introduction')}</h2>
 
           <FormError allowErrorMessages errors={Array.from(errors.values())} />
 
@@ -85,7 +103,7 @@ const CreateJobForm = (props) => {
               })
             }
           >
-            <div className={classes.fields}>
+            <div className={`${classes.fields}`}>
               <Field id="job-title" label={t('Job title')}>
                 <TextInput
                   autoComplete="title"
@@ -129,7 +147,7 @@ const CreateJobForm = (props) => {
                 <span className={classes.unit}>{t('days')}</span>
               </Field>
             </div>
-            <div className={classes.fields}>
+            <div className={`${classes.fields}`}>
               <h3 className={classes.priceTitle}>
                 {t('What is your budget for this services?')}
               </h3>
@@ -150,7 +168,7 @@ const CreateJobForm = (props) => {
               </span>
             </div>
 
-            <div className={classes.fields}>
+            <div className={`${classes.fields}`}>
               <h3 className={classes.visualTitle}>{t('Visual style')}</h3>
               <h4 className={`${classes.visualSubTitle}`}>
                 {t('In what type of art  do you want?')}
@@ -161,11 +179,27 @@ const CreateJobForm = (props) => {
                 )}
               </span>
               <Field id="job-visual-style">
-                ...Coming soon with multiple checkboxes.
+                <ul className={classes.visualStyleOptions}>
+                  {visualStyleField}
+                </ul>
               </Field>
-            </div>
 
-            <div className={classes.fields}>
+              <h4 className={`${classes.visualSubTitle}`}>
+                {t('Your suggestion for the style of the artwork?')}
+              </h4>
+              <span className={classes.tip}>
+                {t('Drag or choose your file to upload')}
+              </span>
+              <Field id="job-visual-style">
+                ...Coming soon with multiple upload files.
+              </Field>
+              <span className={classes.tip}>
+                {t(
+                  'E.g. Your favorite artwork, photos, illustration, content, layout ideas etc...'
+                )}
+              </span>
+            </div>
+            <div className={`${classes.fields}`}>
               <h3 className={classes.detailsTitle}>{t('Other')}</h3>
               <Field
                 id="job-description"
@@ -219,18 +253,22 @@ const CreateJobForm = (props) => {
               </Field>
             </div>
 
-            <div className={classes.buttonsContainer}>
-              <Button
-                priority="normal"
-                onClick={() => handleCancel()}
-                type="button"
-                disabled={isBusy}
-              >
-                {t('Cancel')}
-              </Button>
-              <Button priority="high" type="submit" disabled={isBusy}>
-                {t('Next Step')}
-              </Button>
+            <div className={`${classes.buttonsContainer}`}>
+              <div className={`w-1/2 h-12`}>
+                <Button
+                  priority="normal"
+                  onClick={() => handleCancel()}
+                  type="button"
+                  disabled={isBusy}
+                >
+                  {t('Cancel')}
+                </Button>
+              </div>
+              <div className={`w-1/2 h-12 text-right`}>
+                <Button priority="high" type="submit" disabled={isBusy}>
+                  {t('Next Step')}
+                </Button>
+              </div>
             </div>
           </Form>
         </div>

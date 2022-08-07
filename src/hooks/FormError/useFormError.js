@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 
 export const useFormError = (props) => {
   const { errors, allowErrorMessages } = props;
-  const { t } = useTranslation('formError');
+  const { t } = useTranslation('common');
 
   const derivedErrorMessage = useMemo(() => {
     const defaultErrorMessage = allowErrorMessages

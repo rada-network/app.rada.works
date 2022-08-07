@@ -1,5 +1,6 @@
 .root {
   display: block;
+    margin: 20px;
 }
 
 .root .form {
@@ -12,7 +13,8 @@
 
 .root .form .fields {
     border-bottom: 1px solid #d6d6d6;
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 30px 0px;
+    padding: 0px 0px 30px 0px;
 }
 
 .priceTitle {
@@ -29,6 +31,13 @@
 .visualSubTitle {
     composes: visualTitle;
 }
+.visualStyleOptions {
+    list-style: none;
+}
+.visualStyleOptions li {
+    display: inline-block;
+    margin: 0px 10px 0px;
+}
 
 .unit {
     margin: 0px 0px 0px 10px;
@@ -38,8 +47,15 @@
 }
 
 .buttonsContainer {
-    margin: 10px;
-    padding: 10px;
+    @apply flex mb-4;
+}
+
+.createJobErrorRoot {
+    padding: 10px 0px;
+}
+
+.createJobErrorMessage {
+    color: red;
 }
 
 .datePickerField {

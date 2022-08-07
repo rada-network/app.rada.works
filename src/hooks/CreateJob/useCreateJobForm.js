@@ -9,13 +9,22 @@ import BrowserPersistence from '../../utils/simplePersistence';
 export default (props) => {
   const { operations, jobId } = props;
 
-  const { createJobMutation, editJobMutation, loadJobByIdQuery } =
-    mergeOperations(DEFAULT_OPERATIONS, operations);
+  const {
+    loadBackendFieldFunc,
+    createJobMutation,
+    editJobMutation,
+    loadJobByIdQuery
+  } = mergeOperations(DEFAULT_OPERATIONS, operations);
 
   const storage = new BrowserPersistence();
-
   const submittingJob = storage.getItem('submittingJob');
   let initialValues = submittingJob ? submittingJob : {};
+
+  //load configuration of 'visual_style' field from backend
+  loadBackendFieldFunc('job', 'visual_style').then(function (result) {
+    storage.setItem('visualStyleFieldData', result.data);
+    return result;
+  });
 
   //load job information for initial values on form
   const {
@@ -34,6 +43,9 @@ export default (props) => {
 
   if (!jobLoading && jobLoaded && jobLoaded.job_by_id) {
     initialValues = jobLoaded.job_by_id;
+    initialValues.visual_style.map(function (vl, key) {
+      if (vl) initialValues[`visual_style__${vl}`] = true;
+    });
   }
 
   const formApiRef = useRef(initialValues);
@@ -56,8 +68,25 @@ export default (props) => {
         submittedValues.price = parseFloat(submittedValues.price);
         submittedValues.duration = parseInt(submittedValues.duration);
 
+        // take selected visual style values
+        submittedValues.visual_style = Object.keys(submittedValues).reduce(
+          function (result, key) {
+            if (key.includes('visual_style__') && submittedValues[key]) {
+              key = key.split('__');
+              result.push(key[1] ? key[1] : false);
+            }
+
+            return result;
+          },
+          []
+        );
+
         //saving submitted data to local storage
         storage.setItem('submittingJob', submittedValues, 3600);
+
+        submittedValues.visual_style = JSON.stringify(
+          Object.values(submittedValues.visual_style)
+        );
 
         await submitCreateJobForm({
           variables: {
@@ -106,6 +135,7 @@ export default (props) => {
     formApiRef,
     detailsEditorRef,
     initialValues,
+    visualStyleFieldData: storage.getItem('visualStyleFieldData'),
     response: data
   };
 };
