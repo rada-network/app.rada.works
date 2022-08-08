@@ -15,31 +15,16 @@ const JobList = (props: { page: string }) => {
     slug: '',
     operations: ''
   });
-  return '';
+
   if (loading) {
     return <div>{t('Loading...')}</div>;
   } else if (error) {
     toast.error(t('Error'));
   } else {
     const jobs = data?.job;
-    const JobList = jobs?.map(
-      (
-        job: {
-          id: number;
-          user_id: { email: string };
-          description: string;
-          owner_id: string;
-          short_desc: string;
-          title: string;
-          status: string;
-          date_updated: string;
-          is_featured: boolean;
-        },
-        index: React.Key | null | undefined
-      ) => {
-        return <Job key={index} data={job} />;
-      }
-    );
+    const JobList = jobs?.map((job, index) => {
+      return <Job key={index} data={job} />;
+    });
     const subheading =
       page === 'homepage'
         ? t(
