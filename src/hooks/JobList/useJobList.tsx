@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import mergeOperations from '../../utils/shallowMerge';
-import DEFAULT_OPERATIONS from './JobList.gql';
+import DEFAULT_OPERATIONS from './jobList.gql';
 
 const UseJobList = (props: { page: string; slug: any; operations: string }) => {
   const { page, slug, operations } = props;
