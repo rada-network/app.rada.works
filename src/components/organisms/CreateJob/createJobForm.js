@@ -10,6 +10,7 @@ import Button from '../../atoms/Button';
 import Checkbox from '../../atoms/Checkbox';
 import { toast } from 'react-toastify';
 import { Editor } from '@tinymce/tinymce-react';
+import TINY_MCE_CONFIG from './tinyMCE.config';
 import { useCreateJobForm } from '../../../hooks/CreateJob';
 import { useStyle } from '../../classify';
 import { isRequired, hasLengthAtMost } from '../../../utils/formValidators';
@@ -21,6 +22,8 @@ const CreateJobForm = (props) => {
   const { classes: propClasses, jobId } = props;
 
   const classes = useStyle(defaultClasses, propClasses);
+
+  const { plugins, toolbar } = TINY_MCE_CONFIG;
 
   const { t } = useTranslation('createjob');
 
@@ -217,30 +220,8 @@ const CreateJobForm = (props) => {
                     height: 500,
                     menubar: false,
                     placeholder: t('Other detail for creator?'),
-                    plugins: [
-                      'advlist',
-                      'autolink',
-                      'lists',
-                      'link',
-                      'image',
-                      'charmap',
-                      'preview',
-                      'anchor',
-                      'searchreplace',
-                      'visualblocks',
-                      'code',
-                      'fullscreen',
-                      'insertdatetime',
-                      'media',
-                      'table',
-                      'help',
-                      'wordcount'
-                    ],
-                    toolbar:
-                      'undo redo | blocks | ' +
-                      'bold italic backcolor | alignleft aligncenter ' +
-                      'alignright alignjustify | bullist numlist outdent indent | ' +
-                      'removeformat | help',
+                    plugins,
+                    toolbar,
                     content_style:
                       'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                   }}

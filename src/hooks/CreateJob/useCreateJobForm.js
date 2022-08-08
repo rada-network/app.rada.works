@@ -22,7 +22,7 @@ export default (props) => {
 
   //load configuration of 'visual_style' field from backend
   loadBackendFieldFunc('job', 'visual_style').then(function (result) {
-    storage.setItem('visualStyleFieldData', result.data);
+    storage.setItem('visualStyleField', result);
     return result;
   });
 
@@ -126,8 +126,12 @@ export default (props) => {
     [createJobError, jobLoadError]
   );
 
+  const visualStyleField = storage.getItem('visualStyleField');
   return {
-    isBusy: jobLoading || submitLoading,
+    isBusy:
+      (visualStyleField && visualStyleField.loading) ||
+      jobLoading ||
+      submitLoading,
     errors,
     handleSubmit,
     handleCancel,
@@ -135,7 +139,7 @@ export default (props) => {
     formApiRef,
     detailsEditorRef,
     initialValues,
-    visualStyleFieldData: storage.getItem('visualStyleFieldData'),
+    visualStyleFieldData: visualStyleField ? visualStyleField.data : null,
     response: data
   };
 };
