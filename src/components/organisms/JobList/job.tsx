@@ -1,11 +1,8 @@
-import React, { Fragment } from 'react';
-import { shape, string } from 'prop-types';
+import React, { Fragment, FunctionComponent } from 'react';
 import Image from 'next/image';
 import Router from 'next/router';
 import slugify from 'slugify';
-
-const Job = (props: {
-  itemId: number;
+interface JobProps {
   data: {
     id: number;
     user_id: { email: string /*token: number; avatar: string */ };
@@ -17,15 +14,15 @@ const Job = (props: {
     date_updated: string;
     is_featured: boolean;
   };
-}) => {
-  const { itemId, data } = props;
+}
+const Job: FunctionComponent<JobProps> = (props) => {
+  const { data } = props;
   const handleClick = () => {
-    console.log('clicked');
     const path = `/job-details/${slugify(data.title).toLowerCase()}`;
     Router.push(path);
   };
   return (
-    <Fragment key={itemId}>
+    <Fragment key={data.id}>
       <div
         className={
           'border border-gray-200 p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch'
@@ -58,7 +55,7 @@ const Job = (props: {
 
         <div
           className={'text-sm opacity-70 mb-4'}
-          dangerouslySetInnerHTML={{ __html: data?.description }}
+          dangerouslySetInnerHTML={{ __html: data?.short_desc }}
         />
         <div className={'mt-auto flex items-center justify-between'}>
           <div className={'mt-auto flex items-center'}>
@@ -90,9 +87,4 @@ const Job = (props: {
   );
 };
 
-Job.propTypes = {
-  classes: shape({
-    root: string
-  })
-};
 export default Job;

@@ -3,19 +3,18 @@ import defaultClases from './heading.module.css';
 import { useStyle } from '../../classify';
 interface HeadingProps {
   children?: React.ReactNode;
-  headingCls?: string;
+  classes?: object;
   HeadingType?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   subHeading?: string;
 }
 export const Heading: FunctionComponent<HeadingProps> = ({
   children,
-  headingCls,
+  classes: propClasses,
   HeadingType,
   subHeading
 }) => {
-  const classes = useStyle(defaultClases, { heading: headingCls });
-  console.log(classes);
-  const child = HeadingType ? (
+  const classes = useStyle(defaultClases, propClasses);
+  const heading = HeadingType ? (
     <HeadingType className={classes.heading}>{children}</HeadingType>
   ) : null;
   const SubHeading = subHeading ? (
@@ -26,7 +25,7 @@ export const Heading: FunctionComponent<HeadingProps> = ({
 
   return (
     <Fragment>
-      {child}
+      {heading}
       {SubHeading}
     </Fragment>
   );

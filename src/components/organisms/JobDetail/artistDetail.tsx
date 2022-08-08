@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const ArtistDetail = (props: { data: any }) => {
+export const ArtistDetail = (props: { data: any }) => {
   const { data } = props;
   return (
     <Fragment>
@@ -60,4 +60,3 @@ const ArtistDetail = (props: { data: any }) => {
     </Fragment>
   );
 };
-export default ArtistDetail;
