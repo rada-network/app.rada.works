@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import { subString } from 'src/libs/useFunc';
 import classes from './aboutContest.module.css';
 
-const AbountContest = (props: {
+export const AboutContest = (props: {
   data: {
-    address: string;
-    avatar: string;
-    date_started: string;
-    date_ends: string;
+    address: string | undefined;
+    avatar: string | undefined;
+    date_started: string | undefined;
+    date_ends: string | undefined;
   };
 }) => {
   const { data } = props;
@@ -34,4 +34,3 @@ const AbountContest = (props: {
     </Fragment>
   );
 };
-export default AbountContest;

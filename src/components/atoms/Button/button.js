@@ -77,11 +77,11 @@ const Button = (props) => {
  */
 Button.propTypes = {
   classes: shape({
-    content: string,
-    root: string,
-    root_highPriority: string,
-    root_lowPriority: string,
-    root_normalPriority: string
+    content: string | undefined,
+    root: string | undefined,
+    root_highPriority: string | undefined,
+    root_lowPriority: string | undefined,
+    root_normalPriority: string | undefined
   }),
   priority: oneOf(['high', 'low', 'normal']).isRequired,
   type: oneOf(['button', 'reset', 'submit']).isRequired,

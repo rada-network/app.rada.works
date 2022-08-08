@@ -8,9 +8,14 @@ import classes from './jobDetail.module.css';
 import { Brief } from './brief';
 import { SubmitArtworks } from './submitArtworks';
 import { Discussion } from './discussion';
+import { ArtistDetail } from './artistDetail';
+import { AboutContest } from './aboutContest';
+import { JoinContest } from './joinContest';
+import { useTranslation } from 'next-i18next';
 import Sidebars from '../Sidebars';
 
 const JobDetail = (props: { slug: string }) => {
+  const { t } = useTranslation('jobDetail');
   const { slug } = props;
   const { loading, data, error } = useJobList({
     page: 'jobdetail',
@@ -52,7 +57,11 @@ const JobDetail = (props: { slug: string }) => {
               </span>
             </div>
             <div>
-              <Button className={`${classes.Submit} btn`}>
+              <Button
+                classes={{ root: classes.Submit }}
+                type="button"
+                priority="high"
+              >
                 Submit your work
               </Button>
             </div>
@@ -78,11 +87,11 @@ const JobDetail = (props: { slug: string }) => {
                   <Brief data={dataBrief} />
                 </div>
                 <div className="basis-1/4 pl-16 flex items-center">
-                  <Sidebars
-                    owner={owner}
-                    artist={{ a: true }}
-                    joinContest={{ demo: true }}
-                  />
+                  <div>
+                    <AboutContest data={owner} />
+                    <ArtistDetail data={{ demo: true }} />
+                    <JoinContest data={{ demo: true }} />
+                  </div>
                 </div>
               </div>
             </TabPanel>

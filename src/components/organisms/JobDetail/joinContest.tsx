@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-const JoinContest = (props: any) => {
+export const JoinContest = (props: any) => {
   console.log(props);
   return (
     <Fragment>
@@ -7,4 +7,3 @@ const JoinContest = (props: any) => {
     </Fragment>
   );
 };
-export default JoinContest;
