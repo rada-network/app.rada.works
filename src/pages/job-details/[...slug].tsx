@@ -4,8 +4,9 @@ import JobDetailTmp from '../../components/templates/jobDetailTmp';
 
 const JobDetails: NextPage = () => {
   const router = useRouter();
-  const slug = router?.query?.slug?.[0];
-  return <JobDetailTmp slug={slug || ''} />;
+  const query = router?.query?.slug?.[0]?.split('-');
+  const id = query ? parseInt(query[0]) : 0;
+  return <JobDetailTmp id={id} />;
 };
 
 export default JobDetails;

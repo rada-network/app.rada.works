@@ -8,11 +8,11 @@ const styles = css`
   /* stylelint-disable */
 `;
 
-const JobDetailTmp = (props: { slug: string }) => {
+const JobDetailTmp = (props: { id: number }) => {
   return (
     <Fragment>
       <MainTmpl>
-        <JobDetail slug={props.slug} />
+        <JobDetail id={props.id} />
       </MainTmpl>
       <style jsx>{styles}</style>
     </Fragment>
