@@ -68,8 +68,14 @@ export default async function auth(
   }
 
   return await NextAuth(req, res, {
-    // https://next-auth.js.org/configuration/providers/oauth
+    // See more at: https://next-auth.js.org/configuration/providers/oauth
     providers,
+    // See more at: https://next-auth.js.org/configuration/options
+    session: {
+      strategy: 'jwt', //default
+      // Seconds - How long until an idle session expires and is no longer valid.
+      maxAge: 20 * 60 // 20 minutes
+    },
     jwt: {
       secret: process.env.JWT_SECRET
     },
@@ -87,16 +93,16 @@ export default async function auth(
       async redirect({ url, baseUrl }) {
         return baseUrl;
       },
-      async session({ session, token, user }) {
-        session.access_token = token.access_token;
-        console.log(session);
-        return session;
-      },
       async jwt({ token, user, account, profile, isNewUser }) {
         if (user) {
           token = user;
         }
         return token;
+      },
+      async session({ session, token, user }) {
+        session.access_token = token.access_token;
+        console.log(session);
+        return session;
       }
     }
   });

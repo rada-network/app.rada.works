@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   getSession().then((session) => {
     const storage = new BrowserPersistence();
     if (session && session.access_token) {
-      storage.setItem('access_token', session.access_token, 3600);
+      storage.setItem('access_token', session.access_token, 20 * 60);
     } else {
       storage.removeItem('access_token');
     }
