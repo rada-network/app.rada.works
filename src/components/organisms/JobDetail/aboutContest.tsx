@@ -11,7 +11,7 @@ export const AboutContest = (props: {
   };
 }) => {
   const { data } = props;
-  const { address, avatar, date_started, date_ends } = data;
+  const { address, avatar, date_created, date_ends } = data;
   return (
     <Fragment>
       <div className={classes.root}>
@@ -29,6 +29,10 @@ export const AboutContest = (props: {
               src={avatar ? avatar : 'https://picsum.photos/200'}
             />
           </div>
+        </div>
+        <div>
+          <div>start date: {date_created}</div>
+          <div>end date: {date_ends}</div>
         </div>
       </div>
     </Fragment>

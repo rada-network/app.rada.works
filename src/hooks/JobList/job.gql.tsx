@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const LOAD_JOB_BY_SLUG = gql`
-  query LoadJobBySlug($slug: String!) {
-    job(slug: $slug) {
+export const LOAD_JOB_BY_ID = gql`
+  query LoadJobById($id: ID!) {
+    job_by_id(id: $id) {
       id
       title
       short_desc
@@ -11,9 +11,11 @@ export const LOAD_JOB_BY_SLUG = gql`
       description
       status
       duration
-      date_started
-      date_ends
-      user_created
+      date_created
+      user_created {
+        id
+        email
+      }
     }
   }
 `;

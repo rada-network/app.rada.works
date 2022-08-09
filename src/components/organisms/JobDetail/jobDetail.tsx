@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
 import '@reach/tabs/styles.css';
 import { useJob } from '../../../hooks/JobList';
+import { formatDate } from 'src/libs/useFunc';
 import Button from 'src/components/atoms/Button';
 import classes from './jobDetail.module.css';
 import { Brief } from './brief';
@@ -13,39 +14,41 @@ import { ArtistDetail } from './artistDetail';
 import { AboutContest } from './aboutContest';
 import { JoinContest } from './joinContest';
 
-const JobDetail = (props: { slug: string }) => {
+const JobDetail = (props: { id: number }) => {
   const { t } = useTranslation('jobDetail');
-  const { slug } = props;
+  const { id } = props;
   console.log('====================================');
-  console.log(slug);
+  console.log(id);
   console.log('====================================');
   const { loading, data, error } = useJob({
-    slug: slug ?? ''
+    jobId: id ?? ''
   });
 
   if (loading) {
     return <div>Loading...</div>;
   } else {
-    if (error || !data?.job?.[0]) {
+    console.log(data);
+
+    if (error !== undefined || !data?.job_by_id) {
       return <div>Job not found...</div>;
     } else {
       const dataBrief = {
         classes: '',
-        id: data?.job[0]?.id,
-        title: data?.job[0]?.title,
-        description: data?.job[0]?.description
+        id: data?.job_by_id?.id,
+        title: data?.job_by_id?.title,
+        description: data?.job_by_id?.description
       };
       const owner = {
-        address: '0x947b3337aC64d4676F11431AA67BDE90E63B11E9',
+        address: data?.job_by_id?.user_created?.email,
         avatar: 'https://avatars3.githubusercontent.com/u/8186664?s=460&v=4',
-        date_started: data?.job?.date_started,
-        date_ends: data?.job?.date_ends
+        date_created: formatDate(new Date(data?.job_by_id?.date_created)),
+        date_ends: data?.job_by_id?.date_ends
       };
       return (
         <Fragment>
           <div>
             <div className="font-bold text-4xl dark:text-white">
-              {data?.job[0]?.title}
+              {data?.job_by_id?.title}
             </div>
             <div className={'flex items-center justify-between mb-2'}>
               <div className={'flex items-center'}>

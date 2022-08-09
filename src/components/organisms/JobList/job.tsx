@@ -18,7 +18,7 @@ interface JobProps {
 const Job: FunctionComponent<JobProps> = (props) => {
   const { data } = props;
   const handleClick = () => {
-    const path = `/job-details/${slugify(data.title).toLowerCase()}`;
+    const path = `/job-details/${data.id}-${slugify(data.title).toLowerCase()}`;
     Router.push(path);
   };
   return (
