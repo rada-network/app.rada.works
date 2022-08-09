@@ -8,7 +8,7 @@ import { formatDate, formatEndDate } from 'src/libs/useFunc';
 import Button from 'src/components/atoms/Button';
 import classes from './jobDetail.module.css';
 import { Brief } from './brief';
-import { SubmitArtworks } from './submitArtworks';
+import { SubmitedArtworks } from './submitedArtworks';
 import { Discussion } from './discussion';
 import { ArtistDetail } from './artistDetail';
 import { AboutContest } from './aboutContest';
@@ -17,9 +17,6 @@ import { JoinContest } from './joinContest';
 const JobDetail = (props: { slug: string }) => {
   const { t } = useTranslation('jobDetail');
   const { slug } = props;
-  console.log('====================================');
-  console.log(slug);
-  console.log('====================================');
   const { loading, data, error } = useJob({
     slug: { _eq: slug } ?? ''
   });
@@ -27,8 +24,6 @@ const JobDetail = (props: { slug: string }) => {
   if (loading) {
     return <div>Loading...</div>;
   } else {
-    console.log(data);
-
     if (error !== undefined || !data?.job?.[0]) {
       return <div>Job not found...</div>;
     } else {
@@ -87,7 +82,7 @@ const JobDetail = (props: { slug: string }) => {
           <Tabs>
             <TabList>
               <Tab>Brief</Tab>
-              <Tab>Submit Artworks</Tab>
+              <Tab>Submited Artworks</Tab>
               <Tab>Discussion</Tab>
             </TabList>
             <TabPanels>
@@ -106,7 +101,7 @@ const JobDetail = (props: { slug: string }) => {
                 </div>
               </TabPanel>
               <TabPanel>
-                <SubmitArtworks />
+                <SubmitedArtworks />
               </TabPanel>
               <TabPanel>
                 <Discussion />

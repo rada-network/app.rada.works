@@ -9,7 +9,6 @@ export const Brief = (props: {
   };
 }) => {
   const { data } = props;
-  console.log(data);
   return (
     <Fragment>
       <div className={`${data.classes} pt-9`}>
