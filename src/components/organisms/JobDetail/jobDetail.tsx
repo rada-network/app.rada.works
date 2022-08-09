@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
 import '@reach/tabs/styles.css';
 import { useJob } from '../../../hooks/JobList';
-import { formatDate } from 'src/libs/useFunc';
+import { formatDate, formatEndDate } from 'src/libs/useFunc';
 import Button from 'src/components/atoms/Button';
 import classes from './jobDetail.module.css';
 import { Brief } from './brief';
@@ -14,14 +14,14 @@ import { ArtistDetail } from './artistDetail';
 import { AboutContest } from './aboutContest';
 import { JoinContest } from './joinContest';
 
-const JobDetail = (props: { id: number }) => {
+const JobDetail = (props: { slug: string }) => {
   const { t } = useTranslation('jobDetail');
-  const { id } = props;
+  const { slug } = props;
   console.log('====================================');
-  console.log(id);
+  console.log(slug);
   console.log('====================================');
   const { loading, data, error } = useJob({
-    jobId: id ?? ''
+    slug: { _eq: slug } ?? ''
   });
 
   if (loading) {
@@ -29,26 +29,29 @@ const JobDetail = (props: { id: number }) => {
   } else {
     console.log(data);
 
-    if (error !== undefined || !data?.job_by_id) {
+    if (error !== undefined || !data?.job?.[0]) {
       return <div>Job not found...</div>;
     } else {
       const dataBrief = {
         classes: '',
-        id: data?.job_by_id?.id,
-        title: data?.job_by_id?.title,
-        description: data?.job_by_id?.description
+        id: data?.job?.[0]?.id,
+        title: data?.job?.[0]?.title,
+        description: data?.job?.[0]?.description
       };
       const owner = {
-        address: data?.job_by_id?.user_created?.email,
+        address: data?.job?.[0]?.user_created?.email,
         avatar: 'https://avatars3.githubusercontent.com/u/8186664?s=460&v=4',
-        date_created: formatDate(new Date(data?.job_by_id?.date_created)),
-        date_ends: data?.job_by_id?.date_ends
+        date_created: formatDate(new Date(data?.job?.[0]?.date_created)),
+        date_ends: formatEndDate(
+          data?.job?.[0]?.duration,
+          new Date(data?.job?.[0]?.date_created)
+        )
       };
       return (
         <Fragment>
           <div>
             <div className="font-bold text-4xl dark:text-white">
-              {data?.job_by_id?.title}
+              {data?.job?.[0]?.title}
             </div>
             <div className={'flex items-center justify-between mb-2'}>
               <div className={'flex items-center'}>

@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client';
 
-export const LOAD_JOB_BY_ID = gql`
-  query LoadJobById($id: ID!) {
-    job_by_id(id: $id) {
+export const LOAD_JOB_BY_SLUG = gql`
+  query LoadJobBySlug($slug: string_filter_operators!) {
+    job(filter: { slug: $slug }) {
       id
+      slug
       title
       short_desc
       price

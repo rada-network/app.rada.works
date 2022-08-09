@@ -6,7 +6,7 @@ export const AboutContest = (props: {
   data: {
     address: string | undefined;
     avatar: string | undefined;
-    date_started: string | undefined;
+    date_created: string | undefined;
     date_ends: string | undefined;
   };
 }) => {

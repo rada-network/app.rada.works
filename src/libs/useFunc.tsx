@@ -22,3 +22,17 @@ export const formatDate = (date: {
 function padTo2Digits(num: number) {
   return num.toString().padStart(2, '0');
 }
+export const formatEndDate = (
+  duration: number,
+  date: {
+    getDate: () => any;
+    getMonth: () => number;
+    getFullYear: () => any;
+  }
+) => {
+  return [
+    padTo2Digits(date.getDate() + duration),
+    padTo2Digits(date.getMonth() + 1),
+    date.getFullYear()
+  ].join('-');
+};
