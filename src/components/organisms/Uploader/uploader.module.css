@@ -1,0 +1,36 @@
+.root {
+}
+
+.root .uploaderContainer {
+    @apply flex mb-4 flex-wrap justify-between;
+}
+
+.root :global(.uploading) {
+    opacity: 0.45;
+    pointer-events: none;
+    user-select: none;
+}
+
+.root .previewContainer {
+    list-style: none;
+}
+
+.root .previewItem {
+    display: inline-block;
+    padding: 10px;
+    margin: 0px 0px 10px 10px;
+    border: 1px solid #d6d6d6;
+}
+.root .previewItem .thumb {
+
+}
+.root .previewItem .fileAttachment {
+    margin: 0px 10px 0px 0px;
+}
+.root .previewItem .btnDelete {
+    cursor: pointer;
+    font-size: 11px;
+}
+.root .previewItem .btnDelete:hover {
+    text-decoration: underline;
+}

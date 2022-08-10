@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { Form } from 'informed';
+import { isRequired, hasLengthAtMost } from '../../../utils/formValidators';
+import combine from '../../../utils/combineValidators';
 import FormError from '../../atoms/FormError';
 import Field from '../../atoms/Field';
 import TextInput from '../../atoms/TextInput';
@@ -11,10 +13,9 @@ import Checkbox from '../../atoms/Checkbox';
 import { toast } from 'react-toastify';
 import { Editor } from '@tinymce/tinymce-react';
 import TINY_MCE_CONFIG from './tinyMCE.config';
+import Uploader from '../../organisms/Uploader';
 import { useCreateJobForm } from '../../../hooks/CreateJob';
 import { useStyle } from '../../classify';
-import { isRequired, hasLengthAtMost } from '../../../utils/formValidators';
-import combine from '../../../utils/combineValidators';
 import Success from './success';
 import defaultClasses from './createJobForm.module.css';
 
@@ -82,7 +83,9 @@ const CreateJobForm = (props) => {
         response.create_job_item = null;
       }
     }
-  }, [t, response, setCurrentJob]);
+
+    return true;
+  }, [response]);
 
   let child = null;
   if (currentJob.id) {
@@ -170,7 +173,6 @@ const CreateJobForm = (props) => {
                 {t('Price does not include service fee.')}
               </span>
             </div>
-
             <div className={`${classes.fields}`}>
               <h3 className={classes.visualTitle}>{t('Visual style')}</h3>
               <h4 className={`${classes.visualSubTitle}`}>
@@ -193,8 +195,8 @@ const CreateJobForm = (props) => {
               <span className={classes.tip}>
                 {t('Drag or choose your file to upload')}
               </span>
-              <Field id="job-visual-style">
-                ...Coming soon with multiple upload files.
+              <Field id="job-attachments">
+                <Uploader />
               </Field>
               <span className={classes.tip}>
                 {t(
@@ -233,7 +235,6 @@ const CreateJobForm = (props) => {
                 </span>
               </Field>
             </div>
-
             <div className={`${classes.buttonsContainer}`}>
               <div className={`w-1/2 h-12`}>
                 <Button

@@ -16,6 +16,9 @@
   "dependencies": {
     "@reach/tabs": "^0.17.0",
     "@tinymce/tinymce-react": "^4.1.0",
+    "@uppy/core": "^2.3.2",
+    "@uppy/react": "^2.2.2",
+    "@uppy/tus": "^2.4.2",
     "@walletconnect/web3-provider": "^1.7.7",
     "bignumber.js": "^9.0.2",
     "buffer": "^6.0.3",

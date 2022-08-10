@@ -75,7 +75,6 @@ export default (props) => {
               key = key.split('__');
               result.push(key[1] ? key[1] : false);
             }
-
             return result;
           },
           []

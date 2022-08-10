@@ -24,7 +24,8 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     try {
       const web3Modal = new Web3Modal({
         cacheProvider: false,
-        providerOptions: {}
+        providerOptions: {},
+        theme: 'dark'
       });
       const provider = await web3Modal.connect();
       const web3 = new Web3(provider);
@@ -47,6 +48,10 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
       const rawMessage = '0x' + (await getCsrfToken()) || '';
       const callbackUrl = '/';
       const signer = pp.getSigner();
+      signer.getBalance().then(function (rs) {
+        console.log(ethers.utils.formatEther(rs));
+      });
+
       // eslint-disable-next-line prefer-const
       signedMessage = await signer.signMessage(rawMessage);
       await signIn('credentials', {

@@ -8,9 +8,11 @@ import { useStore } from 'src/libs/redux';
 import { Web3Provider } from 'src/libs/web3-context';
 import { SessionProvider } from 'next-auth/react';
 import { useApollo } from '../libs/apolloClient';
+import Toast from '../components/organisms/Toast';
 import { ThemeProvider } from 'next-themes';
 import { getSession } from 'next-auth/react';
 import BrowserPersistence from '../utils/simplePersistence';
+import React from 'react';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const store = useStore();
@@ -39,6 +41,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
                 appId={process.env.NEXT_PUBLIC_APP_ID as string}
               >
                 <Component {...pageProps} />
+                <Toast />
               </MoralisProvider>
             </Web3Provider>
           </SessionProvider>

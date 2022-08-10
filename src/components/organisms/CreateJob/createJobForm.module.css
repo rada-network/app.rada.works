@@ -58,9 +58,4 @@
     color: red;
 }
 
-.datePickerField {
-    /*for example only */
-    composes: root from '../../atoms/Field/field.module.css';
-    @apply inline-block w-1/2;
-}
 
