@@ -7,10 +7,9 @@
 }
 
 .heading {
-	@apply text-4xl font-semibold text-center;
+	@apply text-4xl font-semibold text-center mb-4;
 }
 
-.author{
-	font-size: 0.8em;
-	font-weight: bold;
+.author {
+	@apply text-sm font-bold;
 }

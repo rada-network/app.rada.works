@@ -1,6 +1,4 @@
 .root {
-  @apply flex items-center px-4 py-8 z-10 text-sm space-x-4;
-  @apply bg-white dark:bg-gray-900 border-t border-t-gray-200 dark:border-t-gray-700;
 }
 
 .menuItems ul {

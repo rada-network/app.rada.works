@@ -2,6 +2,10 @@
   @apply flex justify-evenly items-center;
 }
 
+.type-1 h1 {
+  @apply mb-4;
+}
+
 .type-1 h2 {
   @apply text-4xl font-semibold mb-4;
 }

@@ -92,8 +92,8 @@ const JobDetail = (props: { slug: string }) => {
             </div>
           </div>
           <Tabs>
-            <TabList>
-              <Tab>Brief</Tab>
+            <TabList className="flex mb-6">
+              <Tab className="border-b">Brief</Tab>
               <Tab>Submited Artworks</Tab>
               <Tab>Discussion</Tab>
             </TabList>
@@ -101,7 +101,7 @@ const JobDetail = (props: { slug: string }) => {
             <TabPanels>
               <TabPanel>
                 <div className="flex">
-                  <div className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 pr-16">
+                  <div className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 dark:border-r-gray-800 pr-16">
                     <Brief data={dataBrief} />
                   </div>
                   <div className="basis-1/4 pl-16 flex items-center">
