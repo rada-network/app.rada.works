@@ -1,9 +1,9 @@
 .input {
-    composes: input from '../Field/field.module.css';
+  composes: input from '../Field/field.module.css';
 }
 .input_error {
-    composes: input from '../Field/field.module.css';
+  composes: input from '../Field/field.module.css';
 }
 .input_shimmer {
-    font-size: 1rem;
+  font-size: 1rem;
 }

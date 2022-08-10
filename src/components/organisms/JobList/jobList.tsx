@@ -3,7 +3,7 @@ import { shape, string } from 'prop-types';
 import classes from './jobList.module.css';
 import { useJobList } from '../../../hooks/JobList';
 import { useTranslation } from 'next-i18next';
-import { Heading } from 'src/components/atoms/Heading';
+import { Heading } from '../../atoms/Heading';
 import Job from './job';
 
 const JobList = (props: { page: string }) => {

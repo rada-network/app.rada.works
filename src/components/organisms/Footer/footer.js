@@ -66,7 +66,7 @@ const Footer = (_props) => {
   return (
     <Fragment>
       <footer
-        className={`flex justify-between items-center px-4 py-2 space-x-4 z-10 text-sm font-medium bg-white dark:bg-gray-900 border-t border-t-gray-200 dark:border-b-gray-700`}
+        className={`flex justify-between items-center px-4 py-2 space-x-4 z-10 text-sm font-medium bg-white dark:bg-gray-900 border-t border-t-gray-200 dark:border-t-gray-800`}
       >
         <div className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
           <span>

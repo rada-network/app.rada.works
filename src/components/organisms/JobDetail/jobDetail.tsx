@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
 import '@reach/tabs/styles.css';
 import { useJob } from '../../../hooks/JobList';
-import { formatDate, formatEndDate } from 'src/libs/useFunc';
+import { formatDate, formatEndDate, subString } from 'src/libs/useFunc';
 import Button from 'src/components/atoms/Button';
 import classes from './jobDetail.module.css';
 import { Brief } from './brief';
@@ -13,6 +13,7 @@ import { Discussion } from './discussion';
 import { ArtistDetail } from './artistDetail';
 import { AboutContest } from './aboutContest';
 import { JoinContest } from './joinContest';
+import { DateCounting } from './dateCounting';
 
 const JobDetail = (props: { slug: string }) => {
   const { t } = useTranslation('jobDetail');
@@ -55,18 +56,29 @@ const JobDetail = (props: { slug: string }) => {
                   src="https://picsum.photos/200"
                 />
                 <div className={'text-sm font-medium'}>
-                  {data?.user_id?.email}
+                  {subString({
+                    str: data?.job?.[0]?.user_created?.email,
+                    start: 5,
+                    end: 3
+                  })}
+                </div>
+                <div className="flex items-center">
+                  <img
+                    className="w-5 h-5 text-yellow-400"
+                    src="/star.svg"
+                    alt="star"
+                  />
+                  <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">
+                    4.95
+                  </p>
+                  <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400" />
                 </div>
                 <span className={'opacity-70 text-xs ml-2 -mb-0.5'}>
                   Posted 16 days ago
                 </span>
               </div>
               <div>
-                <Button
-                  classes={{ root: classes.Submit, content: '' }}
-                  type="button"
-                  priority="high"
-                >
+                <Button type="button" priority="high">
                   Submit your work
                 </Button>
               </div>
@@ -80,15 +92,16 @@ const JobDetail = (props: { slug: string }) => {
             </div>
           </div>
           <Tabs>
-            <TabList>
-              <Tab>Brief</Tab>
+            <TabList className="flex mb-6">
+              <Tab className="border-b">Brief</Tab>
               <Tab>Submited Artworks</Tab>
               <Tab>Discussion</Tab>
             </TabList>
+            <DateCounting />
             <TabPanels>
               <TabPanel>
                 <div className="flex">
-                  <div className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 pr-16">
+                  <div className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 dark:border-r-gray-800 pr-16">
                     <Brief data={dataBrief} />
                   </div>
                   <div className="basis-1/4 pl-16 flex items-center">
@@ -101,7 +114,7 @@ const JobDetail = (props: { slug: string }) => {
                 </div>
               </TabPanel>
               <TabPanel>
-                <SubmitedArtworks />
+                <SubmitedArtworks data={[]} />
               </TabPanel>
               <TabPanel>
                 <Discussion />

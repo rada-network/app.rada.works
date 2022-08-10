@@ -34,7 +34,7 @@
 }
 
 .root_highPriorityNegative {
- composes: root;
+  composes: root;
 }
 
 .content {
