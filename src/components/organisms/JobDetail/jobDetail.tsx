@@ -13,6 +13,7 @@ import { Discussion } from './discussion';
 import { ArtistDetail } from './artistDetail';
 import { AboutContest } from './aboutContest';
 import { JoinContest } from './joinContest';
+import { DateCounting } from './dateCounting';
 
 const JobDetail = (props: { slug: string }) => {
   const { t } = useTranslation('jobDetail');
@@ -81,6 +82,7 @@ const JobDetail = (props: { slug: string }) => {
               <Tab>Submited Artworks</Tab>
               <Tab>Discussion</Tab>
             </TabList>
+            <DateCounting />
             <TabPanels>
               <TabPanel>
                 <div className="flex">
