@@ -62,11 +62,7 @@ const JobDetail = (props: { slug: string }) => {
                 </span>
               </div>
               <div>
-                <Button
-                  classes={{ root: classes.Submit, content: '' }}
-                  type="button"
-                  priority="high"
-                >
+                <Button type="button" priority="high">
                   Submit your work
                 </Button>
               </div>
@@ -101,7 +97,7 @@ const JobDetail = (props: { slug: string }) => {
                 </div>
               </TabPanel>
               <TabPanel>
-                <SubmitedArtworks />
+                <SubmitedArtworks data={[]} />
               </TabPanel>
               <TabPanel>
                 <Discussion />
