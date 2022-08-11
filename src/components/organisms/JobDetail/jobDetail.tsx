@@ -108,16 +108,14 @@ const JobDetail = (props: { slug: string }) => {
             <DateCounting date={owner.date_ends} />
             <TabPanels>
               <TabPanel>
-                <div className="flex">
-                  <div className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 dark:border-r-gray-800 pr-16">
+                <div className="flex items-stretch">
+                  <div className="flex justify-between items-start basis-2/3 border-r border-r-gray-200 dark:border-r-gray-800 pr-14">
                     <Brief data={dataBrief} />
                   </div>
-                  <div className="basis-1/4 pl-16 flex items-center">
-                    <div>
-                      <AboutContest data={owner} />
-                      <ArtistDetail data={{ demo: true }} />
-                      <JoinContest data={{ demo: true }} />
-                    </div>
+                  <div className="basis-1/3 pl-14">
+                    <AboutContest data={owner} />
+                    <ArtistDetail data={{ demo: true }} />
+                    <JoinContest data={{ demo: true }} />
                   </div>
                 </div>
               </TabPanel>
