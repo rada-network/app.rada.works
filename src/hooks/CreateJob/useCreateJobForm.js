@@ -80,6 +80,9 @@ export default (props) => {
           []
         );
 
+        console.log('Attachment Files:');
+        console.log(storage.getItem('attachmentFiles'));
+
         //saving submitted data to local storage
         storage.setItem('submittingJob', submittedValues, 3600);
 

@@ -3,15 +3,16 @@ import { shape, string } from 'prop-types';
 import classes from './uploader.module.css';
 import { useTranslation } from 'next-i18next';
 import Uppy from '@uppy/core';
-import Tus from '@uppy/tus';
 import { DragDrop, useUppy } from '@uppy/react';
+import Tus from '@uppy/tus';
 import '@uppy/core/dist/style.css';
 import '@uppy/drag-drop/dist/style.css';
 import BrowserPersistence from '../../../utils/simplePersistence';
 
 const Uploader = (props) => {
   const {
-    uploadEndpoint = 'https://tusd.tusdemo.net/files',
+    storageKeyName = 'attachmentFiles',
+    tusUploadEndpoint = 'http://127.0.0.1:8585/uploads',
     allowedFileTypes = [
       'image/*',
       '.jpg',
@@ -27,14 +28,16 @@ const Uploader = (props) => {
 
   const { t } = useTranslation('common');
 
+  const storage = new BrowserPersistence();
+
   const uppy = useUppy(() => {
     return new Uppy({
       id: 'job-attachments',
       autoProceed: true,
       allowMultipleUploadBatches: true,
-      debug: false,
+      debug: true,
       restrictions: {
-        maxNumberOfFiles: 8,
+        maxNumberOfFiles: 5,
         maxFileSize: 3000000, //3MB
         minFileSize: 1024, //1KB
         allowedFileTypes
@@ -46,27 +49,30 @@ const Uploader = (props) => {
       // onBeforeFileAdded: (currentFile, files) => currentFile,
       // onBeforeUpload: (files) => {},
       // locale: {},
-      // store: new DefaultStore(),
-      // logger: justErrorsLogger,
       // infoTimeout: 5000
-    }).use(Tus, { endpoint: uploadEndpoint });
+    }).use(Tus, {
+      endpoint: tusUploadEndpoint,
+      onError(error) {
+        console.log('Failed because: ' + error);
+      }
+    });
   });
   uppy.on('upload', (data) => {
     setUploadingState();
   });
   uppy.on('upload-success', (file, response) => {
-    updatePreview(t, file, response.uploadURL);
-    addUploadedFiles(file.id, response.uploadURL);
+    updatePreview(t, storageKeyName, uppy, file, response.uploadURL);
   });
   uppy.on('complete', (result) => {
     cleanUploadingState();
+    //save uploaded file for other contexts
+    storage.setItem(storageKeyName, uppy.getFiles(), 24 * 60 * 60);
   });
 
   useEffect(() => {
-    //refresh uploaded files from local storage
-    const storage = new BrowserPersistence();
-    storage.removeItem('attachmentFiles');
-
+    //reset
+    uppy.reset();
+    storage.removeItem(storageKeyName);
     return () => uppy.close({ reason: 'unmount' });
   }, [uppy]);
 
@@ -110,81 +116,49 @@ const cleanUploadingState = () => {
   }, 1000);
 };
 
-const updatePreview = (t, file, uploadedUrl) => {
-  // preview item
-  const item = document.createElement('li');
-  item.id = file.id;
-  item.className = classes.previewItem;
+const updatePreview = (t, storageKeyName, uppy, file, uploadedUrl) => {
+  if (!document.getElementById(file.id)) {
+    // preview item
+    const item = document.createElement('li');
+    item.id = file.id;
+    item.className = classes.previewItem;
 
-  if (/(jpe?g|png|gif|bmp)$/i.test(file.extension)) {
-    // preview thumb
-    const img = new Image();
-    img.width = 100;
-    img.alt = file.name;
-    img.src = uploadedUrl;
-    img.className = classes.thumb;
-    item.appendChild(img);
-  } else {
-    const fileLink = document.createElement('a');
-    fileLink.href = uploadedUrl;
-    fileLink.target = '_blank';
-    fileLink.className = classes.fileAttachment;
-    const fileLinkText = document.createTextNode(file.name);
-    fileLink.appendChild(fileLinkText);
-    item.appendChild(fileLink);
-  }
-  //remove button
-  if (item) {
-    const rmBtn = document.createElement('span');
-    rmBtn.className = classes.btnDelete;
-    const rmBtnText = document.createTextNode(t('Remove'));
-    rmBtn.appendChild(rmBtnText);
-    rmBtn.onclick = (e) => {
-      document.getElementById(file.id).remove();
-      removeUploadedFile(file.id);
-    };
-    item.appendChild(rmBtn);
-  }
-
-  document.getElementById('preview-container').appendChild(item);
-};
-
-const addUploadedFiles = (id, url) => {
-  const storage = new BrowserPersistence();
-  const keyName = 'attachmentFiles';
-  let attachmentFiles = storage.getItem(keyName);
-  if (attachmentFiles === undefined) {
-    attachmentFiles = [];
-  }
-  // check exist
-  if (attachmentFiles.length) {
-    const found = attachmentFiles.some((el) => el.id === id);
-    if (!found) {
-      attachmentFiles.push({
-        id,
-        url
-      });
+    if (/(jpe?g|png|gif|bmp)$/i.test(file.extension)) {
+      // preview thumb
+      const img = new Image();
+      img.width = 100;
+      img.alt = file.name;
+      img.src = uploadedUrl;
+      img.className = classes.thumb;
+      item.appendChild(img);
+    } else {
+      const fileLink = document.createElement('a');
+      fileLink.href = uploadedUrl;
+      fileLink.target = '_blank';
+      fileLink.className = classes.fileAttachment;
+      const fileLinkText = document.createTextNode(file.name);
+      fileLink.appendChild(fileLinkText);
+      item.appendChild(fileLink);
     }
-  } else {
-    attachmentFiles.push({
-      id,
-      url
-    });
-  }
-  //save
-  storage.setItem(keyName, attachmentFiles, 24 * 60 * 60);
-  // console.log(attachmentFiles);
-};
+    //remove button
+    if (item) {
+      const rmBtn = document.createElement('span');
+      rmBtn.className = classes.btnDelete;
+      const rmBtnText = document.createTextNode(t('Remove'));
+      rmBtn.appendChild(rmBtnText);
+      rmBtn.onclick = (e) => {
+        uppy.removeFile(file.id);
 
-const removeUploadedFile = (id) => {
-  const storage = new BrowserPersistence();
-  const keyName = 'attachmentFiles';
-  const uploadedFiles = storage.getItem(keyName);
-  const newFiles = uploadedFiles.filter((item) => {
-    return item.id !== id;
-  });
-  storage.setItem(keyName, newFiles);
-  // console.log(newFiles);
+        const storage = new BrowserPersistence();
+        storage.setItem(storageKeyName, uppy.getFiles(), 24 * 60 * 60);
+
+        document.getElementById(file.id).remove();
+      };
+      item.appendChild(rmBtn);
+    }
+
+    document.getElementById('preview-container').appendChild(item);
+  }
 };
 
 Uploader.propTypes = {
