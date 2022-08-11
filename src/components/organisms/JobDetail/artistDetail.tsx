@@ -5,8 +5,8 @@ export const ArtistDetail = (props: { data: any }) => {
   return (
     <Fragment>
       <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg mb-6">
-        <div className="border-b border-gray-200 dark:border-gray-700 py-4 px-6">
-          <h3 className="text-gray-700 dark:text-white text-lg text-bold">
+        <div className="border-b border-gray-200 dark:border-gray-700 py-3 px-6">
+          <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             Artist In Contest (39)
           </h3>
         </div>
