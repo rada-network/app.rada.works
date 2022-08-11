@@ -25,14 +25,14 @@ function padTo2Digits(num: number) {
 export const formatEndDate = (
   duration: number,
   date: {
-    getDate: () => any;
+    getDate: () => number;
     getMonth: () => number;
     getFullYear: () => any;
   }
 ) => {
   return [
-    padTo2Digits(date.getDate() + duration),
     padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate() + duration),
     date.getFullYear()
-  ].join('-');
+  ].join('/');
 };
