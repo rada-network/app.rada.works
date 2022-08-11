@@ -14,9 +14,11 @@ export const AboutContest = (props: {
   const { address, avatar, date_created, date_ends } = data;
   return (
     <Fragment>
-      <div className={classes.root}>
-        <div className={classes.heading}>
-          <h3>About Contest</h3>
+      <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg mb-6">
+        <div className="border-b border-gray-200 dark:border-gray-700 py-3 px-6">
+          <h3 className="text-lg text-gray-600 dark:text-white font-medium">
+            About Contest
+          </h3>
         </div>
         <div className={classes.content}>
           <div className={classes.owner}>

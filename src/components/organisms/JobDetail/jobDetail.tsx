@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
+import moment from 'moment';
 import { useTranslation } from 'next-i18next';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
 import '@reach/tabs/styles.css';
 import { useJob } from '../../../hooks/JobList';
-import { formatDate, formatEndDate, subString } from 'src/libs/useFunc';
-import Button from 'src/components/atoms/Button';
+import { formatEndDate, subString } from 'src/libs/useFunc';
+import Button from '../../atoms/Button';
 import classes from './jobDetail.module.css';
 import { Brief } from './brief';
 import { SubmitedArtworks } from './submitedArtworks';
@@ -34,15 +35,22 @@ const JobDetail = (props: { slug: string }) => {
         title: data?.job?.[0]?.title,
         description: data?.job?.[0]?.description
       };
-      const owner = {
-        address: data?.job?.[0]?.user_created?.email,
-        avatar: 'https://avatars3.githubusercontent.com/u/8186664?s=460&v=4',
-        date_created: formatDate(new Date(data?.job?.[0]?.date_created)),
-        date_ends: formatEndDate(
+      const startDate = moment(data?.job?.[0]?.date_created).format(
+        'ddd: DD MMM, YYYY'
+      );
+      const endDate = moment(
+        formatEndDate(
           data?.job?.[0]?.duration,
           new Date(data?.job?.[0]?.date_created)
         )
+      ).format('ddd: DD MMM, YYYY');
+      const owner = {
+        address: data?.job?.[0]?.user_created?.email,
+        avatar: 'https://avatars3.githubusercontent.com/u/8186664?s=460&v=4',
+        date_created: startDate,
+        date_ends: endDate
       };
+
       return (
         <Fragment>
           <div>
@@ -97,19 +105,17 @@ const JobDetail = (props: { slug: string }) => {
               <Tab>Submited Artworks</Tab>
               <Tab>Discussion</Tab>
             </TabList>
-            <DateCounting />
+            <DateCounting date={owner.date_ends} />
             <TabPanels>
               <TabPanel>
-                <div className="flex">
-                  <div className=" flex justify-between items-center basis-3/4 border-r border-r-gray-200 dark:border-r-gray-800 pr-16">
+                <div className="flex items-stretch">
+                  <div className="flex justify-between items-start basis-2/3 border-r border-r-gray-200 dark:border-r-gray-800 pr-14">
                     <Brief data={dataBrief} />
                   </div>
-                  <div className="basis-1/4 pl-16 flex items-center">
-                    <div>
-                      <AboutContest data={owner} />
-                      <ArtistDetail data={{ demo: true }} />
-                      <JoinContest data={{ demo: true }} />
-                    </div>
+                  <div className="basis-1/3 pl-14">
+                    <AboutContest data={owner} />
+                    <ArtistDetail data={{ demo: true }} />
+                    <JoinContest data={{ demo: true }} />
                   </div>
                 </div>
               </TabPanel>

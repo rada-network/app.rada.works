@@ -20,8 +20,6 @@ const Header = (props) => {
 
   useEffect(() => {
     resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    return () => {};
   }, [resolvedTheme]);
 
   const rootClassName = isDark ? 'rootDark' : 'root';

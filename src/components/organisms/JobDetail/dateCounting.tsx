@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-
+import { useCountdown } from 'src/hooks/useDateCounting';
 export const DateCounting = (props: any) => {
-  console.log(props);
+  const [days, hours] = useCountdown(props.date);
   return (
     <Fragment>
       <div
@@ -9,10 +9,9 @@ export const DateCounting = (props: any) => {
         role="alert"
       >
         <img src="/info.svg" alt="info" className="w-4 h-4 mr-2" />
-        <span className="sr-only">Info</span>
+        <span className="sr-only">time</span>
         <div>
-          <span className="font-medium">Info alert!</span> Change a few things
-          up and try submitting again.
+          You have {days} days, {hours} hours left to submit art designs
         </div>
       </div>
     </Fragment>

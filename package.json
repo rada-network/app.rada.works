@@ -29,6 +29,7 @@
     "https-browserify": "^1.0.0",
     "i18next-http-backend": "^1.4.0",
     "informed": "~3.29.0",
+    "moment": "^2.29.4",
     "moralis": "^1.5.8",
     "next": "12.1.0",
     "next-auth": "^4.9.0",
