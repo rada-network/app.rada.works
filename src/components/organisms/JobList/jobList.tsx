@@ -4,6 +4,8 @@ import classes from './jobList.module.css';
 import { useJobList } from '../../../hooks/JobList';
 import { useTranslation } from 'next-i18next';
 import { Heading } from '../../atoms/Heading';
+import { Form } from 'informed';
+import Select from '../../atoms/Select';
 import Job from './job';
 
 const JobList = (props: { page: string }) => {
@@ -42,6 +44,15 @@ const JobList = (props: { page: string }) => {
               >
                 {t('🎉 Browse Jobs')}
               </Heading>
+              <Form className={classes.root}>
+                <Select
+                  field="test"
+                  items={[
+                    { label: 'Option 1', value: 'opt1' },
+                    { label: 'Option 2', value: 'opt2' }
+                  ]}
+                />
+              </Form>
               <div className={classes.itemlist}>{JobList}</div>
             </div>
           </section>
