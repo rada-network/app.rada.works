@@ -40,6 +40,7 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
     $short_desc: String!
     $price: Float!
     $visual_style: JSON
+    $attachments: update_job_files_input
     $description: String!
     $status: String!
     $duration: Int!
@@ -55,6 +56,7 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
         status: $status
         price: $price
         visual_style: $visual_style
+        attachments: $attachments
       }
     ) {
       id
@@ -73,12 +75,13 @@ export const LOAD_JOB_BY_ID = gql`
       visual_style
       attachments {
         id
+        # See more: https://docs.directus.io/reference/files.html#the-file-object
         directus_files_id {
-          # See more: https://docs.directus.io/reference/files.html#the-file-object
           id
-          title
           filename_disk
           filename_download
+          title
+          type
         }
       }
       description
@@ -91,7 +94,6 @@ export const LOAD_JOB_BY_ID = gql`
 export const LOAD_BACKEND_FIELD = gql`
   query LoadBackendField($collection: String!, $field: String!) {
     fields_by_name(collection: $collection, field: $field) {
-      #            field
       meta {
         options
       }
@@ -101,13 +103,11 @@ export const LOAD_BACKEND_FIELD = gql`
 export const loadBackendFieldFunc = async (collection, field) => {
   const client = initializeApollo();
   try {
-    let result = await client.query({
+    return await client.query({
       query: LOAD_BACKEND_FIELD,
       variables: { collection, field },
       nextFetchPolicy: 'cache-first'
     });
-
-    return result;
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
       console.error(error);
@@ -116,8 +116,28 @@ export const loadBackendFieldFunc = async (collection, field) => {
   }
 };
 
+export const IMPORT_JOB_FILE = gql`
+  mutation ImportJobFile(
+    $url: String!
+    $data: create_directus_files_input! #https://docs.directus.io/reference/files.html#the-file-object
+  ) {
+    import_file(url: $url, data: $data) {
+      id
+    }
+  }
+`;
+export const importFileFunc = async (props) => {
+  const { url, data } = props;
+  const client = initializeApollo();
+  return await client.mutate({
+    mutation: IMPORT_JOB_FILE,
+    variables: { url, data }
+  });
+};
+
 export default {
   loadBackendFieldFunc,
+  importFileFunc,
   createJobMutation: SUBMIT_CREATE_JOB_FORM,
   editJobMutation: SUBMIT_EDIT_JOB_FORM,
   loadJobByIdQuery: LOAD_JOB_BY_ID

@@ -11,6 +11,7 @@ export default (props) => {
 
   const {
     loadBackendFieldFunc,
+    importFileFunc,
     createJobMutation,
     editJobMutation,
     loadJobByIdQuery
@@ -55,6 +56,7 @@ export default (props) => {
   );
   console.log(initialValues);
 
+  // function to handle saving job information
   const mutationQuery = jobId ? editJobMutation : createJobMutation;
   const [
     submitCreateJobForm,
@@ -63,6 +65,7 @@ export default (props) => {
     fetchPolicy: 'no-cache'
   });
 
+  // function to handle callback after submit on the job form
   const handleSubmit = useCallback(
     async (submittedValues) => {
       try {
@@ -81,9 +84,6 @@ export default (props) => {
           []
         );
 
-        console.log('Attachment Files:');
-        console.log(storage.getItem('attachmentFiles'));
-
         //saving submitted data to local storage
         storage.setItem('submittingJob', submittedValues, 3600);
 
@@ -91,11 +91,44 @@ export default (props) => {
           Object.values(submittedValues.visual_style)
         );
 
+        // process to import attachment files to backend
+        const jobAttachFiles = storage.getItem('jobAttachmentFiles');
+        let importedFileIds = [];
+        if (jobAttachFiles !== undefined) {
+          jobAttachFiles.map(async (file, key) => {
+            const { data: importedData } = await importFileFunc({
+              url: file.uploadURL,
+              data: {
+                title: file.name,
+                type: file.type,
+                storage: 'local',
+                filename_download: file.name,
+                uploaded_on: new Date(),
+                modified_on: new Date()
+              }
+            });
+            //{"data":{"import_file":{"id":"c8b91309c01b","__typename":"directus_files"}}}
+
+            if (importedData.import_file) {
+              importedFileIds.push({
+                id: ++key,
+                // job_id: jobId,
+                directus_files_id: importedData.import_file.id
+              });
+            }
+          });
+        }
+
+        console.log('importedFileIds', importedFileIds);
+
         await submitCreateJobForm({
           variables: {
             id: jobId,
             slug: slugify(submittedValues.title).toLowerCase(),
             status: 'pending',
+            attachments: importedFileIds
+              ? JSON.stringify(importedFileIds)
+              : null,
             is_featured: false,
             ...submittedValues
           }

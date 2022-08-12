@@ -11,8 +11,10 @@ import BrowserPersistence from '../../../utils/simplePersistence';
 
 const Uploader = (props) => {
   const {
-    storageKeyName = 'attachmentFiles',
-    tusUploadEndpoint = 'http://127.0.0.1:8585/uploads',
+    id = 'upload-files',
+    storageKeyName = 'uploadedFiles',
+    //tusUploadEndpoint = 'http://127.0.0.1:8585',
+    tusUploadEndpoint = 'https://tusd.tusdemo.net/files/',
     allowedFileTypes = [
       'image/*',
       '.jpg',
@@ -23,7 +25,10 @@ const Uploader = (props) => {
       '.zip',
       '.gz',
       '.tar.gz'
-    ]
+    ],
+    maxNumberOfFiles = 5,
+    maxFileSize = 3000000, // 3M
+    minFileSize = 1024 //1KB
   } = props;
 
   const { t } = useTranslation('common');
@@ -32,24 +37,16 @@ const Uploader = (props) => {
 
   const uppy = useUppy(() => {
     return new Uppy({
-      id: 'job-attachments',
+      id,
       autoProceed: true,
       allowMultipleUploadBatches: true,
       debug: true,
       restrictions: {
-        maxNumberOfFiles: 5,
-        maxFileSize: 3000000, //3MB
-        minFileSize: 1024, //1KB
-        allowedFileTypes
-        // maxTotalFileSize: null,
-        // minNumberOfFiles: null,
-        // requiredMetaFields: [],
+        allowedFileTypes,
+        maxNumberOfFiles,
+        maxFileSize, //3MB
+        minFileSize //1KB
       }
-      // meta: {},
-      // onBeforeFileAdded: (currentFile, files) => currentFile,
-      // onBeforeUpload: (files) => {},
-      // locale: {},
-      // infoTimeout: 5000
     }).use(Tus, {
       endpoint: tusUploadEndpoint,
       onError(error) {
@@ -71,9 +68,9 @@ const Uploader = (props) => {
     );
   });
   uppy.on('complete', (result) => {
-    cleanUploadingState();
-    //save uploaded file for other contexts
+    //saving uploaded files for other contexts
     storage.setItem(storageKeyName, uppy.getFiles(), 24 * 60 * 60);
+    cleanUploadingState();
   });
 
   useEffect(() => {
@@ -90,7 +87,7 @@ const Uploader = (props) => {
           uppy={uppy}
           locale={{
             strings: {
-              dropHereOr: t('Drop and drop file here or click to %{browse}'),
+              dropHereOr: t('Drag and drop file here or click to %{browse}'),
               browse: t('browse')
             }
           }}

@@ -196,7 +196,10 @@ const CreateJobForm = (props) => {
                 {t('Drag or choose your file to upload')}
               </span>
               <Field id="job-attachments">
-                <Uploader />
+                <Uploader
+                  id="job-attachments"
+                  storageKeyName="jobAttachmentFiles"
+                />
               </Field>
               <span className={classes.tip}>
                 {t(

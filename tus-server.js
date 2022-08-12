@@ -2,7 +2,7 @@ const tus = require('tus-node-server');
 
 const server = new tus.Server();
 server.datastore = new tus.FileStore({
-  path: '/public/uploads/attachments'
+  path: '/public/uploads'
 });
 
 const host = '127.0.0.1';
