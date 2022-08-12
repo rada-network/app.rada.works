@@ -7,7 +7,6 @@ import { setContext } from '@apollo/client/link/context';
 let apolloClient;
 
 const GRAPHQL_ENDPOINT_URL = process.env.GRAPHQL_ENDPOINT_URL;
-const GRAPHQL_ACCESS_TOKEN = process.env.GRAPHQL_ENDPOINT_GUEST_API_TOKEN;
 
 const httpLink = createHttpLink({
   useGETForQueries: true,
@@ -15,12 +14,10 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  let token = GRAPHQL_ACCESS_TOKEN !== undefined ? GRAPHQL_ACCESS_TOKEN : false;
-
+  let token = false;
   const storage = new BrowserPersistence();
   const accessToken = storage.getItem('access_token');
   token = accessToken ? accessToken : token;
-
   if (token) {
     // return the headers to the context so httpLink can read them
     return {
