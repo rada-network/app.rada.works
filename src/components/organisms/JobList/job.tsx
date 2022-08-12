@@ -25,7 +25,7 @@ const Job: FunctionComponent<JobProps> = (props) => {
     <Fragment key={data.id}>
       <div
         className={
-          'border border-gray-200 p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch'
+          'border border-gray-200 dark:border-gray-800 p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch'
         }
         onClick={handleClick}
       >
@@ -49,7 +49,11 @@ const Job: FunctionComponent<JobProps> = (props) => {
           />
         </div>
 
-        <h2 className={'text-lg font-semibold text-gray-900 mb-2'}>
+        <h2
+          className={
+            'text-lg font-semibold text-gray-900 dark:text-gray-400 dark:hover:text-white mb-2 cursor-pointer'
+          }
+        >
           {data?.title}
         </h2>
 
@@ -77,7 +81,11 @@ const Job: FunctionComponent<JobProps> = (props) => {
               className={'avatar-sm w-6 h-6 rounded-full -mr-1'}
               src="https://picsum.photos/200?random=3"
             />
-            <div className={'bg-gray-200 rounded-full text-xs p-2 py-1'}>
+            <div
+              className={
+                'bg-gray-200 dark:bg-gray-800 rounded-full text-xs p-2 py-1'
+              }
+            >
               +56
             </div>
           </div>
