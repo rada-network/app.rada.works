@@ -53,6 +53,7 @@ export default (props) => {
   const detailsEditorRef = useRef(
     initialValues.description ? initialValues.description : null
   );
+  console.log(initialValues);
 
   const mutationQuery = jobId ? editJobMutation : createJobMutation;
   const [

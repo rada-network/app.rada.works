@@ -61,7 +61,14 @@ const Uploader = (props) => {
     setUploadingState();
   });
   uppy.on('upload-success', (file, response) => {
-    updatePreview(t, storageKeyName, uppy, file, response.uploadURL);
+    updatePreview(
+      t,
+      storageKeyName,
+      'preview-container',
+      uppy,
+      file,
+      response.uploadURL
+    );
   });
   uppy.on('complete', (result) => {
     cleanUploadingState();
@@ -116,7 +123,24 @@ const cleanUploadingState = () => {
   }, 1000);
 };
 
-const updatePreview = (t, storageKeyName, uppy, file, uploadedUrl) => {
+const ellipsify = (props) => {
+  if (typeof props.start === 'undefined') props.start = 5;
+  if (!props.end) props.end = 3;
+  const { str, start, end } = props;
+  if (str.length > start) {
+    return str.slice(0, start) + '...' + str.slice(str.length - end);
+  }
+  return str;
+};
+
+const updatePreview = (
+  t,
+  storageKeyName,
+  previewElId,
+  uppy,
+  file,
+  uploadedUrl
+) => {
   if (!document.getElementById(file.id)) {
     // preview item
     const item = document.createElement('li');
@@ -124,23 +148,27 @@ const updatePreview = (t, storageKeyName, uppy, file, uploadedUrl) => {
     item.className = classes.previewItem;
 
     if (/(jpe?g|png|gif|bmp)$/i.test(file.extension)) {
-      // preview thumb
+      // create thumb
       const img = new Image();
       img.width = 100;
       img.alt = file.name;
       img.src = uploadedUrl;
       img.className = classes.thumb;
       item.appendChild(img);
-    } else {
-      const fileLink = document.createElement('a');
-      fileLink.href = uploadedUrl;
-      fileLink.target = '_blank';
-      fileLink.className = classes.fileAttachment;
-      const fileLinkText = document.createTextNode(file.name);
-      fileLink.appendChild(fileLinkText);
-      item.appendChild(fileLink);
     }
-    //remove button
+
+    // create file name with link
+    const fileLink = document.createElement('a');
+    fileLink.href = uploadedUrl;
+    fileLink.target = '_blank';
+    fileLink.className = classes.fileAttachment;
+    const fileLinkText = document.createTextNode(
+      ellipsify({ str: file.name, start: 5, end: 4 })
+    );
+    fileLink.appendChild(fileLinkText);
+    item.appendChild(fileLink);
+
+    // create remove button
     if (item) {
       const rmBtn = document.createElement('span');
       rmBtn.className = classes.btnDelete;
@@ -157,7 +185,7 @@ const updatePreview = (t, storageKeyName, uppy, file, uploadedUrl) => {
       item.appendChild(rmBtn);
     }
 
-    document.getElementById('preview-container').appendChild(item);
+    document.getElementById(previewElId).appendChild(item);
   }
 };
 

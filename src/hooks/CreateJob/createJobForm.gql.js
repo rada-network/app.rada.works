@@ -71,6 +71,16 @@ export const LOAD_JOB_BY_ID = gql`
       short_desc
       price
       visual_style
+      attachments {
+        id
+        directus_files_id {
+          # See more: https://docs.directus.io/reference/files.html#the-file-object
+          id
+          title
+          filename_disk
+          filename_download
+        }
+      }
       description
       status
       duration
