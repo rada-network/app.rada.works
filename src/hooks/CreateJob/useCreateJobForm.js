@@ -54,7 +54,6 @@ export default (props) => {
   const detailsEditorRef = useRef(
     initialValues.description ? initialValues.description : null
   );
-  console.log(initialValues);
 
   // function to handle saving job information
   const mutationQuery = jobId ? editJobMutation : createJobMutation;
@@ -93,43 +92,53 @@ export default (props) => {
 
         // process to import attachment files to backend
         const jobAttachFiles = storage.getItem('jobAttachmentFiles');
-        let importedFileIds = [];
+        const jobFiles = [];
         if (jobAttachFiles !== undefined) {
           jobAttachFiles.map(async (file, key) => {
-            const { data: importedData } = await importFileFunc({
+            const { data: rs } = await importFileFunc({
               url: file.uploadURL,
               data: {
                 title: file.name,
                 type: file.type,
                 storage: 'local',
+                folder: {
+                  id: '39561e14-335c-4f11-b6bb-33a9814c67e0',
+                  name: 'attachments',
+                  parent: {
+                    id: '9eb6ae9d-acce-4b44-ab23-2b660fb48e01',
+                    name: 'job'
+                  }
+                },
                 filename_download: file.name,
                 uploaded_on: new Date(),
                 modified_on: new Date()
               }
             });
             //{"data":{"import_file":{"id":"c8b91309c01b","__typename":"directus_files"}}}
-
-            if (importedData.import_file) {
-              importedFileIds.push({
+            if (rs.import_file) {
+              jobFiles.push({
                 id: ++key,
-                // job_id: jobId,
-                directus_files_id: importedData.import_file.id
+                job_id: initialValues,
+                directus_files_id: rs.import_file.id
               });
             }
           });
+          submittedValues.attachments = jobFiles;
         }
 
-        console.log('importedFileIds', importedFileIds);
+        console.log('vars:');
+        console.log({
+          id: jobId,
+          slug: slugify(submittedValues.title).toLowerCase(),
+          status: 'pending',
+          ...submittedValues
+        });
 
         await submitCreateJobForm({
           variables: {
             id: jobId,
             slug: slugify(submittedValues.title).toLowerCase(),
             status: 'pending',
-            attachments: importedFileIds
-              ? JSON.stringify(importedFileIds)
-              : null,
-            is_featured: false,
             ...submittedValues
           }
         });

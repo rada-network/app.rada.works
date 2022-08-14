@@ -40,7 +40,7 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
     $short_desc: String!
     $price: Float!
     $visual_style: JSON
-    $attachments: update_job_files_input
+    $attachments: [update_job_files_input]
     $description: String!
     $status: String!
     $duration: Int!
