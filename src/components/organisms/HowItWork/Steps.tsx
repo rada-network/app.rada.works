@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import classes from './steps.module.css';
 
 const Steps = () => {
-  const t = useTranslation('common');
+  const t = useTranslation('howitworks');
   return (
     <Fragment>
       <section className={classes.section}>

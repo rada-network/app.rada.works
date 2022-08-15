@@ -39,7 +39,7 @@ const Select = (props) => {
       </InformedOption>
     )
   );
-
+  console.log(field);
   return (
     <Fragment>
       <FieldIcons after={arrow} before={before}>

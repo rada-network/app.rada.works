@@ -46,7 +46,7 @@ const JobList = (props: { page: string }) => {
               </Heading>
               <Form className={classes.root}>
                 <Select
-                  field="test"
+                  field="job_filter"
                   items={[
                     { label: 'Option 1', value: 'opt1' },
                     { label: 'Option 2', value: 'opt2' }
