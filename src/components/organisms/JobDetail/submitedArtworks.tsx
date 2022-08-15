@@ -1,4 +1,6 @@
 import React, { Fragment, FunctionComponent } from 'react';
+import { useSession } from 'next-auth/react';
+import ConnectWallet from '../ConnectWallet';
 import { useTranslation } from 'next-i18next';
 import { subString } from 'src/libs/useFunc';
 import Image from 'next/image';
@@ -10,7 +12,8 @@ interface Props {
 }
 export const SubmitedArtworks: FunctionComponent<Props> = (props) => {
   const { data } = props;
-  const { t } = useTranslation('jobDetail');
+  const { status } = useSession();
+  const { t } = useTranslation('submitArtwork');
   console.log(data);
   const submitHandle = (e: any) => {
     e.preventDefault();
@@ -33,9 +36,13 @@ export const SubmitedArtworks: FunctionComponent<Props> = (props) => {
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac leo dui.Sed porttitor augue erat, a hendrerit neque.'
             )}
           </p>
-          <Button type="button" priority="high" onClick={submitHandle}>
-            {t('Submit a design')}
-          </Button>
+          {status === 'authenticated' ? (
+            <Button type="button" priority="high" onClick={submitHandle}>
+              {t('Submit a design')}
+            </Button>
+          ) : (
+            <ConnectWallet />
+          )}
         </div>
       </div>
     );

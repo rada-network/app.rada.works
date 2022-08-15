@@ -1,4 +1,5 @@
-export const ArtistData = [
+export const ArtistData = [];
+export const __ArtistData = [
   {
     id: '1',
     email: '0x947b3337aC64d4676F11431AA67BDE90E63B11E9',

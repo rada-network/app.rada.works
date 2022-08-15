@@ -9,6 +9,7 @@ import { formatEndDate, subString } from 'src/libs/useFunc';
 import Button from '../../atoms/Button';
 import classes from './jobDetail.module.css';
 import { Brief } from './brief';
+import { NoLoginAlert } from '../NologinAlert';
 import { SubmitedArtworks } from './submitedArtworks';
 import { Discussion } from './discussion';
 import { ArtistDetail } from './artistDetail';
@@ -42,10 +43,11 @@ const JobDetail = (props: { slug: string }) => {
         formatEndDate(
           data?.job?.[0]?.duration,
           new Date(data?.job?.[0]?.date_created)
-        )
+        ),
+        'MM/DD/YYYY'
       ).format('ddd: DD MMM, YYYY');
       const owner = {
-        address: data?.job?.[0]?.user_created?.email,
+        address: data?.job?.[0]?.user_created,
         avatar: 'https://avatars3.githubusercontent.com/u/8186664?s=460&v=4',
         date_created: startDate,
         date_ends: endDate
@@ -53,9 +55,9 @@ const JobDetail = (props: { slug: string }) => {
 
       return (
         <Fragment>
-          <div>
+          <div className={classes.root}>
             <div className="font-bold text-4xl dark:text-white">
-              {data?.job?.[0]?.title}
+              {t(data?.job?.[0]?.title)}
             </div>
             <div className={'flex items-center justify-between mb-2'}>
               <div className={'flex items-center'}>
@@ -65,7 +67,7 @@ const JobDetail = (props: { slug: string }) => {
                 />
                 <div className={'text-sm font-medium'}>
                   {subString({
-                    str: data?.job?.[0]?.user_created?.email,
+                    str: data?.job?.[0]?.user_created,
                     start: 5,
                     end: 3
                   })}
@@ -87,7 +89,7 @@ const JobDetail = (props: { slug: string }) => {
               </div>
               <div>
                 <Button type="button" priority="high">
-                  Submit your work
+                  {t('Submit your work')}
                 </Button>
               </div>
               <Image
@@ -99,6 +101,7 @@ const JobDetail = (props: { slug: string }) => {
               />
             </div>
           </div>
+          <NoLoginAlert />
           <Tabs>
             <TabList className="flex mb-6">
               <Tab className="border-b">Brief</Tab>

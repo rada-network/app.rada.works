@@ -8,10 +8,12 @@ export const DateCounting = (props: any) => {
         className="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
         role="alert"
       >
-        <img src="/info.svg" alt="info" className="w-4 h-4 mr-2" />
+        <img src="/contest/clock.svg" alt="info" className="w-4 h-4 mr-2" />
         <span className="sr-only">time</span>
         <div>
-          You have {days} days, {hours} hours left to submit art designs
+          {days >= 0
+            ? `You have ${days} days, ${hours} hours left to submit art designs`
+            : `the contest has ended`}
         </div>
       </div>
     </Fragment>

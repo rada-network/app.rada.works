@@ -23,7 +23,7 @@ export const AboutContest = (props: {
         <div className={classes.content}>
           <div className={classes.owner}>
             <div className={classes.address}>
-              <span>Owner</span>
+              <span>Owner: </span>
               <span>{subString({ str: address })}</span>
             </div>
             <div className={classes.avatar}>

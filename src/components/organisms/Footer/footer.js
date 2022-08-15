@@ -54,9 +54,8 @@ const Footer = (_props) => {
           href={data.link}
           target="_blank"
         >
-          <span className={isDark ? data.iconDark : data.icon}>
-            {t(data.title)}
-          </span>
+          <img src={isDark ? data.iconDark : data.icon} alt={data.title} />
+          <span className={data.icon ? 'hidden' : ''}>{t(data.title)}</span>
         </TextLink>
       </div>
     );

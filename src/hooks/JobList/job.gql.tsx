@@ -13,10 +13,7 @@ export const LOAD_JOB_BY_SLUG = gql`
       status
       duration
       date_created
-      user_created {
-        id
-        email
-      }
+      user_created
     }
   }
 `;

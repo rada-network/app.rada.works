@@ -27,7 +27,6 @@ const Job: FunctionComponent<JobProps> = (props) => {
         className={
           'border border-gray-200 dark:border-gray-800 p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch'
         }
-        onClick={handleClick}
       >
         <div className={'flex items-center justify-between mb-2'}>
           <div className={'flex items-center'}>
@@ -53,6 +52,7 @@ const Job: FunctionComponent<JobProps> = (props) => {
           className={
             'text-lg font-semibold text-gray-900 dark:text-gray-400 dark:hover:text-white mb-2 cursor-pointer'
           }
+          onClick={handleClick}
         >
           {data?.title}
         </h2>

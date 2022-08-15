@@ -2,20 +2,26 @@ export const socialData = [
   {
     title: 'Telegram',
     link: 'https://rada.works/telegram',
-    icon: 'Light',
-    iconDark: 'Dark'
-  },
-  {
-    title: 'Twitter',
-    link: 'https://rada.works/telegram',
-    icon: 'Light',
-    iconDark: 'Dark'
+    icon: '/social/telegram.svg',
+    iconDark: '/social/telegram.svg'
   },
   {
     title: 'Facebook',
     link: 'https://rada.works/telegram',
-    icon: 'Light',
-    iconDark: 'Dark'
+    icon: '/social/facebook.svg',
+    iconDark: '/social/facebook.svg'
+  },
+  {
+    title: 'Instagram',
+    link: 'https://rada.works/Instagram',
+    icon: '/social/instagram.svg',
+    iconDark: '/social/instagram.svg'
+  },
+  {
+    title: 'Twitter',
+    link: 'https://rada.works/telegram',
+    icon: '/social/twitter.svg',
+    iconDark: '/social/twitter.svg'
   }
 ];
 
