@@ -97,7 +97,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
           className={classes.btnLogin}
           onClick={connect}
         >
-          {t('Connect Metamask')}
+          {t('Connect wallet')}
         </Button>
       );
   }

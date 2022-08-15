@@ -1,5 +1,4 @@
 import React, { Fragment, FunctionComponent } from 'react';
-import { useSession } from 'next-auth/react';
 import ConnectWallet from '../ConnectWallet';
 import { useTranslation } from 'next-i18next';
 import { subString } from 'src/libs/useFunc';
@@ -9,10 +8,10 @@ import Button from '../../atoms/Button';
 import { ArtistData } from './sampleData';
 interface Props {
   data: object;
+  status: string;
 }
 export const SubmitedArtworks: FunctionComponent<Props> = (props) => {
-  const { data } = props;
-  const { status } = useSession();
+  const { data, status } = props;
   const { t } = useTranslation('submitArtwork');
   console.log(data);
   const submitHandle = (e: any) => {

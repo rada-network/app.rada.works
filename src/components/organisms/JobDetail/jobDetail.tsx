@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
-import Image from 'next/image';
-import moment from 'moment';
+import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
+import moment from 'moment';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
+import Image from 'next/image';
 import '@reach/tabs/styles.css';
 import { useJob } from '../../../hooks/JobList';
 import { formatEndDate, subString } from 'src/libs/useFunc';
@@ -19,6 +20,7 @@ import { DateCounting } from './dateCounting';
 
 const JobDetail = (props: { slug: string }) => {
   const { t } = useTranslation('jobDetail');
+  const { status } = useSession();
   const { slug } = props;
   const { loading, data, error } = useJob({
     slug: { _eq: slug } ?? ''
@@ -34,7 +36,8 @@ const JobDetail = (props: { slug: string }) => {
         classes: '',
         id: data?.job?.[0]?.id,
         title: data?.job?.[0]?.title,
-        description: data?.job?.[0]?.description
+        description: data?.job?.[0]?.description,
+        status
       };
       const startDate = moment(data?.job?.[0]?.date_created).format(
         'ddd: DD MMM, YYYY'
@@ -88,9 +91,13 @@ const JobDetail = (props: { slug: string }) => {
                 </span>
               </div>
               <div>
-                <Button type="button" priority="high">
-                  {t('Submit your work')}
-                </Button>
+                {status === 'authenticated' ? (
+                  <Button type="button" priority="high">
+                    {t('Submit your work')}
+                  </Button>
+                ) : (
+                  <NoLoginAlert />
+                )}
               </div>
               <Image
                 src="/chains/ethereum.svg"
@@ -101,7 +108,6 @@ const JobDetail = (props: { slug: string }) => {
               />
             </div>
           </div>
-          <NoLoginAlert />
           <Tabs>
             <TabList className="flex mb-6">
               <Tab className="border-b">Brief</Tab>
@@ -123,7 +129,7 @@ const JobDetail = (props: { slug: string }) => {
                 </div>
               </TabPanel>
               <TabPanel>
-                <SubmitedArtworks data={[]} />
+                <SubmitedArtworks data={[]} status={status} />
               </TabPanel>
               <TabPanel>
                 <Discussion />
