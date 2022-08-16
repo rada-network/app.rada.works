@@ -12,3 +12,28 @@ html {
 body {
   @apply antialiased text-gray-700 dark:text-gray-400 bg-white dark:bg-gray-900;
 }
+
+h1 {
+
+}
+
+h2 {
+  @apply my-4 font-semibold text-2xl;
+}
+
+h3 {
+  @apply my-6 font-semibold text-xl leading-3;
+}
+
+p {
+  @apply my-6;
+}
+
+ul, ol {
+  @apply list-disc ml-8;
+}
+
+ul li,
+ol li {
+  @apply py-3 pl-1;
+}
