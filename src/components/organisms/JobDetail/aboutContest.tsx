@@ -28,7 +28,7 @@ export const AboutContest = (props: {
             </div>
             <div className={classes.avatar}>
               <img
-                className={'avatar-sm w-6 h-6 rounded-full mr-2'}
+                className={'avatar-sm w-12 h-12 rounded-full mr-2'}
                 src={avatar ? avatar : 'https://picsum.photos/200'}
               />
             </div>
