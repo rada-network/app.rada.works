@@ -44,15 +44,18 @@ const JobList = (props: { page: string }) => {
               >
                 {t('🎉 Browse Jobs')}
               </Heading>
-              <Form className={classes.root}>
-                <Select
-                  field="job_filter"
-                  items={[
-                    { label: 'Option 1', value: 'opt1' },
-                    { label: 'Option 2', value: 'opt2' }
-                  ]}
-                />
-              </Form>
+
+              <div className="flex items-center">
+                <Form className={classes.root}>
+                  <Select
+                    field="job_filter"
+                    items={[
+                      { label: 'Option 1', value: 'opt1' },
+                      { label: 'Option 2', value: 'opt2' }
+                    ]}
+                  />
+                </Form>
+              </div>
               <div className={classes.itemlist}>{JobList}</div>
             </div>
           </section>

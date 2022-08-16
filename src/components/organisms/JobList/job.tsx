@@ -58,7 +58,7 @@ const Job: FunctionComponent<JobProps> = (props) => {
         </h2>
 
         <div
-          className={'text-sm opacity-70 mb-4'}
+          className={'text-sm opacity-70 mb-4 text-gray-50'}
           dangerouslySetInnerHTML={{ __html: data?.short_desc }}
         />
         <div className={'mt-auto flex items-center justify-between'}>

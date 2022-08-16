@@ -1,2 +1,7 @@
 .heading {
+  @apply text-4xl font-semibold text-center mb-6;
+}
+
+.subHeading {
+  @apply max-w-xl mx-auto text-center mb-4 leading-6;
 }

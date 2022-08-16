@@ -65,18 +65,20 @@ const Footer = (_props) => {
   return (
     <Fragment>
       <footer
-        className={`flex flex-wrap justify-between items-center px-4 py-2 space-x-4 z-10 text-sm font-medium bg-white dark:bg-gray-900 border-t border-t-gray-200 dark:border-t-gray-800`}
+        className={`px-4 py-2 space-x-4 z-10 text-sm font-medium bg-white dark:bg-gray-900 border-t border-t-gray-200 dark:border-t-gray-800`}
       >
-        <div className="block text-sm text-gray-500 w-full md:w-auto text-center md:text-left dark:text-gray-400">
-          <span>
-            {year}{' '}
-            <a href="https://rada.works/" className="hover:underline">
-              Rada.Works
-            </a>
-          </span>
+        <div className="container max-w-screen-xl mx-auto flex flex-wrap justify-between items-center py-4">
+          <div className="block text-sm text-gray-500 w-full md:w-auto text-center md:text-left dark:text-gray-400">
+            <span>
+              {year}{' '}
+              <a href="https://rada.works/" className="hover:underline">
+                Rada.Works
+              </a>
+            </span>
+          </div>
+          <div className={classes.menuItems}>{menuItems}</div>
+          <div className={classes.social}>{socialItem}</div>
         </div>
-        <div className={classes.menuItems}>{menuItems}</div>
-        <div className={classes.social}>{socialItem}</div>
       </footer>
     </Fragment>
   );
