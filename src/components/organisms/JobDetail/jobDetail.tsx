@@ -23,8 +23,8 @@ const JobDetail = (props: { slug: string }) => {
   const { t } = useTranslation('jobDetail');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { theme, resolvedTheme, setTheme } = useTheme();
-  const [isDark, setIsDark] = useState();
+  const { resolvedTheme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
@@ -120,7 +120,7 @@ const JobDetail = (props: { slug: string }) => {
               />
             </div>
           </div>
-          <Tabs>
+          <Tabs className={`${classes[rootClassName]}`}>
             <TabList className={classes.tablist}>
               <Tab>
                 <span>Brief</span>
