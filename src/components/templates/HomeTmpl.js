@@ -14,8 +14,8 @@ const HomeTmpl = (props) => {
   return (
     <Fragment>
       <MainTmpl>
+        {/*<Hero type="type-1" />*/}
         <JobList page="homepage" />
-        <Hero type="type-1" />
         {/* <Steps /> */}
         {/* <Hero type="type-2" />
         <Hero type="type-3" /> */}
