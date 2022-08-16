@@ -37,11 +37,7 @@ const JobList = (props: { page: string }) => {
         <Fragment>
           <section className={classes.root}>
             <div className="container mx-auto">
-              <Heading
-                classes={{ heading: classes.heading }}
-                subHeading={`${subheading}`}
-                HeadingType="h1"
-              >
+              <Heading subHeading={`${subheading}`} HeadingType="h1">
                 {t('🎉 Browse Jobs')}
               </Heading>
 
