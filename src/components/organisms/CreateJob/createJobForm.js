@@ -18,6 +18,7 @@ import { useCreateJobForm } from '../../../hooks/CreateJob';
 import { useStyle } from '../../classify';
 import Success from './success';
 import defaultClasses from './createJobForm.module.css';
+import BrowserPersistence from '../../../utils/simplePersistence';
 
 const CreateJobForm = (props) => {
   const { classes: propClasses, jobId } = props;
@@ -33,9 +34,12 @@ const CreateJobForm = (props) => {
     title: null
   });
 
+  const jobFilesKeyName = 'jobAttachmentFiles';
+
   const {
     errors,
-    handleSubmit,
+    handleSaveJobInformation,
+    handleSaveJobFiles,
     handleCancel,
     isBusy,
     setFormApi,
@@ -43,7 +47,8 @@ const CreateJobForm = (props) => {
     detailsEditorRef,
     initialValues,
     visualStyleFieldData,
-    response
+    saveJobResult,
+    saveJobFilesResult
   } = useCreateJobForm({ jobId });
 
   //generate visual style selection
@@ -63,29 +68,53 @@ const CreateJobForm = (props) => {
     : null;
 
   useEffect(() => {
-    if (response) {
-      if (response.update_job_item) {
-        toast.success(
-          t("You have just updated job's information successfully."),
-          {}
-        );
+    if (saveJobResult) {
+      if (saveJobResult.update_job_item) {
         setCurrentJob({
-          id: response.update_job_item.id,
-          title: response.update_job_item.title
+          id: saveJobResult.update_job_item.id,
+          title: saveJobResult.update_job_item.title
         });
-        response.update_job_item = null;
-      } else if (response.create_job_item) {
-        toast.success(t("You have just created a job's successfully."), {});
+        saveJobResult.update_job_item = null;
+      } else if (saveJobResult.create_job_item) {
         setCurrentJob({
-          id: response.create_job_item.id,
-          title: response.create_job_item.title
+          id: saveJobResult.create_job_item.id,
+          title: saveJobResult.create_job_item.title
         });
-        response.create_job_item = null;
+        saveJobResult.create_job_item = null;
       }
     }
 
     return true;
-  }, [response]);
+  }, [saveJobResult]);
+
+  useEffect(() => {
+    if (currentJob.id) {
+      const storage = new BrowserPersistence();
+      const jobAttachFiles = storage.getItem(jobFilesKeyName);
+      if (jobAttachFiles) {
+        const attachments = [];
+        jobAttachFiles.map(function (file, i) {
+          attachments.push({
+            id: ++i,
+            job_id: { title: currentJob.title },
+            directus_files_id: file
+          });
+        });
+        handleSaveJobFiles(currentJob.id, attachments).then(function (rs) {
+          storage.removeItem(jobFilesKeyName);
+          console.log(rs);
+        });
+      }
+
+      if (!isBusy) {
+        toast.success(
+          t("You have just saved job's information successfully."),
+          {}
+        );
+      }
+    }
+    return true;
+  }, [currentJob]);
 
   let child = null;
   if (currentJob.id) {
@@ -103,7 +132,7 @@ const CreateJobForm = (props) => {
             className={classes.form}
             initialValues={initialValues}
             onSubmit={() =>
-              handleSubmit({
+              handleSaveJobInformation({
                 description: detailsEditorRef.current.getContent(),
                 ...formApiRef.current.getValues()
               })
@@ -198,7 +227,7 @@ const CreateJobForm = (props) => {
               <Field id="job-attachments">
                 <Uploader
                   id="job-attachments"
-                  storageKeyName="jobAttachmentFiles"
+                  storageKeyName={jobFilesKeyName}
                 />
               </Field>
               <span className={classes.tip}>

@@ -8,6 +8,10 @@ import Tus from '@uppy/tus';
 import '@uppy/core/dist/style.css';
 import '@uppy/drag-drop/dist/style.css';
 import BrowserPersistence from '../../../utils/simplePersistence';
+import {
+  importFileFunc,
+  deleteFileFunc
+} from '../../../hooks/CreateJob/createJobForm.gql';
 
 const Uploader = (props) => {
   const {
@@ -33,7 +37,15 @@ const Uploader = (props) => {
 
   const { t } = useTranslation('common');
 
-  const storage = new BrowserPersistence();
+  const addFile = (file) => {
+    const storage = new BrowserPersistence();
+    let uploadedFiles = storage.getItem(storageKeyName);
+    if (uploadedFiles === undefined) {
+      uploadedFiles = [];
+    }
+    uploadedFiles.push(file);
+    storage.setItem(storageKeyName, uploadedFiles, 24 * 60 * 60);
+  };
 
   const uppy = useUppy(() => {
     return new Uppy({
@@ -58,25 +70,58 @@ const Uploader = (props) => {
     setUploadingState();
   });
   uppy.on('upload-success', (file, response) => {
-    updatePreview(
-      t,
-      storageKeyName,
-      'preview-container',
-      uppy,
-      file,
-      response.uploadURL
-    );
+    setTimeout(function () {
+      // import as directus file
+      importFileFunc({
+        url: response.uploadURL,
+        data: {
+          title: file.name,
+          type: file.type,
+          storage: 'local',
+          folder: {
+            id: '39561e14-335c-4f11-b6bb-33a9814c67e0',
+            name: 'attachments',
+            parent: {
+              id: '9eb6ae9d-acce-4b44-ab23-2b660fb48e01',
+              name: 'job'
+            }
+          },
+          filename_download: file.name,
+          uploaded_on: new Date(),
+          modified_on: new Date()
+        }
+      }).then(function (rs) {
+        console.log(rs);
+
+        const directusFile = {
+          id: rs.data.import_file.id,
+          storage: rs.data.import_file.storage,
+          filename_download: rs.data.import_file.filename_download,
+          uploaded_on: rs.data.import_file.uploaded_on,
+          modified_on: rs.data.import_file.modified_on
+        };
+        file.directus_file = directusFile;
+
+        addFile(file.directus_file);
+
+        updatePreview(
+          t,
+          storageKeyName,
+          'preview-container',
+          uppy,
+          file,
+          response.uploadURL
+        );
+      });
+    }, 1000);
   });
   uppy.on('complete', (result) => {
-    //saving uploaded files for other contexts
-    storage.setItem(storageKeyName, uppy.getFiles(), 24 * 60 * 60);
     cleanUploadingState();
   });
 
   useEffect(() => {
     //reset
     uppy.reset();
-    storage.removeItem(storageKeyName);
     return () => uppy.close({ reason: 'unmount' });
   }, [uppy]);
 
@@ -138,10 +183,10 @@ const updatePreview = (
   file,
   uploadedUrl
 ) => {
-  if (!document.getElementById(file.id)) {
+  if (!document.getElementById(file.directus_file.id)) {
     // preview item
     const item = document.createElement('li');
-    item.id = file.id;
+    item.id = file.directus_file.id;
     item.className = classes.previewItem;
 
     if (/(jpe?g|png|gif|bmp)$/i.test(file.extension)) {
@@ -171,14 +216,30 @@ const updatePreview = (
       rmBtn.className = classes.btnDelete;
       const rmBtnText = document.createTextNode(t('Remove'));
       rmBtn.appendChild(rmBtnText);
+
       rmBtn.onclick = (e) => {
-        uppy.removeFile(file.id);
+        //delete the related directus file
+        deleteFileFunc(file.directus_file.id).then(function (rs) {
+          console.log(rs);
 
-        const storage = new BrowserPersistence();
-        storage.setItem(storageKeyName, uppy.getFiles(), 24 * 60 * 60);
+          // remove file from uppy
+          uppy.removeFile(file.id);
 
-        document.getElementById(file.id).remove();
+          //delete from local storage
+          const storage = new BrowserPersistence();
+          const uploadedFiles = storage.getItem(storageKeyName);
+          if (uploadedFiles) {
+            const newIds = uploadedFiles.filter((val) => {
+              return val !== file.directus_file.id;
+            });
+            storage.setItem(storageKeyName, newIds);
+          }
+
+          //clean preview element on DOM
+          document.getElementById(file.directus_file.id).remove();
+        });
       };
+
       item.appendChild(rmBtn);
     }
 

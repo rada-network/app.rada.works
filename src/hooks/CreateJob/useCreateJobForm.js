@@ -11,7 +11,7 @@ export default (props) => {
 
   const {
     loadBackendFieldFunc,
-    importFileFunc,
+    saveJobFilesMutation,
     createJobMutation,
     editJobMutation,
     loadJobByIdQuery
@@ -58,14 +58,26 @@ export default (props) => {
   // function to handle saving job information
   const mutationQuery = jobId ? editJobMutation : createJobMutation;
   const [
-    submitCreateJobForm,
-    { data, error: createJobError, loading: submitLoading }
+    saveJobInformation,
+    { data: saveJobResult, error: createJobError, loading: submitLoading }
   ] = useMutation(mutationQuery, {
     fetchPolicy: 'no-cache'
   });
 
+  // function to handle saving job files (job attachments)
+  const [
+    saveJobAttachments,
+    {
+      data: saveJobFilesResult,
+      error: saveJobFilesError,
+      loading: saveJobFilesLoading
+    }
+  ] = useMutation(saveJobFilesMutation, {
+    fetchPolicy: 'no-cache'
+  });
+
   // function to handle callback after submit on the job form
-  const handleSubmit = useCallback(
+  const handleSaveJobInformation = useCallback(
     async (submittedValues) => {
       try {
         submittedValues.price = parseFloat(submittedValues.price);
@@ -89,56 +101,11 @@ export default (props) => {
         submittedValues.visual_style = JSON.stringify(
           Object.values(submittedValues.visual_style)
         );
+        submittedValues.slug = slugify(submittedValues.title).toLowerCase();
 
-        // process to import attachment files to backend
-        const jobAttachFiles = storage.getItem('jobAttachmentFiles');
-        const jobFiles = [];
-        if (jobAttachFiles !== undefined) {
-          jobAttachFiles.map(async (file, key) => {
-            const { data: rs } = await importFileFunc({
-              url: file.uploadURL,
-              data: {
-                title: file.name,
-                type: file.type,
-                storage: 'local',
-                folder: {
-                  id: '39561e14-335c-4f11-b6bb-33a9814c67e0',
-                  name: 'attachments',
-                  parent: {
-                    id: '9eb6ae9d-acce-4b44-ab23-2b660fb48e01',
-                    name: 'job'
-                  }
-                },
-                filename_download: file.name,
-                uploaded_on: new Date(),
-                modified_on: new Date()
-              }
-            });
-            //{"data":{"import_file":{"id":"c8b91309c01b","__typename":"directus_files"}}}
-            if (rs.import_file) {
-              jobFiles.push({
-                id: ++key,
-                job_id: initialValues,
-                directus_files_id: rs.import_file.id
-              });
-            }
-          });
-          submittedValues.attachments = jobFiles;
-        }
-
-        console.log('vars:');
-        console.log({
-          id: jobId,
-          slug: slugify(submittedValues.title).toLowerCase(),
-          status: 'pending',
-          ...submittedValues
-        });
-
-        await submitCreateJobForm({
+        await saveJobInformation({
           variables: {
-            id: jobId,
-            slug: slugify(submittedValues.title).toLowerCase(),
-            status: 'pending',
+            id: jobId ? parseInt(jobId) : null,
             ...submittedValues
           }
         });
@@ -155,7 +122,28 @@ export default (props) => {
       }
     },
 
-    [submitCreateJobForm, storage]
+    [saveJobInformation, storage]
+  );
+
+  // function to submit saving job files after saved job with basic information
+  const handleSaveJobFiles = useCallback(
+    async (jobId, jobFiles) => {
+      if (jobId && jobFiles && jobFiles.length) {
+        console.log('jobId');
+        console.log(jobId);
+        console.log('jobFiles');
+        console.log(jobFiles);
+        console.log(jobFiles.length);
+
+        await saveJobAttachments({
+          variables: {
+            id: parseInt(jobId),
+            attachments: jobFiles
+          }
+        });
+      }
+    },
+    [saveJobAttachments]
   );
 
   const handleCancel = useCallback(() => {
@@ -166,25 +154,29 @@ export default (props) => {
     () =>
       new Map([
         [jobId ? 'editJobMutation' : 'createJobMutation', createJobError],
-        ['loadJobQuery', jobLoadError]
+        ['loadJobQuery', jobLoadError],
+        ['saveJobFilesError', saveJobFilesError]
       ]),
-    [createJobError, jobLoadError]
+    [createJobError, jobLoadError, saveJobFilesError]
   );
 
   const visualStyleField = storage.getItem('visualStyleField');
   return {
-    isBusy:
-      (visualStyleField && visualStyleField.loading) ||
-      jobLoading ||
-      submitLoading,
-    errors,
-    handleSubmit,
-    handleCancel,
     setFormApi,
     formApiRef,
     detailsEditorRef,
     initialValues,
     visualStyleFieldData: visualStyleField ? visualStyleField.data : null,
-    response: data
+    handleSaveJobInformation,
+    handleSaveJobFiles,
+    handleCancel,
+    isBusy:
+      (visualStyleField && visualStyleField.loading) ||
+      jobLoading ||
+      submitLoading ||
+      saveJobFilesLoading,
+    errors,
+    saveJobResult,
+    saveJobFilesResult
   };
 };

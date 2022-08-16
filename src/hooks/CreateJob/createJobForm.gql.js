@@ -9,9 +9,7 @@ export const SUBMIT_CREATE_JOB_FORM = gql`
     $description: String!
     $duration: Int!
     $price: Float!
-    $visual_style: JSON
-    $status: String!
-    $is_featured: Boolean!
+    $visual_style: JSON #        $attachments: [create_job_files_input]
   ) {
     create_job_item(
       data: {
@@ -20,10 +18,11 @@ export const SUBMIT_CREATE_JOB_FORM = gql`
         short_desc: $short_desc
         duration: $duration
         price: $price
-        visual_style: $visual_style
         description: $description
-        status: $status
-        is_featured: $is_featured
+        visual_style: $visual_style
+        #                attachments: $attachments
+        status: "pending"
+        is_featured: false
       }
     ) {
       id
@@ -40,9 +39,7 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
     $short_desc: String!
     $price: Float!
     $visual_style: JSON
-    $attachments: [update_job_files_input]
     $description: String!
-    $status: String!
     $duration: Int!
   ) {
     update_job_item(
@@ -53,14 +50,19 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
         short_desc: $short_desc
         duration: $duration
         description: $description
-        status: $status
         price: $price
         visual_style: $visual_style
-        attachments: $attachments
       }
     ) {
       id
       title
+    }
+  }
+`;
+export const SAVE_JOB_FILES = gql`
+  mutation SaveJobFiles($id: ID!, $attachments: [update_job_files_input]) {
+    update_job_item(id: $id, data: { attachments: $attachments }) {
+      id
     }
   }
 `;
@@ -78,10 +80,10 @@ export const LOAD_JOB_BY_ID = gql`
         # See more: https://docs.directus.io/reference/files.html#the-file-object
         directus_files_id {
           id
-          filename_disk
+          #                    filename_disk
           filename_download
-          title
-          type
+          #                    title
+          #                    type
         }
       }
       description
@@ -116,13 +118,17 @@ export const loadBackendFieldFunc = async (collection, field) => {
   }
 };
 
-export const IMPORT_JOB_FILE = gql`
+export const IMPORT_FILE = gql`
   mutation ImportJobFile(
     $url: String!
     $data: create_directus_files_input! #https://docs.directus.io/reference/files.html#the-file-object
   ) {
     import_file(url: $url, data: $data) {
       id
+      storage
+      filename_download
+      uploaded_on
+      modified_on
     }
   }
 `;
@@ -130,15 +136,32 @@ export const importFileFunc = async (props) => {
   const { url, data } = props;
   const client = initializeApollo();
   return await client.mutate({
-    mutation: IMPORT_JOB_FILE,
+    mutation: IMPORT_FILE,
     variables: { url, data }
+  });
+};
+
+export const DELETE_FILE = gql`
+  mutation DeleteFile($fileId: ID!) {
+    delete_files_item(id: $fileId) {
+      id
+    }
+  }
+`;
+export const deleteFileFunc = async (fileId) => {
+  const client = initializeApollo();
+  return await client.mutate({
+    mutation: DELETE_FILE,
+    variables: { fileId }
   });
 };
 
 export default {
   loadBackendFieldFunc,
-  importFileFunc,
   createJobMutation: SUBMIT_CREATE_JOB_FORM,
+  loadJobByIdQuery: LOAD_JOB_BY_ID,
   editJobMutation: SUBMIT_EDIT_JOB_FORM,
-  loadJobByIdQuery: LOAD_JOB_BY_ID
+  importFileFunc,
+  deleteFileFunc,
+  saveJobFilesMutation: SAVE_JOB_FILES
 };
