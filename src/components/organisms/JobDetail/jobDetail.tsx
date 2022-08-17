@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import moment from 'moment';
@@ -17,9 +17,21 @@ import { ArtistDetail } from './artistDetail';
 import { AboutContest } from './aboutContest';
 import { JoinContest } from './joinContest';
 import { DateCounting } from './dateCounting';
+import { useTheme } from 'next-themes';
 
 const JobDetail = (props: { slug: string }) => {
   const { t } = useTranslation('jobDetail');
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { resolvedTheme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
+  }, [resolvedTheme]);
+
+  const rootClassName = isDark ? 'rootDark' : 'root';
+
   const { status } = useSession();
   const { slug } = props;
   const { loading, data, error } = useJob({
@@ -58,7 +70,7 @@ const JobDetail = (props: { slug: string }) => {
 
       return (
         <Fragment>
-          <div className={classes.root}>
+          <div className={`${classes[rootClassName]}`}>
             <div className="font-bold text-4xl dark:text-white">
               {t(data?.job?.[0]?.title)}
             </div>
@@ -108,11 +120,17 @@ const JobDetail = (props: { slug: string }) => {
               />
             </div>
           </div>
-          <Tabs>
-            <TabList className="flex mb-6">
-              <Tab className="border-b">Brief</Tab>
-              <Tab>Submited Artworks</Tab>
-              <Tab>Discussion</Tab>
+          <Tabs className={`${classes[rootClassName]}`}>
+            <TabList className={classes.tablist}>
+              <Tab>
+                <span>Brief</span>
+              </Tab>
+              <Tab>
+                <span>Submited Artworks</span>
+              </Tab>
+              <Tab>
+                <span>Discussion</span>
+              </Tab>
             </TabList>
             <DateCounting date={owner.date_ends} />
             <TabPanels>
