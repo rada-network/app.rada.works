@@ -11,7 +11,7 @@ export default (props) => {
 
   const {
     loadBackendFieldFunc,
-    saveJobFilesMutation,
+    createJobFilesMutation,
     createJobMutation,
     editJobMutation,
     loadJobByIdQuery
@@ -33,9 +33,9 @@ export default (props) => {
     error: jobLoadError,
     data: jobLoaded
   } = useQuery(loadJobByIdQuery, {
+    fetchPolicy: 'no-cache',
     /*fetchPolicy: 'cache-and-network',
       nextFetchPolicy: 'cache-first',*/
-    fetchPolicy: 'no-cache',
     skip: !jobId,
     variables: {
       id: jobId
@@ -72,7 +72,7 @@ export default (props) => {
       error: saveJobFilesError,
       loading: saveJobFilesLoading
     }
-  ] = useMutation(saveJobFilesMutation, {
+  ] = useMutation(createJobFilesMutation, {
     fetchPolicy: 'no-cache'
   });
 
@@ -108,13 +108,14 @@ export default (props) => {
             id: jobId ? parseInt(jobId) : null,
             ...submittedValues
           }
+        }).then(function (rs) {
+          console.log(rs);
+          //Reset form fields state
+          if (formApiRef.current) {
+            formApiRef.current.reset();
+          }
+          storage.removeItem('submittingJob');
         });
-
-        //Reset form fields state
-        if (formApiRef.current) {
-          formApiRef.current.reset();
-        }
-        storage.removeItem('submittingJob');
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(error);
@@ -128,19 +129,22 @@ export default (props) => {
   // function to submit saving job files after saved job with basic information
   const handleSaveJobFiles = useCallback(
     async (jobId, jobFiles) => {
-      if (jobId && jobFiles && jobFiles.length) {
-        console.log('jobId');
-        console.log(jobId);
-        console.log('jobFiles');
-        console.log(jobFiles);
-        console.log(jobFiles.length);
+      try {
+        if (jobId && jobFiles && jobFiles.length) {
+          console.log('jobId', jobId);
+          console.log('jobFiles', jobFiles);
 
-        await saveJobAttachments({
-          variables: {
-            id: parseInt(jobId),
-            attachments: jobFiles
-          }
-        });
+          await saveJobAttachments({
+            variables: {
+              // id: parseInt(jobId),
+              data: jobFiles
+            }
+          });
+        }
+      } catch (error) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.error(error);
+        }
       }
     },
     [saveJobAttachments]

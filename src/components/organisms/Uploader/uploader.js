@@ -17,7 +17,7 @@ const Uploader = (props) => {
   const {
     id = 'upload-files',
     storageKeyName = 'uploadedFiles',
-    //tusUploadEndpoint = 'http://127.0.0.1:8585',
+    // tusUploadEndpoint = 'http://127.0.0.1:8585',
     tusUploadEndpoint = 'https://tusd.tusdemo.net/files/',
     allowedFileTypes = [
       'image/*',
@@ -56,8 +56,8 @@ const Uploader = (props) => {
       restrictions: {
         allowedFileTypes,
         maxNumberOfFiles,
-        maxFileSize, //3MB
-        minFileSize //1KB
+        maxFileSize,
+        minFileSize
       }
     }).use(Tus, {
       endpoint: tusUploadEndpoint,
@@ -120,9 +120,10 @@ const Uploader = (props) => {
   });
 
   useEffect(() => {
-    //reset
-    uppy.reset();
-    return () => uppy.close({ reason: 'unmount' });
+    return () => {
+      uppy.reset();
+      uppy.close({ reason: 'unmount' });
+    };
   }, [uppy]);
 
   const child = (

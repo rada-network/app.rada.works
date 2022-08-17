@@ -56,12 +56,39 @@ export const SUBMIT_EDIT_JOB_FORM = gql`
     ) {
       id
       title
+      #            slug
+      #            status
+      #            is_featured
     }
   }
 `;
 export const SAVE_JOB_FILES = gql`
   mutation SaveJobFiles($id: ID!, $attachments: [update_job_files_input]) {
     update_job_item(id: $id, data: { attachments: $attachments }) {
+      id
+    }
+  }
+`;
+
+export const CREATE_JOB_FILES = gql`
+  mutation CreateJobFiles(
+    #        $filter: job_files_filter,
+    #        $sort: [String],
+    #        $limit: Int
+    #        $offset: Int
+    #        $page: Int
+    #        $search: String
+    $data: [create_job_files_input!]
+  ) {
+    create_job_files_items(
+      #            filter: $filter,
+      #            sort: $sort,
+      #            limit: $limit
+      #            offset: $offset
+      #            page: $page
+      #            search: $search
+      data: $data
+    ) {
       id
     }
   }
@@ -108,7 +135,8 @@ export const loadBackendFieldFunc = async (collection, field) => {
     return await client.query({
       query: LOAD_BACKEND_FIELD,
       variables: { collection, field },
-      nextFetchPolicy: 'cache-first'
+      fetchPolicy: 'no-cache'
+      // nextFetchPolicy: 'cache-first'
     });
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
@@ -137,7 +165,9 @@ export const importFileFunc = async (props) => {
   const client = initializeApollo();
   return await client.mutate({
     mutation: IMPORT_FILE,
-    variables: { url, data }
+    variables: { url, data },
+    fetchPolicy: 'no-cache'
+    // nextFetchPolicy: 'cache-first'
   });
 };
 
@@ -152,7 +182,9 @@ export const deleteFileFunc = async (fileId) => {
   const client = initializeApollo();
   return await client.mutate({
     mutation: DELETE_FILE,
-    variables: { fileId }
+    variables: { fileId },
+    fetchPolicy: 'no-cache'
+    // nextFetchPolicy: 'cache-first'
   });
 };
 
@@ -163,5 +195,6 @@ export default {
   editJobMutation: SUBMIT_EDIT_JOB_FORM,
   importFileFunc,
   deleteFileFunc,
-  saveJobFilesMutation: SAVE_JOB_FILES
+  saveJobFilesMutation: SAVE_JOB_FILES,
+  createJobFilesMutation: CREATE_JOB_FILES
 };

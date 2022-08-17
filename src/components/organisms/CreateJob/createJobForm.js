@@ -35,6 +35,7 @@ const CreateJobForm = (props) => {
   });
 
   const jobFilesKeyName = 'jobAttachmentFiles';
+  const storage = new BrowserPersistence();
 
   const {
     errors,
@@ -69,40 +70,42 @@ const CreateJobForm = (props) => {
 
   useEffect(() => {
     if (saveJobResult) {
+      let savedJobObj = null;
       if (saveJobResult.update_job_item) {
-        setCurrentJob({
-          id: saveJobResult.update_job_item.id,
-          title: saveJobResult.update_job_item.title
-        });
+        savedJobObj = saveJobResult.update_job_item;
         saveJobResult.update_job_item = null;
       } else if (saveJobResult.create_job_item) {
-        setCurrentJob({
-          id: saveJobResult.create_job_item.id,
-          title: saveJobResult.create_job_item.title
-        });
+        savedJobObj = saveJobResult.create_job_item;
         saveJobResult.create_job_item = null;
+      }
+      if (savedJobObj && savedJobObj.id) {
+        setCurrentJob({
+          id: savedJobObj.id,
+          title: savedJobObj.title
+        });
       }
     }
 
-    return true;
+    // return () => {};
   }, [saveJobResult]);
 
   useEffect(() => {
     if (currentJob.id) {
-      const storage = new BrowserPersistence();
       const jobAttachFiles = storage.getItem(jobFilesKeyName);
       if (jobAttachFiles) {
-        const attachments = [];
-        jobAttachFiles.map(function (file, i) {
-          attachments.push({
-            id: ++i,
-            job_id: { title: currentJob.title },
-            directus_files_id: file
+        const jobFiles = [];
+        jobAttachFiles.map(function (file) {
+          jobFiles.push({
+            job_id: parseInt(currentJob.id),
+            directus_files_id: file.id
           });
         });
-        handleSaveJobFiles(currentJob.id, attachments).then(function (rs) {
+        handleSaveJobFiles(currentJob.id, jobFiles).then(function (rs) {
           storage.removeItem(jobFilesKeyName);
           console.log(rs);
+          if (saveJobFilesResult) {
+            console.log(saveJobFilesResult);
+          }
         });
       }
 
@@ -113,7 +116,8 @@ const CreateJobForm = (props) => {
         );
       }
     }
-    return true;
+
+    // return () => {};
   }, [currentJob]);
 
   let child = null;
