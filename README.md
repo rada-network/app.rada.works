@@ -1,4 +1,4 @@
-# Generative NFT frontend
+# Rada Couponize
 
 ## Setting VS Code (Prerequisite)
 
@@ -16,16 +16,10 @@ Install packages:
 yarn install
 ```
 
-# Storybook:
-
-```sh
-yarn storybook
-```
-
 # development
 
 ```sh
-yarn storybook
+yarn dev
 ```
 
 # production
