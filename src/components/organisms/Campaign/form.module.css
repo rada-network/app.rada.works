@@ -1,0 +1,40 @@
+.root {
+  display: block;
+    margin: 20px;
+}
+
+.root .form {
+    @apply block;
+}
+
+.root .pageTitle {
+    font-weight: bold;
+}
+
+.root .form .fields {
+    border-bottom: 1px solid #d6d6d6;
+    margin: 0px 0px 30px 0px;
+    padding: 0px 0px 30px 0px;
+}
+
+.detailsTitle {
+    composes: pageTitle;
+}
+.tip {
+    display: block;
+    font-size: 11px;
+}
+
+.buttonsContainer {
+    @apply flex mb-4;
+}
+
+.createCampaignErrorRoot {
+    padding: 10px 0px;
+}
+
+.createCampaignErrorMessage {
+    color: red;
+}
+
+

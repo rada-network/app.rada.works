@@ -2,12 +2,12 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import MainTmpl from './_mainTmpl';
-import { CreateJobForm } from '../organisms/CreateJob';
+import { CampaignForm } from '../organisms/Campaign';
 
-const CreateJobTmpl = (props) => {
-  const { jobId } = props;
+const CreateCampaignTmpl = (props) => {
+  const { campaignId } = props;
 
-  const child = <CreateJobForm jobId={jobId} />;
+  const child = <CampaignForm campaignId={campaignId} />;
 
   return (
     <Fragment>
@@ -16,11 +16,11 @@ const CreateJobTmpl = (props) => {
   );
 };
 
-CreateJobTmpl.propTypes = {
+CreateCampaignTmpl.propTypes = {
   classes: shape({
     root: string
   }),
-  jobId: string
+  campaignId: string
 };
 
-export default CreateJobTmpl;
+export default CreateCampaignTmpl;

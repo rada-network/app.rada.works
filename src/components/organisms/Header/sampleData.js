@@ -1,12 +1,11 @@
-import CreateJobLink from '../CreateJob/createJobtLink';
+import CreateLink from '../Campaign/createLink';
 
 const menuItems = new Map()
-  .set('Browse jobs', '/search-job')
-  .set('Find an artist', '/search-artist')
   .set('How it works', '/how-it-works')
+  .set('Browse coupons', '/search-job')
   .set('Create Campaign', {
-    path: '/create-job',
-    component: CreateJobLink
+    path: '/create-campaign',
+    component: CreateLink
   });
 
 export const DEFAULT_LINKS = new Map().set('menu', menuItems);

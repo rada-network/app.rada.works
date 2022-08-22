@@ -3,19 +3,19 @@ import { NextPage } from 'next';
 import Router from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSession } from 'next-auth/react';
-import CreateJobTmpl from '../components/templates/CreateJobTmpl';
 import { useTranslation } from 'next-i18next';
+import CreateCampaignTmpl from '../components/templates/CreateCampaignTmpl';
 
-const CreateJobPage: NextPage = () => {
+const CreateCampaignPage: NextPage = () => {
   const { status } = useSession();
 
-  const { t } = useTranslation('createjob');
+  const { t } = useTranslation('create_campaign');
 
   let child = null;
   if (status === 'loading') {
     child = t('Session loading...');
   } else if (status === 'authenticated') {
-    child = <CreateJobTmpl />;
+    child = <CreateCampaignTmpl />;
   } else {
     Router.push('/');
   }
@@ -29,7 +29,7 @@ const CreateJobPage: NextPage = () => {
   return <Fragment> {child} </Fragment>;
 };
 
-export default CreateJobPage;
+export default CreateCampaignPage;
 
 export async function getStaticProps({ locale }) {
   return {
