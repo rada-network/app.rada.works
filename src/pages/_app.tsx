@@ -1,7 +1,6 @@
 import '../../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
-import { MoralisProvider } from 'react-moralis';
 import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'react-redux';
 import { useStore } from 'src/libs/redux';
@@ -36,13 +35,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <Provider store={store}>
           <SessionProvider session={session}>
             <Web3Provider>
-              <MoralisProvider
-                serverUrl={process.env.NEXT_PUBLIC_SERVER_URL as string}
-                appId={process.env.NEXT_PUBLIC_APP_ID as string}
-              >
-                <Component {...pageProps} />
-                <Toast />
-              </MoralisProvider>
+              <Component {...pageProps} />
+              <Toast />
             </Web3Provider>
           </SessionProvider>
         </Provider>

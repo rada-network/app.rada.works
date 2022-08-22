@@ -4,7 +4,7 @@ const menuItems = new Map()
   .set('Browse jobs', '/search-job')
   .set('Find an artist', '/search-artist')
   .set('How it works', '/how-it-works')
-  .set('Submit Job', {
+  .set('Create Campaign', {
     path: '/create-job',
     component: CreateJobLink
   });

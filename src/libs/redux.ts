@@ -1,23 +1,19 @@
 import { useMemo } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import UsersReducer from '../ducks/users/users.reducers';
-import NounsReducer from '../ducks/nouns/nouns.reducers';
 import WalletsReducer from '../ducks/wallets/wallets.reducers';
 
 let store: any;
 
 const reducer = combineReducers({
-  nouns: NounsReducer,
-  users: UsersReducer,
-  wallets: WalletsReducer,
+  wallets: WalletsReducer
 });
 
 function initStore(preloadedState: any) {
   return createStore(
     reducer,
     preloadedState,
-    composeWithDevTools(applyMiddleware()),
+    composeWithDevTools(applyMiddleware())
   );
 }
 
@@ -29,7 +25,7 @@ export const initializeStore = (preloadedState: any) => {
   if (preloadedState && store) {
     _store = initStore({
       ...store.getState(),
-      ...preloadedState,
+      ...preloadedState
     });
     // Reset the current store
     store = undefined;
