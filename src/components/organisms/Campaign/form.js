@@ -7,6 +7,7 @@ import { isRequired } from '../../../utils/formValidators';
 import FormError from '../../atoms/FormError';
 import Field from '../../atoms/Field';
 import TextInput from '../../atoms/TextInput';
+import TextArea from '../../atoms/TextArea';
 import Button from '../../atoms/Button';
 import Checkbox from '../../atoms/Checkbox';
 import { Editor } from '@tinymce/tinymce-react';
@@ -154,12 +155,10 @@ const CampaignForm = (props) => {
                   placeholder={t('E.g 30')}
                 />
               </Field>
-            </div>
-            <div className={`${classes.fields}`}>
-              <h3 className={classes.detailsTitle}>
-                {t('Additional value/benefit')}
-              </h3>
-              <Field id="campaign-description" label={``}>
+              <Field
+                id="campaign-description"
+                label={t('Additional value/benefit')}
+              >
                 <Editor
                   tinymceScriptSrc={
                     process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'
@@ -191,13 +190,12 @@ const CampaignForm = (props) => {
             </div>
             <div className={`${classes.fields}`}>
               <h3 className={classes.detailsTitle}>
-                {t('Configuration your discount')}
+                {t('Configure your discount')}
               </h3>
               <Field id="campaign-coupon-codes" label={t('Coupon Codes')}>
-                <TextInput
-                  autoComplete="coupon-codes"
-                  field="coupon_codes"
+                <TextArea
                   id="coupon_codes"
+                  field="coupon_codes"
                   validate={isRequired}
                   validateOnBlur
                   mask={(value) => value && value.trim()}
