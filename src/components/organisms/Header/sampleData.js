@@ -2,7 +2,7 @@ import CreateLink from '../Campaign/createLink';
 
 const menuItems = new Map()
   .set('How it works', '/how-it-works')
-  .set('Browse coupons', '/search-job')
+  .set('Browse coupons', '/search-coupon')
   .set('Create Campaign', {
     path: '/create-campaign',
     component: CreateLink

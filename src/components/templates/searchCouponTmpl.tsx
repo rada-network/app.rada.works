@@ -2,29 +2,23 @@
 import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import MainTmpl from './_mainTmpl';
-import Joblist from '../organisms/JobList';
+// import Joblist from '../organisms/JobList';
 
-import css from 'styled-jsx/css';
-
-const styles = css`
-  /* stylelint-disable */
-`;
-
-const FindaJob = () => {
+const SearchCouponTmpl = () => {
   return (
     <Fragment>
       <MainTmpl>
-        <Joblist page="joblist" />
+        {/*<Joblist page="joblist" />*/}
+        Coming soon...
       </MainTmpl>
-      <style jsx>{styles}</style>
     </Fragment>
   );
 };
 
-FindaJob.propTypes = {
+SearchCouponTmpl.propTypes = {
   classes: shape({
     root: string
   })
 };
 
-export default FindaJob;
+export default SearchCouponTmpl;
