@@ -1,4 +1,5 @@
 .root {
+  @apply m-0 text-sm;
 }
 
 .root:empty {
@@ -6,6 +7,6 @@
 }
 
 .root_error {
-    composes: root;
-    color: red;
+  composes: root;
+  @apply text-red-600;
 }

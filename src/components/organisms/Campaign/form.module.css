@@ -1,40 +1,46 @@
 .root {
   display: block;
-    margin: 20px;
+  margin: 20px;
 }
 
 .root .form {
-    @apply block;
+  @apply block;
+}
+
+.root label {
+  @apply mb-1 text-base;
 }
 
 .root .pageTitle {
-    font-weight: bold;
+  @apply font-semibold;
 }
 
 .root .form .fields {
-    border-bottom: 1px solid #d6d6d6;
-    margin: 0px 0px 30px 0px;
-    padding: 0px 0px 30px 0px;
+  border-bottom: 1px solid #d6d6d6;
+  margin: 0px 0px 30px 0px;
+  padding: 0px 0px 30px 0px;
 }
 
 .detailsTitle {
-    composes: pageTitle;
+  composes: pageTitle;
 }
+
 .tip {
-    display: block;
-    font-size: 11px;
+  @apply block text-xs;
 }
 
 .buttonsContainer {
-    @apply flex mb-4;
+  @apply flex mb-4;
 }
 
 .createCampaignErrorRoot {
-    padding: 10px 0px;
+  padding: 10px 0px;
 }
 
 .createCampaignErrorMessage {
-    color: red;
+  @apply text-red-700 my-0;
 }
 
-
+.react-datepicker__input-container {
+  @apply flex items-center justify-start w-full border border-2;
+}

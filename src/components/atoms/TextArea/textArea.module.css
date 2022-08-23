@@ -1,7 +1,12 @@
 .input {
   composes: input from '../Field/field.module.css';
+  @apply border border-2 border-gray-200 rounded-md;
+}
+
+.input:focus {
+  @apply shadow-none;
 }
 
 .input_shimmer {
-  font-size: 1rem;
+  @apply text-base;
 }
