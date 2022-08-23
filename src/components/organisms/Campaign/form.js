@@ -14,10 +14,10 @@ import { Editor } from '@tinymce/tinymce-react';
 import TINY_MCE_CONFIG from './tinyMCE.config';
 import { useCampaignForm } from '../../../hooks/Campaign';
 import { useStyle } from '../../classify';
-import defaultClasses from './form.module.css';
 import { Percent } from 'react-feather';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import defaultClasses from './form.module.css';
 import Selector from './NFTCollectionSelector';
 
 const CampaignForm = (props) => {
@@ -190,7 +190,11 @@ const CampaignForm = (props) => {
                   {t('Separate codes by coma. Eg: CT65K6962NV8, ZZ8EP933J925')}
                 </span>
               </Field>
-              <Field id="campaign-dates" label={t('Start date & End date')}>
+              <Field
+                id="campaign-dates"
+                classes={{ root: classes['rdwDatepicker'] }}
+                label={t('Start date & End date')}
+              >
                 <DatePicker
                   selected={startDate}
                   onChange={onDateChange}
@@ -200,8 +204,6 @@ const CampaignForm = (props) => {
                   isClearable={true}
                   dateFormatCalendar={'MMM yyyy'}
                   minDate={new Date()}
-                  // inline
-                  // withPortal
                 />
               </Field>
               <Field id="campaign-store-url" label={t('Store URL')}>
