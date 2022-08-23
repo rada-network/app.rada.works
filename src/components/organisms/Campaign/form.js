@@ -18,7 +18,7 @@ import defaultClasses from './form.module.css';
 import { Percent } from 'react-feather';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Select from 'react-select';
+import Selector from './NFTCollectionSelector';
 
 const CampaignForm = (props) => {
   const { classes: propClasses, campaignId } = props;
@@ -35,14 +35,6 @@ const CampaignForm = (props) => {
     setEndDate(end);
   };
 
-  //Todo: listing options from backend via GraphQl
-  const nftCollectionOptions = [
-    { value: 1, label: 'Collection 1' },
-    { value: 2, label: 'Collection 2' },
-    { value: 3, label: 'Collection 3' },
-    { value: 4, label: 'Collection 4' },
-    { value: 5, label: 'Collection 5' }
-  ];
   const [selectedNFTCollection, setSelectedNFTOption] = useState(null);
 
   const { plugins, toolbar } = TINY_MCE_CONFIG;
@@ -81,9 +73,6 @@ const CampaignForm = (props) => {
           id: savedObj.id,
           title: savedObj.title
         });
-      }
-
-      if (currentCampaign.id) {
         if (!isBusy) {
           toast.success(
             t("You have just saved campaign's information successfully."),
@@ -123,12 +112,7 @@ const CampaignForm = (props) => {
           >
             <div className={`${classes.fields}`}>
               <Field id="campaign-nft-collection" label={t('NFT Collection')}>
-                <Select
-                  defaultValue={selectedNFTCollection}
-                  onChange={setSelectedNFTOption}
-                  options={nftCollectionOptions}
-                  placeholder={t('Select one NFT collection')}
-                />
+                <Selector onChange={setSelectedNFTOption} />
               </Field>
               <Field id="campaign-title" label={t('Title')}>
                 <TextInput
