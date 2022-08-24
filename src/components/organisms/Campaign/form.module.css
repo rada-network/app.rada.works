@@ -28,7 +28,7 @@
 }
 
 .tip {
-  @apply block text-xs;
+  @apply block mt-1 text-xs;
 }
 
 .buttonsContainer {

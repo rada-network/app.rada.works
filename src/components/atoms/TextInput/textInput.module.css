@@ -17,5 +17,5 @@
 }
 
 .input_shimmer {
-  font-size: 1rem;
+  @apply text-base;
 }
