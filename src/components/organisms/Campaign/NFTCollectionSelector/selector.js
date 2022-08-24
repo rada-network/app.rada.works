@@ -71,7 +71,7 @@ const Selector = (props) => {
 
   return (
     <Fragment>
-      <div className={`${classes.root}`}>
+      <div className={`${classes.rwdSelector}`}>
         <AsyncSelect
           placeholder={t('Select one NFT collection')}
           cacheOptions
@@ -81,6 +81,8 @@ const Selector = (props) => {
           loadOptions={loadOptions}
           onInputChange={handleInputChange}
           onChange={onChange}
+          className="rdwSelectorContainer"
+          classNamePrefix="reactSelect"
         />
       </div>
     </Fragment>

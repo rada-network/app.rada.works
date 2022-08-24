@@ -62,6 +62,8 @@ export default (props) => {
         storage.setItem('submittingCampaign', submittedValues, 3600);
 
         submittedValues.slug = slugify(submittedValues.title).toLowerCase();
+        if (submittedValues.show_on_rada === undefined)
+          submittedValues.show_on_rada = false;
 
         await saveCampaignInformation({
           variables: {
@@ -69,7 +71,6 @@ export default (props) => {
             ...submittedValues
           }
         }).then(function (rs) {
-          console.log(rs);
           //Reset form fields state
           if (formApiRef.current) {
             formApiRef.current.reset();
@@ -90,6 +91,10 @@ export default (props) => {
     Router.push('/');
   }, []);
 
+  const handleFinished = useCallback(() => {
+    Router.push('/');
+  }, []);
+
   const errors = useMemo(
     () =>
       new Map([
@@ -106,6 +111,7 @@ export default (props) => {
     initialValues,
     handleSaveCampaign,
     handleCancel,
+    handleFinished,
     isBusy: campaignLoading || saveCampaignLoading,
     errors,
     saveCampaignResult

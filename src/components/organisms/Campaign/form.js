@@ -54,6 +54,7 @@ const CampaignForm = (props) => {
     errors,
     handleSaveCampaign,
     handleCancel,
+    handleFinished,
     isBusy,
     setFormApi,
     formApiRef,
@@ -80,7 +81,11 @@ const CampaignForm = (props) => {
         if (!isBusy) {
           toast.success(
             t("You have just saved campaign's information successfully."),
-            {}
+            {
+              onClose: () => {
+                handleFinished();
+              }
+            }
           );
         }
       }
@@ -90,168 +95,164 @@ const CampaignForm = (props) => {
   }, [saveCampaignResult]);
 
   let child = null;
-  if (currentCampaign.id) {
-    child = 'DONE';
-  } else {
-    if (!isBusy) {
-      child = (
-        <div className={`${classes[rootClassName]}`}>
-          <h2 className={`${classes.pageTitle}`}>
-            {t('Campaign introduction')}
-          </h2>
-          <FormError allowErrorMessages errors={Array.from(errors.values())} />
-          <Form
-            getApi={setFormApi}
-            className={classes.form}
-            initialValues={initialValues}
-            onSubmit={() =>
-              handleSaveCampaign({
-                nft_collection_id: selectedNFTCollection.value,
-                description: detailsEditorRef.current.getContent(),
-                startDate,
-                endDate,
-                ...formApiRef.current.getValues()
-              })
-            }
-          >
-            <div className={`${classes.fields}`}>
-              <Field id="campaign-nft-collection" label={t('NFT Collection')}>
-                <Selector
-                  selectedId={parseInt(selectedNFTCollection)}
-                  onChange={setSelectedNFTOption}
-                />
-              </Field>
-              <Field id="campaign-title" label={t('Title')}>
-                <TextInput
-                  autoComplete="title"
-                  field="title"
-                  id="campaign-title"
-                  validate={isRequired}
-                  validateOnBlur
-                  mask={(value) => value && value.trim()}
-                  maskOnBlur={true}
-                  placeholder={t('E.g 30% off all products')}
-                />
-              </Field>
-              <Field id="campaign-discount-value" label={t('Discount Value')}>
-                <TextInput
-                  after={discountUnit}
-                  autoComplete="campaign-discount-value"
-                  field="discount_value"
-                  id="discount_value"
-                  validate={isRequired}
-                  validateOnBlur
-                  mask={(value) => value && parseInt(value)}
-                  maskOnBlur={true}
-                  placeholder={t('E.g 30')}
-                />
-              </Field>
-              <Field
-                id="campaign-description"
-                label={t('Additional value/benefit')}
-              >
-                <Editor
-                  tinymceScriptSrc={
-                    process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'
-                  }
-                  onInit={(evt, editor) => (detailsEditorRef.current = editor)}
-                  initialValue={
-                    initialValues.description ? initialValues.description : ''
-                  }
-                  init={{
-                    height: 300,
-                    menubar: false,
-                    placeholder: t('Other detail for your customers?'),
-                    plugins,
-                    toolbar,
-                    content_style:
-                      'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                  }}
-                />
-                <span className={classes.tip}>
-                  {t('Describe the campaign in detail.')}
-                </span>
-              </Field>
+  if (!isBusy) {
+    child = (
+      <div className={`${classes[rootClassName]}`}>
+        <h2 className={`${classes.pageTitle}`}>{t('Campaign introduction')}</h2>
+        <FormError allowErrorMessages errors={Array.from(errors.values())} />
+        <Form
+          getApi={setFormApi}
+          className={classes.form}
+          initialValues={initialValues}
+          onSubmit={() =>
+            handleSaveCampaign({
+              nft_collection_id: selectedNFTCollection.value,
+              description: detailsEditorRef.current.getContent(),
+              startDate,
+              endDate,
+              ...formApiRef.current.getValues()
+            })
+          }
+        >
+          <div className={`${classes.fields}`}>
+            <Field id="campaign-nft-collection" label={t('NFT Collection')}>
+              <Selector
+                selectedId={parseInt(selectedNFTCollection)}
+                onChange={setSelectedNFTOption}
+              />
+            </Field>
+            <Field id="campaign-title" label={t('Title')}>
+              <TextInput
+                autoComplete="title"
+                field="title"
+                id="campaign-title"
+                validate={isRequired}
+                validateOnBlur
+                mask={(value) => value && value.trim()}
+                maskOnBlur={true}
+                placeholder={t('E.g 30% off all products')}
+              />
+            </Field>
+            <Field id="campaign-discount-value" label={t('Discount Value')}>
+              <TextInput
+                after={discountUnit}
+                autoComplete="campaign-discount-value"
+                field="discount_value"
+                id="discount_value"
+                validate={isRequired}
+                validateOnBlur
+                mask={(value) => value && parseInt(value)}
+                maskOnBlur={true}
+                placeholder={t('E.g 30')}
+              />
+            </Field>
+            <Field
+              id="campaign-description"
+              label={t('Additional value/benefit')}
+            >
+              <Editor
+                tinymceScriptSrc={
+                  process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'
+                }
+                onInit={(evt, editor) => (detailsEditorRef.current = editor)}
+                initialValue={
+                  initialValues.description ? initialValues.description : ''
+                }
+                init={{
+                  height: 300,
+                  menubar: false,
+                  placeholder: t('Other detail for your customers?'),
+                  plugins,
+                  toolbar,
+                  content_style:
+                    'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                }}
+              />
+              <span className={classes.tip}>
+                {t('Describe the campaign in detail.')}
+              </span>
+            </Field>
+            <Field id="campaign-show-on-rada" label={``}>
               <Checkbox
                 id="show_on_rada"
                 field="show_on_rada"
                 value={true}
                 label="Enable show your campaign on RADA"
               />
-            </div>
-            <div className={`${classes.fields}`}>
-              <h3 className={classes.detailsTitle}>
-                {t('Configure your discount')}
-              </h3>
-              <Field id="campaign-coupon-codes" label={t('Coupon Codes')}>
-                <TextArea
-                  id="coupon_codes"
-                  field="coupon_codes"
-                  validate={isRequired}
-                  validateOnBlur
-                  mask={(value) => value && value.trim()}
-                  maskOnBlur={true}
-                  placeholder={t('Enter coupon codes...')}
-                />
-                <span className={classes.tip}>
-                  {t('Separate codes by coma. Eg: CT65K6962NV8, ZZ8EP933J925')}
-                </span>
-              </Field>
-              <Field
-                id="campaign-dates"
-                classes={{ root: classes['rdwDatepicker'] }}
-                label={t('Start date & End date')}
+            </Field>
+          </div>
+          <div className={`${classes.fields}`}>
+            <h3 className={classes.detailsTitle}>
+              {t('Configure your discount')}
+            </h3>
+            <Field id="campaign-coupon-codes" label={t('Coupon Codes')}>
+              <TextArea
+                id="coupon_codes"
+                field="coupon_codes"
+                validate={isRequired}
+                validateOnBlur
+                mask={(value) => value && value.trim()}
+                maskOnBlur={true}
+                placeholder={t('Enter coupon codes...')}
+              />
+              <span className={classes.tip}>
+                {t('Separate codes by coma. Eg: CT65K6962NV8, ZZ8EP933J925')}
+              </span>
+            </Field>
+            <Field
+              id="campaign-dates"
+              classes={{ root: classes['rdwDatepicker'] }}
+              label={t('Start date & End date')}
+            >
+              <DatePicker
+                selected={startDate}
+                onChange={onDateChange}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                isClearable={true}
+                dateFormatCalendar={'MMM yyyy'}
+                minDate={new Date()}
+              />
+            </Field>
+            <Field id="campaign-store-url" label={t('Store URL')}>
+              <TextInput
+                autoComplete="store-url"
+                field="store_url"
+                id="store_url"
+                validate={isRequired}
+                validateOnBlur
+                mask={(value) => value && value.trim()}
+                maskOnBlur={true}
+                placeholder={t('Enter your Store URL...')}
+              />
+              <span className={classes.tip}>
+                {t('Specify the shop URL where apply the coupons.')}
+              </span>
+            </Field>
+          </div>
+          <div className={`${classes.buttonsContainer}`}>
+            <div className={`w-1/2 h-12`}>
+              <Button
+                priority="normal"
+                onClick={() => handleCancel()}
+                type="button"
+                disabled={isBusy}
               >
-                <DatePicker
-                  selected={startDate}
-                  onChange={onDateChange}
-                  startDate={startDate}
-                  endDate={endDate}
-                  selectsRange
-                  isClearable={true}
-                  dateFormatCalendar={'MMM yyyy'}
-                  minDate={new Date()}
-                />
-              </Field>
-              <Field id="campaign-store-url" label={t('Store URL')}>
-                <TextInput
-                  autoComplete="store-url"
-                  field="store_url"
-                  id="store_url"
-                  validate={isRequired}
-                  validateOnBlur
-                  mask={(value) => value && value.trim()}
-                  maskOnBlur={true}
-                  placeholder={t('Enter your Store URL...')}
-                />
-                <span className={classes.tip}>
-                  {t('Specify the shop URL where apply the coupons.')}
-                </span>
-              </Field>
+                {t('Cancel')}
+              </Button>
             </div>
-            <div className={`${classes.buttonsContainer}`}>
-              <div className={`w-1/2 h-12`}>
-                <Button
-                  priority="normal"
-                  onClick={() => handleCancel()}
-                  type="button"
-                  disabled={isBusy}
-                >
-                  {t('Cancel')}
-                </Button>
-              </div>
-              <div className={`w-1/2 h-12 text-right`}>
-                <Button priority="high" type="submit" disabled={isBusy}>
-                  {t('Next Step')}
-                </Button>
-              </div>
+            <div className={`w-1/2 h-12 text-right`}>
+              <Button priority="high" type="submit" disabled={isBusy}>
+                {t('Next Step')}
+              </Button>
             </div>
-          </Form>
-        </div>
-      );
-    } else {
-      child = t('Loading...');
-    }
+          </div>
+        </Form>
+      </div>
+    );
+  } else {
+    child = t('Loading...');
   }
 
   return <Fragment>{child}</Fragment>;

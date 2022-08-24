@@ -10,7 +10,7 @@ export const CREATE_CAMPAIGN_FUNC = gql`
     $discount_value: Int!
     $coupon_codes: String!
     $store_url: String!
-    $show_on_rada: Boolean!
+    $show_on_rada: Boolean
     $date_start: Date
     $date_end: Date
   ) {
