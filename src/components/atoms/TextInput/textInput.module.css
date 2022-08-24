@@ -1,6 +1,6 @@
 .input {
   composes: input from '../Field/field.module.css';
-  @apply bg-transparent shadow-none border border-2 border-gray-200 rounded-md py-3 px-4;
+  @apply bg-transparent shadow-none border border-2 border-gray-200 rounded-md py-2 px-4;
 }
 
 .rootDark .input {
@@ -9,7 +9,7 @@
 
 .input_error {
   composes: input from '../Field/field.module.css';
-  @apply bg-transparent shadow-none border border-2 border-gray-200 rounded-md py-3 px-4;
+  @apply bg-transparent shadow-none border border-2 border-gray-200 rounded-md py-2 px-4;
 }
 
 .input_datepicker {

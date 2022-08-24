@@ -1,5 +1,5 @@
 .root {
-  padding: 10px 0px;
+  @apply py-3 px-0;
 }
 
 .errorMessage {

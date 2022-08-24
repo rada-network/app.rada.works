@@ -3,7 +3,7 @@
 }
 
 .root:empty {
-    display: none;
+  display: none;
 }
 
 .root_error {
