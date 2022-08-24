@@ -1,13 +1,14 @@
 import React, { useState, useMemo, Fragment } from 'react';
-import { shape, string } from 'prop-types';
+import { number, func, shape, string } from 'prop-types';
 import classes from './selector.module.css';
 import { useTranslation } from 'next-i18next';
 import AsyncSelect from 'react-select/async';
 import { useQuery } from '@apollo/client';
 import API from './api.gql';
+import { ellipsify } from '../../../../utils/strUtils';
 
 const Selector = (props) => {
-  const { onChange } = props;
+  const { selectedId, onChange } = props;
 
   const [state, setState] = useState({ inputValue: '' });
 
@@ -18,17 +19,31 @@ const Selector = (props) => {
   };
   const { getNFTCollection } = API;
   const { data, loading } = useQuery(getNFTCollection, {
-    variables: { filter },
+    variables: {
+      filter,
+      sort: ['-id', 'chain_name'],
+      limit: 10,
+      offset: null,
+      page: 1,
+      search: state.inputValue
+    },
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first'
   });
+  const capitalize = (s) => (s && s[0].toUpperCase() + s.slice(1)) || '';
   const options = useMemo(() => {
     const rs = [];
     if (data && data.nft_collection) {
       data.nft_collection.map(function (obj) {
+        const chainName = capitalize(obj.chain_name);
+        const contractAdd = ellipsify({
+          str: obj.contract_address,
+          start: 5,
+          end: 4
+        });
         rs.push({
           value: parseInt(obj.id),
-          label: obj.name
+          label: `${chainName} > ${obj.name} (${contractAdd})`
         });
       });
     }
@@ -45,7 +60,7 @@ const Selector = (props) => {
     new Promise((resolve) => {
       setTimeout(() => {
         resolve(filterOptions(inputValue));
-      }, 1000);
+      }, 2000);
     });
 
   const handleInputChange = (newValue) => {
@@ -54,22 +69,20 @@ const Selector = (props) => {
     return inputValue;
   };
 
-  const child = loading ? (
-    t('Loading...')
-  ) : (
-    <AsyncSelect
-      placeholder={t('Select one NFT collection')}
-      cacheOptions
-      defaultOptions={options}
-      loadOptions={loadOptions}
-      onInputChange={handleInputChange}
-      onChange={onChange}
-    />
-  );
-
   return (
     <Fragment>
-      <div className={classes.root}>{child}</div>
+      <div className={`${classes.root}`}>
+        <AsyncSelect
+          placeholder={t('Select one NFT collection')}
+          cacheOptions
+          defaultValue={selectedId}
+          defaultInputValue={state.inputValue}
+          defaultOptions={options}
+          loadOptions={loadOptions}
+          onInputChange={handleInputChange}
+          onChange={onChange}
+        />
+      </div>
     </Fragment>
   );
 };
@@ -79,7 +92,9 @@ Selector.defaultProps = {};
 Selector.propTypes = {
   classes: shape({
     root: string
-  })
+  }),
+  selectedId: number,
+  onChange: func
 };
 
 export default Selector;

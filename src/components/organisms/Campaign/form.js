@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { shape, string } from 'prop-types';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
+import { useTheme } from 'next-themes';
 import { Form } from 'informed';
 import { isRequired } from '../../../utils/formValidators';
 import FormError from '../../atoms/FormError';
@@ -25,6 +26,9 @@ const CampaignForm = (props) => {
 
   const classes = useStyle(defaultClasses, propClasses);
 
+  const { theme } = useTheme();
+  const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
+
   const discountUnit = <Percent />;
 
   const [startDate, setStartDate] = useState(new Date());
@@ -35,7 +39,7 @@ const CampaignForm = (props) => {
     setEndDate(end);
   };
 
-  const [selectedNFTCollection, setSelectedNFTOption] = useState(null);
+  const [selectedNFTCollection, setSelectedNFTOption] = useState(0);
 
   const { plugins, toolbar } = TINY_MCE_CONFIG;
 
@@ -91,7 +95,7 @@ const CampaignForm = (props) => {
   } else {
     if (!isBusy) {
       child = (
-        <div className={`${classes.root}`}>
+        <div className={`${classes[rootClassName]}`}>
           <h2 className={`${classes.pageTitle}`}>
             {t('Campaign introduction')}
           </h2>
@@ -112,7 +116,10 @@ const CampaignForm = (props) => {
           >
             <div className={`${classes.fields}`}>
               <Field id="campaign-nft-collection" label={t('NFT Collection')}>
-                <Selector onChange={setSelectedNFTOption} />
+                <Selector
+                  selectedId={parseInt(selectedNFTCollection)}
+                  onChange={setSelectedNFTOption}
+                />
               </Field>
               <Field id="campaign-title" label={t('Title')}>
                 <TextInput
