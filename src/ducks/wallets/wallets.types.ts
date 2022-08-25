@@ -10,7 +10,7 @@ export type WalletsState = {
 };
 
 export const WalletsActionType = {
-  connectWallet: 'connectWallet',
+  connectWallet: 'connectWallet'
 };
 
 export type WalletsActionType =

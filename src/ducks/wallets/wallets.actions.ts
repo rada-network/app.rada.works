@@ -5,14 +5,14 @@ import { WalletsActionType } from './wallets.types';
 export const connectWalletAction = (
   provider: any,
   web3: Web3,
-  account: string,
+  account: string
 ) => {
   return {
     type: WalletsActionType.connectWallet,
     payload: {
       provider,
       web3,
-      account,
-    },
+      account
+    }
   };
 };

@@ -1,7 +1,7 @@
 import React, { FunctionComponent, Fragment } from 'react';
 import Web3 from 'web3';
-import Web3Modal /*, { providers }*/ from 'web3modal';
-import { useDispatch /*, useSelector*/ } from 'react-redux';
+import Web3Modal from 'web3modal';
+import { useDispatch } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
 import Button from '../../atoms/Button';
 import { useSession, getCsrfToken, signIn, signOut } from 'next-auth/react';
@@ -9,6 +9,7 @@ import { ethers } from 'ethers';
 import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
 import classes from './ConnectWallet.module.css';
+import providerOptions from './providers';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -24,7 +25,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     try {
       const web3Modal = new Web3Modal({
         cacheProvider: false,
-        providerOptions: {},
+        providerOptions,
         theme: 'dark'
       });
       const provider = await web3Modal.connect();

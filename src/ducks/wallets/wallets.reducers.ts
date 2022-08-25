@@ -1,20 +1,20 @@
 import {
   WalletsAction,
   WalletsActionType,
-  WalletsState,
+  WalletsState
 } from './wallets.types';
 
 export const initialState: WalletsState = {};
 
 const reducer = (
   state: WalletsState = initialState,
-  action: WalletsAction,
+  action: WalletsAction
 ): WalletsState => {
   switch (action.type) {
     case WalletsActionType.connectWallet:
       return {
         ...state,
-        walletInfo: action.payload,
+        walletInfo: action.payload
       };
 
     default:
