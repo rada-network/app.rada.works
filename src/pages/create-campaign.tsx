@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
-import CreateCampaignTmpl from '../components/templates/CreateCampaignTmpl';
+import CreateCampaignTmpl from '../components/templates/createCampaignTmpl';
 
 const CreateCampaignPage: NextPage = () => {
   const { status } = useSession();

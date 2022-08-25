@@ -1,0 +1,24 @@
+.root {
+	@apply container mx-auto grid md:grid-cols-2 gap-8 mt-8;
+}
+
+.filter {
+	@apply flex items-center
+}
+
+.filterForm {
+
+}
+
+.item {
+	@apply text-sm px-5 py-2.5 mb-2 basis-6/12;
+}
+
+.author {
+	@apply text-sm font-bold;
+}
+
+.noResult {
+	font-size: 11px;
+	text-align: center;
+}

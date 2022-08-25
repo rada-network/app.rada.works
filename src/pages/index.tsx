@@ -1,7 +1,7 @@
 // import React, {useEffect} from 'react';
 import { NextPage } from 'next';
 // import { useRouter } from 'next/router';
-import HomeTmpl from '../components/templates/HomeTmpl';
+import HomeTmpl from '../components/templates/homeTmpl';
 
 const HomePage: NextPage = () => {
   // const router = useRouter();

@@ -1,0 +1,11 @@
+.root {
+	@apply border border-gray-200 dark:border-gray-800 p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch
+}
+
+/*.item {*/
+/*	@apply text-sm px-5 py-2.5 mb-2 basis-6/12;*/
+/*}*/
+
+/*.author {*/
+/*	@apply text-sm font-bold;*/
+/*}*/

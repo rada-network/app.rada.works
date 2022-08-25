@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { NextPage } from 'next';
 import { useSession } from 'next-auth/react';
-import HowItWorksTmp from 'src/components/templates/HowItWorksTmp';
+import HowItWorksTmp from 'src/components/templates/howItWorksTmp';
 const HowItWorks: NextPage = () => {
   const { status } = useSession();
 

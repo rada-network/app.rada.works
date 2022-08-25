@@ -61,11 +61,6 @@ const CampaignForm = (props) => {
 
   const [selectedNFTCollection, setSelectedNFTOption] = useState(0);
 
-  const [currentCampaign, setCurrentCampaign] = useState({
-    id: null,
-    title: null
-  });
-
   const {
     errors,
     handleSaveCampaign,
@@ -90,10 +85,6 @@ const CampaignForm = (props) => {
         saveCampaignResult.create_campaign_item = null;
       }
       if (savedObj && savedObj.id) {
-        setCurrentCampaign({
-          id: savedObj.id,
-          title: savedObj.title
-        });
         if (!isBusy) {
           toast.success(
             t("You have just saved campaign's information successfully."),

@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client';
-import { LOAD_JOB_BY_SLUG } from './job.gql';
+import API from './details.api.gql';
 
-export default function useJob(props: { slug: object }) {
+export default (props) => {
   const { slug } = props;
-  const { data, loading, error } = useQuery(LOAD_JOB_BY_SLUG, {
+  const { getCampaign } = API;
+  const { data, loading, error } = useQuery(getCampaign, {
     fetchPolicy: 'no-cache',
     skip: !slug,
     variables: {
@@ -12,4 +13,4 @@ export default function useJob(props: { slug: object }) {
   });
 
   return { loading, data, error };
-}
+};
