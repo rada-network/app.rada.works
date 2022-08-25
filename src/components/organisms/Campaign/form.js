@@ -26,8 +26,28 @@ const CampaignForm = (props) => {
 
   const classes = useStyle(defaultClasses, propClasses);
 
+  const { t } = useTranslation('create_campaign');
+
   const { theme } = useTheme();
   const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
+
+  const { plugins, toolbar } = TINY_MCE_CONFIG;
+  const tinyInit = {
+    branding: false,
+    height: 300,
+    menubar: false,
+    placeholder: t('Other detail for your customers?'),
+    plugins,
+    toolbar,
+    skin: 'oxide',
+    content_css: 'default',
+    content_style:
+      'body {font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+  };
+  if (theme === 'dark') {
+    tinyInit.skin = 'oxide-dark';
+    tinyInit.content_css = 'dark';
+  }
 
   const discountUnit = <Percent />;
 
@@ -40,10 +60,6 @@ const CampaignForm = (props) => {
   };
 
   const [selectedNFTCollection, setSelectedNFTOption] = useState(0);
-
-  const { plugins, toolbar } = TINY_MCE_CONFIG;
-
-  const { t } = useTranslation('create_campaign');
 
   const [currentCampaign, setCurrentCampaign] = useState({
     id: null,
@@ -158,15 +174,7 @@ const CampaignForm = (props) => {
                 initialValue={
                   initialValues.description ? initialValues.description : ''
                 }
-                init={{
-                  height: 300,
-                  menubar: false,
-                  placeholder: t('Other detail for your customers?'),
-                  plugins,
-                  toolbar,
-                  content_style:
-                    'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                }}
+                init={tinyInit}
               />
               <span className={classes.tip}>
                 {t('Describe the campaign in detail.')}
