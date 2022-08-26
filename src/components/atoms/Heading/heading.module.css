@@ -1,7 +1,7 @@
 .heading {
-  @apply text-4xl font-semibold text-center mb-6;
+  @apply md:text-4xl lg:text-5xl font-semibold text-gray-800 text-center mb-6;
 }
 
 .subHeading {
-  @apply max-w-xl mx-auto text-center mb-4 leading-6;
+  @apply max-w-xl mx-auto text-center text-base mb-4 leading-6;
 }

@@ -70,9 +70,17 @@ const List = (props) => {
 
   return (
     <div className={`${classes.root}`}>
-      {heading}
-      {filters}
-      {child}
+      <div className={classes.headingWrap}>{heading}</div>
+
+      {/* {filters} */}
+
+      <div className={classes.listWrap}>{child}</div>
+
+      <div className={classes.actionWrap}>
+        <a href="#" title="Load more..." className={classes.loadMore}>
+          Load more...
+        </a>
+      </div>
     </div>
   );
 };

@@ -15,67 +15,33 @@ const Item = (props) => {
 
   return (
     <div className={`${classes.root}`}>
-      <div className={'flex items-center justify-between mb-2'}>
-        <div className={'flex items-center'}>
-          <img
-            className={'avatar-sm w-6 h-6 rounded-full mr-2'}
-            src="https://picsum.photos/200"
-          />
-          <div className={'text-sm font-medium'}>{data?.user_id?.email}</div>
-          <span className={'opacity-70 text-xs ml-2 -mb-0.5'}>
-            Posted 16 days ago
-          </span>
-        </div>
-        <Image
-          src="/chains/ethereum.svg"
-          alt="Ethereum"
-          width="24"
-          height="24"
-          className={''}
-        />
+      <div className={classes.itemHead}>
+        <span className={classes.couponAmoun}>35% Off</span>
+        <span className={classes.couponLabel}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            fill="currentColor"
+            className="bi bi-check-circle-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+          </svg>
+          Verified
+        </span>
       </div>
 
-      <h2
-        className={
-          'text-lg font-semibold text-gray-900 dark:text-gray-400 dark:hover:text-white mb-2 cursor-pointer'
-        }
-        onClick={handleClick}
-      >
-        {data?.title}
-      </h2>
+      <div className={classes.itemBody}>
+        30% Off Rare Hinata Wizard Nft. Exclusions: Code Automatically Applied
+        at Checkout.
+      </div>
 
-      <div
-        className={'text-sm opacity-70 mb-4 text-gray-50'}
-        dangerouslySetInnerHTML={{ __html: data?.short_desc }}
-      />
-      <div className={'mt-auto flex items-center justify-between'}>
-        <div className={'mt-auto flex items-center'}>
-          <Image src="/symbols/usdt.svg" alt="USDT" width="20" height="20" />
-          <strong className={'font-semibold ml-2'}>700 USDT</strong>
-          <span className={'opacity-70 text-xs ml-2 -mb-0.5'}>~ $700</span>
-        </div>
-
-        <div className={'mt-auto flex items-center'}>
-          <img
-            className={'avatar-sm w-6 h-6 rounded-full -mr-1'}
-            src="https://picsum.photos/200?random=1"
-          />
-          <img
-            className={'avatar-sm w-6 h-6 rounded-full -mr-1'}
-            src="https://picsum.photos/200?random=2"
-          />
-          <img
-            className={'avatar-sm w-6 h-6 rounded-full -mr-1'}
-            src="https://picsum.photos/200?random=3"
-          />
-          <div
-            className={
-              'bg-gray-200 dark:bg-gray-800 rounded-full text-xs p-2 py-1'
-            }
-          >
-            +56
-          </div>
-        </div>
+      <div className={classes.itemFoot}>
+        <small>Move JoomlArt Coupon code</small>
+        <a href="#" title="Get Coupon" className={classes.getCoupon}>
+          Get this deal
+        </a>
       </div>
     </div>
   );
