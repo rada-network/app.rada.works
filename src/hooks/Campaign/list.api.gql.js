@@ -19,6 +19,7 @@ export const GET_CAMPAIGNS = gql`
     ) {
       id
       title
+      discount_value
       description
       date_created
     }

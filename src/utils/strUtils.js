@@ -8,6 +8,20 @@ export const ellipsify = (props) => {
   return str;
 };
 
+export const toHTML = (str) => ({ __html: str });
+
+export const subStrWords = (
+  str,
+  maxLength,
+  separator = ' ',
+  suffix = '...'
+) => {
+  if (str.length <= maxLength) return str;
+  return str.substr(0, str.lastIndexOf(separator, maxLength)) + suffix;
+};
+
 export default {
-  ellipsify
+  ellipsify,
+  toHTML,
+  subStrWords
 };

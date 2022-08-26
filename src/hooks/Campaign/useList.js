@@ -16,7 +16,7 @@ export default (props) => {
   const { data, loading, error } = useQuery(getCampaigns, {
     variables: {
       filter,
-      limit: 10,
+      limit: 9,
       sort: ['-date_created']
     }
   });
