@@ -10,6 +10,7 @@ import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
 import classes from './ConnectWallet.module.css';
 import providerOptions from './providers';
+import { Sign } from 'crypto';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -86,7 +87,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
             priority="high"
             type="button"
             className={classes.btnLogout}
-            onClick={disConnect}
+            onClick={signOut}
           >
             {t('Sign out')}
           </Button>
@@ -96,7 +97,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
           priority="high"
           type="button"
           className={classes.btnLogin}
-          onClick={connect}
+          onClick={signIn}
         >
           {t('Connect wallet')}
         </Button>

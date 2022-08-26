@@ -11,9 +11,7 @@ import { useTheme } from 'next-themes';
 // import EmailProvider from "next-auth/providers/email"
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
-console.log('====================================');
-console.log(process.env);
-console.log('====================================');
+
 export const authOptions: NextAuthOptions = {
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
@@ -117,12 +115,17 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      const directusToken = await authLogin({
-        email: user.email,
-        password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
-      });
-      console.log(directusToken);
-      user.access_token = directusToken.auth_login.access_token;
+      console.log('====================================');
+      console.log('====================================');
+      console.log('signIn:', user, account, profile, email, credentials);
+      console.log('====================================');
+      console.log('====================================');
+      // const directusToken = await authLogin({
+      //   email: user.email,
+      //   password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
+      // });
+      // console.log(directusToken);
+      // user.access_token = directusToken.auth_login.access_token;
       return true;
     },
     async redirect({ url, baseUrl }) {
