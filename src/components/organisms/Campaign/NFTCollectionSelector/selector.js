@@ -8,7 +8,7 @@ import API from './api.gql';
 import { ellipsify } from '../../../../utils/strUtils';
 
 const Selector = (props) => {
-  const { selectedId, onChange } = props;
+  const { selectedOption, handleChange } = props;
 
   const [state, setState] = useState({ inputValue: '' });
 
@@ -75,14 +75,14 @@ const Selector = (props) => {
         <AsyncSelect
           placeholder={t('Select one NFT collection')}
           cacheOptions
-          defaultValue={selectedId}
+          defaultValue={selectedOption}
           defaultInputValue={state.inputValue}
           defaultOptions={options}
           loadOptions={loadOptions}
           onInputChange={handleInputChange}
-          onChange={onChange}
+          onChange={handleChange}
           className="rdwSelectorContainer"
-          classNamePrefix="reactSelect"
+          classNamePrefix="rdw"
         />
       </div>
     </Fragment>
@@ -95,8 +95,11 @@ Selector.propTypes = {
   classes: shape({
     root: string
   }),
-  selectedId: number,
-  onChange: func
+  selectedOption: shape({
+    label: string,
+    value: number
+  }),
+  handleChange: func
 };
 
 export default Selector;

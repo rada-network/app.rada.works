@@ -24,16 +24,19 @@ export default (props) => {
     error: campaignLoadError,
     data: campaignLoaded
   } = useQuery(loadCampaignByIdQuery, {
-    fetchPolicy: 'no-cache',
+    // fetchPolicy: 'no-cache',
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
     skip: !campaignId,
     variables: {
       id: campaignId
     }
   });
-
-  if (!campaignLoading && campaignLoaded && campaignLoaded.campaign_by_id) {
-    initialValues = campaignLoaded.campaign_by_id;
-  }
+  initialValues = useMemo(() => {
+    return !campaignLoading && campaignLoaded && campaignLoaded.campaign_by_id
+      ? campaignLoaded.campaign_by_id
+      : {};
+  }, [campaignLoaded]);
 
   const formApiRef = useRef(initialValues);
   const setFormApi = useCallback((api) => (formApiRef.current = api), []);

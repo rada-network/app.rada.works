@@ -59,8 +59,6 @@ const CampaignForm = (props) => {
     setEndDate(end);
   };
 
-  const [selectedNFTCollection, setSelectedNFTOption] = useState(0);
-
   const {
     errors,
     handleSaveCampaign,
@@ -73,6 +71,8 @@ const CampaignForm = (props) => {
     initialValues,
     saveCampaignResult
   } = useCampaignForm({ campaignId });
+
+  const [nftCollectionOption, setNFTCollectionOption] = useState({});
 
   useEffect(() => {
     if (saveCampaignResult) {
@@ -87,7 +87,9 @@ const CampaignForm = (props) => {
       if (savedObj && savedObj.id) {
         if (!isBusy) {
           toast.success(
-            t("You have just saved campaign's information successfully."),
+            t(
+              "You have just saved campaign's information successfully. We will consider to approve your campaign as soon as possible."
+            ),
             {
               onClose: () => {
                 handleFinished();
@@ -113,10 +115,11 @@ const CampaignForm = (props) => {
           initialValues={initialValues}
           onSubmit={() =>
             handleSaveCampaign({
-              nft_collection_id: selectedNFTCollection.value,
+              nft_collection_id: parseInt(nftCollectionOption.value),
+              nft_collection_name: nftCollectionOption.label,
               description: detailsEditorRef.current.getContent(),
-              startDate,
-              endDate,
+              date_start: startDate,
+              date_end: endDate,
               ...formApiRef.current.getValues()
             })
           }
@@ -124,8 +127,11 @@ const CampaignForm = (props) => {
           <div className={`${classes.fields}`}>
             <Field id="campaign-nft-collection" label={t('NFT Collection')}>
               <Selector
-                selectedId={parseInt(selectedNFTCollection)}
-                onChange={setSelectedNFTOption}
+                selectedOption={{
+                  value: initialValues.nft_collection_id,
+                  label: initialValues.nft_collection_name
+                }}
+                handleChange={setNFTCollectionOption}
               />
             </Field>
             <Field id="campaign-title" label={t('Title')}>
@@ -201,7 +207,7 @@ const CampaignForm = (props) => {
             <Field
               id="campaign-dates"
               classes={{ root: classes['rdwDatepicker'] }}
-              label={t('Start date & End date')}
+              label={t('Active dates')}
             >
               <DatePicker
                 selected={startDate}

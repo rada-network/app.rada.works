@@ -49,12 +49,11 @@ const Item = (props) => {
       <div className={classes.itemFoot}>
         <small>Move JoomlArt Coupon code</small>
         <a
-          href="javascript:void(0);"
           onClick={viewDetails}
-          title="Get Coupon"
+          title={t('Get Coupon')}
           className={classes.getCoupon}
         >
-          Get this deal
+          {t('Get this deal')}
         </a>
       </div>
     </div>
