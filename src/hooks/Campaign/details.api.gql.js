@@ -7,9 +7,15 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       slug
       title
       description
-      nft_collection_id
+      nft_collection_id {
+        id
+        contract_address
+        chain_name
+      }
       discount_value
       store_url
+      date_start
+      date_end
     }
   }
 `;

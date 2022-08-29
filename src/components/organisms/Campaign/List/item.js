@@ -3,7 +3,9 @@ import Router from 'next/router';
 import slugify from 'slugify';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
+import { useSession } from 'next-auth/react';
 import { toHTML, subStrWords } from '../../../../utils/strUtils';
+import Button from '../../../atoms/Button';
 import classes from './item.module.css';
 
 const DESC_MAX_LENGTH = 200;
@@ -11,12 +13,32 @@ const DESC_MAX_LENGTH = 200;
 const Item = (props) => {
   const { data } = props;
 
+  const { data: session } = useSession();
+
   const { t } = useTranslation('list_campaign');
 
   const viewDetails = () => {
     const path = `/campaign-details/${slugify(data.title).toLowerCase()}`;
     Router.push(path);
   };
+
+  const handleEdit = () => {
+    const path = `/edit-campaign/${data.id}`;
+    Router.push(path);
+  };
+
+  const currentUserId = session && session.user.id ? session.user.id : null;
+  const editButton =
+    data.user_created.id === currentUserId ? (
+      <Button
+        priority="normal"
+        type="button"
+        className={classes.btnEdit}
+        onClick={handleEdit}
+      >
+        {t('Edit')}
+      </Button>
+    ) : null;
 
   return (
     <div className={`${classes.root}`}>
@@ -55,6 +77,7 @@ const Item = (props) => {
         >
           {t('Get this deal')}
         </a>
+        {editButton}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const Details = (props) => {
   const { theme } = useTheme();
   const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
 
-  const { loading, data, error } = useDetails({
+  const { loading, data, error, handleViewCoupons } = useDetails({
     slug: { _eq: slug } ?? ''
   });
 

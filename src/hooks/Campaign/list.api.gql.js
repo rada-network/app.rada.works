@@ -22,6 +22,9 @@ export const GET_CAMPAIGNS = gql`
       discount_value
       description
       date_created
+      user_created {
+        id
+      }
     }
   }
 `;

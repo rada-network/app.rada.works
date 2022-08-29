@@ -13,7 +13,7 @@ import Button from '../../atoms/Button';
 import Checkbox from '../../atoms/Checkbox';
 import { Editor } from '@tinymce/tinymce-react';
 import TINY_MCE_CONFIG from './tinyMCE.config';
-import { useCampaignForm } from '../../../hooks/Campaign';
+import { useForm } from '../../../hooks/Campaign';
 import { useStyle } from '../../classify';
 import { Percent } from 'react-feather';
 import DatePicker from 'react-datepicker';
@@ -70,7 +70,7 @@ const CampaignForm = (props) => {
     detailsEditorRef,
     initialValues,
     saveCampaignResult
-  } = useCampaignForm({ campaignId });
+  } = useForm({ campaignId });
 
   const [nftCollectionOption, setNFTCollectionOption] = useState({});
 
@@ -128,8 +128,12 @@ const CampaignForm = (props) => {
             <Field id="campaign-nft-collection" label={t('NFT Collection')}>
               <Selector
                 selectedOption={{
-                  value: initialValues.nft_collection_id,
-                  label: initialValues.nft_collection_name
+                  value: initialValues.nft_collection_id
+                    ? initialValues.nft_collection_id.id
+                    : 0,
+                  label: initialValues.nft_collection_id
+                    ? initialValues.nft_collection_id.name
+                    : ''
                 }}
                 handleChange={setNFTCollectionOption}
               />

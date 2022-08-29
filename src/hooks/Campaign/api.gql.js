@@ -80,7 +80,10 @@ export const LOAD_CAMPAIGN_BY_ID = gql`
       id
       title
       slug
-      nft_collection_id
+      nft_collection_id {
+        id
+        name
+      }
       nft_collection_name
       description
       discount_value
