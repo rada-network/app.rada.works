@@ -31,10 +31,14 @@
 	@apply py-6;
 }
 
+.itemBody p {
+	@apply my-0;
+}
+
 .itemFoot {
 	@apply flex items-center justify-between border-t border-gray-200 pt-3;
 }
 
 .getCoupon {
-	@apply bg-violet-600 hover:bg-violet-600 border border-violet-600 text-white hover:text-white py-1.5 px-3 rounded-md font-medium transition-all duration-200 ease-in-out;
+	@apply bg-violet-600 hover:bg-violet-700 border border-violet-600 hover:border-violet-700 text-white hover:text-white py-1.5 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer;
 }

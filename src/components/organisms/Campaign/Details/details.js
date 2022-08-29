@@ -32,8 +32,19 @@ const Details = (props) => {
       console.log(campaign);
       child = (
         <div>
-          <h1 className={classes.title}>{campaign.title}</h1>
-          <p
+          <h1 className={classes.pageTitle}>{campaign.title}</h1>
+          <div className={classes.campaignMeta}>
+            <div className={classes.dateStart}>
+              <span className={classes.dateLabel}>Date start</span>
+              <span>{campaign.date_start}</span>
+            </div>
+
+            <div className={classes.dateEnd}>
+              <span className={classes.dateLabel}>Date end</span>
+              <span>{campaign.date_end}</span>
+            </div>
+          </div>
+          <div
             className={classes.desc}
             dangerouslySetInnerHTML={{ __html: campaign.description }}
           />

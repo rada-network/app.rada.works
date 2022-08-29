@@ -2,12 +2,35 @@
 }
 
 .rootDark {
+}
 
+.pageTitle {
+  @apply text-6xl font-semibold text-gray-800 mt-0 mb-8;
+}
+
+.rootDark .pageTitle {
+  @apply text-white;
+}
+
+.campaignMeta {
+  @apply flex items-center;
+}
+
+.dateStart {
+  @apply border-r border-gray-200 pr-3;
+}
+
+.dateEnd {
+  @apply pl-3;
+}
+
+.dateLabel {
+  @apply text-xs uppercase;
 }
 
 .root .title {
-    font-weight: bold;
+  @apply font-semibold;
 }
-.root .desc {
 
+.root .desc {
 }
