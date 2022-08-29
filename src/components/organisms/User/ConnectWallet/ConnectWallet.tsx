@@ -10,7 +10,7 @@ import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
 import classes from './ConnectWallet.module.css';
 import providerOptions from './providers';
-import { Modal } from '../Modal';
+import { Modal } from './../Modal';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -63,7 +63,6 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
         signedMessage,
         callbackUrl
       });
-      console.log('signedMessage', signedMessage);
       connectWallet(dispatch, provider, web3, accounts[0]);
     } catch (e) {
       console.error(e);

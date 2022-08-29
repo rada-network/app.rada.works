@@ -127,6 +127,7 @@ export default async function auth(req, res) {
         return token;
       },
       async session({ session, token, user }) {
+        console.log('user: ', user);
         session.access_token = token.access_token;
         console.log(session);
         return session;
