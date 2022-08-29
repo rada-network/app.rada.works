@@ -19,6 +19,7 @@ export const UPDATE_USER_GQL = gql`
 export const LOGIN_GQL = gql`
   mutation auth_login($email: String!, $password: String!) {
     auth_login(email: $email, password: $password) {
+      id
       access_token
       refresh_token
     }

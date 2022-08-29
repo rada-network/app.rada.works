@@ -3,10 +3,10 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
 import {
-  UserExists,
+  isExistsUser,
   authLogin,
   createUser
-} from '../../../hooks/Users/UseUsers';
+} from '../../../hooks/User/useUsers';
 import { utils } from 'ethers';
 import { initializeApollo } from '../../../libs/SystemApolloClient.js';
 
@@ -41,20 +41,20 @@ export default async function auth(req, res) {
           if (address.toLowerCase() != credentials?.address?.toLowerCase())
             return null;
           //  create newUser or return existent user
-          const createdUser = await createUser({
-            email: address,
-            password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD,
-            role: {
-              id: process.env.DIRECTUS_DEFAULT_ROLE,
-              name: 'Rada works',
-              app_access: true,
-              icon: 'supervised_user_circle',
-              admin_access: false,
-              enforce_tfa: false
-            },
-            provider: 'default',
-            status: 'active'
-          });
+          // const createdUser = await createUser({
+          //   email: address,
+          //   password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD,
+          //   role: {
+          //     id: process.env.DIRECTUS_DEFAULT_ROLE,
+          //     name: 'Rada works',
+          //     app_access: true,
+          //     icon: 'supervised_user_circle',
+          //     admin_access: false,
+          //     enforce_tfa: false
+          //   },
+          //   provider: 'default',
+          //   status: 'active'
+          // });
           const user = {
             email: address,
             name: address
@@ -87,11 +87,11 @@ export default async function auth(req, res) {
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
       async signIn({ user, account, profile, email, credentials }) {
-        const checkUser = await UserExists({
-          email: user.email
-        });
+        console.log('user: ', user);
+        const emailUser = user?.email || '';
+        const checkUser = await isExistsUser(emailUser);
         console.log('checkUser:', checkUser);
-        if (!checkUser.user?.[0]?.email) {
+        if (!checkUser) {
           const createdUser = await createUser({
             email: user.email,
             password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD,

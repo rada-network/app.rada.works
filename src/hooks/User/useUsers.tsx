@@ -1,31 +1,31 @@
-import { initializeApollo } from '../../../src/libs/SystemApolloClient.js';
+import { initializeApollo } from '../../libs/SystemApolloClient.js';
 import {
   USER_EXISTS_GQL,
   LOGIN_GQL,
   UPDATE_USER_GQL,
   CREATE_USER_GQL
-} from './users.gql';
+} from './api.gql';
 
 export const authLogin = async (auth: any) => {
   const { email, password } = auth;
   const client = initializeApollo();
-  console.log('====================================');
-  console.log(LOGIN_GQL);
-  console.log('====================================');
   const { data } = await client.mutate({
     mutation: LOGIN_GQL,
     variables: { email, password }
   });
   return data;
 };
-export const UserExists = async (auth: any) => {
-  const { email } = auth;
+export const isExistsUser = async (email: string) => {
+  let checkUsser = false;
   const client = initializeApollo();
   const { data } = await client.query({
     query: USER_EXISTS_GQL,
     variables: { email: { _eq: email } }
   });
-  return data;
+  if (data.users.length > 0) {
+    checkUsser = true;
+  }
+  return checkUsser;
 };
 
 export const createUser = async (data: any) => {
