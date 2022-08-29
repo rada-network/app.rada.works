@@ -7,6 +7,9 @@ const Modal = (props: { connect: any }) => {
   const metamarkLogin = () => {
     connect();
   };
+  const googleSigner = async () => {
+    await signIn('google');
+  };
   return (
     <Fragment>
       <button
@@ -48,12 +51,12 @@ const Modal = (props: { connect: any }) => {
                 <ul className="my-4 space-y-3">
                   <li>
                     <a
-                      onClick={() => signIn()}
+                      onClick={() => googleSigner()}
                       href="#"
                       className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
                     >
                       <span className="flex-1 ml-3 whitespace-nowrap">
-                        Sign-in with Social
+                        Sign-in with Google
                       </span>
                     </a>
                   </li>

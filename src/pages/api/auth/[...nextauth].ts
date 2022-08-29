@@ -2,7 +2,11 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
-import { createUser } from 'src/functions/users/CreateUser.js';
+import {
+  UserExists,
+  authLogin,
+  createUser
+} from '../../../hooks/Users/UseUsers';
 import { utils } from 'ethers';
 import { initializeApollo } from '../../../libs/SystemApolloClient.js';
 
@@ -20,7 +24,9 @@ export default async function auth(req, res) {
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
+      clientSecret: process.env.GOOGLE_SECRET,
+      authorizationUrl:
+        'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code'
     }),
     CredentialsProvider({
       name: 'Bsc',
@@ -81,13 +87,34 @@ export default async function auth(req, res) {
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
       async signIn({ user, account, profile, email, credentials }) {
-        console.log('signIn:', user, account, profile, email, credentials);
-        // const directusToken = await authLogin({
-        //   email: user.email,
-        //   password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
-        // });
-        // console.log(directusToken);
-        // user.access_token = directusToken.auth_login.access_token;
+        const checkUser = await UserExists({
+          email: user.email
+        });
+        console.log('checkUser:', checkUser);
+        if (!checkUser.user?.[0]?.email) {
+          const createdUser = await createUser({
+            email: user.email,
+            password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD,
+            role: {
+              id: process.env.DIRECTUS_DEFAULT_ROLE,
+              name: 'Rada works',
+              app_access: true,
+              icon: 'supervised_user_circle',
+              admin_access: false,
+              enforce_tfa: false
+            },
+            provider: 'default',
+            status: 'active'
+          });
+        }
+        const directusToken = await authLogin({
+          email: user.email,
+          password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
+        });
+        console.log(directusToken);
+        user.access_token = directusToken.auth_login.access_token;
+        user.id = directusToken.auth_login.id;
+
         return true;
       },
       async redirect({ url, baseUrl }) {
