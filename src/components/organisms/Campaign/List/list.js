@@ -49,8 +49,7 @@ const List = (props) => {
     page === 'home' ? t('Best Offers') : t('🎉 Browse Coupons');
   const heading = (
     <Heading HeadingType="h1" subHeading={`${subheading}`}>
-      {' '}
-      {headingTitle}{' '}
+      {headingTitle}
     </Heading>
   );
 

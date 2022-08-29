@@ -3,14 +3,14 @@ import Web3 from 'web3';
 import Web3Modal from 'web3modal';
 import { useDispatch } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
-import Button from '../../atoms/Button';
+import Button from '../../../atoms/Button';
 import { useSession, getCsrfToken, signIn, signOut } from 'next-auth/react';
 import { ethers } from 'ethers';
 import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
 import classes from './ConnectWallet.module.css';
 import providerOptions from './providers';
-import { Sign } from 'crypto';
+import { Modal } from './../Modal';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -87,20 +87,15 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
             priority="high"
             type="button"
             className={classes.btnLogout}
-            onClick={signOut}
+            onClick={disConnect}
           >
             {t('Sign out')}
           </Button>
         </div>
       ) : (
-        <Button
-          priority="high"
-          type="button"
-          className={classes.btnLogin}
-          onClick={signIn}
-        >
-          {t('Connect wallet')}
-        </Button>
+        <>
+          <Modal connect={connect} />
+        </>
       );
   }
 

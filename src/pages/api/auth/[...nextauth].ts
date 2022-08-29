@@ -1,64 +1,26 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import FacebookProvider from 'next-auth/providers/facebook';
-import GithubProvider from 'next-auth/providers/github';
-import TwitterProvider from 'next-auth/providers/twitter';
-import Auth0Provider from 'next-auth/providers/auth0';
+import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { authLogin } from '../../../functions/users/Login.js';
-import { useTheme } from 'next-themes';
-// import AppleProvider from "next-auth/providers/apple"
-// import EmailProvider from "next-auth/providers/email"
+import GoogleProvider from 'next-auth/providers/google';
+import GithubProvider from 'next-auth/providers/github';
+import { createUser } from 'src/functions/users/CreateUser.js';
+import { utils } from 'ethers';
+import { initializeApollo } from '../../../libs/SystemApolloClient.js';
+
+const getApolloClient = () => {
+  return initializeApollo();
+};
+
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
-
-export const authOptions: NextAuthOptions = {
-  // https://next-auth.js.org/configuration/providers/oauth
-  providers: [
-    /* EmailProvider({
-				 server: process.env.EMAIL_SERVER,
-				 from: process.env.EMAIL_FROM,
-			 }),
-		// Temporarily removing the Apple provider from the demo site as the
-		// callback URL for it needs updating due to Vercel changing domains
-
-		Providers.Apple({
-			clientId: process.env.APPLE_ID,
-			clientSecret: {
-				appleId: process.env.APPLE_ID,
-				teamId: process.env.APPLE_TEAM_ID,
-				privateKey: process.env.APPLE_PRIVATE_KEY,
-				keyId: process.env.APPLE_KEY_ID,
-			},
-		}),
-		*/
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET
-    }),
+export default async function auth(req, res) {
+  const providers = [
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-      authorization: {
-        params: {
-          prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code'
-        }
-      }
-    }),
-    TwitterProvider({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET
-    }),
-    Auth0Provider({
-      clientId: process.env.AUTH0_ID,
-      clientSecret: process.env.AUTH0_SECRET,
-      issuer: process.env.AUTH0_ISSUER
+      clientSecret: process.env.GOOGLE_SECRET
     }),
     CredentialsProvider({
       name: 'Bsc',
@@ -100,49 +62,48 @@ export const authOptions: NextAuthOptions = {
         }
       }
     })
-  ],
-  theme: {
-    colorScheme: 'light'
-  },
-  session: {
-    strategy: 'jwt', //default
-    // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: 20 * 60 // 20 minutes
-  },
-  jwt: {
-    secret: process.env.JWT_SECRET
-  },
-  secret: process.env.NEXT_AUTH_SECRET,
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      console.log('====================================');
-      console.log('====================================');
-      console.log('signIn:', user, account, profile, email, credentials);
-      console.log('====================================');
-      console.log('====================================');
-      // const directusToken = await authLogin({
-      //   email: user.email,
-      //   password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
-      // });
-      // console.log(directusToken);
-      // user.access_token = directusToken.auth_login.access_token;
-      return true;
-    },
-    async redirect({ url, baseUrl }) {
-      return baseUrl;
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      if (user) {
-        token = user;
-      }
-      return token;
-    },
-    async session({ session, token, user }) {
-      session.access_token = token.access_token;
-      console.log(session);
-      return session;
-    }
-  }
-};
+  ];
 
-export default NextAuth(authOptions);
+  const isDefaultSigninPage =
+    req.method === 'GET' && req.query.nextauth.includes('signin');
+
+  // Hide Sign-In with Ethereum from default sign page
+  if (isDefaultSigninPage) {
+    providers.pop();
+  }
+
+  return await NextAuth(req, res, {
+    // https://next-auth.js.org/configuration/providers/oauth
+    providers,
+    session: {
+      strategy: 'jwt'
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+      async signIn({ user, account, profile, email, credentials }) {
+        console.log('signIn:', user, account, profile, email, credentials);
+        // const directusToken = await authLogin({
+        //   email: user.email,
+        //   password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
+        // });
+        // console.log(directusToken);
+        // user.access_token = directusToken.auth_login.access_token;
+        return true;
+      },
+      async redirect({ url, baseUrl }) {
+        return baseUrl;
+      },
+      async jwt({ token, user, account, profile, isNewUser }) {
+        if (user) {
+          token = user;
+        }
+        return token;
+      },
+      async session({ session, token, user }) {
+        session.access_token = token.access_token;
+        console.log(session);
+        return session;
+      }
+    }
+  });
+}

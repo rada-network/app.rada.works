@@ -3,6 +3,7 @@
 }
 
 .rootDark {
+  composes: root;
 	@apply border-gray-800;
 }
 

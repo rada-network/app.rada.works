@@ -3,7 +3,7 @@ import { shape, string } from 'prop-types';
 import classes from './header.module.css';
 import Logo from '../Logo';
 import TextLink from '../../atoms/TextLink';
-import ConnectWallet from '../ConnectWallet';
+import ConnectWallet from '../Users/ConnectWallet';
 import { useTranslation } from 'next-i18next';
 import { DEFAULT_LINKS } from './sampleData';
 import ToggleTheme from '../ToggleTheme';
