@@ -31,24 +31,86 @@ const Details = (props) => {
       const campaign = data.campaign[0];
       console.log(campaign);
       child = (
-        <div>
-          <h1 className={classes.pageTitle}>{campaign.title}</h1>
-          <div className={classes.campaignMeta}>
-            <div className={classes.dateStart}>
-              <span className={classes.dateLabel}>Date start</span>
-              <span>{campaign.date_start}</span>
-            </div>
+        <div className={classes.pageWrap}>
+          <div className={classes.pageContent}>
+            <h1 className={classes.pageTitle}>{campaign.title}</h1>
+            <div className={classes.campaignMeta}>
+              <div className={classes.dateStart}>
+                <span className={classes.dateLabel}>Date start</span>
+                <span>{campaign.date_start}</span>
+              </div>
 
-            <div className={classes.dateEnd}>
-              <span className={classes.dateLabel}>Date end</span>
-              <span>{campaign.date_end}</span>
+              <div className={classes.dateEnd}>
+                <span className={classes.dateLabel}>Date end</span>
+                <span>{campaign.date_end}</span>
+              </div>
+            </div>
+            <div
+              className={classes.desc}
+              dangerouslySetInnerHTML={{ __html: campaign.description }}
+            />
+          </div>
+
+          <div className={classes.pageSidebar}>
+            <div className={classes.Box}>
+              <h3 className={classes.boxTitle}>Other coupons</h3>
+              <div className={classes.boxBody}>
+                <ul className={classes.couponList}>
+                  <li>
+                    <div className={classes.couponItem}>
+                      <h4>50% Off all NFT items</h4>
+                      <a
+                        className={classes.btnGetCoupon}
+                        href="#"
+                        title="Get coupon"
+                      >
+                        Get coupon
+                      </a>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div className={classes.couponItem}>
+                      <h4>30% Off all NFT items</h4>
+                      <a
+                        className={classes.btnGetCoupon}
+                        href="#"
+                        title="Get coupon"
+                      >
+                        Get coupon
+                      </a>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div className={classes.couponItem}>
+                      <h4>25% Off all NFT items</h4>
+                      <a
+                        className={classes.btnGetCoupon}
+                        href="#"
+                        title="Get coupon"
+                      >
+                        Get coupon
+                      </a>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div className={classes.couponItem}>
+                      <h4>75% Off all NFT items</h4>
+                      <a
+                        className={classes.btnGetCoupon}
+                        href="#"
+                        title="Get coupon"
+                      >
+                        Get coupon
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div
-            className={classes.desc}
-            dangerouslySetInnerHTML={{ __html: campaign.description }}
-          />
-          Other...
         </div>
       );
     }

@@ -4,8 +4,20 @@
 .rootDark {
 }
 
+.pageWrap {
+  @apply flex items-stretch;
+}
+
 .pageTitle {
-  @apply text-6xl font-semibold text-gray-800 mt-0 mb-8;
+  @apply text-5xl font-bold text-gray-800 mt-0 mb-8;
+}
+
+.pageContent {
+  @apply w-full md:w-3/4 md:pr-4;
+}
+
+.pageSidebar {
+  @apply w-full md:w-1/4 md:pl-4;
 }
 
 .rootDark .pageTitle {
@@ -13,24 +25,78 @@
 }
 
 .campaignMeta {
-  @apply flex items-center;
+  @apply flex items-start;
 }
 
 .dateStart {
-  @apply border-r border-gray-200 pr-3;
+  @apply border-r border-gray-200 pr-4;
+}
+
+.rootDark .dateStart {
+  @apply border-gray-800;
 }
 
 .dateEnd {
-  @apply pl-3;
+  @apply pl-4;
 }
 
 .dateLabel {
-  @apply text-xs uppercase;
+  @apply text-gray-500 block text-sm mb-2;
 }
 
 .root .title {
   @apply font-semibold;
 }
 
-.root .desc {
+.rootDark .desc {
+  @apply text-white;
+}
+
+/* Sidebar list coupon */
+.Box {
+  @apply bg-gray-50 border border-gray-200 rounded-lg;
+}
+
+.rootDark .Box {
+  @apply bg-gray-800 border border-gray-700;
+}
+
+.boxTitle {
+  @apply border-b border-gray-200 font-medium text-gray-800 text-lg m-0 py-3 px-4;
+}
+
+.rootDark .boxTitle {
+  @apply border-b border-gray-700 text-white;
+}
+
+.boxBody {
+  @apply py-6 px-4;
+}
+
+.couponList {
+  @apply list-none m-0 p-0;
+}
+
+.couponList li {
+  @apply m-0 p-0;
+}
+
+.couponList li + li {
+  @apply mt-2;
+}
+
+.couponItem {
+  @apply bg-white border border-gray-200 hover:border-violet-600 rounded-md py-3 px-3 transition-all duration-200;
+}
+
+.rootDark .couponItem {
+  @apply border border-gray-700;
+}
+
+.couponItem h4 {
+  @apply font-medium mt-0 mb-2 p-0;
+}
+
+.btnGetCoupon {
+  @apply border border-gray-200 text-sm font-medium rounded py-1 px-2;
 }

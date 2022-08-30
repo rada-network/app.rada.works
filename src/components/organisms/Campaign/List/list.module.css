@@ -30,5 +30,5 @@
 }
 
 .loadMore {
-	@apply inline-block border border-2 border-gray-200 rounded-md py-2 px-6 text-center w-52;
+	@apply hover:bg-violet-600 hover:text-white inline-block border border-2 border-gray-200 hover:border-violet-600 rounded-md py-2 px-6 text-center w-52;
 }
