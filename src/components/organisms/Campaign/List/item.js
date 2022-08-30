@@ -15,12 +15,13 @@ const Item = (props) => {
   const { data } = props;
 
   const { data: session } = useSession();
-  const { resolveTheme } = useTheme();
-  const [isDark, setIsDark] = React.useState(true);
+  const { resolvedTheme } = useTheme();
+  const [isDark, setIsDark] = React.useState(resolvedTheme === 'dark');
   React.useEffect(() => {
-    resolveTheme === 'light' ? setIsDark(false) : setIsDark(true);
-  }, [resolveTheme]);
+    resolvedTheme === 'dark' ? setIsDark(true) : setIsDark(false);
+  }, [resolvedTheme]);
   const rootClassName = isDark ? 'rootDark' : 'root';
+
   const { t } = useTranslation('list_campaign');
   const viewDetails = () => {
     const path = `/campaign-details/${slugify(data.title).toLowerCase()}`;
