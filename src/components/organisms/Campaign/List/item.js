@@ -75,7 +75,7 @@ const Item = (props) => {
       />
 
       <div className={classes.itemFoot}>
-        <small>Move JoomlArt Coupon code</small>
+        <small>Applies Site-Wide. Used 4 times.</small>
         <a
           onClick={viewDetails}
           title={t('Get Coupon')}
