@@ -36,7 +36,11 @@
 }
 
 .itemFoot {
-	@apply flex items-center justify-between border-t border-gray-200 pt-3;
+	@apply flex items-center justify-between border-t border-gray-200 pt-3 mt-auto;
+}
+
+.rootDark .itemFoot {
+	@apply border-t border-gray-800;
 }
 
 .getCoupon {
