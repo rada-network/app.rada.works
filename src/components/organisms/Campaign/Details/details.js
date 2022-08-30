@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
+import Moment from 'moment';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
 
@@ -8,6 +9,8 @@ const Details = (props) => {
   const { slug } = props;
 
   const { t } = useTranslation('campaign_details');
+
+  Moment.locale('en');
 
   const { theme } = useTheme();
   const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
@@ -29,7 +32,6 @@ const Details = (props) => {
   } else {
     if (data.campaign) {
       const campaign = data.campaign[0];
-      console.log(campaign);
       child = (
         <div className={classes.pageWrap}>
           <div className={classes.pageContent}>
@@ -37,12 +39,16 @@ const Details = (props) => {
             <div className={classes.campaignMeta}>
               <div className={classes.dateStart}>
                 <span className={classes.dateLabel}>Date start</span>
-                <span>{campaign.date_start}</span>
+                <span>{Moment(campaign.date_start).format('DD MMM YYYY')}</span>
               </div>
 
               <div className={classes.dateEnd}>
                 <span className={classes.dateLabel}>Date end</span>
-                <span>{campaign.date_end}</span>
+                <span>
+                  {campaign.date_end
+                    ? Moment(campaign.date_end).format('DD MMM YYYY')
+                    : 'N/A'}
+                </span>
               </div>
             </div>
             <div
