@@ -52,13 +52,20 @@ const Details = (props) => {
           </div>
 
           <div className={classes.pageSidebar}>
+            <div className={classes.boxHilite}>
+              <h3 className={classes.boxTitle}>Top Campaigns</h3>
+              <div className={classes.boxBody}>Top Campaigns</div>
+            </div>
             <div className={classes.Box}>
-              <h3 className={classes.boxTitle}>Other coupons</h3>
+              <h3 className={classes.boxTitle}>Other campaigns</h3>
               <div className={classes.boxBody}>
                 <ul className={classes.couponList}>
                   <li>
                     <div className={classes.couponItem}>
                       <h4>50% Off all NFT items</h4>
+                      <div className={classes.itemMeta}>
+                        <span>Aug, 08 2022 - Sep, 08 2022</span>
+                      </div>
                       <a
                         className={classes.btnGetCoupon}
                         href="#"
@@ -72,6 +79,9 @@ const Details = (props) => {
                   <li>
                     <div className={classes.couponItem}>
                       <h4>30% Off all NFT items</h4>
+                      <div className={classes.itemMeta}>
+                        <span>Aug, 08 2022 - Sep, 08 2022</span>
+                      </div>
                       <a
                         className={classes.btnGetCoupon}
                         href="#"
@@ -85,6 +95,9 @@ const Details = (props) => {
                   <li>
                     <div className={classes.couponItem}>
                       <h4>25% Off all NFT items</h4>
+                      <div className={classes.itemMeta}>
+                        <span>Aug, 08 2022 - Sep, 08 2022</span>
+                      </div>
                       <a
                         className={classes.btnGetCoupon}
                         href="#"
@@ -98,6 +111,9 @@ const Details = (props) => {
                   <li>
                     <div className={classes.couponItem}>
                       <h4>75% Off all NFT items</h4>
+                      <div className={classes.itemMeta}>
+                        <span>Aug, 08 2022 - Sep, 08 2022</span>
+                      </div>
                       <a
                         className={classes.btnGetCoupon}
                         href="#"
@@ -109,7 +125,8 @@ const Details = (props) => {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div>{' '}
+            {/* End: Box  */}
           </div>
         </div>
       );
