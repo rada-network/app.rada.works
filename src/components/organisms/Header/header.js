@@ -14,8 +14,7 @@ const Header = (props) => {
 
   const { t } = useTranslation('common');
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [isDark, setIsDark] = useState();
 
   useEffect(() => {

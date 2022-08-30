@@ -1,4 +1,5 @@
-import React, { Fragment, FunctionComponent } from 'react';
+import React, { Fragment, FunctionComponent, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import defaultClases from './heading.module.css';
 import { useStyle } from '../../classify';
 interface HeadingProps {
@@ -13,9 +14,15 @@ export const Heading: FunctionComponent<HeadingProps> = ({
   HeadingType,
   subHeading
 }) => {
+  const { theme } = useTheme();
+  const [isDark, setIsDark] = React.useState(true);
+  useEffect(() => {
+    theme === 'light' ? setIsDark(false) : setIsDark(true);
+  }, [theme]);
   const classes = useStyle(defaultClases, propClasses);
+  const headingCls = isDark ? classes.headingDark : classes.heading;
   const heading = HeadingType ? (
-    <HeadingType className={classes.heading}>{children}</HeadingType>
+    <HeadingType className={headingCls}>{children}</HeadingType>
   ) : null;
   const SubHeading = subHeading ? (
     <div className={classes.subHeading}>{subHeading}</div>

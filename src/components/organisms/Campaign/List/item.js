@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import { toHTML, subStrWords } from '../../../../utils/strUtils';
 import Button from '../../../atoms/Button';
 import classes from './item.module.css';
+import { useTheme } from 'next-themes';
 
 const DESC_MAX_LENGTH = 200;
 
@@ -14,9 +15,13 @@ const Item = (props) => {
   const { data } = props;
 
   const { data: session } = useSession();
-
+  const { resolveTheme } = useTheme();
+  const [isDark, setIsDark] = React.useState(true);
+  React.useEffect(() => {
+    resolveTheme === 'light' ? setIsDark(false) : setIsDark(true);
+  }, [resolveTheme]);
+  const rootClassName = isDark ? 'rootDark' : 'root';
   const { t } = useTranslation('list_campaign');
-
   const viewDetails = () => {
     const path = `/campaign-details/${slugify(data.title).toLowerCase()}`;
     Router.push(path);
@@ -41,7 +46,7 @@ const Item = (props) => {
     ) : null;
 
   return (
-    <div className={`${classes.root}`}>
+    <div className={`${classes[rootClassName]}`}>
       <div className={classes.itemHead}>
         <span className={classes.couponAmoun}>
           {data.discount_value}% {t('Off')}
