@@ -53,7 +53,7 @@
 }
 
 .rootDark .desc {
-  @apply text-white;
+  @apply text-gray-400;
 }
 
 /* Sidebar list coupon */
@@ -74,11 +74,15 @@
 }
 
 .boxTitle {
-  @apply border-b border-gray-200 font-semibold text-gray-800 text-lg m-0 py-3 px-4;
+  @apply border-b border-gray-200 font-medium text-gray-800 text-lg m-0 py-3 px-4;
 }
 
 .rootDark .boxTitle {
   @apply border-b border-gray-700 text-white;
+}
+
+.boxHilite .boxTitle {
+  @apply border-b border-violet-600;
 }
 
 .boxBody {
@@ -110,7 +114,7 @@
 }
 
 .couponItem h4 {
-  @apply font-semibold text-sm mt-0 mb-1 p-0;
+  @apply font-medium text-base mt-0 mb-1 p-0;
 }
 
 .rootDark .couponItem h4 {
