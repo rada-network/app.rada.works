@@ -24,7 +24,7 @@ const Modal = (props: { connect: any }) => {
         <div
           id="crypto-modal"
           tabIndex={-1}
-          className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex"
+          className="bg-gray-900 bg-opacity-30 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex z-50"
           aria-modal="true"
           role="dialog"
         >
@@ -39,33 +39,39 @@ const Modal = (props: { connect: any }) => {
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="py-4 px-6 rounded-t border-b dark:border-gray-600">
-                <h3 className="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+                <h3 className="text-base font-semibold text-gray-900 lg:text-xl dark:text-white my-0">
                   Connect wallet
                 </h3>
               </div>
               <div className="p-6">
-                <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                <p className="text-sm font-normal text-gray-500 dark:text-gray-400 m-0">
                   Connect with one of our available wallet providers or create a
                   new one.
                 </p>
-                <ul className="my-4 space-y-3">
+                <ul className="my-4 space-y-3 list-none m-0 p-0">
                   <li>
                     <a
                       onClick={() => googleSigner()}
                       href="#"
-                      className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+                      className="bg-gray-50 dark:bg-gray-600 border border-gray-300 hover:bg-white hover:border-violet-600 shadow hover:shadow-md flex items-center p-3 text-base font-bold text-gray-900 rounded-lg hover:bg-gray-100 group dark:hover:bg-gray-500 dark:text-white"
                     >
+                      <span className="w-6">
+                        <img
+                          src="https://d11gciwieyoy00.cloudfront.net/images/icons/google.svg"
+                          alt="Google"
+                        />
+                      </span>
                       <span className="flex-1 ml-3 whitespace-nowrap">
                         Sign-in with Google
                       </span>
                     </a>
                   </li>
-                  Or
+                  <li className="text-center my-0 py-0">Or</li>
                   <li>
                     <a
                       onClick={metamarkLogin}
                       href="#"
-                      className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+                      className="bg-gray-50 dark:bg-gray-600 border border-gray-300 hover:border-violet-600 shadow flex items-center p-3 text-base font-bold text-gray-900 rounded-lg hover:bg-gray-100 group hover:shadow-md dark:hover:bg-gray-500 dark:text-white"
                     >
                       <span className="flex-1 ml-3 whitespace-nowrap">
                         WalletConnect

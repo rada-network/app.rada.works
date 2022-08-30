@@ -82,7 +82,6 @@
 }
 
 .boxHilite .boxTitle {
-  @apply border-b border-violet-600;
 }
 
 .boxBody {

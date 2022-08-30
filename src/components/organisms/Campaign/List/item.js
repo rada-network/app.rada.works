@@ -75,7 +75,9 @@ const Item = (props) => {
       />
 
       <div className={classes.itemFoot}>
-        <small>Applies Site-Wide. Used 4 times.</small>
+        <small>
+          Applies Site-Wide. Used <strong>4</strong> times.
+        </small>
         <a
           onClick={viewDetails}
           title={t('Get Coupon')}
