@@ -17,6 +17,9 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       store_url
       date_start
       date_end
+      user_created {
+        id
+      }
     }
   }
 `;

@@ -48,8 +48,6 @@ export default async function auth(
             email: address,
             name: address
           };
-
-          //lay access token vao session
           return user;
         } catch (e) {
           return null;
