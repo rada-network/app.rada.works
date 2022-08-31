@@ -2,20 +2,16 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
+import FacebookProvider from 'next-auth/providers/facebook';
 import {
   isExistsUser,
   authLogin,
   authRefresh,
   createUser,
-  GetTokenState,
-  GetRefreshToken
+  getTokenState
 } from '../../../hooks/User/useUsers';
 import { utils } from 'ethers';
-import { initializeApollo } from '../../../libs/SystemApolloClient.js';
 import { NextApiRequest, NextApiResponse } from 'next';
-const getApolloClient = () => {
-  return initializeApollo();
-};
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -31,6 +27,10 @@ export default async function auth(
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET
+    }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET
     }),
     CredentialsProvider({
       name: 'Bsc',
@@ -79,6 +79,7 @@ export default async function auth(
         const emailUser = user?.email || '';
         console.log('emailUser', emailUser);
         const checkUser = await isExistsUser(emailUser);
+        console.log('account', account);
         if (!checkUser?.id) {
           const CreateUser = await createUser({
             email: user.email,
@@ -91,7 +92,7 @@ export default async function auth(
               admin_access: false,
               enforce_tfa: false
             },
-            provider: 'default',
+            provider: account.provider,
             status: 'active'
           });
           checkUser.id = CreateUser.id;
@@ -125,10 +126,10 @@ export default async function auth(
         return token;
       },
       async session({ session, token }) {
-        session.id = token.id;
+        session.user.id = token.id;
         session.access_token = token.access_token;
         if (session) {
-          const { valid } = GetTokenState(session.access_token);
+          const { valid } = getTokenState(session.access_token);
           if (!valid) {
             const directusToken = await authRefresh({
               refresh_token: token.refresh_token
@@ -136,6 +137,7 @@ export default async function auth(
             session.access_token = directusToken.auth_refresh.access_token;
           }
         }
+        console.log('session', session);
         return session;
       }
     }

@@ -74,7 +74,7 @@ function parseJwt(token: string) {
   return JSON.parse(payload.toString());
 }
 
-export const GetTokenState = (token: any) => {
+export const getTokenState = (token: any) => {
   if (!token) {
     return { valid: false, needRefresh: true };
   }
@@ -87,7 +87,7 @@ export const GetTokenState = (token: any) => {
     return { valid: true, needRefresh: false };
   }
 };
-export const GetRefreshToken = async (data: any) => {
+export const getRefreshToken = async (data: any) => {
   const client = initializeApollo();
   try {
     const res = await client.mutate({
