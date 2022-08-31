@@ -46,7 +46,7 @@
 }
 
 .dateLabel {
-  @apply text-gray-500 block text-sm mb-2;
+  @apply text-gray-500 mr-2;
 }
 
 .rootDark .btnGetCoupon {
@@ -54,14 +54,18 @@
 }
 
 .couponNotes {
-  @apply bg-amber-50 rounded py-3 px-4;
+  @apply bg-amber-100 flex items-center rounded-md py-3 px-4;
 }
 
 .rootDark .couponNotes {
-  @apply bg-amber-500 text-white;
+  @apply bg-amber-700 text-white;
 }
 
-.couponContainer{
+.getCoupon {
+  @apply flex items-center;
+}
+
+.couponContainer {
   display: block;
   text-align: center;
 }
