@@ -10,6 +10,12 @@ const Modal = (props: { connect: any }) => {
   const googleSigner = async () => {
     await signIn('google');
   };
+  const gitSigner = async () => {
+    await signIn('github');
+  };
+  const facebookSigner = async () => {
+    await signIn('facebook');
+  };
   return (
     <Fragment>
       <button
@@ -40,7 +46,7 @@ const Modal = (props: { connect: any }) => {
               </button>
               <div className="py-4 px-6 rounded-t border-b dark:border-gray-600">
                 <h3 className="text-base font-semibold text-gray-900 lg:text-xl dark:text-white my-0">
-                  Connect wallet
+                  Authentication
                 </h3>
               </div>
               <div className="p-6">
@@ -63,6 +69,40 @@ const Modal = (props: { connect: any }) => {
                       </span>
                       <span className="flex-1 ml-3 whitespace-nowrap">
                         Sign-in with Google
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => facebookSigner()}
+                      href="#"
+                      className="bg-gray-50 dark:bg-gray-600 border border-gray-300 hover:bg-white hover:border-violet-600 shadow hover:shadow-md flex items-center p-3 text-base font-bold text-gray-900 rounded-lg hover:bg-gray-100 group dark:hover:bg-gray-500 dark:text-white"
+                    >
+                      <span className="w-6">
+                        <img
+                          src="https://d11gciwieyoy00.cloudfront.net/images/icons/google.svg"
+                          alt="Google"
+                        />
+                      </span>
+                      <span className="flex-1 ml-3 whitespace-nowrap">
+                        Sign-in with Facebook
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => gitSigner()}
+                      href="#"
+                      className="bg-gray-50 dark:bg-gray-600 border border-gray-300 hover:bg-white hover:border-violet-600 shadow hover:shadow-md flex items-center p-3 text-base font-bold text-gray-900 rounded-lg hover:bg-gray-100 group dark:hover:bg-gray-500 dark:text-white"
+                    >
+                      <span className="w-6">
+                        <img
+                          src="https://d11gciwieyoy00.cloudfront.net/images/icons/google.svg"
+                          alt="Google"
+                        />
+                      </span>
+                      <span className="flex-1 ml-3 whitespace-nowrap">
+                        Sign-in with Github
                       </span>
                     </a>
                   </li>
