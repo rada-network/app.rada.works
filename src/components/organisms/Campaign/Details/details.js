@@ -30,7 +30,7 @@ const Details = (props) => {
         chainName: campaign.nft_collection_id.chain_name,
         contractAdd: campaign.nft_collection_id.contract_address,
         accountAdd: session.user.email,
-        isOwner: session.id == campaign.user_created.id ? true : false
+        isCampaignOwner: session.id == campaign.user_created.id ? true : false
       });
       console.log('codes:', codes);
 
