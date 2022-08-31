@@ -28,8 +28,9 @@
   @apply text-white;
 }
 
+/* Campaign meta */
 .campaignMeta {
-  @apply flex items-start;
+  @apply flex items-start mb-6;
 }
 
 .dateStart {
@@ -46,6 +47,31 @@
 
 .dateLabel {
   @apply text-gray-500 block text-sm mb-2;
+}
+
+.rootDark .btnGetCoupon {
+  @apply text-white;
+}
+
+.couponNotes {
+  @apply bg-amber-50 rounded py-3 px-4;
+}
+
+.rootDark .couponNotes {
+  @apply bg-amber-500 text-white;
+}
+
+.couponContainer{
+  display: block;
+  text-align: center;
+}
+
+.couponCodes {
+  display: block;
+  padding: 20px;
+  border: 5px dotted yellow;
+  color: #1c1918;
+  font-size: 16px;
 }
 
 .root .title {
@@ -130,25 +156,4 @@
 
 .btnGetCoupon {
   @apply hover:bg-violet-600 border border-violet-600 hover:text-white text-sm font-normal rounded absolute top-0 right-3 py-1.5 px-2 translate-y-2/4;
-}
-
-.rootDark .btnGetCoupon {
-  @apply text-white;
-}
-
-.couponNotes {
-  padding: 10px;
-  color: red;
-  text-align: center;
-}
-.couponContainer{
-  display: block;
-  text-align: center;
-}
-.couponCodes {
-  display: block;
-  padding: 20px;
-  border: 5px dotted yellow;
-  color: #1c1918;
-  font-size: 16px;
 }

@@ -102,7 +102,9 @@ const Details = (props) => {
                 </span>
               </div>
             </div>
-            {viewCouponCodesArea}
+
+            <div className={classes.getCoupon}>{viewCouponCodesArea}</div>
+
             <div
               className={classes.desc}
               dangerouslySetInnerHTML={{ __html: campaign.description }}
