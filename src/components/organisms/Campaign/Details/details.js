@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
 import Moment from 'moment';
+import Button from '../../../atoms/Button';
+import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
 
@@ -12,12 +14,24 @@ const Details = (props) => {
 
   Moment.locale('en');
 
+  const { status, data: session } = useSession();
+
   const { theme } = useTheme();
   const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
 
   const { loading, data, error, handleViewCoupons } = useDetails({
     slug: { _eq: slug } ?? ''
   });
+
+  const viewCoupons = async (campaign) => {
+    const rs = await handleViewCoupons({
+      chainName: campaign.nft_collection_id.chain_name,
+      contractAdd: campaign.nft_collection_id.contract_address,
+      accountAdd: session.user.email
+    });
+
+    console.log(rs);
+  };
 
   let child = null;
   if (!data) {
@@ -32,6 +46,26 @@ const Details = (props) => {
   } else {
     if (data.campaign) {
       const campaign = data.campaign[0];
+
+      let viewCouponCodesArea = null;
+      if (status === 'loading') {
+        viewCouponCodesArea = t('Loading...');
+      } else if (status === 'authenticated') {
+        viewCouponCodesArea = (
+          <Button
+            priority="high"
+            type="button"
+            onClick={() => viewCoupons(campaign)}
+          >
+            {t('Get Coupon Codes')}
+          </Button>
+        );
+      } else {
+        viewCouponCodesArea = t(
+          'You must do authentication before to view coupon codes.'
+        );
+      }
+
       child = (
         <div className={classes.pageWrap}>
           <div className={classes.pageContent}>
@@ -51,6 +85,7 @@ const Details = (props) => {
                 </span>
               </div>
             </div>
+            {viewCouponCodesArea}
             <div
               className={classes.desc}
               dangerouslySetInnerHTML={{ __html: campaign.description }}

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import API from './details.api.gql';
 import { useCallback } from 'react';
@@ -6,7 +5,7 @@ import { useCallback } from 'react';
 export default (props) => {
   const { slug } = props;
 
-  const { getCampaign } = API;
+  const { getCampaign, getCouponCodes } = API;
 
   const { data, loading, error } = useQuery(getCampaign, {
     fetchPolicy: 'no-cache',
@@ -16,21 +15,25 @@ export default (props) => {
     }
   });
 
-  const getBSCTokenTx = (contractAdd, accountAdd) => {
+  const getBSCTokenNftTx = (contractAdd, accountAdd) => {
+    console.log('getBSCTokenNftTx()');
+    console.log(contractAdd, accountAdd);
+
     let rs = null;
     if (contractAdd && accountAdd) {
-      const BSC_API_KEY = process.env.BSC_API_KEY;
-      const API_ENDPOINT_URL = process.env.BSC_API_ENDPOINT;
+      //https://docs.bscscan.com/api-endpoints/accounts#get-a-list-of-bep-721-token-transfer-events-by-address
+      //@todo: move to env
+      const BSC_API_KEY = 'SFH36BJT75CQXC6JB25NRK1H5HPA2JC5NR';
+      const API_ENDPOINT_URL = 'https://api-testnet.bscscan.com/api';
+
       let URL = `${API_ENDPOINT_URL}?module=account&action=tokentx`;
       URL += `&contractaddress=${contractAdd}&&address=${accountAdd}`;
       URL += `&page=1&offset=5&startblock=0&endblock=999999999&sort=asc`;
       URL += `&apikey=${BSC_API_KEY}`;
-
-      fetch(URL)
+      rs = fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          rs = data.result;
+          return data.result;
         });
     }
 
@@ -38,15 +41,35 @@ export default (props) => {
   };
 
   const handleViewCoupons = useCallback(async (props) => {
-    console.log('View coupon codes clicked...');
-    const { chainName, contractAdd, accountAdd } = props;
+    console.log('handleViewCoupons()');
+    console.log('props:', props);
 
-    let transaction = null;
+    // verify nft ownership
+    const { chainName, contractAdd, accountAdd } = props;
+    let rs = null;
+    let txData = [];
     if (chainName === 'bsc') {
-      transaction = getBSCTokenTx(contractAdd, accountAdd);
+      txData = await getBSCTokenNftTx(contractAdd, accountAdd);
+    }
+    // else if (chainName === 'ethereum') {
+    //
+    // } else if (chainName === 'polygon') {
+    //
+    // }
+
+    if (txData.length) {
+      //request to get and return coupon codes:
+      // const { data, loading, error } = await useQuery(getCouponCodes, {
+      //   fetchPolicy: 'no-cache',
+      //   skip: !slug,
+      //   variables: {
+      //     slug
+      //   }
+      // });
+      // console.log(data);
     }
 
-    console.log(transaction);
+    return rs;
   }, []);
 
   return {

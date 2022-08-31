@@ -20,6 +20,15 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
   }
 `;
 
+export const GET_COUPON_CODES_BY_SLUG = gql`
+  query GetCouponCodesBySlug($slug: string_filter_operators!) {
+    campaign(filter: { slug: $slug }) {
+      coupon_codes
+    }
+  }
+`;
+
 export default {
-  getCampaign: LOAD_CAMPAIGN_BY_SLUG
+  getCampaign: LOAD_CAMPAIGN_BY_SLUG,
+  getCouponCodes: GET_COUPON_CODES_BY_SLUG
 };
