@@ -11,9 +11,9 @@ import Item from './item';
 const List = (props) => {
   const { t } = useTranslation('list_campaign');
 
-  const { page } = props;
+  const { position } = props;
 
-  const { loading, data, error } = useList({ page });
+  const { loading, data, error } = useList({ position });
 
   let child = null;
   if (!data) {
@@ -40,13 +40,13 @@ const List = (props) => {
   }
 
   const subheading =
-    page === 'home'
+    position === 'home-page'
       ? t(
           'Aliquam dignissim enim ut est suscipit, ut euismod lacus tincidunt. Nunc feugiat ex id mi hendrerit, et efficitur ligula bibendum.'
         )
       : '';
   const headingTitle =
-    page === 'home' ? t('Best Offers') : t('🎉 Browse Coupons');
+    position === 'home-page' ? t('Best Offers') : t('🎉 Browse Coupons');
   const heading = (
     <Heading HeadingType="h1" subHeading={`${subheading}`}>
       {headingTitle}
@@ -88,7 +88,7 @@ List.propTypes = {
   classes: shape({
     root: string
   }),
-  page: string
+  position: string
 };
 
 export default List;

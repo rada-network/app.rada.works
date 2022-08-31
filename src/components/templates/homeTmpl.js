@@ -7,7 +7,7 @@ const HomeTmpl = (props) => {
   return (
     <Fragment>
       <MainTmpl>
-        <List page="home" />
+        <List position="home-page" />
       </MainTmpl>
     </Fragment>
   );

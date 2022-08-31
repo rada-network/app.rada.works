@@ -3,6 +3,9 @@ import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
 import Moment from 'moment';
 import Button from '../../../atoms/Button';
+import Overview from '../Overview';
+import Related from '../Related';
+import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
@@ -112,125 +115,9 @@ const Details = (props) => {
           </div>
 
           <div className={classes.pageSidebar}>
-            <div className={classes.boxHilite}>
-              <h3 className={classes.boxTitle}>About Campaign</h3>
-              <div className={classes.boxBody}>
-                <p className="my-0">
-                  Mauris eget finibus justo. Aenean aliquam, diam ut elementum
-                  vestibulum, ante dolor porttitor urna, id consequat velit
-                  nulla in leo. Vestibulum sit amet neque a mi pulvinar dapibus
-                  quis eu ante.
-                </p>
-
-                <div className="mt-3">
-                  <a
-                    href="#"
-                    title="More information"
-                    className="border-b border-dotted border-violet-600 text-violet-600 text-base dark:hover:text-violet-500"
-                  >
-                    View full...
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className={classes.Box}>
-              <h3 className={classes.boxTitle}>Other campaigns</h3>
-              <div className={classes.boxBody}>
-                <ul className={classes.couponList}>
-                  <li>
-                    <div className={classes.couponItem}>
-                      <h4>50% Off all NFT items</h4>
-                      <div className={classes.itemMeta}>
-                        <span>Aug, 08 2022 - Sep, 08 2022</span>
-                      </div>
-                      <a
-                        className={classes.btnGetCoupon}
-                        href="#"
-                        title="Get coupon"
-                      >
-                        Get coupon
-                      </a>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div className={classes.couponItem}>
-                      <h4>30% Off all NFT items</h4>
-                      <div className={classes.itemMeta}>
-                        <span>Aug, 08 2022 - Sep, 08 2022</span>
-                      </div>
-                      <a
-                        className={classes.btnGetCoupon}
-                        href="#"
-                        title="Get coupon"
-                      >
-                        Get coupon
-                      </a>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div className={classes.couponItem}>
-                      <h4>25% Off all NFT items</h4>
-                      <div className={classes.itemMeta}>
-                        <span>Aug, 08 2022 - Sep, 08 2022</span>
-                      </div>
-                      <a
-                        className={classes.btnGetCoupon}
-                        href="#"
-                        title="Get coupon"
-                      >
-                        Get coupon
-                      </a>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div className={classes.couponItem}>
-                      <h4>75% Off all NFT items</h4>
-                      <div className={classes.itemMeta}>
-                        <span>Aug, 08 2022 - Sep, 08 2022</span>
-                      </div>
-                      <a
-                        className={classes.btnGetCoupon}
-                        href="#"
-                        title="Get coupon"
-                      >
-                        Get coupon
-                      </a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>{' '}
-            {/* End: Box  */}
-            <div className="bg-orange-50 border border-2 border-dashed border-orange-200 rounded-lg mt-6">
-              <div className={classes.boxBody}>
-                <h3 className="dark:text-gray-700 m-0 mb-4">
-                  Get Notification
-                </h3>
-                <p className="dark:text-gray-700 my-0">
-                  Get the latest update notification from Aenean lacinia
-                  pellentesque finibus.
-                </p>
-                <form>
-                  <div className="flex items-center mt-4">
-                    <input
-                      type="email"
-                      placeholder="Your email"
-                      className="border border-1 border-gray-200 focus:border-violet-600 focus:shadow-none text-gray-700 rounded py-2 px-3 flex-1 w-auto min-w-0"
-                    />
-                    <btn
-                      type="button"
-                      action="submit"
-                      className="bg-violet-600 hover:bg-violet-700 border-0 text-white rounded py-2 px-3 ml-2 transition transition-2 cursor-pointer"
-                    >
-                      Subscribe
-                    </btn>
-                  </div>
-                </form>
-              </div>
-            </div>
+            <Overview />
+            <Related />
+            <Subcribe />
           </div>
         </div>
       );

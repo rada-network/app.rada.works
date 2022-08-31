@@ -1,0 +1,30 @@
+.root {
+}
+
+.Box {
+    composes: Box from '../../Campaign/Details/detail.module.css';
+}
+
+.boxTitle {
+    composes: boxTitle from '../../Campaign/Details/detail.module.css';
+}
+
+.boxBody {
+    composes: boxBody from '../../Campaign/Details/detail.module.css';
+}
+
+.couponList {
+    composes: couponList from '../../Campaign/Details/detail.module.css';
+}
+
+.couponItem {
+    composes: couponItem from '../../Campaign/Details/detail.module.css';
+}
+
+.itemMeta {
+    composes: itemMeta from '../../Campaign/Details/detail.module.css';
+}
+
+.btnGetCoupon {
+    composes: btnGetCoupon from '../../Campaign/Details/detail.module.css';
+}
