@@ -62,7 +62,7 @@
 }
 
 .Box + .Box {
-  @apply mt-5;
+  @apply mt-6;
 }
 
 .boxHilite {
