@@ -33,7 +33,7 @@ export default async function auth(
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET
     }),
     CredentialsProvider({
-      name: 'Bsc',
+      name: 'BSC',
       credentials: {},
       async authorize(credentials: any) {
         try {
@@ -48,8 +48,6 @@ export default async function auth(
             email: address,
             name: address
           };
-
-          //lay access token vao session
           return user;
         } catch (e) {
           return null;
@@ -126,7 +124,7 @@ export default async function auth(
         return token;
       },
       async session({ session, token }) {
-        session.user.id = token.id;
+        session.id = token.id;
         session.access_token = token.access_token;
         if (session) {
           const { valid } = getTokenState(session.access_token);

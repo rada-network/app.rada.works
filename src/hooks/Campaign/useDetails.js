@@ -45,7 +45,7 @@ export default (props) => {
     console.log('props:', props);
 
     // verify nft ownership
-    const { chainName, contractAdd, accountAdd } = props;
+    const { chainName, contractAdd, accountAdd, isOwner } = props;
     let rs = null;
     let txData = [];
     if (chainName === 'bsc') {
@@ -58,8 +58,10 @@ export default (props) => {
     // }
 
     // coming soon: for testing only
-    if (!txData.length) {
+    if (txData.length || isOwner) {
       rs = await getCouponCodes(slug);
+    } else {
+      rs = 'You have not permission to view coupon codes!';
     }
 
     return rs;
