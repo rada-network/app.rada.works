@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
 import Moment from 'moment';
@@ -24,13 +24,23 @@ const Details = (props) => {
   });
 
   const viewCoupons = async (campaign) => {
-    const rs = await handleViewCoupons({
-      chainName: campaign.nft_collection_id.chain_name,
-      contractAdd: campaign.nft_collection_id.contract_address,
-      accountAdd: session.user.email
-    });
+    const couponContainer = document.getElementById('coupon-codes');
+    if (!couponContainer.innerText.length) {
+      const codes = await handleViewCoupons({
+        chainName: campaign.nft_collection_id.chain_name,
+        contractAdd: campaign.nft_collection_id.contract_address,
+        accountAdd: session.user.email
+      });
+      console.log('codes:', codes);
 
-    console.log(rs);
+      const couponCodes = document.createElement('span');
+      couponCodes.className = classes.couponCodes;
+      const txtCodes = document.createTextNode(codes);
+      couponCodes.appendChild(txtCodes);
+      couponContainer.appendChild(couponCodes);
+
+      document.getElementById('get-coupon-code-btn').remove();
+    }
   };
 
   let child = null;
@@ -52,17 +62,23 @@ const Details = (props) => {
         viewCouponCodesArea = t('Loading...');
       } else if (status === 'authenticated') {
         viewCouponCodesArea = (
-          <Button
-            priority="high"
-            type="button"
-            onClick={() => viewCoupons(campaign)}
-          >
-            {t('Get Coupon Codes')}
-          </Button>
+          <Fragment>
+            <Button
+              id={`get-coupon-code-btn`}
+              priority="high"
+              type="button"
+              onClick={() => viewCoupons(campaign)}
+            >
+              {t('Verify and get coupon codes')}
+            </Button>
+            <div className={classes.couponContainer} id={`coupon-codes`} />
+          </Fragment>
         );
       } else {
-        viewCouponCodesArea = t(
-          'You must do authentication before to view coupon codes.'
+        viewCouponCodesArea = (
+          <div className={classes.couponNotes}>
+            {t('You must do authentication before to view coupon codes.')}
+          </div>
         );
       }
 

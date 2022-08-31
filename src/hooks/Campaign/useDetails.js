@@ -57,16 +57,9 @@ export default (props) => {
     //
     // }
 
-    if (txData.length) {
-      //request to get and return coupon codes:
-      // const { data, loading, error } = await useQuery(getCouponCodes, {
-      //   fetchPolicy: 'no-cache',
-      //   skip: !slug,
-      //   variables: {
-      //     slug
-      //   }
-      // });
-      // console.log(data);
+    // coming soon: for testing only
+    if (!txData.length) {
+      rs = await getCouponCodes(slug);
     }
 
     return rs;

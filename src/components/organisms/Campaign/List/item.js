@@ -33,7 +33,7 @@ const Item = (props) => {
     Router.push(path);
   };
 
-  const currentUserId = session && session.user.id ? session.user.id : null;
+  const currentUserId = session && session.id ? session.id : null;
   const editButton =
     data.user_created.id === currentUserId ? (
       <Button
