@@ -8,7 +8,7 @@ const SearchCouponTmpl = () => {
   return (
     <Fragment>
       <MainTmpl>
-        <List page="search-coupon" />
+        <List position="search-coupon-page" />
       </MainTmpl>
     </Fragment>
   );

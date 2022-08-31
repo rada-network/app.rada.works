@@ -2,13 +2,13 @@ import { useQuery } from '@apollo/client';
 import API from './list.api.gql';
 
 export default (props) => {
-  const { page } = props;
+  const { position } = props;
 
   let filter = {
     status: { _eq: 'published' }
   };
 
-  // if (page === 'search-coupon') {
+  // if (position === 'search-coupon-page') {
   // } else {
   // }
 
