@@ -50,7 +50,7 @@
 }
 
 .bsc {
-  @apply border border-red-600 bg-gray-300 inline-block rounded-full;
+  @apply bg-gray-300 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden;
 }
 
 .rootDark .btnGetCoupon {

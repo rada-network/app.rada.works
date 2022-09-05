@@ -157,7 +157,7 @@ const Details = (props) => {
                         {campaign.store_url}
                       </span>
                     </li>
-                    <li className={classes.nftInfo}>
+                    <li className="flex items-center px-0">
                       <span
                         className={`${classes.chain} ${
                           classes[campaign.nft_collection_id.chain_name]
