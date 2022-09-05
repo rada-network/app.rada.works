@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { shape, string } from 'prop-types';
 import { Form } from 'informed';
 import { useTranslation } from 'next-i18next';
@@ -16,6 +16,10 @@ const List = (props) => {
   const { loading, data, error } = useList({ position });
 
   let child = null;
+
+  const [visible, setVisible] = useState(6);
+  const [allItem, setAllItem] = useState(false);
+
   if (!data) {
     if (error) {
       if (process.env.NODE_ENV !== 'production') {
@@ -33,12 +37,49 @@ const List = (props) => {
         </div>
       );
     } else {
-      child = data.campaign.map((campaign) => (
-        <Item key={campaign.id} data={campaign} />
-      ));
+      child = data.campaign
+        ?.slice(0, visible)
+        .map((campaign) => <Item key={campaign.id} data={campaign} />);
     }
   }
-
+  const showMoreItems = () => {
+    setVisible((prevValue) => {
+      if (data.campaign && data.campaign.length <= prevValue) {
+        setAllItem(true);
+        return;
+      } else {
+        prevValue + 6;
+      }
+    });
+  };
+  const loadMore =
+    position === 'home-page' ? (
+      <a
+        href="/search-coupon"
+        title="Load more..."
+        className={classes.loadMore}
+      >
+        Load more...
+      </a>
+    ) : allItem ? (
+      <a
+        href="#"
+        onClick={showMoreItems}
+        title="All Item Loaded"
+        className={classes.loadMore}
+      >
+        All Item Loaded
+      </a>
+    ) : (
+      <a
+        href="#"
+        onClick={showMoreItems}
+        title="Load more..."
+        className={classes.loadMore}
+      >
+        Load more...
+      </a>
+    );
   const subheading =
     position === 'home-page'
       ? t(
@@ -75,11 +116,7 @@ const List = (props) => {
 
       <div className={classes.listWrap}>{child}</div>
 
-      <div className={classes.actionWrap}>
-        <a href="#" title="Load more..." className={classes.loadMore}>
-          Load more...
-        </a>
-      </div>
+      <div className={classes.actionWrap}>{loadMore}</div>
     </div>
   );
 };
