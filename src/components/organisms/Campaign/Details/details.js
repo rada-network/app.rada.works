@@ -104,8 +104,8 @@ const Details = (props) => {
           <div className={classes.pageContent}>
             <h1 className={classes.pageTitle}>{campaign.title}</h1>
 
-            <div className="flex items-stretch shadow-md rounded-lg p-6 mb-12">
-              <div className="flex flex-col items-center justify-center border-r border-r-2 border-dashed border-gray-200 pr-8">
+            <div className="flex items-stretch shadow-md rounded-lg p-6 mb-12 border dark:border-gray-800">
+              <div className="flex flex-col items-center justify-center border-r border-r-2 border-dashed border-gray-200 dark:border-gray-800 pr-8">
                 <strong className="text-6xl">
                   {campaign.discount_value}
                   <span className="leading-none">%</span>
@@ -115,7 +115,7 @@ const Details = (props) => {
                 </span>
               </div>
               <div className="pl-8 w-full">
-                <div className="border-b border-gray-100 mb-5 pb-5">
+                <div className="border-b border-gray-100 dark:border-gray-800 mb-5 pb-5">
                   <ul className="flex flex-wrap list-none m-0 p-0">
                     <li className="flex items-center w-1/2 m-0 mb-3 p-0">
                       <span className="flex text-gray-500 items-center mr-2">
