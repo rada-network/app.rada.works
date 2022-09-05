@@ -90,7 +90,7 @@ export default async function auth(
               admin_access: false,
               enforce_tfa: false
             },
-            provider: account.provider,
+            provider: 'default',
             status: 'active'
           });
           checkUser.id = CreateUser.id;
