@@ -42,6 +42,7 @@ const Modal = (props: { connect: any }) => {
                 className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
                 data-modal-toggle="crypto-modal"
               >
+                Close
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="py-4 px-6 rounded-t border-b dark:border-gray-600">
@@ -72,7 +73,7 @@ const Modal = (props: { connect: any }) => {
                       </span>
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a
                       onClick={() => facebookSigner()}
                       href="#"
@@ -105,7 +106,7 @@ const Modal = (props: { connect: any }) => {
                         Sign-in with Github
                       </span>
                     </a>
-                  </li>
+                  </li> */}
                   <li className="text-center my-0 py-0">Or</li>
                   <li>
                     <a
