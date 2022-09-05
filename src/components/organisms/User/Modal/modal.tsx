@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from 'react';
 import { signIn } from 'next-auth/react';
-import { useEscapeKey, useOutsideClick } from 'src/hooks/useEscapeKey';
+import { useEscapeKey } from 'src/hooks/useEscapeKey';
 
 const Modal = (props: { connect: any }) => {
   const { connect } = props;
@@ -9,8 +9,7 @@ const Modal = (props: { connect: any }) => {
     setShowModal(false);
   };
   useEscapeKey(escEvent);
-  // const ref = useRef(null);
-  // useOutsideClick(escEvent, ref);
+
   const metamarkLogin = () => {
     connect();
   };
@@ -39,10 +38,17 @@ const Modal = (props: { connect: any }) => {
           tabIndex={-1}
           className="bg-gray-900 bg-opacity-30 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex z-50"
           aria-modal="true"
+          onClick={() => setShowModal(false)}
           role="dialog"
         >
           <div className="modal-mark" />
-          <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+          <div
+            className="relative p-4 w-full max-w-md h-full md:h-auto"
+            onClick={(e) => {
+              // do not close modal if anything inside modal content is clicked
+              e.stopPropagation();
+            }}
+          >
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <button
                 onClick={() => setShowModal(false)}
