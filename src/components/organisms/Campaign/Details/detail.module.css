@@ -49,6 +49,10 @@
   @apply text-gray-500 mr-2;
 }
 
+.bsc {
+  @apply border border-red-600 bg-gray-300 inline-block rounded-full;
+}
+
 .rootDark .btnGetCoupon {
   @apply text-white;
 }
