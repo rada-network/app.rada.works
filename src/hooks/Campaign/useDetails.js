@@ -43,6 +43,10 @@ export default (props) => {
   };
 
   const verifyNFTOwnership = async (chainName, tokenAddress, address) => {
+    if (!address.includes('0x')) {
+      return false;
+    }
+
     let chain = null;
     if (chainName === 'bsc') {
       chain = EvmChain.BSC;
