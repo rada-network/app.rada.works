@@ -8,6 +8,7 @@ import Item from './item';
 
 const Related = (props) => {
   const { currentCampaign, classes: propClasses } = props;
+
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('common');
