@@ -3,7 +3,6 @@ import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
 import Moment from 'moment';
 import Button from '../../../atoms/Button';
-import Overview from '../Overview';
 import Related from '../Related';
 import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
@@ -158,6 +157,14 @@ const Details = (props) => {
                         {campaign.store_url}
                       </span>
                     </li>
+                    <li className={classes.nftInfo}>
+                      <span className={classes.chainName}>
+                        {campaign.nft_collection_id.chain_name}
+                      </span>
+                      <span className={classes.contractAdd}>
+                        {campaign.nft_collection_id.contract_address}
+                      </span>
+                    </li>
                   </ul>
                 </div>
                 {viewCouponCodesArea}
@@ -171,7 +178,6 @@ const Details = (props) => {
           </div>
 
           <div className={classes.pageSidebar}>
-            <Overview />
             <Related currentCampaign={campaign} />
             <Subcribe />
           </div>
