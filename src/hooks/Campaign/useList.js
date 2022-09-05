@@ -7,10 +7,15 @@ export default (props) => {
   let filter = {
     status: { _eq: 'published' }
   };
-  let limit = 10;
+  let limit = 12;
 
-  if (position === 'related') {
+  if (position === 'home-page') {
+    limit = 6;
+  } else if (position === 'related') {
     filter.id = { _neq: parseInt(currentCampaign.id) };
+    filter.nft_collection_id = {
+      id: { _eq: parseInt(currentCampaign.nft_collection_id.id) }
+    };
     limit = 5;
   }
 
