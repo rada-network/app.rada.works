@@ -48,7 +48,7 @@ const Item = (props) => {
 
   const contractAdd = ellipsify({
     str: data.nft_collection_id.contract_address,
-    start: 5,
+    start: 6,
     end: 4
   });
   return (

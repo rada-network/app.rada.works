@@ -8,6 +8,7 @@ import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
+import { ellipsify } from '../../../../utils/strUtils';
 
 const Details = (props) => {
   const { slug } = props;
@@ -166,7 +167,11 @@ const Details = (props) => {
                         {campaign.nft_collection_id.chain_name}
                       </span>
                       <span className={classes.contractAdd}>
-                        {campaign.nft_collection_id.contract_address}
+                        {ellipsify({
+                          str: campaign.nft_collection_id.contract_address,
+                          start: 6,
+                          end: 4
+                        })}
                       </span>
                     </li>
                   </ul>
