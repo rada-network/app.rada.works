@@ -65,6 +65,8 @@ const Item = (props) => {
           </svg>
           {t('Verified')}
         </span>
+
+        {editButton}
       </div>
 
       <div
@@ -85,7 +87,6 @@ const Item = (props) => {
         >
           {t('Get this deal')}
         </a>
-        {editButton}
       </div>
     </div>
   );

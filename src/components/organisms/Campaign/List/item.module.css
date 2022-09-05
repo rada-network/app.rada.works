@@ -27,6 +27,10 @@
 	@apply fill-current mr-1;
 }
 
+.itemHead button {
+	@apply ml-auto border border-gray-200;
+}
+
 .itemBody {
 	@apply py-6;
 }
