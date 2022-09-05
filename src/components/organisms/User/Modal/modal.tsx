@@ -1,9 +1,14 @@
 import React, { Fragment } from 'react';
 import { signIn } from 'next-auth/react';
+import useEscapeKey from 'src/hooks/useEscapeKey';
 
 const Modal = (props: { connect: any }) => {
   const { connect } = props;
   const [showModal, setShowModal] = React.useState(false);
+  const escEvent = () => {
+    setShowModal(false);
+  };
+  useEscapeKey(escEvent);
   const metamarkLogin = () => {
     connect();
   };
