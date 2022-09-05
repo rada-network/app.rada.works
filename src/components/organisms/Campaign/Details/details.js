@@ -108,10 +108,10 @@ const Details = (props) => {
               <div className="flex flex-col items-center justify-center border-r border-r-2 border-dashed border-gray-200 pr-8">
                 <strong className="text-6xl">
                   {campaign.discount_value}
-                  <sup className="text-sm leading-none top-0">%</sup>
+                  <span className="leading-none">%</span>
                 </strong>
-                <span className="block text-center uppercase tracking-wider">
-                  Off
+                <span className="block text-center uppercase tracking-widest">
+                  Discount
                 </span>
               </div>
               <div className="pl-8 w-full">
