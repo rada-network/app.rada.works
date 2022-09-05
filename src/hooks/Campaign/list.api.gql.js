@@ -24,6 +24,10 @@ export const GET_CAMPAIGNS = gql`
       date_created
       date_start
       date_end
+      nft_collection_id {
+        contract_address
+        chain_name
+      }
       user_created {
         id
       }
