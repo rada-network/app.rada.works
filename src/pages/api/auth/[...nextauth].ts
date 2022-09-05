@@ -73,7 +73,7 @@ export default async function auth(
     },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
-      async signIn({ user, account, profile, email, credentials }) {
+      async signIn({ user, account }) {
         const emailUser = user?.email || '';
         console.log('emailUser', emailUser);
         const checkUser = await isExistsUser(emailUser);

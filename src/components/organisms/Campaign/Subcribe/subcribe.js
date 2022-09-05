@@ -25,13 +25,13 @@ const Subcrible = (props) => {
               placeholder="Your email"
               className="border border-1 border-gray-200 focus:border-violet-600 focus:shadow-none text-gray-700 rounded py-2 px-3 flex-1 w-auto min-w-0"
             />
-            <btn
+            <button
               type="button"
               action="submit"
               className="bg-violet-600 hover:bg-violet-700 border-0 text-white rounded py-2 px-3 ml-2 transition transition-2 cursor-pointer"
             >
               Subscribe
-            </btn>
+            </button>
           </div>
         </form>
       </div>

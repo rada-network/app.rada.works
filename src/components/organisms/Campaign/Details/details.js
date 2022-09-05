@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
 import Moment from 'moment';
@@ -19,8 +19,14 @@ const Details = (props) => {
 
   const { status, data: session } = useSession();
 
-  const { theme } = useTheme();
-  const rootClassName = theme === 'dark' ? 'rootDark' : 'root';
+  const { resolvedTheme } = useTheme();
+  const [isDark, setIsDark] = useState();
+
+  useEffect(() => {
+    resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
+  }, [resolvedTheme]);
+
+  const rootClassName = isDark ? 'rootDark' : 'root';
 
   const { loading, data, error, handleViewCoupons } = useDetails({
     slug: { _eq: slug } ?? ''
