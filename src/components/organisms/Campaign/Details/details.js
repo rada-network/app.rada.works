@@ -159,7 +159,9 @@ const Details = (props) => {
                     </li>
                     <li className={classes.nftInfo}>
                       <span
-                        className={`${classes.chainName} ${campaign.nft_collection_id.chain_name}`}
+                        className={`${classes.chain} ${
+                          classes[data.nft_collection_id.chain_name]
+                        }`}
                       >
                         {campaign.nft_collection_id.chain_name}
                       </span>
