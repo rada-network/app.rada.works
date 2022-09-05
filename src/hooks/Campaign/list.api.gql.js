@@ -22,6 +22,8 @@ export const GET_CAMPAIGNS = gql`
       discount_value
       description
       date_created
+      date_start
+      date_end
       user_created {
         id
       }

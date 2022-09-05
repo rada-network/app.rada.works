@@ -172,7 +172,7 @@ const Details = (props) => {
 
           <div className={classes.pageSidebar}>
             <Overview />
-            <Related />
+            <Related currentCampaign={campaign} />
             <Subcribe />
           </div>
         </div>

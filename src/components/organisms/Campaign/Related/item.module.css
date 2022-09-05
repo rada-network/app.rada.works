@@ -1,0 +1,17 @@
+.root {
+}
+
+.couponItem {
+    composes: couponItem from '../../Campaign/Details/detail.module.css';
+}
+
+.itemMeta {
+    composes: itemMeta from '../../Campaign/Details/detail.module.css';
+}
+
+.btnGetCoupon {
+    composes: btnGetCoupon from '../../Campaign/Details/detail.module.css';
+}
+.btnEdit {
+
+}

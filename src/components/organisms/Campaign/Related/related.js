@@ -3,76 +3,63 @@ import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './related.module.css';
 import { useStyle } from '../../../classify';
+import { useList } from '../../../../hooks/Campaign';
+import Item from './item';
 
 const Related = (props) => {
-  const { classes: propClasses } = props;
+  const { currentCampaign, classes: propClasses } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('common');
 
-  const child = (
-    <div className={classes.Box}>
-      <h3 className={classes.boxTitle}>{t('Other campaigns')}</h3>
-      <div className={classes.boxBody}>
-        <ul className={classes.couponList}>
-          <li>
-            <div className={classes.couponItem}>
-              <h4>50% Off all NFT items</h4>
-              <div className={classes.itemMeta}>
-                <span>Aug, 08 2022 - Sep, 08 2022</span>
-              </div>
-              <a className={classes.btnGetCoupon} href="#" title="Get coupon">
-                Get coupon
-              </a>
-            </div>
-          </li>
+  const { loading, data, error } = useList({
+    position: 'related',
+    currentCampaign
+  });
 
-          <li>
-            <div className={classes.couponItem}>
-              <h4>30% Off all NFT items</h4>
-              <div className={classes.itemMeta}>
-                <span>Aug, 08 2022 - Sep, 08 2022</span>
-              </div>
-              <a className={classes.btnGetCoupon} href="#" title="Get coupon">
-                Get coupon
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div className={classes.couponItem}>
-              <h4>25% Off all NFT items</h4>
-              <div className={classes.itemMeta}>
-                <span>Aug, 08 2022 - Sep, 08 2022</span>
-              </div>
-              <a className={classes.btnGetCoupon} href="#" title="Get coupon">
-                Get coupon
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div className={classes.couponItem}>
-              <h4>75% Off all NFT items</h4>
-              <div className={classes.itemMeta}>
-                <span>Aug, 08 2022 - Sep, 08 2022</span>
-              </div>
-              <a className={classes.btnGetCoupon} href="#" title="Get coupon">
-                Get coupon
-              </a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+  let blockHeading = (
+    <h3 className={classes.boxTitle}>{t('Other campaigns')}</h3>
   );
 
-  return <Fragment>{child}</Fragment>;
+  let child = null;
+  if (!data) {
+    if (error) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(error);
+      }
+      child = t('Something went wrong.');
+    } else if (loading) {
+      child = <div>{t('Loading...')}</div>;
+    }
+  } else {
+    if (data.campaign && !data.campaign.length) {
+      child = (
+        <div className={classes.noResult}>{t('No related campaigns.')}</div>
+      );
+    } else {
+      const relatedItems = data.campaign.map((campaign) => (
+        <Item key={campaign.id} data={campaign} />
+      ));
+      child = <ul className={classes.couponList}>{relatedItems}</ul>;
+    }
+  }
+  return (
+    <Fragment>
+      <div className={classes.Box}>
+        {blockHeading}
+        <div className={classes.boxBody}>{child}</div>
+      </div>
+    </Fragment>
+  );
 };
 
 Related.propTypes = {
   classes: shape({
     root: string
+  }),
+  currentCampaign: shape({
+    id: string,
+    title: string
   })
 };
 
