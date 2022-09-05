@@ -28,7 +28,7 @@
 }
 
 .itemHead button {
-	@apply ml-auto border border-gray-200;
+	@apply ml-auto border border-violet-600 hover:bg-violet-600 hover:text-white hover:border-opacity-0 cursor-pointer rounded-md py-0.5 px-2 transition-all;
 }
 
 .itemBody {
