@@ -131,7 +131,7 @@
 }
 
 .couponItem {
-  @apply bg-white border border-gray-200 hover:border-violet-600 hover:shadow-md rounded-md py-4 px-3 relative transition-all duration-200;
+  @apply bg-white border border-gray-200 hover:border-violet-600 hover:shadow-md rounded-md py-4 pr-28 px-3 relative transition-all duration-200;
 }
 
 .couponItem:hover .btnGetCoupon {
