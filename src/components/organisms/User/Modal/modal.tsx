@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { signIn } from 'next-auth/react';
-import useEscapeKey from 'src/hooks/useEscapeKey';
+import { useEscapeKey, useOutsideClick } from 'src/hooks/useEscapeKey';
 
 const Modal = (props: { connect: any }) => {
   const { connect } = props;
@@ -9,6 +9,8 @@ const Modal = (props: { connect: any }) => {
     setShowModal(false);
   };
   useEscapeKey(escEvent);
+  // const ref = useRef(null);
+  // useOutsideClick(escEvent, ref);
   const metamarkLogin = () => {
     connect();
   };
@@ -39,6 +41,7 @@ const Modal = (props: { connect: any }) => {
           aria-modal="true"
           role="dialog"
         >
+          <div className="modal-mark" />
           <div className="relative p-4 w-full max-w-md h-full md:h-auto">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <button
