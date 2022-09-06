@@ -77,7 +77,7 @@ const Item = (props) => {
       />
 
       <div className={classes.itemFoot}>
-        <div className="classes.chainWrap">
+        <div className={classes.chainWrap}>
           <span
             className={`${classes.chain} ${
               classes[data.nft_collection_id.chain_name]
