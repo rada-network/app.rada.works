@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment } from 'react';
 import { signIn } from 'next-auth/react';
 import { useEscapeKey } from 'src/hooks/useEscapeKey';
 
@@ -16,12 +16,12 @@ const Modal = (props: { connect: any }) => {
   const googleSigner = async () => {
     await signIn('google');
   };
-  const gitSigner = async () => {
-    await signIn('github');
-  };
-  const facebookSigner = async () => {
-    await signIn('facebook');
-  };
+  // const gitSigner = async () => {
+  //   await signIn('github');
+  // };
+  // const facebookSigner = async () => {
+  //   await signIn('facebook');
+  // };
   return (
     <Fragment>
       <button
