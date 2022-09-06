@@ -1,5 +1,5 @@
 .root {
-	@apply border border-gray-200 hover:border-violet-600 p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch;
+	@apply border border-gray-200 hover:border-violet-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch;
 }
 
 .rootDark {
@@ -40,11 +40,31 @@
 }
 
 .itemFoot {
-	@apply flex items-center justify-between border-t border-gray-200 pt-3 mt-auto;
+	@apply flex items-center justify-between border-t border-gray-200 pt-4 mt-auto;
 }
 
 .rootDark .itemFoot {
 	@apply border-t border-gray-800;
+}
+
+.chainWrap {
+	@apply flex items-center;
+}
+
+.bsc {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
+}
+
+.ethereum {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/ethereum.svg')] bg-cover;
+}
+
+.polygon {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/polygon.svg')] bg-cover;
+}
+
+.solana {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
 }
 
 .getCoupon {
