@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import classes from './toggleTheme.module.css';
 const ToggleTheme = () => {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [isDark, setIsDark] = useState<any | null>(null);
 
   useEffect(() => {

@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
-import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import classes from './steps.module.css';
 
 const Steps = () => {
-  const t = useTranslation('howitworks');
+  const { t } = useTranslation('howitworks');
   return (
     <Fragment>
       <section className={classes.section}>
@@ -20,7 +19,7 @@ const Steps = () => {
           <div className={classes.steps}>
             <div className={classes.step1}>
               <span className="badge-number">1</span>
-              <h3>Create your NFT design contest</h3>
+              <h3>{t('Create your NFT design contest')}</h3>
               <div>
                 Visualize a design that fits. Explain your expectations and
                 let’s explore design inspirations.
