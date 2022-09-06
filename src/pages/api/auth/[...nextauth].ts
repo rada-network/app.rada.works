@@ -75,9 +75,7 @@ export default async function auth(
     callbacks: {
       async signIn({ user, account, profile, email, credentials }) {
         const emailUser = user?.email || '';
-        console.log('emailUser', emailUser);
         const checkUser = await isExistsUser(emailUser);
-        console.log('account', account);
         if (!checkUser?.id) {
           const CreateUser = await createUser({
             email: user.email,
@@ -95,7 +93,6 @@ export default async function auth(
           });
           checkUser.id = CreateUser.id;
         }
-        console.log('checkUser', checkUser);
         //connect to directus create user & get access token
         const directusToken = await authLogin({
           email: user.email,
@@ -135,7 +132,6 @@ export default async function auth(
             session.access_token = directusToken.auth_refresh.access_token;
           }
         }
-        console.log('session', session);
         return session;
       }
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
-import ConnectWallet from '../ConnectWallet';
+import ConnectWallet from '../User/ConnectWallet';
 
 const NoLoginAlert = () => {
   const { status } = useSession();
