@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useButton } from 'react-aria';
-import { oneOf, shape, string, bool, func } from 'prop-types';
+import { oneOf, shape, string, bool } from 'prop-types';
 
 import { useStyle } from '../../classify';
 import defaultClasses from './button.module.css';
@@ -86,8 +86,7 @@ Button.propTypes = {
   priority: oneOf(['high', 'low', 'normal']).isRequired,
   type: oneOf(['button', 'reset', 'submit']).isRequired,
   negative: bool,
-  disabled: bool,
-  onClick: func
+  disabled: bool
 };
 
 Button.defaultProps = {

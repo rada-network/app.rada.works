@@ -244,7 +244,7 @@ const CampaignForm = (props) => {
             <div className={`w-1/2 h-12`}>
               <Button
                 priority="normal"
-                onClick={() => handleCancel()}
+                onPress={() => handleCancel()}
                 type="button"
                 disabled={isBusy}
               >

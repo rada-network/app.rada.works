@@ -78,7 +78,7 @@ const Details = (props) => {
                 id={`get-coupon-code-btn`}
                 priority="high"
                 type="button"
-                onClick={() => viewCoupons(campaign)}
+                onPress={() => viewCoupons(campaign)}
               >
                 {t('Verify and get coupon codes')}
               </Button>

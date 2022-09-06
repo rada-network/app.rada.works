@@ -36,12 +36,7 @@ const Item = (props) => {
   const currentUserId = session && session.id ? session.id : null;
   const editButton =
     data.user_created.id === currentUserId ? (
-      <Button
-        priority="normal"
-        type="button"
-        className={classes.btnEdit}
-        onClick={handleEdit}
-      >
+      <Button priority="normal" type="button" onPress={handleEdit}>
         {t('Edit')}
       </Button>
     ) : null;

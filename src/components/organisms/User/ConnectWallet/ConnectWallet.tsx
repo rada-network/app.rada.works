@@ -8,7 +8,7 @@ import { useSession, getCsrfToken, signIn, signOut } from 'next-auth/react';
 import { ethers } from 'ethers';
 import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
-import classes from './ConnectWallet.module.css';
+// import classes from './ConnectWallet.module.css';
 import providerOptions from './providers';
 import { Modal } from './../Modal';
 
@@ -83,12 +83,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
           <div>
             Account: {subString({ str: session?.user?.name, start: 5, end: 3 })}
           </div>
-          <Button
-            priority="high"
-            type="button"
-            className={classes.btnLogout}
-            onClick={disConnect}
-          >
+          <Button type="button" priority="high" onPress={disConnect}>
             {t('Sign out')}
           </Button>
         </div>
