@@ -35,20 +35,10 @@ const Success = (props) => {
           used as a placeholder before final copy is available.
         </div>
         <div className={`${classes.actions}`}>
-          <Button
-            priority="low"
-            type="button"
-            className={classes.btnEdit}
-            onClick={() => handleEdit()}
-          >
+          <Button priority="low" type="button" onPress={() => handleEdit()}>
             {t('Edit Campaign')}
           </Button>
-          <Button
-            priority="high"
-            type="button"
-            className={classes.btnView}
-            onClick={() => handleView()}
-          >
+          <Button priority="high" type="button" onPress={() => handleView()}>
             {t('View Campaign')}
           </Button>
         </div>
