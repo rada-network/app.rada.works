@@ -58,11 +58,11 @@
 }
 
 .couponNotes {
-  @apply bg-amber-100 flex items-center rounded-md py-3 px-4;
+  @apply bg-red-100 text-red-700 text-sm flex items-center rounded-lg py-3 px-4;
 }
 
 .rootDark .couponNotes {
-  @apply bg-amber-700 text-white;
+  @apply bg-red-200 text-red-800;
 }
 
 .getCoupon {

@@ -2,7 +2,7 @@
 }
 
 .menuItems ul {
-	@apply flex space-x-4;
+	@apply flex space-x-4 list-none;
 }
 
 .menuItems {
