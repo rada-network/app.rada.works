@@ -1,12 +1,16 @@
 .root {
 }
 
+.menuItems {
+  @apply flex-1;
+}
+
 .menuItems ul {
 	@apply flex space-x-4 list-none;
 }
 
-.menuItems {
-  @apply flex-1;
+.menuItems ul a {
+  @apply inline-block border-b border-dotted border-gray-400 hover:border-violet-800 cursor-pointer hover:text-violet-600;
 }
 
 .social {
@@ -15,4 +19,3 @@
 .social > div {
   @apply flex space-x-4;
 }
-
