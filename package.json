@@ -106,6 +106,10 @@
     "tailwindcss": "^3.0.23",
     "typescript": "4.6.2"
   },
+  "resolutions": {
+    "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.14"
+  },
   "simple-git-hooks": {
     "pre-commit": [
       "yarn lint-staged --allow-empty"
