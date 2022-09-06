@@ -16,6 +16,10 @@
   @apply block w-24 h-16 border border-red-200;
 }
 
+.logoContainer a > span {
+  @apply block h-6 w-6;
+}
+
 .menuContainer {
   @apply flex flex-wrap items-center space-x-4;
 }

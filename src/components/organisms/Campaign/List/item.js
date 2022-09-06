@@ -82,7 +82,7 @@ const Item = (props) => {
       />
 
       <div className={classes.itemFoot}>
-        <small>
+        <div className="classes.chainWrap">
           <span
             className={`${classes.chain} ${
               classes[data.nft_collection_id.chain_name]
@@ -91,7 +91,7 @@ const Item = (props) => {
             {data.nft_collection_id.chain_name}
           </span>
           <span className={classes.contractAdd}>{contractAdd}</span>
-        </small>
+        </div>
         <a
           onClick={viewDetails}
           title={t('Get Coupon')}
