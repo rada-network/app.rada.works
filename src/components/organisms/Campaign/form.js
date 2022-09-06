@@ -129,7 +129,7 @@ const CampaignForm = (props) => {
               <Selector
                 selectedOption={{
                   value: initialValues.nft_collection_id
-                    ? initialValues.nft_collection_id.id
+                    ? parseInt(initialValues.nft_collection_id.id)
                     : 0,
                   label: initialValues.nft_collection_id
                     ? initialValues.nft_collection_id.name
