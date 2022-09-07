@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import AsyncSelect from 'react-select/async';
 import { useQuery } from '@apollo/client';
 import API from './api.gql';
-import { ellipsify } from '../../../../utils/strUtils';
+import { ellipsify } from '../../../../../utils/strUtils';
 
 const Selector = (props) => {
   const { selectedOption, handleChange } = props;

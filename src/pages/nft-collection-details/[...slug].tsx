@@ -1,23 +1,23 @@
 import { GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import CampaignDetailTmpl from '../../components/templates/campaignDetailTmpl';
+import NftCollectionDetailTmpl from '../../components/templates/nftCollectionDetailTmpl';
 
-const CampaignDetailPage: NextPage = () => {
+const NftCollectionDetailPage: NextPage = () => {
   const router = useRouter();
   const query = router?.query?.slug;
   const slug = query?.[0] ?? '';
-  return <CampaignDetailTmpl slug={slug} />;
+  return <NftCollectionDetailTmpl slug={slug} />;
 };
 
-export default CampaignDetailPage;
+export default NftCollectionDetailPage;
 
 export async function getStaticProps(props: { locale: string }) {
   return {
     props: {
       ...(await serverSideTranslations(props.locale, [
         'common',
-        'campaign_details'
+        'nft_collection_details'
       ]))
       // Will be passed to the page component as props
     }

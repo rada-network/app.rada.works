@@ -19,7 +19,7 @@ import { Percent } from 'react-feather';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import defaultClasses from './form.module.css';
-import Selector from './NFTCollectionSelector';
+import Selector from './NftCollection/Selector';
 
 const CampaignForm = (props) => {
   const { classes: propClasses, campaignId } = props;
