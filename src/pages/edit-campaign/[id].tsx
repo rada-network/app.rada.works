@@ -28,10 +28,13 @@ const EditCampaignPage: NextPage = () => {
 
 export default EditCampaignPage;
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps(props: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'create_campaign']))
+      ...(await serverSideTranslations(props.locale, [
+        'common',
+        'create_campaign'
+      ]))
       // Will be passed to the page component as props
     }
   };

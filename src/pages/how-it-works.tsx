@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NextPage } from 'next';
 import { useSession } from 'next-auth/react';
 import HowItWorksTmp from 'src/components/templates/howItWorksTmp';
