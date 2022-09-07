@@ -1,5 +1,5 @@
 .root {
-	@apply border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch;
+	@apply border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch hover:-mt-1.5 hover:mb-1.5 transition-all duration-500;
 }
 
 .rootDark {
@@ -47,6 +47,7 @@
 	@apply border-t border-gray-800;
 }
 
+/* All Chains */
 .chainWrap {
 	@apply flex items-center;
 }
