@@ -26,7 +26,8 @@ export default async function auth(
     }),
     GoogleProvider({
       clientId: `${process.env.GOOGLE_ID}`,
-      clientSecret: `${process.env.GOOGLE_SECRET}`
+      clientSecret: `${process.env.GOOGLE_SECRET}`,
+      checks: 'none'
     }),
     FacebookProvider({
       clientId: `${process.env.FACEBOOK_CLIENT_ID}`,
@@ -73,8 +74,16 @@ export default async function auth(
     },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
-      async signIn({ user }) {
+      async signIn({ user, account, profile, email, credentials }) {
         const emailUser = user?.email || '';
+        if (
+          account?.provider === 'credentials' &&
+          email &&
+          profile &&
+          credentials
+        ) {
+          console.log('wallet connected');
+        }
         const checkUser = await isExistsUser(emailUser);
         if (!checkUser?.id) {
           const CreateUser = await createUser({

@@ -18,7 +18,7 @@ const List = (props) => {
 
   let child = null;
 
-  const [visible, setVisible] = useState(6);
+  const [visible, setVisible] = useState(12);
   const [dataItems, setDataItems] = useState({
     items: [],
     hasMore: true
