@@ -66,6 +66,7 @@ const List = (props) => {
           hasMore={dataItems.hasMore}
           loader={<h4>Loading...</h4>}
           scrollableTarget="scrollableDiv"
+          className={classes.listWrap}
           endMessage={
             <p style={{ textAlign: 'center' }}>
               <b>Yay! You have seen it all</b>
@@ -114,7 +115,7 @@ const List = (props) => {
 
       {/* {filters} */}
 
-      <div className={classes.listWrap}>{child}</div>
+      <div>{child}</div>
     </div>
   );
 };
