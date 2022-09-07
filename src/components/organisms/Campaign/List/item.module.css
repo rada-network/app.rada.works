@@ -1,5 +1,5 @@
 .root {
-	@apply border border-gray-200 hover:border-violet-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch;
+	@apply border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch;
 }
 
 .rootDark {
@@ -68,5 +68,5 @@
 }
 
 .getCoupon {
-	@apply bg-violet-600 hover:bg-violet-700 border border-violet-600 hover:border-violet-700 text-white hover:text-white py-1.5 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer;
+	@apply bg-blue-600 hover:bg-blue-700 text-white hover:text-white py-2 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer;
 }

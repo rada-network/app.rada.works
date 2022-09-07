@@ -1,6 +1,10 @@
 .root {
 }
 
+.root a {
+  @apply hover:text-blue-600;
+}
+
 .menuItems {
   @apply flex-1;
 }
@@ -10,7 +14,7 @@
 }
 
 .menuItems ul a {
-  @apply inline-block border-b border-dotted border-gray-400 hover:border-violet-800 cursor-pointer hover:text-violet-600;
+  @apply inline-block border-b border-dotted border-gray-400 hover:border-blue-600 cursor-pointer hover:text-blue-600;
 }
 
 .social {
