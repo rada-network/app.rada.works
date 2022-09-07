@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { shape, string } from 'prop-types';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { Form } from 'informed';
 import { useTranslation } from 'next-i18next';
 import { Heading } from '../../../atoms/Heading';
@@ -18,7 +19,10 @@ const List = (props) => {
   let child = null;
 
   const [visible, setVisible] = useState(6);
-  const [allItem, setAllItem] = useState(false);
+  const [dataItems, setDataItems] = useState({
+    items: [],
+    hasMore: true
+  });
 
   if (!data) {
     if (error) {
@@ -37,49 +41,45 @@ const List = (props) => {
         </div>
       );
     } else {
-      child = data.campaign
-        ?.slice(0, visible)
-        .map((campaign) => <Item key={campaign.id} data={campaign} />);
+      const fetchMoreData = () => {
+        if (visible >= data.campaign.length) {
+          setDataItems({
+            items: data.campaign.slice(0, visible),
+            hasMore: false
+          });
+          return;
+        }
+        // a fake async api call like which sends
+        // 20 more records in 1.5 secs
+        setTimeout(() => {
+          setVisible(visible + 6);
+          setDataItems({
+            items: data.campaign.slice(0, visible),
+            hasMore: visible < data.campaign.length
+          });
+        }, 1500);
+      };
+      child = (
+        <InfiniteScroll
+          dataLength={dataItems.items.length}
+          next={fetchMoreData}
+          hasMore={dataItems.hasMore}
+          loader={<h4>Loading...</h4>}
+          scrollableTarget="scrollableDiv"
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          {data.campaign.slice(0, visible).map((campaign) => (
+            <Item key={campaign.id} data={campaign} />
+          ))}
+        </InfiniteScroll>
+      );
     }
   }
-  const showMoreItems = () => {
-    setVisible((prevValue) => {
-      if (data.campaign && data.campaign.length <= prevValue) {
-        setAllItem(true);
-        return;
-      } else {
-        prevValue + 6;
-      }
-    });
-  };
-  const loadMore =
-    position === 'home-page' ? (
-      <a
-        href="/search-coupon"
-        title="Load more..."
-        className={classes.loadMore}
-      >
-        Load more...
-      </a>
-    ) : allItem ? (
-      <a
-        href="#"
-        onClick={showMoreItems}
-        title="All Item Loaded"
-        className={classes.loadMore}
-      >
-        All Item Loaded
-      </a>
-    ) : (
-      <a
-        href="#"
-        onClick={showMoreItems}
-        title="Load more..."
-        className={classes.loadMore}
-      >
-        Load more...
-      </a>
-    );
+
   const subheading =
     position === 'home-page'
       ? t(
@@ -115,8 +115,6 @@ const List = (props) => {
       {/* {filters} */}
 
       <div className={classes.listWrap}>{child}</div>
-
-      <div className={classes.actionWrap}>{loadMore}</div>
     </div>
   );
 };
