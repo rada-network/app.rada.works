@@ -1,0 +1,72 @@
+.root {
+	@apply border border-gray-200 hover:border-violet-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch;
+}
+
+.rootDark {
+  composes: root;
+	@apply border-gray-800;
+}
+
+.itemHead {
+	@apply flex items-center;
+}
+
+.couponAmoun {
+	@apply inline-block text-2xl font-bold text-gray-800 mr-4;
+}
+
+.rootDark .couponAmoun {
+	@apply text-white;
+}
+
+.couponLabel {
+	@apply bg-green-100 flex items-center text-green-600 text-xs rounded-xl py-1 pl-2 pr-3;
+}
+
+.couponLabel svg {
+	@apply fill-current mr-1;
+}
+
+.itemHead button {
+	@apply ml-auto border border-violet-600 hover:bg-violet-600 hover:text-white hover:border-opacity-0 cursor-pointer rounded-md py-0.5 px-2 transition-all;
+}
+
+.itemBody {
+	@apply py-6;
+}
+
+.itemBody p {
+	@apply my-0;
+}
+
+.itemFoot {
+	@apply flex items-center justify-between border-t border-gray-200 pt-4 mt-auto;
+}
+
+.rootDark .itemFoot {
+	@apply border-t border-gray-800;
+}
+
+.chainWrap {
+	@apply flex items-center;
+}
+
+.bsc {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
+}
+
+.ethereum {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/ethereum.svg')] bg-cover;
+}
+
+.polygon {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/polygon.svg')] bg-cover;
+}
+
+.solana {
+  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
+}
+
+.getCoupon {
+	@apply bg-violet-600 hover:bg-violet-700 border border-violet-600 hover:border-violet-700 text-white hover:text-white py-1.5 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer;
+}

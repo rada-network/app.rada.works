@@ -3,7 +3,8 @@ import CreateLink from '../Campaign/createLink';
 const menuItems = new Map()
   .set('Home', '/')
   .set('How it works', '/how-it-works')
-  .set('Browse coupons', '/search-coupon')
+  .set('NFT Collections', '/nft-collections')
+  .set('Browse coupons', '/coupons')
   .set('Create Campaign', {
     path: '/create-campaign',
     component: CreateLink
