@@ -12,10 +12,13 @@ const CampaignDetailPage: NextPage = () => {
 
 export default CampaignDetailPage;
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps(props: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'campaign_details']))
+      ...(await serverSideTranslations(props.locale, [
+        'common',
+        'create_campaign'
+      ]))
       // Will be passed to the page component as props
     }
   };
