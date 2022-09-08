@@ -8,10 +8,13 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       slug
       title
       description
-      nft_collection_id {
-        id
-        contract_address
-        chain_name
+      nft_collection_ids {
+        nft_collection_id {
+          name
+          #                slug
+          contract_address
+          chain_name
+        }
       }
       discount_value
       store_url

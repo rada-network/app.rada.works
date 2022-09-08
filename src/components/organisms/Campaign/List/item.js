@@ -4,7 +4,10 @@ import slugify from 'slugify';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
-import { toHTML, subStrWords, ellipsify } from '../../../../utils/strUtils';
+import {
+  toHTML,
+  subStrWords /*, ellipsify*/
+} from '../../../../utils/strUtils';
 import Button from '../../../atoms/Button';
 import classes from './item.module.css';
 import { useTheme } from 'next-themes';
@@ -41,11 +44,11 @@ const Item = (props) => {
       </Button>
     ) : null;
 
-  const contractAdd = ellipsify({
-    str: data.nft_collection_id.contract_address,
-    start: 6,
-    end: 4
-  });
+  // const contractAdd = ellipsify({
+  //   str: data.nft_collection_id.contract_address,
+  //   start: 6,
+  //   end: 4
+  // });
   return (
     <div className={`${classes[rootClassName]}`}>
       <div className={classes.itemHead}>
@@ -77,16 +80,16 @@ const Item = (props) => {
       />
 
       <div className={classes.itemFoot}>
-        <div className={classes.chainWrap}>
-          <span
-            className={`${classes.chain} ${
-              classes[data.nft_collection_id.chain_name]
-            }`}
-          >
-            {data.nft_collection_id.chain_name}
-          </span>
-          <span className={classes.contractAdd}>{contractAdd}</span>
-        </div>
+        {/*<div className={classes.chainWrap}>*/}
+        {/*  <span*/}
+        {/*    className={`${classes.chain} ${*/}
+        {/*      classes[data.nft_collection_id.chain_name]*/}
+        {/*    }`}*/}
+        {/*  >*/}
+        {/*    {data.nft_collection_id.chain_name}*/}
+        {/*  </span>*/}
+        {/*  <span className={classes.contractAdd}>{contractAdd}</span>*/}
+        {/*</div>*/}
         <a
           onClick={viewDetails}
           title={t('Get Coupon')}

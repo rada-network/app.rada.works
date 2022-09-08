@@ -8,7 +8,7 @@ import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
-import { ellipsify } from '../../../../utils/strUtils';
+// import { ellipsify } from '../../../../utils/strUtils';
 
 const Details = (props) => {
   const { slug } = props;
@@ -159,20 +159,20 @@ const Details = (props) => {
                       </span>
                     </li>
                     <li className="flex items-center px-0 pt-0">
-                      <span
-                        className={`${classes.chain} ${
-                          classes[campaign.nft_collection_id.chain_name]
-                        }`}
-                      >
-                        {campaign.nft_collection_id.chain_name}
-                      </span>
-                      <span className={classes.contractAdd}>
-                        {ellipsify({
-                          str: campaign.nft_collection_id.contract_address,
-                          start: 6,
-                          end: 4
-                        })}
-                      </span>
+                      {/*<span*/}
+                      {/*  className={`${classes.chain} ${*/}
+                      {/*    classes[campaign.nft_collection_id.chain_name]*/}
+                      {/*  }`}*/}
+                      {/*>*/}
+                      {/*  {campaign.nft_collection_id.chain_name}*/}
+                      {/*</span>*/}
+                      {/*<span className={classes.contractAdd}>*/}
+                      {/*  {ellipsify({*/}
+                      {/*    str: campaign.nft_collection_id.contract_address,*/}
+                      {/*    start: 6,*/}
+                      {/*    end: 4*/}
+                      {/*  })}*/}
+                      {/*</span>*/}
                     </li>
                   </ul>
                 </div>

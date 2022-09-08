@@ -5,7 +5,7 @@ export const CREATE_CAMPAIGN_FUNC = gql`
   mutation CreateCampaignFunction(
     $title: String!
     $slug: String!
-    $nft_collection_id: Int!
+    $nft_collection_ids: [create_campaign_nft_collection_input]
     $nft_collection_name: String
     $description: String
     $discount_value: Int!
@@ -19,7 +19,7 @@ export const CREATE_CAMPAIGN_FUNC = gql`
       data: {
         title: $title
         slug: $slug
-        nft_collection_id: $nft_collection_id
+        nft_collection_ids: $nft_collection_ids
         nft_collection_name: $nft_collection_name
         description: $description
         discount_value: $discount_value
@@ -42,7 +42,7 @@ export const EDIT_CAMPAIGN_FUNC = gql`
     $id: ID!
     $title: String!
     $slug: String!
-    $nft_collection_id: Int!
+    $nft_collection_ids: [update_campaign_nft_collection_input]
     $nft_collection_name: String
     $description: String
     $discount_value: Int!
@@ -57,7 +57,7 @@ export const EDIT_CAMPAIGN_FUNC = gql`
       data: {
         title: $title
         slug: $slug
-        nft_collection_id: $nft_collection_id
+        nft_collection_ids: $nft_collection_ids
         nft_collection_name: $nft_collection_name
         description: $description
         discount_value: $discount_value
@@ -80,11 +80,6 @@ export const LOAD_CAMPAIGN_BY_ID = gql`
       id
       title
       slug
-      nft_collection_id {
-        id
-        name
-      }
-      nft_collection_name
       description
       discount_value
       coupon_codes
