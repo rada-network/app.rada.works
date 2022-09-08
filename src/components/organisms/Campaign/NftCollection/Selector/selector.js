@@ -1,5 +1,5 @@
 import React, { useState, useMemo, Fragment } from 'react';
-import { number, func, shape, string } from 'prop-types';
+import { func, shape, string, array } from 'prop-types';
 import classes from './selector.module.css';
 import { useTranslation } from 'next-i18next';
 import AsyncSelect from 'react-select/async';
@@ -75,6 +75,8 @@ const Selector = (props) => {
         <AsyncSelect
           placeholder={t('Select one NFT collection')}
           cacheOptions
+          closeMenuOnSelect={false}
+          isMulti
           defaultValue={selectedOption}
           defaultInputValue={state.inputValue}
           defaultOptions={options}
@@ -95,10 +97,7 @@ Selector.propTypes = {
   classes: shape({
     root: string
   }),
-  selectedOption: shape({
-    label: string,
-    value: number
-  }),
+  selectedOption: array,
   handleChange: func
 };
 

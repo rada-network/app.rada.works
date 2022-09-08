@@ -71,7 +71,12 @@ const CampaignForm = (props) => {
     saveCampaignResult
   } = useForm({ campaignId });
 
-  const [nftCollectionOption, setNFTCollectionOption] = useState({});
+  const selectedNftCollectionOptions = initialValues.nft_collection_opt_selected
+    ? JSON.parse(initialValues.nft_collection_opt_selected)
+    : [];
+  const [nftCollectionOption, setNFTCollectionOption] = useState(
+    selectedNftCollectionOptions
+  );
 
   useEffect(() => {
     if (saveCampaignResult) {
@@ -114,8 +119,7 @@ const CampaignForm = (props) => {
           initialValues={initialValues}
           onSubmit={() =>
             handleSaveCampaign({
-              nft_collection_id: parseInt(nftCollectionOption.value),
-              nft_collection_name: nftCollectionOption.label,
+              nftCollectionOption,
               description: detailsEditorRef.current.getContent(),
               date_start: startDate,
               date_end: endDate,
@@ -126,14 +130,7 @@ const CampaignForm = (props) => {
           <div className={`${classes.fields}`}>
             <Field id="campaign-nft-collection" label={t('NFT Collection')}>
               <Selector
-                selectedOption={{
-                  value: initialValues.nft_collection_id
-                    ? parseInt(initialValues.nft_collection_id.id)
-                    : 0,
-                  label: initialValues.nft_collection_id
-                    ? initialValues.nft_collection_id.name
-                    : ''
-                }}
+                selectedOption={selectedNftCollectionOptions}
                 handleChange={setNFTCollectionOption}
               />
             </Field>

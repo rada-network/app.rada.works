@@ -61,6 +61,13 @@ export default (props) => {
   const handleSaveCampaign = useCallback(
     async (submittedValues) => {
       try {
+        //we saving this to using in the edit campaign context
+        const nft_collection_opt_selected = JSON.stringify(
+          submittedValues.nftCollectionOption
+        );
+        submittedValues.nft_collection_opt_selected =
+          nft_collection_opt_selected;
+
         //saving submitted data to local storage
         storage.setItem('submittingCampaign', submittedValues, 3600);
 
@@ -68,9 +75,21 @@ export default (props) => {
         if (submittedValues.show_on_rada === undefined)
           submittedValues.show_on_rada = false;
 
+        //build nft_collection_ids
+        const nft_collection_ids = [];
+        if (submittedValues.nftCollectionOption.length) {
+          submittedValues.nftCollectionOption.map(function (option) {
+            nft_collection_ids.push({
+              nft_collection_id: { id: parseInt(option.value) }
+            });
+          });
+        }
+
         await saveCampaignInformation({
           variables: {
             id: campaignId ? parseInt(campaignId) : null,
+            nft_collection_ids,
+            nft_collection_opt_selected,
             ...submittedValues
           }
         }).then(function (rs) {
