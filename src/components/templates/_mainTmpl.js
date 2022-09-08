@@ -9,7 +9,7 @@ const MainTmpl = (props) => {
   return (
     <Fragment>
       <Header />
-      <main className="mx-auto max-w-screen-xl py-12">{children}</main>
+      <main>{children}</main>
       <Footer />
     </Fragment>
   );

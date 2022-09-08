@@ -5,7 +5,6 @@
 }
 
 .pageWrap {
-  @apply flex items-stretch;
 }
 
 .pageTitle {
@@ -13,15 +12,11 @@
 }
 
 .pageContent {
-  @apply border-r border-gray-200 w-full md:w-2/3 md:pr-14;
+  @apply mx-auto max-w-screen-xl py-12;
 }
 
 .rootDark .pageContent {
   @apply border-r border-gray-800;
-}
-
-.pageSidebar {
-  @apply w-full md:w-1/3 md:pl-14;
 }
 
 .rootDark .pageTitle {
@@ -49,18 +44,22 @@
   @apply text-gray-500 mr-2;
 }
 
+/* Binace */
 .bsc {
   @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
 }
 
+/* Ethereum */
 .ethereum {
   @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/ethereum.svg')] bg-cover;
 }
 
+/* Polygon */
 .polygon {
   @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/polygon.svg')] bg-cover;
 }
 
+/* Solana */
 .solana {
   @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
 }
