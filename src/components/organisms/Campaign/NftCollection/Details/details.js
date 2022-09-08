@@ -95,9 +95,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-1.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #1
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #1</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -121,9 +119,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-2.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #2
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #2</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -147,9 +143,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-3.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #3
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #3</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -173,9 +167,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-4.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #4
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #4</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -199,9 +191,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-5.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #5
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #5</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -225,9 +215,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-6.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #6
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #6</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -251,9 +239,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-7.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #7
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #7</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -277,9 +263,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-8.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #8
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #8</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -303,9 +287,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-9.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #9
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #9</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -329,9 +311,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-10.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #10
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #10</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -355,9 +335,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-11.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #11
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #11</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">
@@ -381,9 +359,7 @@ const Details = (props) => {
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-12.png" alt="Quark" />
                 </div>
-                <h3 className="text-lg my-0 px-4 uppercase mb-2">
-                  Quark Ape Club #12
-                </h3>
+                <h3 className="text-lg my-0 px-4 mb-2">Quark Ape Club #12</h3>
 
                 <div className="flex items-center justify-between px-4">
                   <div className="flex items-center text-sm">

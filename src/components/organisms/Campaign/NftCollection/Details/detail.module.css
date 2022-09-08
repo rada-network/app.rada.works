@@ -12,7 +12,7 @@
 }
 
 .pageContent {
-  @apply mx-auto max-w-screen-xl py-12;
+  @apply mx-auto max-w-screen-xl py-12 px-6;
 }
 
 .rootDark .pageContent {
