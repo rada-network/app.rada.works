@@ -17,31 +17,6 @@ export default (props) => {
     }
   });
 
-  const getBSCTokenNftTx = (contractAdd, accountAdd) => {
-    console.log('getBSCTokenNftTx()');
-    console.log(contractAdd, accountAdd);
-
-    let rs = null;
-    if (contractAdd && accountAdd) {
-      //https://docs.bscscan.com/api-endpoints/accounts#get-a-list-of-bep-721-token-transfer-events-by-address
-      //@todo: move to env
-      const BSC_API_KEY = 'SFH36BJT75CQXC6JB25NRK1H5HPA2JC5NR';
-      const API_ENDPOINT_URL = 'https://api-testnet.bscscan.com/api';
-
-      let URL = `${API_ENDPOINT_URL}?module=account&action=tokentx`;
-      URL += `&contractaddress=${contractAdd}&&address=${accountAdd}`;
-      URL += `&page=1&offset=5&startblock=0&endblock=999999999&sort=asc`;
-      URL += `&apikey=${BSC_API_KEY}`;
-      rs = fetch(URL)
-        .then((response) => response.json())
-        .then((data) => {
-          return data.result;
-        });
-    }
-
-    return rs;
-  };
-
   const verifyNFTOwnership = async (chainName, tokenAddress, address) => {
     if (!address.includes('0x')) {
       return false;
@@ -77,17 +52,6 @@ export default (props) => {
     // verify nft ownership
     const { chainName, contractAdd, accountAdd, isCampaignOwner } = props;
     let rs = null;
-
-    //Checking from explorer channel
-    // let txData = [];
-    // if (chainName === 'bsc') {
-    //   txData = await getBSCTokenNftTx(contractAdd, accountAdd);
-    // }
-    // else if (chainName === 'ethereum') {
-    //
-    // } else if (chainName === 'polygon') {
-    //
-    // }
 
     //Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
     const isNFTOwnership = await verifyNFTOwnership(
