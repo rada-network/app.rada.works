@@ -1,5 +1,5 @@
 .root {
-	@apply border border-gray-200 hover:border-violet-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch;
+	@apply border border-gray-200 hover:border-blue-600 rounded-lg hover:shadow-lg transition-shadow flex flex-col items-stretch hover:cursor-pointer;
 }
 
 .rootDark {
@@ -52,6 +52,9 @@
 }
 
 .bsc {
+	display: block;
+	border: 2px solid #c00;
+	
   @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
 }
 
@@ -65,8 +68,4 @@
 
 .solana {
   @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
-}
-
-.getCoupon {
-	@apply bg-violet-600 hover:bg-violet-700 border border-violet-600 hover:border-violet-700 text-white hover:text-white py-1.5 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer;
 }

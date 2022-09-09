@@ -77,7 +77,7 @@ const List = (props) => {
   );
 
   return (
-    <div className={`${classes.root}`}>
+    <div className="py-24 mx-auto max-w-screen-xl relative">
       <div className={classes.headingWrap}>{heading}</div>
 
       {/* {filters} */}

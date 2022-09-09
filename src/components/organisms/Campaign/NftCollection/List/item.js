@@ -31,9 +31,35 @@ const Item = (props) => {
   });
   return (
     <div className={`${classes[rootClassName]}`} onClick={viewDetails}>
-      <div>Chain: {data.chain_name}</div>
-      <div>Contract: {contractAdd}</div>
-      ...Sub info of a NFT Collection here
+      <div className="overflow-hidden rounded-t-lg -ml-px -mr-px -mt-px max-h-52">
+        <img
+          src="collection/quark/quark-3.png"
+          alt="Quark 1"
+          className="w-full"
+        />
+      </div>
+
+      <div className="flex items-center justify-center flex-col px-4 -mt-10">
+        <div className="border-4 border-white shadow-md w-20 h-20 overflow-hidden rounded-full">
+          <img src="/collection/collection-avt.png" alt="Connection" />
+        </div>
+
+        <div className="pt-4 text-center">
+          <h3 className="mt-0 mb-2 font-semilbold text-lg text-gray-800 leading-none">
+            Collection name
+          </h3>
+          <div className="m-0 flex items-center">
+            <span className="bg-gray-200 inline-block h-6 w-6 rounded-full mr-2" />
+            {contractAdd}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 text-center">
+        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+        fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+        sequi nesciunt.
+      </div>
     </div>
   );
 };
