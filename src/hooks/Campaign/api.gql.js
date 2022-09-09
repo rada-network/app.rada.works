@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-// import { initializeApollo } from '../../../src/libs/SystemApolloClient.js';
 
 export const CREATE_CAMPAIGN_FUNC = gql`
   mutation CreateCampaignFunction(

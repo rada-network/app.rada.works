@@ -2,21 +2,17 @@ import Router from 'next/router';
 import { useCallback, useRef, useMemo } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import slugify from 'slugify';
-import mergeOperations from '../../utils/shallowMerge';
-import DEFAULT_OPERATIONS from './api.gql';
+import API from './api.gql';
 import BrowserPersistence from '../../utils/simplePersistence';
 
 export default (props) => {
-  const { operations, campaignId } = props;
+  const { campaignId, afterSavedCampaign } = props;
 
-  const { addMutation, editMutation, loadCampaignByIdQuery } = mergeOperations(
-    DEFAULT_OPERATIONS,
-    operations
-  );
+  const { addMutation, editMutation, loadCampaignByIdQuery } = API;
 
   const storage = new BrowserPersistence();
-  const submittingCampaign = storage.getItem('submittingCampaign');
-  let initialValues = submittingCampaign ? submittingCampaign : {};
+  const currentCampaign = storage.getItem('currentCampaign');
+  let initialValues = currentCampaign ? currentCampaign : null;
 
   //load campaign information for initial values on form
   const {
@@ -24,9 +20,7 @@ export default (props) => {
     error: campaignLoadError,
     data: campaignLoaded
   } = useQuery(loadCampaignByIdQuery, {
-    // fetchPolicy: 'no-cache',
-    fetchPolicy: 'cache-and-network',
-    nextFetchPolicy: 'cache-first',
+    fetchPolicy: 'no-cache',
     skip: !campaignId,
     variables: {
       id: campaignId
@@ -35,13 +29,15 @@ export default (props) => {
   initialValues = useMemo(() => {
     return !campaignLoading && campaignLoaded && campaignLoaded.campaign_by_id
       ? campaignLoaded.campaign_by_id
-      : {};
+      : null;
   }, [campaignLoaded]);
 
   const formApiRef = useRef(initialValues);
   const setFormApi = useCallback((api) => (formApiRef.current = api), []);
   const detailsEditorRef = useRef(
-    initialValues.description ? initialValues.description : null
+    initialValues && initialValues.description
+      ? initialValues.description
+      : null
   );
 
   // function to handle saving campaign information
@@ -69,7 +65,7 @@ export default (props) => {
           nft_collection_opt_selected;
 
         //saving submitted data to local storage
-        storage.setItem('submittingCampaign', submittedValues, 3600);
+        storage.setItem('currentCampaign', submittedValues, 3600);
 
         submittedValues.slug = slugify(submittedValues.title).toLowerCase();
         if (submittedValues.show_on_rada === undefined)
@@ -92,28 +88,31 @@ export default (props) => {
             nft_collection_opt_selected,
             ...submittedValues
           }
-        }).then(function (rs) {
-          //Reset form fields state
-          if (formApiRef.current) {
-            formApiRef.current.reset();
-          }
-          storage.removeItem('submittingCampaign');
         });
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(error);
         }
       }
+
+      if (afterSavedCampaign) {
+        afterSavedCampaign();
+      }
+
+      //Reset form fields state
+      if (formApiRef.current) {
+        formApiRef.current.reset();
+      }
+      if (detailsEditorRef.current) {
+        detailsEditorRef.current = null;
+      }
+      storage.removeItem('currentCampaign');
     },
 
     [saveCampaignInformation, storage]
   );
 
   const handleCancel = useCallback(() => {
-    Router.push('/');
-  }, []);
-
-  const handleFinished = useCallback(() => {
     Router.push('/');
   }, []);
 
@@ -133,8 +132,8 @@ export default (props) => {
     initialValues,
     handleSaveCampaign,
     handleCancel,
-    handleFinished,
-    isBusy: campaignLoading || saveCampaignLoading,
+    isBusy:
+      campaignLoading || (campaignId && !initialValues) || saveCampaignLoading,
     errors,
     saveCampaignResult
   };

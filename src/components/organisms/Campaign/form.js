@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { shape, string } from 'prop-types';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
@@ -50,62 +50,54 @@ const CampaignForm = (props) => {
 
   const discountUnit = <Percent />;
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-  const onDateChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
+  const afterSavedCampaign = useCallback(() => {
+    toast.success(
+      t(
+        "You have just saved campaign's information successfully. We will consider to approve your campaign as soon as possible."
+      ) /*,
+      {
+        onClose: () => {}
+      }*/
+    );
+  }, [toast, t]);
 
   const {
     errors,
     handleSaveCampaign,
     handleCancel,
-    handleFinished,
     isBusy,
     setFormApi,
     formApiRef,
     detailsEditorRef,
-    initialValues,
-    saveCampaignResult
-  } = useForm({ campaignId });
+    initialValues
+  } = useForm({ campaignId, afterSavedCampaign });
 
-  const selectedNftCollectionOptions = initialValues.nft_collection_opt_selected
-    ? JSON.parse(initialValues.nft_collection_opt_selected)
-    : [];
+  const selectedNftCollectionOptions =
+    initialValues && initialValues.nft_collection_opt_selected
+      ? JSON.parse(initialValues.nft_collection_opt_selected)
+      : [];
   const [nftCollectionOption, setNFTCollectionOption] = useState(
     selectedNftCollectionOptions
   );
 
-  useEffect(() => {
-    if (saveCampaignResult) {
-      let savedObj = null;
-      if (saveCampaignResult.update_campaign_item) {
-        savedObj = saveCampaignResult.update_campaign_item;
-        saveCampaignResult.update_campaign_item = null;
-      } else if (saveCampaignResult.create_campaign_item) {
-        savedObj = saveCampaignResult.create_campaign_item;
-        saveCampaignResult.create_campaign_item = null;
-      }
-      if (savedObj && savedObj.id) {
-        if (!isBusy) {
-          toast.success(
-            t(
-              "You have just saved campaign's information successfully. We will consider to approve your campaign as soon as possible."
-            ),
-            {
-              onClose: () => {
-                handleFinished();
-              }
-            }
-          );
-        }
-      }
-    }
-
-    // return () => {};
-  }, [saveCampaignResult]);
+  const initDates = {
+    start_date:
+      initialValues && initialValues.date_start
+        ? new Date(initialValues.date_start)
+        : null,
+    end_date:
+      initialValues && initialValues.date_end
+        ? new Date(initialValues.date_end)
+        : null
+  };
+  const [activeDates, setActiveDates] = useState(initDates);
+  const onDateChange = (dates) => {
+    const [start, end] = dates;
+    setActiveDates({
+      start_date: start,
+      end_date: end
+    });
+  };
 
   let child = null;
   if (!isBusy) {
@@ -121,8 +113,8 @@ const CampaignForm = (props) => {
             handleSaveCampaign({
               nftCollectionOption,
               description: detailsEditorRef.current.getContent(),
-              date_start: startDate,
-              date_end: endDate,
+              date_start: activeDates.start_date,
+              date_end: activeDates.end_date,
               ...formApiRef.current.getValues()
             })
           }
@@ -169,7 +161,9 @@ const CampaignForm = (props) => {
                 }
                 onInit={(evt, editor) => (detailsEditorRef.current = editor)}
                 initialValue={
-                  initialValues.description ? initialValues.description : ''
+                  initialValues && initialValues.description
+                    ? initialValues.description
+                    : ''
                 }
                 init={tinyInit}
               />
@@ -210,10 +204,9 @@ const CampaignForm = (props) => {
               label={t('Active dates')}
             >
               <DatePicker
-                selected={startDate}
                 onChange={onDateChange}
-                startDate={startDate}
-                endDate={endDate}
+                startDate={activeDates.start_date}
+                endDate={activeDates.end_date}
                 selectsRange
                 isClearable={true}
                 dateFormatCalendar={'MMM yyyy'}
