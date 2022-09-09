@@ -13,9 +13,19 @@ export default (props) => {
     limit = 6;
   } else if (position === 'related') {
     filter.id = { _neq: parseInt(currentCampaign.id) };
-    // filter.nft_collection_id = {
-    //   id: { _eq: parseInt(currentCampaign.nft_collection_id.id) }
-    // };
+    // filter by same nft collections
+    const nftCollectionIds = [];
+    if (currentCampaign.nft_collection_ids.length) {
+      currentCampaign.nft_collection_ids.map(function (item) {
+        nftCollectionIds.push(parseInt(item.nft_collection_id.id));
+      });
+    }
+    //coming soon
+    /*if (nftCollectionIds.length) {
+      filter.nft_collection_ids = {
+        id: { _in: nftCollectionIds }
+      };
+    }*/
     limit = 5;
   }
 
