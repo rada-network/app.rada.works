@@ -17,6 +17,7 @@ export default (props) => {
     }
   });
 
+  // Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
   const verifyNFTOwnership = async (chainName, tokenAddress, address) => {
     if (!address.includes('0x')) {
       return false;
@@ -43,22 +44,32 @@ export default (props) => {
       chain
     });
 
-    console.log('verifyNFTOwnership:', response.result);
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('verifyNFTOwnership:', response.result);
+    }
 
     return response.result.length ? true : false;
   };
 
   const handleViewCoupons = useCallback(async (props) => {
     // verify nft ownership
-    const { chainName, contractAdd, accountAdd, isCampaignOwner } = props;
-    let rs = null;
+    const { nftCollections, accountAdd, isCampaignOwner } = props;
 
-    //Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
-    const isNFTOwnership = await verifyNFTOwnership(
-      chainName,
-      contractAdd,
-      accountAdd
-    );
+    let rs = null;
+    let isNFTOwnership = false;
+    if (nftCollections.length) {
+      for (let i = 0; i < nftCollections.length; i++) {
+        const nftCollection = nftCollections[i].nft_collection_id;
+        const chainName = nftCollection.chain_name;
+        const contractAdd = nftCollection.contract_address;
+        isNFTOwnership = await verifyNFTOwnership(
+          chainName,
+          contractAdd,
+          accountAdd
+        );
+        if (isNFTOwnership) break;
+      }
+    }
 
     if (isNFTOwnership || isCampaignOwner) {
       rs = await getCouponCodes(slug);
