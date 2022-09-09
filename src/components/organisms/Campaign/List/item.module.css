@@ -48,7 +48,7 @@
 }
 
 /* All Chains */
-.chainWrap {
+.nftCollectionWrap {
 	@apply flex items-center;
 }
 

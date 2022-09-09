@@ -4,13 +4,11 @@ import slugify from 'slugify';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
-import {
-  toHTML,
-  subStrWords /*, ellipsify*/
-} from '../../../../utils/strUtils';
+import { toHTML, subStrWords, ellipsify } from '../../../../utils/strUtils';
 import Button from '../../../atoms/Button';
 import classes from './item.module.css';
 import { useTheme } from 'next-themes';
+import TextLink from '../../../atoms/TextLink';
 
 const DESC_MAX_LENGTH = 200;
 
@@ -44,11 +42,38 @@ const Item = (props) => {
       </Button>
     ) : null;
 
-  // const contractAdd = ellipsify({
-  //   str: data.nft_collection_id.contract_address,
-  //   start: 6,
-  //   end: 4
-  // });
+  //build NFT collection information
+  const nftCollectionInfo = data.nft_collection_ids.length
+    ? data.nft_collection_ids.map((nftCollection, index) => (
+        <div key={index} className={`${classes.nftCollectionWrap}`}>
+          <span
+            className={`${classes.chain} ${
+              classes[nftCollection.nft_collection_id.chain_name]
+            }`}
+          >
+            {nftCollection.nft_collection_id.chain_name}
+          </span>
+          <TextLink
+            className={classes.nftCollectionLink}
+            href={`/nft-collection-details/${nftCollection.nft_collection_id.slug}`}
+          >
+            <span className={`${classes.collectionName}`}>
+              {nftCollection.nft_collection_id.name}
+            </span>{' '}
+            (
+            <span className={classes.contractAdd}>
+              {ellipsify({
+                str: nftCollection.nft_collection_id.contract_address,
+                start: 6,
+                end: 4
+              })}
+            </span>{' '}
+            )
+          </TextLink>
+        </div>
+      ))
+    : null;
+
   return (
     <div className={`${classes[rootClassName]}`}>
       <div className={classes.itemHead}>
@@ -80,16 +105,7 @@ const Item = (props) => {
       />
 
       <div className={classes.itemFoot}>
-        {/*<div className={classes.chainWrap}>*/}
-        {/*  <span*/}
-        {/*    className={`${classes.chain} ${*/}
-        {/*      classes[data.nft_collection_id.chain_name]*/}
-        {/*    }`}*/}
-        {/*  >*/}
-        {/*    {data.nft_collection_id.chain_name}*/}
-        {/*  </span>*/}
-        {/*  <span className={classes.contractAdd}>{contractAdd}</span>*/}
-        {/*</div>*/}
+        {nftCollectionInfo}
         <a
           onClick={viewDetails}
           title={t('Get Coupon')}

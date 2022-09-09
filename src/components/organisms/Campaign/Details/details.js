@@ -3,12 +3,13 @@ import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
 import Moment from 'moment';
 import Button from '../../../atoms/Button';
+import TextLink from '../../../atoms/TextLink';
 import Related from '../Related';
 import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
-// import { ellipsify } from '../../../../utils/strUtils';
+import { ellipsify } from '../../../../utils/strUtils';
 
 const Details = (props) => {
   const { slug } = props;
@@ -36,12 +37,10 @@ const Details = (props) => {
     const couponContainer = document.getElementById('coupon-codes');
     if (!couponContainer.innerText.length) {
       const codes = await handleViewCoupons({
-        chainName: campaign.nft_collection_id.chain_name,
-        contractAdd: campaign.nft_collection_id.contract_address,
+        nftCollections: campaign.nft_collection_ids,
         accountAdd: session.user.email,
         isCampaignOwner: session.id == campaign.user_created.id ? true : false
       });
-      console.log('codes:', codes);
 
       const couponCodes = document.createElement('span');
       couponCodes.className = classes.couponCodes;
@@ -66,6 +65,38 @@ const Details = (props) => {
   } else {
     if (data.campaign) {
       const campaign = data.campaign[0];
+
+      //build NFT collection information
+      const nftCollectionInfo = campaign.nft_collection_ids.length
+        ? campaign.nft_collection_ids.map((nftCollection, index) => (
+            <div key={index} className={`${classes.nftCollectionWrap}`}>
+              <span
+                className={`${classes.chain} ${
+                  classes[nftCollection.nft_collection_id.chain_name]
+                }`}
+              >
+                {nftCollection.nft_collection_id.chain_name}
+              </span>
+              <TextLink
+                className={classes.nftCollectionLink}
+                href={`/nft-collection-details/${nftCollection.nft_collection_id.slug}`}
+              >
+                <span className={`${classes.collectionName}`}>
+                  {nftCollection.nft_collection_id.name}
+                </span>{' '}
+                (
+                <span className={classes.contractAdd}>
+                  {ellipsify({
+                    str: nftCollection.nft_collection_id.contract_address,
+                    start: 6,
+                    end: 4
+                  })}
+                </span>{' '}
+                )
+              </TextLink>
+            </div>
+          ))
+        : null;
 
       let viewCouponCodesArea = null;
       if (status === 'loading') {
@@ -159,20 +190,7 @@ const Details = (props) => {
                       </span>
                     </li>
                     <li className="flex items-center px-0 pt-0">
-                      {/*<span*/}
-                      {/*  className={`${classes.chain} ${*/}
-                      {/*    classes[campaign.nft_collection_id.chain_name]*/}
-                      {/*  }`}*/}
-                      {/*>*/}
-                      {/*  {campaign.nft_collection_id.chain_name}*/}
-                      {/*</span>*/}
-                      {/*<span className={classes.contractAdd}>*/}
-                      {/*  {ellipsify({*/}
-                      {/*    str: campaign.nft_collection_id.contract_address,*/}
-                      {/*    start: 6,*/}
-                      {/*    end: 4*/}
-                      {/*  })}*/}
-                      {/*</span>*/}
+                      {nftCollectionInfo}
                     </li>
                   </ul>
                 </div>

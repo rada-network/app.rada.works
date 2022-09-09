@@ -95,7 +95,7 @@ const List = (props) => {
     </Heading>
   );
 
-  const filters = (
+  /*const filters = (
     <div className={classes.filter}>
       <Form className={classes.filterForm}>
         <Select
@@ -107,13 +107,13 @@ const List = (props) => {
         />
       </Form>
     </div>
-  );
+  );*/
 
   return (
     <div className={`${classes.root}`}>
       <div className={classes.headingWrap}>{heading}</div>
 
-      {filters}
+      {/*{filters}*/}
 
       {child}
     </div>

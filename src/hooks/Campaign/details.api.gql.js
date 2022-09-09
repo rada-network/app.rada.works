@@ -11,7 +11,7 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       nft_collection_ids {
         nft_collection_id {
           name
-          #                slug
+          slug
           contract_address
           chain_name
         }
@@ -42,7 +42,6 @@ export const getCouponCodes = async (slug) => {
       query: GET_COUPON_CODES_BY_SLUG,
       variables: { slug },
       fetchPolicy: 'no-cache'
-      // nextFetchPolicy: 'cache-first'
     });
     if (data.campaign && data.campaign[0]) {
       rs = data.campaign[0].coupon_codes;
