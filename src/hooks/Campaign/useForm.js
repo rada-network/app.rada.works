@@ -59,7 +59,7 @@ export default (props) => {
       try {
         //we saving this to using in the edit campaign context
         const nft_collection_opt_selected = JSON.stringify(
-          submittedValues.nftCollectionOption
+          submittedValues.nftCollections
         );
         submittedValues.nft_collection_opt_selected =
           nft_collection_opt_selected;
@@ -73,8 +73,8 @@ export default (props) => {
 
         //build nft_collection_ids
         const nft_collection_ids = [];
-        if (submittedValues.nftCollectionOption.length) {
-          submittedValues.nftCollectionOption.map(function (option) {
+        if (submittedValues.nftCollections.length) {
+          submittedValues.nftCollections.map(function (option) {
             nft_collection_ids.push({
               nft_collection_id: { id: parseInt(option.value) }
             });

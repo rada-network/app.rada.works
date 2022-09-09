@@ -1,4 +1,5 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useState, useEffect } from 'react';
+import Router from 'next/router';
 import { shape, string } from 'prop-types';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
@@ -54,10 +55,12 @@ const CampaignForm = (props) => {
     toast.success(
       t(
         "You have just saved campaign's information successfully. We will consider to approve your campaign as soon as possible."
-      ) /*,
+      ),
       {
-        onClose: () => {}
-      }*/
+        onClose: () => {
+          Router.push('/');
+        }
+      }
     );
   }, [toast, t]);
 
@@ -72,25 +75,8 @@ const CampaignForm = (props) => {
     initialValues
   } = useForm({ campaignId, afterSavedCampaign });
 
-  const selectedNftCollectionOptions =
-    initialValues && initialValues.nft_collection_opt_selected
-      ? JSON.parse(initialValues.nft_collection_opt_selected)
-      : [];
-  const [nftCollectionOption, setNFTCollectionOption] = useState(
-    selectedNftCollectionOptions
-  );
-
-  const initDates = {
-    start_date:
-      initialValues && initialValues.date_start
-        ? new Date(initialValues.date_start)
-        : null,
-    end_date:
-      initialValues && initialValues.date_end
-        ? new Date(initialValues.date_end)
-        : null
-  };
-  const [activeDates, setActiveDates] = useState(initDates);
+  const [nftCollections, setNftCollections] = useState([]);
+  const [activeDates, setActiveDates] = useState({});
   const onDateChange = (dates) => {
     const [start, end] = dates;
     setActiveDates({
@@ -98,6 +84,20 @@ const CampaignForm = (props) => {
       end_date: end
     });
   };
+
+  useEffect(() => {
+    const initDates = {
+      start_date:
+        initialValues && initialValues.date_start
+          ? new Date(initialValues.date_start)
+          : null,
+      end_date:
+        initialValues && initialValues.date_end
+          ? new Date(initialValues.date_end)
+          : null
+    };
+    setActiveDates(initDates);
+  }, [initialValues]);
 
   let child = null;
   if (!isBusy) {
@@ -111,7 +111,7 @@ const CampaignForm = (props) => {
           initialValues={initialValues}
           onSubmit={() =>
             handleSaveCampaign({
-              nftCollectionOption,
+              nftCollections,
               description: detailsEditorRef.current.getContent(),
               date_start: activeDates.start_date,
               date_end: activeDates.end_date,
@@ -122,8 +122,12 @@ const CampaignForm = (props) => {
           <div className={`${classes.fields}`}>
             <Field id="campaign-nft-collection" label={t('NFT Collection')}>
               <Selector
-                selectedOption={selectedNftCollectionOptions}
-                handleChange={setNFTCollectionOption}
+                selectedOption={
+                  initialValues && initialValues.nft_collection_opt_selected
+                    ? JSON.parse(initialValues.nft_collection_opt_selected)
+                    : []
+                }
+                handleChange={setNftCollections}
               />
             </Field>
             <Field id="campaign-title" label={t('Title')}>
