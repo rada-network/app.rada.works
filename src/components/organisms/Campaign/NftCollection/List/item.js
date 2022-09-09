@@ -49,7 +49,9 @@ const Item = (props) => {
             Collection name
           </h3>
           <div className="m-0 flex items-center">
-            <span className="bg-gray-200 inline-block h-6 w-6 rounded-full mr-2" />
+            <span
+              className={`${classes.bsc} bg-gray-50 inline-block h-7 w-7 rounded-full mr-2 bsc`}
+            />
             {contractAdd}
           </div>
         </div>
