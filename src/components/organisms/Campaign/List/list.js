@@ -113,9 +113,9 @@ const List = (props) => {
     <div className={`${classes.root}`}>
       <div className={classes.headingWrap}>{heading}</div>
 
-      {/* {filters} */}
+      {filters}
 
-      <div>{child}</div>
+      {child}
     </div>
   );
 };

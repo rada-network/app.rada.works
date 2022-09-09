@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useTheme } from 'next-themes';
 import Moment from 'moment';
 // import Related from '../Related'; coming soon
-import Subcribe from '../../Subcribe';
+// import Subcribe from '../../Subcribe';
 import { useDetails } from '../../../../../hooks/Campaign/NftCollection';
 import classes from './detail.module.css';
 
@@ -89,8 +89,211 @@ const Details = (props) => {
             {/*for examples to show sub info */}
             {/* <div>Chain: {nftCollection.chain_name}</div> */}
 
+            {/* NFT Intro */}
+
+            <div className="mb-10">
+              <p>A collection of 10K immutable NFTs, 0% royalties.</p>
+
+              <p>
+                Made to remind you of how fun things were when we were kids,
+                before growing up - let’s never stop having fun!
+              </p>
+
+              <p>
+                Community Twitter: https://twitter.com/ABC123Community Community
+                Discord: https://discord.com/invite/abccommunity
+              </p>
+            </div>
+
+            {/* // NFT Intro */}
+
+            <div className="border-b border-gray-200 text-center mb-10">
+              <h2 className="font-semibold text-gray-800 text-4xl">
+                All Deals
+              </h2>
+            </div>
+
+            {/* Coupon list */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                className="border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch hover:-mt-1 hover:mb-1 transition-all duration-500
+              "
+              >
+                <div className="flex items-center">
+                  <h3 className="text-2xl font-bold text-gray-800 mt-0 mb-0 mr-2">
+                    50% Off
+                  </h3>
+                  <span className="bg-green-100 flex items-center text-green-600 text-xs rounded-xl py-1 pl-2 pr-3">
+                    Verified
+                  </span>
+                </div>
+
+                <div className="py-6">
+                  Off 25% for Users Whom is owner of one NFT in the Popular
+                  Stars NFT collection on BSC chain In publishing and graphic
+                  design, Lorem ipsum is a placeholder text commonly
+                </div>
+
+                <div className="flex items-center justify-between border-t border-gray-200 pt-4 mt-auto">
+                  <a
+                    href="#"
+                    title="Get this deal"
+                    className="bg-blue-600 hover:bg-blue-700 text-white hover:text-white ml-auto py-2 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer"
+                  >
+                    Get this deal
+                  </a>
+                </div>
+              </div>{' '}
+              {/* // Coupon item */}
+              <div className="border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch hover:-mt-1 hover:mb-1 transition-all duration-500">
+                <div className="flex items-center">
+                  <h3 className="text-2xl font-bold text-gray-800 mt-0 mb-0 mr-2">
+                    50% Off
+                  </h3>
+                  <span className="bg-green-100 flex items-center text-green-600 text-xs rounded-xl py-1 pl-2 pr-3">
+                    Verified
+                  </span>
+                </div>
+
+                <div className="py-6">
+                  Off 25% for Users Whom is owner of one NFT in the Popular
+                  Stars NFT collection on BSC chain In publishing and graphic
+                  design, Lorem ipsum is a placeholder text commonly
+                </div>
+
+                <div className="flex items-center justify-between border-t border-gray-200 pt-4 mt-auto">
+                  <a
+                    href="#"
+                    title="Get this deal"
+                    className="bg-blue-600 hover:bg-blue-700 text-white hover:text-white ml-auto py-2 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer"
+                  >
+                    Get this deal
+                  </a>
+                </div>
+              </div>{' '}
+              {/* // Coupon item */}
+              <div className="border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch hover:-mt-1 hover:mb-1 transition-all duration-500">
+                <div className="flex items-center">
+                  <h3 className="text-2xl font-bold text-gray-800 mt-0 mb-0 mr-2">
+                    50% Off
+                  </h3>
+                  <span className="bg-green-100 flex items-center text-green-600 text-xs rounded-xl py-1 pl-2 pr-3">
+                    Verified
+                  </span>
+                </div>
+
+                <div className="py-6">
+                  Off 25% for Users Whom is owner of one NFT in the Popular
+                  Stars NFT collection on BSC chain In publishing and graphic
+                  design, Lorem ipsum is a placeholder text commonly
+                </div>
+
+                <div className="flex items-center justify-between border-t border-gray-200 pt-4 mt-auto">
+                  <a
+                    href="#"
+                    title="Get this deal"
+                    className="bg-blue-600 hover:bg-blue-700 text-white hover:text-white ml-auto py-2 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer"
+                  >
+                    Get this deal
+                  </a>
+                </div>
+              </div>{' '}
+              {/* // Coupon item */}
+              <div
+                className="border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch hover:-mt-1 hover:mb-1 transition-all duration-500
+              "
+              >
+                <div className="flex items-center">
+                  <h3 className="text-2xl font-bold text-gray-800 mt-0 mb-0 mr-2">
+                    50% Off
+                  </h3>
+                  <span className="bg-green-100 flex items-center text-green-600 text-xs rounded-xl py-1 pl-2 pr-3">
+                    Verified
+                  </span>
+                </div>
+
+                <div className="py-6">
+                  Off 25% for Users Whom is owner of one NFT in the Popular
+                  Stars NFT collection on BSC chain In publishing and graphic
+                  design, Lorem ipsum is a placeholder text commonly
+                </div>
+
+                <div className="flex items-center justify-between border-t border-gray-200 pt-4 mt-auto">
+                  <a
+                    href="#"
+                    title="Get this deal"
+                    className="bg-blue-600 hover:bg-blue-700 text-white hover:text-white ml-auto py-2 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer"
+                  >
+                    Get this deal
+                  </a>
+                </div>
+              </div>{' '}
+              {/* // Coupon item */}
+              <div
+                className="border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch hover:-mt-1 hover:mb-1 transition-all duration-500
+              "
+              >
+                <div className="flex items-center">
+                  <h3 className="text-2xl font-bold text-gray-800 mt-0 mb-0 mr-2">
+                    50% Off
+                  </h3>
+                  <span className="bg-green-100 flex items-center text-green-600 text-xs rounded-xl py-1 pl-2 pr-3">
+                    Verified
+                  </span>
+                </div>
+
+                <div className="py-6">
+                  Off 25% for Users Whom is owner of one NFT in the Popular
+                  Stars NFT collection on BSC chain In publishing and graphic
+                  design, Lorem ipsum is a placeholder text commonly
+                </div>
+
+                <div className="flex items-center justify-between border-t border-gray-200 pt-4 mt-auto">
+                  <a
+                    href="#"
+                    title="Get this deal"
+                    className="bg-blue-600 hover:bg-blue-700 text-white hover:text-white ml-auto py-2 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer"
+                  >
+                    Get this deal
+                  </a>
+                </div>
+              </div>{' '}
+              {/* // Coupon item */}
+              <div
+                className="border border-gray-200 hover:border-blue-600 p-4 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-stretch hover:-mt-1 hover:mb-1 transition-all duration-500
+              "
+              >
+                <div className="flex items-center">
+                  <h3 className="text-2xl font-bold text-gray-800 mt-0 mb-0 mr-2">
+                    50% Off
+                  </h3>
+                  <span className="bg-green-100 flex items-center text-green-600 text-xs rounded-xl py-1 pl-2 pr-3">
+                    Verified
+                  </span>
+                </div>
+
+                <div className="py-6">
+                  Off 25% for Users Whom is owner of one NFT in the Popular
+                  Stars NFT collection on BSC chain In publishing and graphic
+                  design, Lorem ipsum is a placeholder text commonly
+                </div>
+
+                <div className="flex items-center justify-between border-t border-gray-200 pt-4 mt-auto">
+                  <a
+                    href="#"
+                    title="Get this deal"
+                    className="bg-blue-600 hover:bg-blue-700 text-white hover:text-white ml-auto py-2 px-3 rounded-md font-medium transition-all duration-200 ease-in-out hover:cursor-pointer"
+                  >
+                    Get this deal
+                  </a>
+                </div>
+              </div>{' '}
+              {/* // Coupon item */}
+            </div>
+            {/* Coupon list */}
+
             {/* // NFT List */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white dark:bg-gray-800 border border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-lg shadow-sm hover:shadow-md pb-4 transition duration-300">
                 <div className="rounded-t-lg mb-4 -mt-px -ml-px -mr-px overflow-hidden">
                   <img src="/collection/quark/quark-1.png" alt="Quark" />
@@ -378,7 +581,7 @@ const Details = (props) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* // NFT List */}
           </div>
         </div>
