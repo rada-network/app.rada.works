@@ -52,10 +52,7 @@
 }
 
 .bsc {
-	display: block;
-	border: 2px solid #c00;
-	
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
+  @apply indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
 }
 
 .ethereum {
