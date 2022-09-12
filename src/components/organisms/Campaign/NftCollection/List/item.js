@@ -70,7 +70,9 @@ const Item = (props) => {
           </h3>
           <div className="m-0 flex items-center">
             <span
-              className={`${classes.bsc} bg-gray-50 inline-block h-7 w-7 rounded-full mr-2 bsc`}
+              className={`${
+                classes[data.chain_name]
+              } bg-gray-50 inline-block h-7 w-7 rounded-full mr-2 bsc`}
             />
             {ellipsify({
               str: data.contract_address,
