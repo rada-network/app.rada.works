@@ -7,6 +7,11 @@
 .pageWrap {
 }
 
+.coverWrap > span {
+  position: absolute !important;
+  @apply top-0 left-0 right-0 bottom-0;
+}
+
 .pageTitle {
   @apply text-5xl font-semibold text-gray-800 mt-0 mb-8;
 }

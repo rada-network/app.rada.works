@@ -58,9 +58,10 @@ const Details = (props) => {
       child = (
         <div className={`${classes[rootClassName]} ${classes.pageWrap}`}>
           <div
-            className={`bg-gray-100 dark:bg-gray-900 bg-[url('/collection/collection-cover.png')] bg-cover`}
+            className={`${classes.coverWrap} bg-gray-100 dark:bg-gray-900 bg-cover relative`}
           >
-            <div className="py-24 mx-auto max-w-screen-xl relative">
+            {coverImage}
+            <div className="py-32 mx-auto max-w-screen-xl relative">
               <h1 className="font-semibold text-center text-white text-5xl">
                 {nftCollection.name}
               </h1>
