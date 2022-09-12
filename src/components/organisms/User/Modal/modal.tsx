@@ -28,7 +28,7 @@ const Modal = (props: { connect: any }) => {
         onClick={() => setShowModal(true)}
         type="button"
         data-modal-toggle="crypto-modal"
-        className="bg-blue-600 hover:bg-blue-700 text-white focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700"
+        className="bg-blue-600 hover:bg-blue-700 text-white focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700"
       >
         Connect wallet
       </button>
@@ -36,7 +36,7 @@ const Modal = (props: { connect: any }) => {
         <div
           id="crypto-modal"
           tabIndex={-1}
-          className="bg-gray-900 bg-opacity-30 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex z-50"
+          className="bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-90 backdrop-blur-sm overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex z-50"
           aria-modal="true"
           onClick={() => setShowModal(false)}
           role="dialog"
