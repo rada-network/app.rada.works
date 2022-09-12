@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import classes from './header.module.css';
 import Logo from '../Logo';
@@ -6,22 +6,15 @@ import TextLink from '../../atoms/TextLink';
 import ConnectWallet from '../User/ConnectWallet';
 import { useTranslation } from 'next-i18next';
 import { DEFAULT_LINKS } from './sampleData';
+import useThemes from 'src/hooks/useThemes';
 import ToggleTheme from '../ToggleTheme';
-import { useTheme } from 'next-themes';
 
 const Header = (props) => {
   const { links } = props;
 
   const { t } = useTranslation('common');
 
-  const { resolvedTheme } = useTheme();
-  const [isDark, setIsDark] = useState();
-
-  useEffect(() => {
-    resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
-  }, [resolvedTheme]);
-
-  const rootClassName = isDark ? 'rootDark' : 'root';
+  const { rootClassName } = useThemes();
 
   const menuItems = Array.from(links, ([groupKey, linkProps]) => {
     const linkElements = Array.from(linkProps, ([text, pathInfo]) => {
