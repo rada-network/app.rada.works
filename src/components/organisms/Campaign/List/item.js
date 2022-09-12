@@ -97,15 +97,17 @@ const Item = (props) => {
         {editButton}
       </div>
 
-      <div
-        className={classes.itemBody}
-        dangerouslySetInnerHTML={toHTML(
-          subStrWords(data?.description, DESC_MAX_LENGTH)
-        )}
-      />
+      <div className={classes.itemBody}>
+        <div
+          dangerouslySetInnerHTML={toHTML(
+            subStrWords(data?.description, DESC_MAX_LENGTH)
+          )}
+        />
+
+        {nftCollectionInfo}
+      </div>
 
       <div className={classes.itemFoot}>
-        {nftCollectionInfo}
         <a
           onClick={viewDetails}
           title={t('Get Coupon')}

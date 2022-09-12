@@ -9,7 +9,7 @@ const HowItWorksTmp = (props: any) => {
   return (
     <Fragment>
       <MainTmpl>
-        <div>{children}</div>
+        <div className="mx-auto max-w-screen-xl py-12 px-6">{children}</div>
       </MainTmpl>
     </Fragment>
   );
