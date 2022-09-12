@@ -23,6 +23,9 @@ export const GET_NFT_COLLECTIONS = gql`
       category
       chain_name
       contract_address
+      cover_image
+      thumb_image
+      description
       nft_holder_number
       total_value
       discord

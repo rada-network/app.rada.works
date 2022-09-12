@@ -40,11 +40,11 @@ const List = (props) => {
     }
   }
 
-  const loadMoreBtn = (
-    <a title="Load more..." className={classes.loadMore}>
-      Load more...
-    </a>
-  );
+  // const loadMoreBtn = (
+  //   <a title="Load more..." className={classes.loadMore}>
+  //     Load more...
+  //   </a>
+  // );
 
   const subheading =
     position === 'home-page'
@@ -83,7 +83,7 @@ const List = (props) => {
       {/* {filters} */}
       <div className={classes.listWrap}>{child}</div>
 
-      <div className={classes.actionWrap}>{loadMoreBtn}</div>
+      {/*<div className={classes.actionWrap}>{loadMoreBtn}</div>*/}
     </div>
   );
 };
