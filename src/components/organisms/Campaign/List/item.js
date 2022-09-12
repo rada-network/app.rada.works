@@ -105,7 +105,7 @@ const Item = (props) => {
           )}
         />
 
-        {nftCollectionInfo}
+        <div className="chainWrap">{nftCollectionInfo}</div>
       </div>
 
       <div className={classes.itemFoot}>

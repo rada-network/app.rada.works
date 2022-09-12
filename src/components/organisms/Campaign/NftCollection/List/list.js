@@ -81,7 +81,6 @@ const List = (props) => {
       <div className={classes.headingWrap}>{heading}</div>
 
       {/* {filters} */}
-
       <div className={classes.listWrap}>{child}</div>
 
       <div className={classes.actionWrap}>{loadMoreBtn}</div>
