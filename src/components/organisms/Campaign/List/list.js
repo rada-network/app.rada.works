@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { shape, string } from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Form } from 'informed';
+// import { Form } from 'informed';
 import { useTranslation } from 'next-i18next';
 import { Heading } from '../../../atoms/Heading';
-import Select from '../../../atoms/Select';
+// import Select from '../../../atoms/Select';
 import classes from './list.module.css';
 import { useList } from '../../../../hooks/Campaign';
 import Item from './item';

@@ -25,8 +25,8 @@ export const GET_CAMPAIGNS = gql`
       store_logo_url
       store_url
       #      date_created
-      #      date_start
-      #      date_end
+      date_start
+      date_end
       nft_collection_ids {
         #          campaing_id {
         #              id

@@ -24,6 +24,7 @@ const Item = (props) => {
   const rootClassName = isDark ? 'rootDark' : 'root';
 
   const { t } = useTranslation('campaign_details');
+
   const viewDetails = () => {
     const path = `/campaign-details/${slugify(data.title).toLowerCase()}`;
     Router.push(path);

@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
 import { ellipsify } from '../../../../utils/strUtils';
+import Router from 'next/router';
 
 const Details = (props) => {
   const { slug } = props;
@@ -66,7 +67,7 @@ const Details = (props) => {
     if (data.campaign) {
       const campaign = data.campaign[0];
 
-      //build NFT collection information
+      // Build NFT collection information
       const nftCollectionInfo = campaign.nft_collection_ids.length
         ? campaign.nft_collection_ids.map((nftCollection, index) => (
             <div key={index} className={`${classes.nftCollectionWrap}`}>
@@ -130,6 +131,19 @@ const Details = (props) => {
           </div>
         );
       }
+
+      // Build edit button for owner of campaign
+      const handleEdit = () => {
+        const path = `/edit-campaign/${campaign.id}`;
+        Router.push(path);
+      };
+      const currentUserId = session && session.id ? session.id : null;
+      const editButton =
+        campaign.user_created.id === currentUserId ? (
+          <Button priority="normal" type="button" onPress={handleEdit}>
+            {t('Edit')}
+          </Button>
+        ) : null;
 
       child = (
         <div className={classes.pageWrap}>
@@ -195,6 +209,7 @@ const Details = (props) => {
                   </ul>
                 </div>
                 {viewCouponCodesArea}
+                {editButton}
               </div>
             </div>
 

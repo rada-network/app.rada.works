@@ -86,6 +86,15 @@ const CampaignForm = (props) => {
   };
 
   useEffect(() => {
+    const initNftCollections =
+      initialValues && initialValues.nft_collection_opt_selected
+        ? JSON.parse(initialValues.nft_collection_opt_selected)
+        : [];
+    if (initNftCollections.length) {
+      setNftCollections(initNftCollections);
+    }
+    console.log(initNftCollections);
+
     const initDates = {
       start_date:
         initialValues && initialValues.date_start

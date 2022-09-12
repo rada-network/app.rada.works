@@ -20,13 +20,12 @@ export default (props) => {
         nftCollectionIds.push(parseInt(item.nft_collection_id.id));
       });
     }
-    //coming soon
-    /*if (nftCollectionIds.length) {
+    if (nftCollectionIds.length) {
       filter.nft_collection_ids = {
-        id: { _in: nftCollectionIds }
+        nft_collection_id: { id: { _in: nftCollectionIds } }
       };
-    }*/
-    limit = 5;
+    }
+    limit = 10;
   }
 
   const { getCampaigns } = API;
