@@ -3,7 +3,6 @@ import Router from 'next/router';
 import { shape, string } from 'prop-types';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
-import { useSession } from 'next-auth/react';
 import { ellipsify, subStrWords, toHTML } from '../../../../../utils/strUtils';
 import classes from './item.module.css';
 import useThemes from '../../../../../hooks/useThemes';
@@ -12,8 +11,6 @@ const DESC_MAX_LENGTH = 200;
 
 const Item = (props) => {
   const { data } = props;
-
-  const { data: session } = useSession();
 
   const { rootClassName } = useThemes();
 

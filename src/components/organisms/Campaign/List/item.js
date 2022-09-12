@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { toHTML, subStrWords, ellipsify } from '../../../../utils/strUtils';
 import Button from '../../../atoms/Button';
 import classes from './item.module.css';
-import { useTheme } from 'next-themes';
+import useThemes from '../../../../hooks/useThemes';
 import TextLink from '../../../atoms/TextLink';
 
 const DESC_MAX_LENGTH = 200;
@@ -16,12 +16,8 @@ const Item = (props) => {
   const { data } = props;
 
   const { data: session } = useSession();
-  const { resolvedTheme } = useTheme();
-  const [isDark, setIsDark] = React.useState(resolvedTheme === 'dark');
-  React.useEffect(() => {
-    resolvedTheme === 'dark' ? setIsDark(true) : setIsDark(false);
-  }, [resolvedTheme]);
-  const rootClassName = isDark ? 'rootDark' : 'root';
+
+  const { rootClassName } = useThemes();
 
   const { t } = useTranslation('campaign_details');
 

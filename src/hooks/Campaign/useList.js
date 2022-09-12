@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import API from './list.api.gql';
 
 export default (props) => {
-  const { position, currentCampaign = null } = props;
+  const { position, currentCampaign = null, nftCollectionId } = props;
 
   let filter = {
     status: { _eq: 'published' }
@@ -26,6 +26,12 @@ export default (props) => {
       };
     }
     limit = 10;
+  } else if (position === 'nft-collection-details') {
+    if (nftCollectionId) {
+      filter.nft_collection_ids = {
+        nft_collection_id: { id: { _eq: nftCollectionId } }
+      };
+    }
   }
 
   const { getCampaigns } = API;
