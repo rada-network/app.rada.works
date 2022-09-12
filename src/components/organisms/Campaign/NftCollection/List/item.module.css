@@ -31,8 +31,20 @@
 	@apply ml-auto border border-violet-600 hover:bg-violet-600 hover:text-white hover:border-opacity-0 cursor-pointer rounded-md py-0.5 px-2 transition-all;
 }
 
-.coverWrap span > img {
-	@apply block h-52 max-h-52 min-w-max w-auto min-w-max max-w-none border border-2 border-red-500;
+.coverWrap {
+	@apply bg-gray-100 h-52;
+}
+
+.nftCover {
+	height: 208px !important;
+	max-height: 208px !important;
+	left: 50% !important;
+	top: 0;
+	transform: translateX(-50%);
+	min-height: auto !important;
+	margin: 0 !important;
+	width: auto !important;
+	max-width: none !important;
 }
 
 .itemBody {
