@@ -171,3 +171,8 @@
 .btnGetCoupon {
   @apply hover:bg-violet-600 border border-violet-600 hover:text-white hover:cursor-pointer text-sm font-normal rounded absolute top-0 right-3 py-1.5 px-2 translate-y-2/4;
 }
+
+.loading {
+  padding: 10px;
+  text-align: center;
+}

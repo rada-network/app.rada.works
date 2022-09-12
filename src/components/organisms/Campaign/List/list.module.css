@@ -36,3 +36,8 @@
 .rootDark .loadMore {
 	@apply border border-gray-700;
 }
+
+.loading {
+	padding: 10px;
+	text-align: center;
+}

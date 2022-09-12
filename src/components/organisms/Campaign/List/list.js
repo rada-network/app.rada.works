@@ -31,7 +31,7 @@ const List = (props) => {
       }
       child = t('Something went wrong.');
     } else if (loading) {
-      child = <div>{t('Loading...')}</div>;
+      child = <div className={classes.loading}>{t('Loading...')}</div>;
     }
   } else {
     if (data.campaign && !data.campaign.length) {

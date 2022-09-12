@@ -29,7 +29,7 @@ const Details = (props) => {
       }
       child = t('Something went wrong.');
     } else if (loading) {
-      child = <div>{t('Loading...')}</div>;
+      child = <div className={classes.loading}>{t('Loading...')}</div>;
     }
   } else {
     if (data.nft_collection) {
@@ -86,7 +86,7 @@ const Details = (props) => {
             <div className="text-center ml-4 mr-6">
               <strong className="block font-bold text-2xl">
                 {nftCollection.nft_holder_number
-                  ? parseInt(nftCollection.nft_holder_number)
+                  ? nftCollection.nft_holder_number.toLocaleString()
                   : 0}
               </strong>
               <span className="text-gray-500">{t('Owners')}</span>
@@ -95,7 +95,7 @@ const Details = (props) => {
             <div className="text-center ml-4 mr-6">
               <strong className="block font-bold text-2xl">
                 {nftCollection.total_value
-                  ? parseInt(nftCollection.total_value)
+                  ? nftCollection.total_value.toLocaleString()
                   : 0}
               </strong>
               <span className="text-gray-500">{t('Total value')}</span>
