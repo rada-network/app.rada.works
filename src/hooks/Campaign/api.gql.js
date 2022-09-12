@@ -9,7 +9,9 @@ export const CREATE_CAMPAIGN_FUNC = gql`
     $description: String
     $discount_value: Int!
     $coupon_codes: String!
-    $store_url: String!
+    $store_name: String
+    $store_logo_url: String
+    $store_url: String
     $show_on_rada: Boolean
     $date_start: Date
     $date_end: Date
@@ -23,6 +25,8 @@ export const CREATE_CAMPAIGN_FUNC = gql`
         description: $description
         discount_value: $discount_value
         coupon_codes: $coupon_codes
+        store_name: $store_name
+        store_logo_url: $store_logo_url
         store_url: $store_url
         show_on_rada: $show_on_rada
         date_start: $date_start
@@ -46,7 +50,9 @@ export const EDIT_CAMPAIGN_FUNC = gql`
     $description: String
     $discount_value: Int!
     $coupon_codes: String!
-    $store_url: String!
+    $store_name: String
+    $store_logo_url: String
+    $store_url: String
     $show_on_rada: Boolean!
     $date_start: Date
     $date_end: Date
@@ -61,6 +67,8 @@ export const EDIT_CAMPAIGN_FUNC = gql`
         description: $description
         discount_value: $discount_value
         coupon_codes: $coupon_codes
+        store_name: $store_name
+        store_logo_url: $store_logo_url
         store_url: $store_url
         show_on_rada: $show_on_rada
         date_start: $date_start
@@ -82,6 +90,8 @@ export const LOAD_CAMPAIGN_BY_ID = gql`
       description
       discount_value
       coupon_codes
+      store_name
+      store_logo_url
       store_url
       show_on_rada
       date_start

@@ -217,6 +217,30 @@ const CampaignForm = (props) => {
                 minDate={new Date()}
               />
             </Field>
+            <Field id="campaign-store-name" label={t('Store Name')}>
+              <TextInput
+                autoComplete="store-name"
+                field="store_name"
+                id="store_name"
+                validate={isRequired}
+                validateOnBlur
+                mask={(value) => value && value.trim()}
+                maskOnBlur={true}
+                placeholder={t('Enter store name')}
+              />
+            </Field>
+            <Field id="campaign-store-logo-url" label={t('Store Logo')}>
+              <TextInput
+                autoComplete="store-logo"
+                field="store_logo_url"
+                id="store_logo_url"
+                validate={isRequired}
+                validateOnBlur
+                mask={(value) => value && value.trim()}
+                maskOnBlur={true}
+                placeholder={t('Enter logo image url')}
+              />
+            </Field>
             <Field id="campaign-store-url" label={t('Store URL')}>
               <TextInput
                 autoComplete="store-url"
@@ -226,7 +250,7 @@ const CampaignForm = (props) => {
                 validateOnBlur
                 mask={(value) => value && value.trim()}
                 maskOnBlur={true}
-                placeholder={t('Enter your Store URL...')}
+                placeholder={t('Enter store url')}
               />
               <span className={classes.tip}>
                 {t('Specify the shop URL where apply the coupons.')}
