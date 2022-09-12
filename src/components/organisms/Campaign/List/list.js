@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { shape, string } from 'prop-types';
+import { shape, string, number } from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 // import { Form } from 'informed';
 import { useTranslation } from 'next-i18next';
@@ -12,9 +12,9 @@ import Item from './item';
 const List = (props) => {
   const { t } = useTranslation('list_campaign');
 
-  const { position } = props;
+  const { position, nftCollectionId = null } = props;
 
-  const { loading, data, error } = useList({ position });
+  const { loading, data, error } = useList({ position, nftCollectionId });
 
   let child = null;
 
@@ -87,8 +87,13 @@ const List = (props) => {
           'Aliquam dignissim enim ut est suscipit, ut euismod lacus tincidunt. Nunc feugiat ex id mi hendrerit, et efficitur ligula bibendum.'
         )
       : '';
-  const headingTitle =
-    position === 'home-page' ? t('Best Offers') : t('🎉 Browse Coupons');
+  let headingTitle = t('🎉 Browse Coupons');
+  if (position === 'home-page') {
+    headingTitle = t('Best Offers');
+  } else if (position === 'nft-collection-details') {
+    headingTitle = t('All Deals');
+  }
+
   const heading = (
     <Heading HeadingType="h1" subHeading={`${subheading}`}>
       {headingTitle}
@@ -124,7 +129,8 @@ List.propTypes = {
   classes: shape({
     root: string
   }),
-  position: string
+  position: string,
+  nftCollectionId: number
 };
 
 export default List;

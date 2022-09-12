@@ -5,9 +5,12 @@ export const LOAD_NFT_COLLECTION_BY_SLUG = gql`
     nft_collection(filter: { slug: $slug }) {
       id
       name
-      category
+      #      category
       chain_name
       contract_address
+      cover_image
+      thumb_image
+      description
       nft_holder_number
       total_value
       discord
