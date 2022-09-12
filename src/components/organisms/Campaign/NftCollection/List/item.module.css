@@ -31,6 +31,10 @@
 	@apply ml-auto border border-violet-600 hover:bg-violet-600 hover:text-white hover:border-opacity-0 cursor-pointer rounded-md py-0.5 px-2 transition-all;
 }
 
+.coverWrap span > img {
+	@apply block h-52 max-h-52 min-w-max w-auto min-w-max max-w-none border border-2 border-red-500;
+}
+
 .itemBody {
 	@apply py-6;
 }

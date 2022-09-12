@@ -26,7 +26,7 @@ const Item = (props) => {
 
   const coverImage = data.cover_image ? (
     <Image
-      className={`w-full`}
+      className={`nft-cover`}
       layout={`responsive`}
       width={`100%`}
       height={`100%`}
@@ -55,7 +55,9 @@ const Item = (props) => {
 
   return (
     <div className={`${classes[rootClassName]}`} onClick={viewDetails}>
-      <div className="overflow-hidden rounded-t-lg -ml-px -mr-px -mt-px max-h-52">
+      <div
+        className={`${classes.coverWrap} overflow-hidden rounded-t-lg -ml-px -mr-px -mt-px max-h-52`}
+      >
         {coverImage}
       </div>
 

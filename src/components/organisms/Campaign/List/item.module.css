@@ -48,8 +48,8 @@
 }
 
 /* All Chains */
-.nftCollectionWrap {
-	@apply flex items-center;
+.chainWrap {
+	@apply border border-red-800 flex items-center mt-8;
 }
 
 .bsc {
