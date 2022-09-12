@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
+import React from 'react';
+import useThemes from 'src/hooks/useThemes';
 import classes from './toggleTheme.module.css';
 const ToggleTheme = () => {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [isDark, setIsDark] = useState<any | null>(null);
+  const { setTheme, isDark } = useThemes();
 
-  useEffect(() => {
-    resolvedTheme === 'light' ? setIsDark(false) : setIsDark(true);
-  }, [resolvedTheme]);
   const imgSrc = isDark ? '/themes/light.svg' : '/themes/dark.svg';
   const toggleThemeClick = () => {
     isDark ? setTheme('light') : setTheme('dark');

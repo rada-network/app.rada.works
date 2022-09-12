@@ -1,6 +1,8 @@
 .root {
 }
-
+.rootDark{
+  composes: root;
+}
 .root a {
   @apply hover:text-blue-600;
 }
