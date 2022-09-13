@@ -37,7 +37,7 @@ const Details = (props) => {
 
       const coverImage = nftCollection.cover_image ? (
         <Image
-          className={`w-full`}
+          className={`${classes.nftCover}`}
           layout={`responsive`}
           width={`100%`}
           height={`100%`}
@@ -62,19 +62,20 @@ const Details = (props) => {
           >
             {coverImage}
             <div className="py-32 mx-auto max-w-screen-xl relative">
-              <h1 className="font-semibold text-center text-white text-5xl">
-                {nftCollection.name}
-              </h1>
               <a
                 title={nftCollection.name}
-                className="shadow-md border border-4 border-white block h-20 w-20 rounded-full overflow-hidden absolute -bottom-8 left-1/2 -mx-10"
+                className="bg-gray-100 shadow-md border border-4 border-white block h-20 w-20 rounded-full overflow-hidden absolute -bottom-8 left-1/2 -mx-10"
               >
                 {thumbImage}
               </a>
             </div>
           </div>
 
-          <div className="text-center mt-12 text-2xl font-semibold">
+          <h1 className="text-gray-800 font-semibold text-center text-4xl mt-12">
+            {nftCollection.name}
+          </h1>
+
+          <div className="text-center text-lg mt-3 font-semibold">
             {nftCollection.contract_address}
           </div>
 
