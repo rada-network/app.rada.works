@@ -28,6 +28,7 @@ const Modal = (props: { connect: any }) => {
     <Fragment>
       <Button
         onPress={() => setShowModal(true)}
+        priority="high"
         type="button"
         data-modal-toggle="crypto-modal"
       >
