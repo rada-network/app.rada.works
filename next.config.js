@@ -33,7 +33,8 @@ module.exports = (phase) => {
     },
     images: {
       domains: [
-        "public.nftstatic.com"
+        "public.nftstatic.com",
+        "lh3.googleusercontent.com"
       ],
     }
   };
