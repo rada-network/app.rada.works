@@ -25,7 +25,6 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
   const connect = async () => {
     try {
       const web3Modal = new Web3Modal({
-        network: 'testnet',
         cacheProvider: false,
         providerOptions,
         theme: 'dark'
