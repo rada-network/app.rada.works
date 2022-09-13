@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { signIn } from 'next-auth/react';
+import Button from '../../../atoms/Button';
 import { useEscapeKey } from 'src/hooks/useEscapeKey';
 
 const Modal = (props: { connect: any }) => {
@@ -25,14 +26,13 @@ const Modal = (props: { connect: any }) => {
   // };
   return (
     <Fragment>
-      <button
-        onClick={() => setShowModal(true)}
+      <Button
+        onPress={() => setShowModal(true)}
         type="button"
         data-modal-toggle="crypto-modal"
-        className="bg-blue-600 hover:bg-blue-700 text-white focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700"
       >
         Connect wallet
-      </button>
+      </Button>
       {showModal && (
         <div
           id="crypto-modal"
