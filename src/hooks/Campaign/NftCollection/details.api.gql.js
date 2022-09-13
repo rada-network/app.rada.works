@@ -11,8 +11,10 @@ export const LOAD_NFT_COLLECTION_BY_SLUG = gql`
       cover_image
       thumb_image
       description
+      nft_number
       nft_holder_number
       total_value
+      floor_price
       discord
       telegram
     }
