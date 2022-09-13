@@ -59,7 +59,7 @@ const Item = (props) => {
       </div>
 
       <div className="flex items-center justify-center flex-col px-4 -mt-10 z-10">
-        <div className="bg-gray-200 border-4 border-white shadow-md w-20 h-20 overflow-hidden rounded-full">
+        <div className="bg-gray-200 dark:bg-gray-900 border-4 border-white dark:border-gray-800 shadow-md w-20 h-20 overflow-hidden rounded-full">
           {thumbImage}
         </div>
 

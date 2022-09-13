@@ -99,28 +99,28 @@ const Details = (props) => {
             <div className="py-32 mx-auto max-w-screen-xl relative">
               <a
                 title={nftCollection.name}
-                className="bg-gray-100 shadow-md border border-4 border-white block h-20 w-20 rounded-full overflow-hidden absolute -bottom-8 left-1/2 -mx-10"
+                className="bg-gray-100 dark:bg-gray-900 shadow-md border border-4 border-white dark:border-gray-700 block h-20 w-20 rounded-full overflow-hidden absolute -bottom-8 left-1/2 -mx-10"
               >
                 {thumbImage}
               </a>
             </div>
           </div>
 
-          <h1 className="text-gray-800 font-semibold text-center text-4xl mt-12">
+          <h1 className="text-gray-800 dark:text-white font-semibold text-center text-4xl mt-12">
             {nftCollection.name}
           </h1>
 
-          <div className="text-center text-lg mt-3 font-semibold">
+          <div className="text-center flex justify-center items-center text-lg mt-3 font-semibold">
             <span
               className={`${
                 classes[nftCollection.chain_name]
-              } bg-gray-50 inline-block h-7 w-7 rounded-full mr-2`}
+              } bg-gray-50 dark:bg-gray-900 inline-block h-7 w-7 rounded-full mr-2`}
             />
             {nftCollection.contract_address}
           </div>
 
-          <div className="flex items-center justify-center mt-8">
-            <div className="text-center mr-6">
+          <div className="flex flex-wrap items-center justify-center mt-8">
+            <div className="basis-3/6 md:basis-auto text-center mb-6 md:mb-0 md:mr-6">
               <strong className="block font-bold text-2xl">
                 {nftCollection.nft_number
                   ? nftCollection.nft_number.toLocaleString()
@@ -129,7 +129,7 @@ const Details = (props) => {
               <span className="text-gray-500">{t('items')}</span>
             </div>
 
-            <div className="text-center ml-4 mr-6">
+            <div className="basis-3/6 md:basis-auto text-center mb-6 md:mb-0 md:ml-4 md:mr-6">
               <strong className="block font-bold text-2xl">
                 {nftCollection.nft_holder_number
                   ? nftCollection.nft_holder_number.toLocaleString()
@@ -138,7 +138,7 @@ const Details = (props) => {
               <span className="text-gray-500">{t('Owners')}</span>
             </div>
 
-            <div className="text-center ml-4 mr-6">
+            <div className="basis-3/6 md:basis-auto text-center md:ml-4 md:mr-6">
               <strong className="block font-bold text-2xl">
                 {nftCollection.total_value
                   ? nftCollection.total_value.toLocaleString()
@@ -147,7 +147,7 @@ const Details = (props) => {
               <span className="text-gray-500">{t('Total value')}</span>
             </div>
 
-            <div className="text-center ml-6">
+            <div className="basis-3/6 md:basis-auto text-center md:ml-6">
               <strong className="block font-bold text-2xl">
                 {nftCollection.floor_price
                   ? nftCollection.floor_price.toLocaleString()
