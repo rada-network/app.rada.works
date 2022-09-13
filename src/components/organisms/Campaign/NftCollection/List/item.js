@@ -64,14 +64,14 @@ const Item = (props) => {
         </div>
 
         <div className="pt-4 text-center">
-          <h3 className="mt-0 mb-2 font-semilbold text-lg text-gray-800 leading-none">
+          <h3 className="mt-0 mb-2 font-semilbold text-lg text-gray-800 dark:text-white leading-none">
             {data.name}
           </h3>
           <div className="m-0 flex items-center justify-center">
             <span
               className={`${
                 classes[data.chain_name]
-              } bg-gray-50 inline-block h-7 w-7 rounded-full mr-2 bsc`}
+              } bg-gray-50 dark:bg-gray-900 inline-block h-7 w-7 rounded-full mr-2 bsc ring-2 ring-gray-100 dark:ring-gray-600`}
             />
             {ellipsify({
               str: data.contract_address,
