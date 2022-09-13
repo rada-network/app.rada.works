@@ -43,7 +43,7 @@ const Item = (props) => {
 
   const desc = data.description ? (
     <div
-      className="p-4 text-center"
+      className="px-6 text-center"
       dangerouslySetInnerHTML={toHTML(
         subStrWords(data.description, DESC_MAX_LENGTH)
       )}
@@ -67,7 +67,7 @@ const Item = (props) => {
           <h3 className="mt-0 mb-2 font-semilbold text-lg text-gray-800 leading-none">
             {data.name}
           </h3>
-          <div className="m-0 flex items-center">
+          <div className="m-0 flex items-center justify-center">
             <span
               className={`${
                 classes[data.chain_name]

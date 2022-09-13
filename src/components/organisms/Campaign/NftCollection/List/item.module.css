@@ -1,5 +1,5 @@
 .root {
-	@apply border border-gray-200 hover:border-blue-600 rounded-lg hover:shadow-lg transition-shadow flex flex-col items-stretch hover:cursor-pointer;
+	@apply border border-gray-200 hover:border-blue-600 rounded-lg hover:shadow-lg flex flex-col items-stretch hover:cursor-pointer hover:-mt-1 hover:mb-1 transition-all duration-200;
 }
 
 .rootDark {
