@@ -26,11 +26,23 @@ export default (props) => {
       id: campaignId
     }
   });
+
   initialValues = useMemo(() => {
     return !campaignLoading && campaignLoaded && campaignLoaded.campaign_by_id
       ? campaignLoaded.campaign_by_id
-      : null;
+      : [];
   }, [campaignLoaded]);
+
+  // Update selected NFT collection from NFT collection details page context
+  const nftCollectionOptionSelected = storage.getItem(
+    'nft_collection_opt_selected'
+  );
+  if (!campaignId && nftCollectionOptionSelected) {
+    if (!initialValues) {
+      initialValues = [];
+    }
+    initialValues.nft_collection_opt_selected = nftCollectionOptionSelected;
+  }
 
   const formApiRef = useRef(initialValues);
   const setFormApi = useCallback((api) => (formApiRef.current = api), []);
@@ -107,6 +119,7 @@ export default (props) => {
         detailsEditorRef.current = null;
       }
       storage.removeItem('currentCampaign');
+      storage.removeItem('nft_collection_opt_selected');
     },
 
     [saveCampaignInformation, storage]

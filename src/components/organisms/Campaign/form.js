@@ -93,7 +93,6 @@ const CampaignForm = (props) => {
     if (initNftCollections.length) {
       setNftCollections(initNftCollections);
     }
-    console.log(initNftCollections);
 
     const initDates = {
       start_date:

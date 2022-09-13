@@ -20,8 +20,11 @@ export const subStrWords = (
   return str.substr(0, str.lastIndexOf(separator, maxLength)) + suffix;
 };
 
+export const capitalize = (s) => (s && s[0].toUpperCase() + s.slice(1)) || '';
+
 export default {
   ellipsify,
   toHTML,
-  subStrWords
+  subStrWords,
+  capitalize
 };

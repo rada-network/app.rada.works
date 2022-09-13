@@ -105,13 +105,9 @@ const Item = (props) => {
       </div>
 
       <div className={classes.itemFoot}>
-        <a
-          onClick={viewDetails}
-          title={t('Get Coupon')}
-          className={classes.getCoupon}
-        >
+        <Button priority="high" type="button" onPress={viewDetails}>
           {t('Get this deal')}
-        </a>
+        </Button>
       </div>
     </div>
   );

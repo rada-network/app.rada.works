@@ -1,17 +1,23 @@
 import React from 'react';
 import Moment from 'moment';
+import { useSession } from 'next-auth/react';
+import Router from 'next/router';
 import { useTranslation } from 'next-i18next';
 import useThemes from '../../../../../hooks/useThemes';
+import Button from '../../../../atoms/Button';
 import { useDetails } from '../../../../../hooks/Campaign/NftCollection';
 import classes from './detail.module.css';
 import Image from 'next/image';
-import { toHTML } from '../../../../../utils/strUtils';
+import { capitalize, ellipsify, toHTML } from '../../../../../utils/strUtils';
 import List from '../../List';
+import BrowserPersistence from '../../../../../utils/simplePersistence';
 
 const Details = (props) => {
   const { slug } = props;
 
   const { t } = useTranslation('nft_collection_details');
+
+  const { data: session } = useSession();
 
   Moment.locale('en');
 
@@ -34,6 +40,35 @@ const Details = (props) => {
   } else {
     if (data.nft_collection) {
       const nftCollection = data.nft_collection[0];
+
+      const handleAddCampaign = () => {
+        const storage = new BrowserPersistence();
+        const chainName = capitalize(nftCollection.chain_name);
+        const contractAdd = ellipsify({
+          str: nftCollection.contract_address,
+          start: 5,
+          end: 4
+        });
+        const nftCollectionOption = [
+          {
+            value: parseInt(nftCollection.id),
+            label: `${chainName} > ${nftCollection.name} (${contractAdd})`
+          }
+        ];
+        storage.setItem(
+          'nft_collection_opt_selected',
+          JSON.stringify(nftCollectionOption)
+        );
+
+        Router.push(`/create-campaign`);
+      };
+      const addCampaignButton = session ? (
+        <div className={classes.addCampaignBtn}>
+          <Button priority="high" type="button" onPress={handleAddCampaign}>
+            {t('Submit a deal')}
+          </Button>
+        </div>
+      ) : null;
 
       const coverImage = nftCollection.cover_image ? (
         <Image
@@ -122,6 +157,9 @@ const Details = (props) => {
               className="mb-10"
               dangerouslySetInnerHTML={toHTML(nftCollection.description)}
             />
+
+            {addCampaignButton}
+
             <List
               nftCollectionId={parseInt(nftCollection.id)}
               position="nft-collection-details"
