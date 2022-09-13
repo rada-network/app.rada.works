@@ -10,7 +10,8 @@ const Modal = (props: { connect: any }) => {
   };
   useEscapeKey(escEvent);
 
-  const metamarkLogin = () => {
+  const WalletConnectLogin = () => {
+    setShowModal(false);
     connect();
   };
   const googleSigner = async () => {
@@ -124,7 +125,7 @@ const Modal = (props: { connect: any }) => {
                   <li className="text-center my-0 py-0">Or</li>
                   <li>
                     <a
-                      onClick={metamarkLogin}
+                      onClick={WalletConnectLogin}
                       href="#"
                       className="bg-gray-50 dark:bg-gray-600 border border-gray-300 hover:border-violet-600 shadow flex items-center p-3 text-base font-bold text-gray-900 rounded-lg hover:bg-gray-100 group hover:shadow-md dark:hover:bg-gray-500 dark:text-white"
                     >
