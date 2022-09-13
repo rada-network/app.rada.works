@@ -71,7 +71,7 @@ const Item = (props) => {
             <span
               className={`${
                 classes[data.chain_name]
-              } bg-gray-50 inline-block h-7 w-7 rounded-full mr-2 bsc`}
+              } bg-gray-50 inline-block h-7 w-7 rounded-full mr-2`}
             />
             {ellipsify({
               str: data.contract_address,
