@@ -36,7 +36,7 @@ const List = (props) => {
   } else {
     if (data.campaign && !data.campaign.length) {
       child = (
-        <div className={classes.noResult}>
+        <div className="bg-gray-100  dark:bg-gray-800 text-sm text-gray-700 dark:text-gray-300 rounded-lg p-4">
           {t("Don't have Campaigns published now.")}
         </div>
       );
