@@ -110,13 +110,13 @@ const Details = (props) => {
             {nftCollection.name}
           </h1>
 
-          <div className="text-center flex justify-center items-center text-lg mt-3 font-semibold">
+          <div className="text-center flex justify-center items-center text-lg mt-3 font-semibold ml-6 md:ml-0 mr-6 md:mr-0">
             <span
               className={`${
                 classes[nftCollection.chain_name]
               } bg-gray-50 dark:bg-gray-900 inline-block h-7 w-7 rounded-full mr-2`}
             />
-            <div className="overflow-hidden max-w-full">
+            <div className="overflow-hidden max-w-full truncate">
               {nftCollection.contract_address}
             </div>
           </div>

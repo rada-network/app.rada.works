@@ -57,7 +57,10 @@ const Header = (props) => {
           </TextLink>
         </div>
         <div className={`${classes.menuContainer}`}>
-          <div id="navbar-default" className="hidden w-full md:block md:w-auto">
+          <div
+            id="navbar-default"
+            className="hidden w-full md:block md:w-auto order-last md:order-first"
+          >
             {menuItems}
           </div>
           <ToggleTheme />
