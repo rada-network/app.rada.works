@@ -135,7 +135,7 @@ const Details = (props) => {
                   ? nftCollection.nft_holder_number.toLocaleString()
                   : 0}
               </strong>
-              <span className="text-gray-500">{t('Owners')}</span>
+              <span className="text-gray-500">{t('owners')}</span>
             </div>
 
             <div className="basis-3/6 md:basis-auto text-center md:ml-4 md:mr-6">
@@ -144,7 +144,7 @@ const Details = (props) => {
                   ? nftCollection.total_value.toLocaleString()
                   : 0}
               </strong>
-              <span className="text-gray-500">{t('Total value')}</span>
+              <span className="text-gray-500">{t('total value')}</span>
             </div>
 
             <div className="basis-3/6 md:basis-auto text-center md:ml-6">
@@ -153,7 +153,7 @@ const Details = (props) => {
                   ? nftCollection.floor_price.toLocaleString()
                   : 0}
               </strong>
-              <span className="text-gray-500">{t('Floor price')}</span>
+              <span className="text-gray-500">{t('floor price')}</span>
             </div>
           </div>
 

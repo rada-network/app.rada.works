@@ -41,3 +41,13 @@
 	padding: 10px;
 	text-align: center;
 }
+
+.infiniteLoading {
+
+}
+.infiniteFinished {
+	/*for example only*/
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+}
