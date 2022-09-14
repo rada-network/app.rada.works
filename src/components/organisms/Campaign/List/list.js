@@ -42,6 +42,7 @@ const List = (props) => {
       );
     } else {
       const fetchMoreData = () => {
+        console.log('fetchMoreData()');
         if (visible >= data.campaign.length) {
           setDataItems({
             items: data.campaign.slice(0, visible),
@@ -64,13 +65,15 @@ const List = (props) => {
           dataLength={dataItems.items.length}
           next={fetchMoreData}
           hasMore={dataItems.hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={
+            <h4 className={classes.infiniteLoading}>{t('Loading...')}</h4>
+          }
           scrollableTarget="scrollableDiv"
           className={classes.listWrap}
           endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
+            <div className={classes.infiniteFinished}>
+              <span>That is all!</span>
+            </div>
           }
         >
           {data.campaign.slice(0, visible).map((campaign) => (

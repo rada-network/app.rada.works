@@ -18,11 +18,11 @@ export const authLogin = async (auth: any) => {
 };
 
 export const authRefresh = async (auth: any) => {
-  const { email, password } = auth;
+  const { refresh_token } = auth;
   const client = initializeApollo();
   const { data } = await client.mutate({
     mutation: AUTH_REFRESH_GQL,
-    variables: { email, password }
+    variables: { refresh_token }
   });
   return data;
 };

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { shape, string } from 'prop-types';
 import classes from './header.module.css';
 import Logo from '../Logo';
@@ -48,6 +48,15 @@ const Header = (props) => {
     );
   });
 
+  const [menuRootClassName, setMenuRootClassName] = useState('offCanvasHide');
+  const toggleOffCanvasMenu = () => {
+    if (menuRootClassName === 'offCanvasHide') {
+      setMenuRootClassName('offCanvasShow');
+    } else {
+      setMenuRootClassName('offCanvasHide');
+    }
+  };
+
   return (
     <Fragment>
       <header className={`${classes[rootClassName]}`}>
@@ -59,7 +68,7 @@ const Header = (props) => {
         <div className={`${classes.menuContainer}`}>
           <div
             id="navbar-default"
-            className="hidden w-full md:block md:w-auto order-last md:order-first"
+            className={`${classes[menuRootClassName]} w-full md:w-auto order-last md:order-first`}
           >
             {menuItems}
           </div>
@@ -72,8 +81,9 @@ const Header = (props) => {
             className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-default"
             aria-expanded="false"
+            onClick={toggleOffCanvasMenu}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">{t('Open main menu')}</span>
             <svg
               className="w-6 h-6"
               aria-hidden="true"
