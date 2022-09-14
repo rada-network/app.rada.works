@@ -43,3 +43,11 @@
 .rootDark .linkGroup li a {
   @apply hover:text-white;
 }
+
+.offCanvasShow {
+  @apply md:block;
+}
+
+.offCanvasHide {
+  @apply hidden md:block;
+}
