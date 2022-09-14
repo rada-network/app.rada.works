@@ -58,7 +58,8 @@ const CampaignForm = (props) => {
       ),
       {
         onClose: () => {
-          Router.push('/');
+          //coming soon
+          Router.push('/coupons');
         }
       }
     );

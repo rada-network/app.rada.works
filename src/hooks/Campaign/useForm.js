@@ -105,6 +105,7 @@ export default (props) => {
         if (process.env.NODE_ENV !== 'production') {
           console.error(error);
         }
+        return;
       }
 
       if (afterSavedCampaign) {
