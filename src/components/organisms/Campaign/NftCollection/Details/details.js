@@ -106,7 +106,7 @@ const Details = (props) => {
             </div>
           </div>
 
-          <h1 className="text-gray-800 dark:text-white font-semibold text-center text-4xl mt-12">
+          <h1 className="text-gray-800 dark:text-white font-semibold text-center text-2xl md:text-4xl mt-12">
             {nftCollection.name}
           </h1>
 
@@ -116,14 +116,14 @@ const Details = (props) => {
                 classes[nftCollection.chain_name]
               } bg-gray-50 dark:bg-gray-900 inline-block h-7 w-7 rounded-full mr-2`}
             />
-            <div className="overflow-hidden max-w-full truncate">
+            <div className="overflow-hidden max-w-full truncate text-sm md:text-xl">
               {nftCollection.contract_address}
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center mt-8">
             <div className="basis-3/6 md:basis-auto text-center mb-6 md:mb-0 md:mr-6">
-              <strong className="block font-bold text-2xl">
+              <strong className="block font-bold text-xl md:text-2xl">
                 {nftCollection.nft_number
                   ? nftCollection.nft_number.toLocaleString()
                   : 0}
@@ -132,7 +132,7 @@ const Details = (props) => {
             </div>
 
             <div className="basis-3/6 md:basis-auto text-center mb-6 md:mb-0 md:ml-4 md:mr-6">
-              <strong className="block font-bold text-2xl">
+              <strong className="block font-bold text-xl md:text-2xl">
                 {nftCollection.nft_holder_number
                   ? nftCollection.nft_holder_number.toLocaleString()
                   : 0}
@@ -141,7 +141,7 @@ const Details = (props) => {
             </div>
 
             <div className="basis-3/6 md:basis-auto text-center md:ml-4 md:mr-6">
-              <strong className="block font-bold text-2xl">
+              <strong className="block font-bold text-xl md:text-2xl">
                 {nftCollection.total_value
                   ? nftCollection.total_value.toLocaleString()
                   : 0}
@@ -150,7 +150,7 @@ const Details = (props) => {
             </div>
 
             <div className="basis-3/6 md:basis-auto text-center md:ml-6">
-              <strong className="block font-bold text-2xl">
+              <strong className="block font-bold text-xl md:text-2xl">
                 {nftCollection.floor_price
                   ? nftCollection.floor_price.toLocaleString()
                   : 0}
