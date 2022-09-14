@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { shape, string, number } from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 // import { Form } from 'informed';
@@ -14,16 +14,28 @@ const List = (props) => {
 
   const { position, nftCollectionId = null } = props;
 
-  const { loading, data, error } = useList({ position, nftCollectionId });
+  const {
+    data,
+    loading,
+    error,
+    page,
+    setPage,
+    getNextItems,
+    infiniteItems,
+    setInfiniteItems,
+    infiniteHasMore,
+    setInfiniteHasMore
+  } = useList({ position, nftCollectionId });
+
+  useEffect(() => {
+    if (data) {
+      if (data.campaign.length) {
+        setInfiniteItems(data.campaign);
+      }
+    }
+  }, [data]);
 
   let child = null;
-
-  const [visible, setVisible] = useState(12);
-  const [dataItems, setDataItems] = useState({
-    items: [],
-    hasMore: true
-  });
-
   if (!data) {
     if (error) {
       if (process.env.NODE_ENV !== 'production') {
@@ -41,42 +53,35 @@ const List = (props) => {
         </div>
       );
     } else {
-      const fetchMoreData = () => {
-        console.log('fetchMoreData()');
-        if (visible >= data.campaign.length) {
-          setDataItems({
-            items: data.campaign.slice(0, visible),
-            hasMore: false
-          });
-          return;
+      const fetchMoreData = async () => {
+        // Load items in next page
+        const nextItems = await getNextItems();
+        // Set more items
+        setInfiniteItems([...infiniteItems, ...nextItems]);
+
+        if (!nextItems.length) {
+          setInfiniteHasMore(false);
         }
-        // a fake async api call like which sends
-        // 20 more records in 1.5 secs
-        setTimeout(() => {
-          setVisible(visible + 6);
-          setDataItems({
-            items: data.campaign.slice(0, visible),
-            hasMore: visible < data.campaign.length
-          });
-        }, 1500);
+        setPage(page + 1);
       };
+      const loader = (
+        <div className={classes.infiniteLoading}>{t('Loading more...')}</div>
+      );
+      const endMessage = (
+        <div className={classes.infiniteFinished}>
+          <span>{t('That is all!')}</span>
+        </div>
+      );
       child = (
         <InfiniteScroll
-          dataLength={dataItems.items.length}
-          next={fetchMoreData}
-          hasMore={dataItems.hasMore}
-          loader={
-            <h4 className={classes.infiniteLoading}>{t('Loading...')}</h4>
-          }
-          scrollableTarget="scrollableDiv"
           className={classes.listWrap}
-          endMessage={
-            <div className={classes.infiniteFinished}>
-              <span>That is all!</span>
-            </div>
-          }
+          dataLength={infiniteItems.length}
+          next={fetchMoreData}
+          hasMore={infiniteHasMore}
+          loader={loader}
+          endMessage={endMessage}
         >
-          {data.campaign.slice(0, visible).map((campaign) => (
+          {infiniteItems.map((campaign) => (
             <Item key={campaign.id} data={campaign} />
           ))}
         </InfiniteScroll>
