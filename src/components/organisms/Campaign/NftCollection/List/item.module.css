@@ -68,17 +68,17 @@
 }
 
 .bsc {
-  @apply indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
+	composes: bsc from "../../../Campaign/List/item.module.css";
 }
 
 .ethereum {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/ethereum.svg')] bg-cover;
+	composes: ethereum from "../../../Campaign/List/item.module.css";
 }
 
 .polygon {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/polygon.svg')] bg-cover;
+	composes: polygon from "../../../Campaign/List/item.module.css";
 }
 
 .solana {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
+	composes: solana from "../../../Campaign/List/item.module.css";
 }
