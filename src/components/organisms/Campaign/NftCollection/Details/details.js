@@ -116,7 +116,9 @@ const Details = (props) => {
                 classes[nftCollection.chain_name]
               } bg-gray-50 dark:bg-gray-900 inline-block h-7 w-7 rounded-full mr-2`}
             />
-            {nftCollection.contract_address}
+            <div className="overflow-hidden max-w-full">
+              {nftCollection.contract_address}
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center mt-8">
