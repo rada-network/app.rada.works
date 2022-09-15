@@ -57,15 +57,15 @@ const Item = (props) => {
             <span className={`${classes.collectionName}`}>
               {nftCollection.nft_collection_id.name}
             </span>{' '}
-            (
             <span className={classes.contractAdd}>
+              (
               {ellipsify({
                 str: nftCollection.nft_collection_id.contract_address,
                 start: 6,
                 end: 4
               })}
+              )
             </span>{' '}
-            )
           </TextLink>
         </div>
       ))
@@ -101,7 +101,9 @@ const Item = (props) => {
           )}
         />
 
-        <div className="chainWrap">{nftCollectionInfo}</div>
+        <div className="flex items-center flex-wrap mt-5">
+          {nftCollectionInfo}
+        </div>
       </div>
 
       <div className={classes.itemFoot}>
