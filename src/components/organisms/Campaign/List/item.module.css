@@ -40,7 +40,7 @@
 }
 
 .itemFoot {
-	@apply flex items-center justify-between border-t border-gray-200 pt-4 mt-auto;
+	@apply flex items-center justify-end border-t border-gray-200 pt-4 mt-auto;
 }
 
 .rootDark .itemFoot {
@@ -48,24 +48,82 @@
 }
 
 /* All Chains */
+.nftCollectionWrap {
+	@apply border border-gray-200 hover:border-blue-600 rounded-full flex items-center pr-3 pl-1 py-0.5 mr-1 mb-1 relative overflow-hidden;
+}
+
+.rootDark .nftCollectionWrap {
+	@apply bg-gray-800 border-0;
+}
+
+.nftCollectionWrap:hover {
+	@apply overflow-visible hover:border-gray-400;
+}
+
+.collectionName {
+	@apply text-gray-800 font-medium text-sm;
+}
+
+.rootDark .collectionName {
+	@apply text-white;
+}
+
+.contractAdd {
+	@apply bg-gray-800 text-white text-sm rounded-md absolute py-1 px-2 left-1/2 -translate-x-1/2 -top-8 transition-all duration-500 opacity-0;
+}
+
+.contractAdd::after {
+	border-top: 5px solid #1F2937;;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	content: "";
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -3px;
+	bottom: -5px;
+	height: 0;	
+	width: 0;
+}
+
+.nftCollectionWrap:hover .contractAdd {
+	@apply opacity-100 -top-9;
+}
+
 .chainWrap {
 	@apply border border-red-800 flex items-center mt-8;
 }
 
 .bsc {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
+  @apply bg-gray-100 inline-block rounded-full mr-1 w-5 h-5 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
+}
+
+.rootDark .bsc {
+	@apply bg-gray-800 ring-1 ring-gray-700;
 }
 
 .ethereum {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/ethereum.svg')] bg-cover;
+  @apply bg-gray-100 inline-block rounded-full mr-1 w-5 h-5 indent-96 overflow-hidden bg-[url('/chains/ethereum.svg')] bg-cover;
+}
+
+.rootDark .ethereum {
+	@apply bg-gray-800 ring-1 ring-gray-700;
 }
 
 .polygon {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/polygon.svg')] bg-cover;
+  @apply bg-gray-100 inline-block rounded-full mr-1 w-5 h-5 indent-96 overflow-hidden bg-[url('/chains/polygon.svg')] bg-cover;
+}
+
+.rootDark .polygon {
+	@apply bg-gray-800 ring-1 ring-gray-700;
 }
 
 .solana {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
+  @apply bg-gray-100 inline-block rounded-full mr-1 w-5 h-5 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
+}
+
+.rootDark .solana {
+	@apply bg-gray-800 ring-1 ring-gray-700;
 }
 
 .getCoupon {

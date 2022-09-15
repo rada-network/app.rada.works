@@ -14,7 +14,8 @@
 }
 
 .listWrap {
-	@apply grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 overflow-visible;
+	@apply grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8;
+	overflow: visible !important;
 }
 
 .item {
@@ -45,9 +46,11 @@
 .infiniteLoading {
 
 }
+
 .infiniteFinished {
-	/*for example only*/
-	width: 100%;
-	text-align: center;
-	font-weight: bold;
+	@apply bg-gray-100 text-gray-800 rounded-md col-start-1 col-end-4 text-center pt-3 pb-3;
+}
+
+.rootDark .infiniteFinished {
+	@apply bg-gray-800 text-gray-600;
 }

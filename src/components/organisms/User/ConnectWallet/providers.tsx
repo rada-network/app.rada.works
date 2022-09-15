@@ -18,9 +18,9 @@ const providerOptions = {
       chainId: 3, // Optional. It defaults to 1 if not provided
       darkMode: true // Optional. Use dark theme, defaults to false
     }
-  },
-  binancechainwallet: {
-    package: true
   }
+  /*, binancechainwallet: {
+    package: true
+  } */
 };
 export default providerOptions;
