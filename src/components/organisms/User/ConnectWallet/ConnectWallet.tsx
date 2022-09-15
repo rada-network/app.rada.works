@@ -39,13 +39,13 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
         throw new Error('No account');
       }
 
-      const chainId = await web3.eth.getChainId();
-      const bscChainId = parseInt(process.env.BSC_CHAIN_ID as string);
-      if (chainId !== bscChainId) {
-        // TODO: enhance message.
-        alert('Invalid bsc chain id. Need to switch to bsc testnet');
-        throw new Error('Invalid bsc chain id. Need to switch to bsc testnet');
-      }
+      // const chainId = await web3.eth.getChainId();
+      // const bscChainId = parseInt(process.env.BSC_CHAIN_ID as string);
+      // if (chainId !== bscChainId) {
+      //   // TODO: enhance message.
+      //   alert('Invalid bsc chain id. Need to switch to bsc testnet');
+      //   throw new Error('Invalid bsc chain id. Need to switch to bsc testnet');
+      // }
       let signedMessage;
       const rawMessage = '0x' + (await getCsrfToken()) || '';
       const callbackUrl = '/';
