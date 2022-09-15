@@ -53,8 +53,8 @@
 }
 
 .linkItem {
-
 }
+
 .active {
-  color: red;
+  @apply text-blue-600 font-semibold;
 }

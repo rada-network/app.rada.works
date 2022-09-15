@@ -107,7 +107,12 @@ const Item = (props) => {
       </div>
 
       <div className={classes.itemFoot}>
-        <Button priority="high" type="button" onPress={viewDetails}>
+        <Button
+          priority="high"
+          type="button"
+          onPress={viewDetails}
+          className={classes.getCoupon}
+        >
           {t('Get this deal')}
         </Button>
       </div>
