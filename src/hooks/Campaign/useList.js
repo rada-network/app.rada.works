@@ -17,7 +17,7 @@ export default (props) => {
   let defaultSort = ['-date_created'];
 
   if (position === 'related') {
-    defaultLimit = 10;
+    defaultLimit = 5;
     defaultFilter.id = { _neq: parseInt(currentCampaign.id) };
 
     // filter by same nft collections

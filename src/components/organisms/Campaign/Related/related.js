@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { shape, string } from 'prop-types';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './related.module.css';
 import { useStyle } from '../../../classify';
@@ -13,10 +14,29 @@ const Related = (props) => {
 
   const { t } = useTranslation('common');
 
-  const { loading, data, error } = useList({
+  const {
+    data,
+    loading,
+    error,
+    page,
+    setPage,
+    getNextItems,
+    infiniteItems,
+    setInfiniteItems,
+    infiniteHasMore,
+    setInfiniteHasMore
+  } = useList({
     position: 'related',
     currentCampaign
   });
+
+  useEffect(() => {
+    if (data) {
+      if (data.campaign.length) {
+        setInfiniteItems(data.campaign);
+      }
+    }
+  }, [data]);
 
   let blockHeading = (
     <h3 className={classes.boxTitle}>{t('Other campaigns')}</h3>
@@ -38,10 +58,46 @@ const Related = (props) => {
         <div className={classes.noResult}>{t('No related campaigns.')}</div>
       );
     } else {
-      const relatedItems = data.campaign.map((campaign) => (
-        <Item key={campaign.id} data={campaign} />
-      ));
-      child = <ul className={classes.couponList}>{relatedItems}</ul>;
+      const fetchMoreData = async () => {
+        // Load items in next page
+        const nextItems = await getNextItems();
+        // Set more items
+        setInfiniteItems([...infiniteItems, ...nextItems]);
+
+        if (!nextItems.length) {
+          setInfiniteHasMore(false);
+        }
+        setPage(page + 1);
+      };
+      const loader = (
+        <div className={classes.infiniteLoading}>{t('Loading more...')}</div>
+      );
+      const endMessage = (
+        <div className={classes.infiniteFinished}>
+          <span>{t('That is all!')}</span>
+        </div>
+      );
+
+      child = (
+        <ul
+          id="scrollableRelatedCampaigns"
+          style={{ height: 300, overflow: 'auto' }}
+        >
+          <InfiniteScroll
+            className={classes.couponList}
+            dataLength={infiniteItems.length}
+            next={fetchMoreData}
+            hasMore={infiniteHasMore}
+            loader={loader}
+            endMessage={endMessage}
+            scrollableTarget="scrollableRelatedCampaigns"
+          >
+            {infiniteItems.map((campaign) => (
+              <Item key={campaign.id} data={campaign} />
+            ))}
+          </InfiniteScroll>
+        </ul>
+      );
     }
   }
   return (
