@@ -85,15 +85,15 @@ const Details = (props) => {
                 <span className={`${classes.collectionName}`}>
                   {nftCollection.nft_collection_id.name}
                 </span>{' '}
-                (
                 <span className={classes.contractAdd}>
+                  (
                   {ellipsify({
                     str: nftCollection.nft_collection_id.contract_address,
                     start: 6,
                     end: 4
                   })}
+                  )
                 </span>{' '}
-                )
               </TextLink>
             </div>
           ))
@@ -150,18 +150,23 @@ const Details = (props) => {
           <div className={classes.pageContent}>
             <h1 className={classes.pageTitle}>{campaign.title}</h1>
 
-            <div className="flex items-stretch shadow-md rounded-lg p-6 mb-12 border dark:border-gray-800">
-              <div className="flex flex-col items-center justify-center border-r border-r-2 border-dashed border-gray-200 dark:border-gray-800 pr-8">
-                <strong className="text-6xl">
+            <div
+              className={classes.desc}
+              dangerouslySetInnerHTML={{ __html: campaign.description }}
+            />
+
+            <div className="flex items-stretch rounded-lg p-4 mb-12 border border-2 border-dashed dark:border-gray-800">
+              <div className="bg-green-50 border border-green-600 text-green-700 shadow-md rounded-lg flex flex-col items-center justify-center px-8 text-center">
+                <strong className="text-6xl tracking-tight">
                   {campaign.discount_value}
-                  <span className="leading-none">%</span>
+                  <span className="leading-none font-light">%</span>
                 </strong>
-                <span className="block text-center uppercase tracking-widest">
+                <span className="block text-center text-xl uppercase tracking-widest">
                   Discount
                 </span>
               </div>
-              <div className="pl-8 w-full">
-                <div className="border-b border-gray-100 dark:border-gray-800 mb-5 pb-5">
+              <div className="pl-6 w-full">
+                <div className="mb-5">
                   <ul className="flex flex-wrap list-none m-0 p-0">
                     <li className="flex items-center w-1/2 m-0 mb-3 p-0">
                       <span className="flex text-gray-500 items-center mr-2">
@@ -172,7 +177,7 @@ const Details = (props) => {
                           <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />
                           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                         </svg>
-                        Date start
+                        Date start:
                       </span>
                       {Moment(campaign.date_start).format('DD MMM YYYY')}
                     </li>
@@ -186,7 +191,7 @@ const Details = (props) => {
                           <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z" />
                           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                         </svg>
-                        Date end
+                        Date end:
                       </span>
                       {campaign.date_end
                         ? Moment(campaign.date_end).format('DD MMM YYYY')
@@ -203,20 +208,15 @@ const Details = (props) => {
                         {campaign.store_url}
                       </span>
                     </li>
-                    <li className="flex items-center px-0 pt-0">
-                      {nftCollectionInfo}
-                    </li>
                   </ul>
+                  <div className="flex items-center mt-3">
+                    {nftCollectionInfo}
+                  </div>
                 </div>
                 {viewCouponCodesArea}
                 {editButton}
               </div>
             </div>
-
-            <div
-              className={classes.desc}
-              dangerouslySetInnerHTML={{ __html: campaign.description }}
-            />
           </div>
 
           <div className={classes.pageSidebar}>

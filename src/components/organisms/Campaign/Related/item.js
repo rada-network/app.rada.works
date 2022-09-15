@@ -45,10 +45,11 @@ const Item = (props) => {
         <h4>{data.title}</h4>
         <div className={classes.itemMeta}>
           <span>
+            Start:&nbsp;
             {data.date_start
               ? Moment(data.date_start).format('DD MMM YYYY')
               : 'n/a'}{' '}
-            -{' '}
+            -{' End: '}
             {data.date_end
               ? Moment(data.date_end).format('DD MMM YYYY')
               : t('n/a')}
@@ -57,9 +58,9 @@ const Item = (props) => {
         <a
           className={classes.btnGetCoupon}
           onClick={viewDetails}
-          title={t('Get coupon')}
+          title={t('Get this deal')}
         >
-          {t('Get coupon')}
+          {t('Get this deal')}
         </a>
         {editButton}
       </div>

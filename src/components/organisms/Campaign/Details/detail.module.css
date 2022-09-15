@@ -142,19 +142,15 @@
 }
 
 .couponItem {
-  @apply bg-white border border-gray-200 hover:border-violet-600 hover:shadow-md rounded-md py-4 pr-28 px-3 relative transition-all duration-200;
-}
-
-.couponItem:hover .btnGetCoupon {
-  @apply bg-violet-600 text-white;
+  @apply bg-white border border-gray-200 hover:border-blue-600 hover:shadow-md rounded-md flex flex-col p-3 relative transition-all duration-200;
 }
 
 .rootDark .couponItem {
-  @apply bg-transparent border border-gray-700 hover:border-violet-600 transition-all duration-200;
+  @apply bg-transparent border border-gray-700 hover:border-blue-600 transition-all duration-200;
 }
 
 .couponItem h4 {
-  @apply font-medium text-base mt-0 mb-1 p-0;
+  @apply font-medium text-base mt-0 mb-2 p-0;
 }
 
 .rootDark .couponItem h4 {
@@ -162,7 +158,7 @@
 }
 
 .itemMeta {
-  @apply text-xs text-gray-500;
+  @apply text-xs text-gray-500 mb-2;
 }
 
 .rootDark .itemMeta {
@@ -174,12 +170,21 @@
 }
 
 .nftCollectionWrap {
+  composes: nftCollectionWrap from '../../Campaign/List/item.module.css';
   @apply flex items-center;
 }
 
 .nftCollectionLink {
-
 }
+
+.collectionName {
+  composes: collectionName from '../../Campaign/List/item.module.css';
+}
+
+.contractAdd {
+  composes: contractAdd from '../../Campaign/List/item.module.css';
+}
+
 .loading {
   padding: 10px;
   text-align: center;

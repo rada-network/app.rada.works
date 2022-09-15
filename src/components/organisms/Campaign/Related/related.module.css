@@ -2,24 +2,26 @@
 }
 
 .Box {
-    composes: Box from '../../Campaign/Details/detail.module.css';
+  composes: Box from '../../Campaign/Details/detail.module.css';
 }
 
 .boxTitle {
-    composes: boxTitle from '../../Campaign/Details/detail.module.css';
+  composes: boxTitle from '../../Campaign/Details/detail.module.css';
 }
 
 .boxBody {
-    composes: boxBody from '../../Campaign/Details/detail.module.css';
+  composes: boxBody from '../../Campaign/Details/detail.module.css';
 }
 
 .couponList {
-    composes: couponList from '../../Campaign/Details/detail.module.css';
+  composes: couponList from '../../Campaign/Details/detail.module.css';
 }
 
 .infiniteFinished {
-    composes: infiniteFinished from '../../Campaign/List/list.module.css';
+  composes: infiniteFinished from '../../Campaign/List/list.module.css';
+  @apply mt-4;
 }
+
 .infiniteLoading {
-    composes: infiniteLoading from '../../Campaign/List/list.module.css';
+  composes: infiniteLoading from '../../Campaign/List/list.module.css';
 }

@@ -79,10 +79,7 @@ const Related = (props) => {
       );
 
       child = (
-        <ul
-          id="scrollableRelatedCampaigns"
-          style={{ height: 300, overflow: 'auto' }}
-        >
+        <ul id="scrollableRelatedCampaigns" className="list-none m-0 p-0">
           <InfiniteScroll
             className={classes.couponList}
             dataLength={infiniteItems.length}
