@@ -50,3 +50,7 @@
 .infiniteFinished {
 	@apply bg-gray-100 text-gray-800 rounded-md col-start-1 col-end-4 text-center pt-3 pb-3;
 }
+
+.rootDark .infiniteFinished {
+	@apply bg-gray-800 text-gray-600;
+}

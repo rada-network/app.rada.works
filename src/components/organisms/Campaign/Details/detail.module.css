@@ -5,7 +5,7 @@
 }
 
 .pageWrap {
-  @apply flex items-stretch;
+  @apply py-32 mx-auto max-w-screen-xl relative flex items-stretch;
 }
 
 .pageTitle {
@@ -174,7 +174,7 @@
 }
 
 .nftCollectionWrap {
-  padding: 10px 0px;
+  @apply flex items-center;
 }
 
 .nftCollectionLink {
