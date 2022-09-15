@@ -40,7 +40,7 @@
 }
 
 .itemFoot {
-	@apply flex items-center justify-between border-t border-gray-200 pt-4 mt-auto;
+	@apply flex items-center justify-end border-t border-gray-200 pt-4 mt-auto;
 }
 
 .rootDark .itemFoot {
@@ -49,7 +49,11 @@
 
 /* All Chains */
 .nftCollectionWrap {
-	@apply border border-gray-200 hover:border-gray-300 hover:bg-gray-100 rounded-full flex items-center pr-3 pl-1 py-0.5 mr-1 mb-1 relative;
+	@apply border border-gray-200 hover:border-blue-600 rounded-full flex items-center pr-3 pl-1 py-0.5 mr-1 mb-1 relative overflow-hidden;
+}
+
+.nftCollectionWrap:hover {
+	@apply overflow-visible;
 }
 
 .collectionName {
@@ -57,11 +61,25 @@
 }
 
 .contractAdd {
-	@apply bg-gray-800 text-white text-sm rounded-lg absolute py-1 px-2 left-0 -top-7 transition-all duration-300 hidden;
+	@apply bg-gray-800 text-white text-sm rounded-md absolute py-1 px-2 left-1/2 -translate-x-1/2 -top-8 transition-all duration-500 opacity-0;
+}
+
+.contractAdd::after {
+	border-top: 5px solid #1F2937;;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	content: "";
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -3px;
+	bottom: -5px;
+	height: 0;	
+	width: 0;
 }
 
 .nftCollectionWrap:hover .contractAdd {
-	@apply block -top-8;
+	@apply opacity-100 -top-9;
 }
 
 .chainWrap {
