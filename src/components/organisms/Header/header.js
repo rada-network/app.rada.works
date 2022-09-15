@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { shape, string } from 'prop-types';
+import { useRouter } from 'next/router';
 import classes from './header.module.css';
 import Logo from '../Logo';
 import TextLink from '../../atoms/TextLink';
@@ -15,6 +16,8 @@ const Header = (props) => {
   const { t } = useTranslation('common');
 
   const { rootClassName } = useThemes();
+
+  const router = useRouter();
 
   const menuItems = Array.from(links, ([groupKey, linkProps]) => {
     const linkElements = Array.from(linkProps, ([text, pathInfo]) => {
@@ -34,9 +37,16 @@ const Header = (props) => {
         <span className={classes.label}>{t(text)}</span>
       );
 
+      const itemClasses = [];
+      if (router.pathname === path) {
+        itemClasses.push(classes['active']);
+      }
+
       return (
         <Component key={itemKey}>
-          <li className={classes.linkItem}>{child}</li>
+          <li className={[classes.linkItem, ...itemClasses].join(' ')}>
+            {child}
+          </li>
         </Component>
       );
     });

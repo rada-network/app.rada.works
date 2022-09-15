@@ -51,3 +51,10 @@
 .offCanvasHide {
   @apply hidden md:block;
 }
+
+.linkItem {
+
+}
+.active {
+  color: red;
+}
