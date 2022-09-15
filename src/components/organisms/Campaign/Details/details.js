@@ -155,8 +155,8 @@ const Details = (props) => {
               dangerouslySetInnerHTML={{ __html: campaign.description }}
             />
 
-            <div className="flex items-stretch rounded-lg p-4 mb-12 border border-2 border-dashed dark:border-gray-800">
-              <div className="bg-green-50 border border-green-600 text-green-700 shadow-md rounded-lg flex flex-col items-center justify-center px-8 text-center">
+            <div className="flex flex-wrap items-stretch rounded-lg p-4 mb-12 border border-2 border-dashed dark:border-gray-800">
+              <div className="bg-green-50 border border-green-600 text-green-700 shadow-md rounded-lg flex flex-col items-center justify-center mb-4 md:mb-0 px-8 text-center basis-full md:basis-auto">
                 <strong className="text-6xl tracking-tight">
                   {campaign.discount_value}
                   <span className="leading-none font-light">%</span>
@@ -165,10 +165,10 @@ const Details = (props) => {
                   Discount
                 </span>
               </div>
-              <div className="pl-6 w-full">
+              <div className="md:pl-6 w-full">
                 <div className="mb-5">
                   <ul className="flex flex-wrap list-none m-0 p-0">
-                    <li className="flex items-center w-1/2 m-0 mb-3 p-0">
+                    <li className="flex items-center md:w-1/2 m-0 mb-3 p-0">
                       <span className="flex text-gray-500 items-center mr-2">
                         <svg
                           className="w-4 h-4 fill-gray-500 mr-2"
@@ -182,7 +182,7 @@ const Details = (props) => {
                       {Moment(campaign.date_start).format('DD MMM YYYY')}
                     </li>
 
-                    <li className="flex items-center w-1/2 m-0 mb-3 p-0">
+                    <li className="flex items-center md:w-1/2 m-0 mb-3 p-0">
                       <span className="flex items-center text-gray-500 mr-2">
                         <svg
                           className="w-4 h-4 fill-gray-500 mr-2"

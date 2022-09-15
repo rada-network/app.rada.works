@@ -5,15 +5,15 @@
 }
 
 .pageWrap {
-  @apply py-32 mx-auto max-w-screen-xl relative flex items-stretch;
+  @apply py-10 md:py-16 px-4 md:px-0 mx-auto max-w-screen-xl relative flex flex-wrap items-stretch;
 }
 
 .pageTitle {
-  @apply text-5xl font-semibold text-gray-800 mt-0 mb-8;
+  @apply text-3xl md:text-5xl font-semibold text-gray-800 mt-0 mb-2 md:mb-8;
 }
 
 .pageContent {
-  @apply border-r border-gray-200 w-full md:w-2/3 md:pr-14;
+  @apply md:border-r md:border-gray-200 w-full md:w-2/3 md:pr-14;
 }
 
 .rootDark .pageContent {
