@@ -79,21 +79,21 @@ const Related = (props) => {
       );
 
       child = (
-        <ul id="scrollableRelatedCampaigns" className="list-none m-0 p-0">
-          <InfiniteScroll
-            className={classes.couponList}
-            dataLength={infiniteItems.length}
-            next={fetchMoreData}
-            hasMore={infiniteHasMore}
-            loader={loader}
-            endMessage={endMessage}
-            scrollableTarget="scrollableRelatedCampaigns"
-          >
-            {infiniteItems.map((campaign) => (
-              <Item key={campaign.id} data={campaign} />
-            ))}
-          </InfiniteScroll>
-        </ul>
+        // <ul id="scrollableRelatedCampaigns" className="list-none m-0 p-0">
+        <InfiniteScroll
+          className={classes.couponList}
+          dataLength={infiniteItems.length}
+          next={fetchMoreData}
+          hasMore={infiniteHasMore}
+          loader={loader}
+          endMessage={endMessage}
+          // scrollableTarget="scrollableRelatedCampaigns"
+        >
+          {infiniteItems.map((campaign) => (
+            <Item key={campaign.id} data={campaign} />
+          ))}
+        </InfiniteScroll>
+        // </ul>
       );
     }
   }
