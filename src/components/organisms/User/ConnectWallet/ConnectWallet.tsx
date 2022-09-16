@@ -30,6 +30,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
         theme: 'dark'
       });
       const provider = await web3Modal.connect();
+      provider.enable();
       const web3 = new Web3(provider);
       const accounts = await web3.eth.getAccounts();
 

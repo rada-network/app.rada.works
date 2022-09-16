@@ -24,6 +24,7 @@ export const authRefresh = async (auth: any) => {
     mutation: AUTH_REFRESH_GQL,
     variables: { refresh_token }
   });
+  console.log(data);
   return data;
 };
 export const isExistsUser = async (email: string) => {
@@ -85,19 +86,5 @@ export const getTokenState = (token: any) => {
     return { valid: false, needRefresh: true };
   } else {
     return { valid: true, needRefresh: false };
-  }
-};
-export const getRefreshToken = async (data: any) => {
-  const client = initializeApollo();
-  try {
-    const res = await client.mutate({
-      mutation: UPDATE_USER_GQL,
-      variables: { data }
-    });
-    console.log(res);
-    return res;
-  } catch (error) {
-    console.log(error);
-    return error;
   }
 };
