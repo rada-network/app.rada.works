@@ -12,7 +12,9 @@ export default (props) => {
   const [infiniteItems, setInfiniteItems] = useState([]);
   const [infiniteHasMore, setInfiniteHasMore] = useState(true);
 
-  let defaultFilter = {};
+  let defaultFilter = {
+    status: { _eq: 'published' }
+  };
   let defaultLimit = 6;
   let defaultSort = ['-date_created'];
 

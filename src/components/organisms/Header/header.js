@@ -7,7 +7,7 @@ import TextLink from '../../atoms/TextLink';
 import ConnectWallet from '../User/ConnectWallet';
 import { useTranslation } from 'next-i18next';
 import { DEFAULT_LINKS } from './sampleData';
-import useThemes from 'src/hooks/useThemes';
+import useThemes from '../../../hooks/useThemes';
 import ToggleTheme from '../ToggleTheme';
 
 const Header = (props) => {

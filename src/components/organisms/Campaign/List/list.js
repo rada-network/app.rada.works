@@ -6,11 +6,14 @@ import { useTranslation } from 'next-i18next';
 import { Heading } from '../../../atoms/Heading';
 // import Select from '../../../atoms/Select';
 import classes from './list.module.css';
+import useThemes from '../../../../hooks/useThemes';
 import { useList } from '../../../../hooks/Campaign';
 import Item from './item';
 
 const List = (props) => {
   const { t } = useTranslation('list_campaign');
+
+  const { rootClassName } = useThemes();
 
   const { position, nftCollectionId = null } = props;
 
@@ -123,7 +126,7 @@ const List = (props) => {
   );*/
 
   return (
-    <div className={`${classes.root}`}>
+    <div className={`${classes[rootClassName]}`}>
       <div className={classes.headingWrap}>{heading}</div>
 
       {/*{filters}*/}
