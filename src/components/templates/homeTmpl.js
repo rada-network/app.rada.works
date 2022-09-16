@@ -57,9 +57,9 @@ const HomeTmpl = (props) => {
         <List position="home-page" />
 
         {/* FAQs */}
-        <div className="border-t border-gray-200 py-16">
+        <div className="border-t border-gray-200 py-20">
           <div className="container max-w-screen-xl mx-auto">
-            <div className="mb-8">
+            <div className="mb-14">
               <h2 className="text-center lg:text-5xl font-bold text-gray-800 mt-0 mb-0">
                 FAQs
               </h2>
@@ -77,7 +77,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 rounded-xl p-4 mt-5">
+                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4">Can I change my plan later?</h3>
                   <p className="m-0">
                     Donec id dictum felis. Fusce ac nunc commodo, vestibulum
@@ -85,7 +85,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 rounded-xl p-4 mt-5">
+                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4">
                     What is your cancellation policy?
                   </h3>
@@ -103,7 +103,7 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full lg:basis-1/2">
-                <div className="border border-gray-200 rounded-xl p-4">
+                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
                   <h3 className="mt-0 mb-4">
                     Can other info be added to an invoice?
                   </h3>
@@ -118,7 +118,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 rounded-xl p-4 mt-5">
+                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4">How does billing work?</h3>
                   <p className="m-0">
                     Etiam lacinia risus metus, ac molestie lectus hendrerit
@@ -127,7 +127,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 rounded-xl p-4 mt-5">
+                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4">
                     How do I change my account email?
                   </h3>
