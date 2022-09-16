@@ -28,7 +28,7 @@ export const LOGIN_GQL = gql`
 
 export const AUTH_REFRESH_GQL = gql`
   mutation auth_refresh($refresh_token: String!) {
-    auth_refresh(refresh_token: $refresh_token) {
+    auth_refresh(refresh_token: $refresh_token, mode: cookie) {
       access_token
       refresh_token
     }
