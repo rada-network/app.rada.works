@@ -70,7 +70,7 @@ export default async function auth(
     providers,
     session: {
       strategy: 'jwt', // Seconds - How long until an idle session expires and is no longer valid.
-      maxAge: 20 * 60 // 20 minutes
+      maxAge: 21 * 60 // 20 minutes
     },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
@@ -139,6 +139,7 @@ export default async function auth(
               refresh_token: token.refresh_token
             });
             session.access_token = directusToken.auth_refresh.access_token;
+            console.log('session', session);
           }
         }
         return session;
