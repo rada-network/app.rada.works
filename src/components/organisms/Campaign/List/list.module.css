@@ -1,5 +1,5 @@
 .root {
-	@apply mx-auto max-w-screen-xl py-12 px-6;
+	@apply mx-auto max-w-screen-xl py-12 px-6 lg:px-0;
 }
 
 .headingWrap {
@@ -48,7 +48,7 @@
 }
 
 .infiniteFinished {
-	@apply bg-gray-100 text-gray-800 rounded-md col-start-1 col-end-4 text-center pt-3 pb-3;
+	@apply bg-gray-100 text-gray-800 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
 }
 
 .rootDark .infiniteFinished {
