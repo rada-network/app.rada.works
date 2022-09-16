@@ -1,8 +1,9 @@
 .root {
+  composes: Box from '../../Campaign/Details/detail.module.css';
 }
 
-.Box {
-  composes: Box from '../../Campaign/Details/detail.module.css';
+.rootDark {
+  composes: root;
 }
 
 .boxTitle {
@@ -24,4 +25,8 @@
 
 .infiniteLoading {
   composes: infiniteLoading from '../../Campaign/List/list.module.css';
+}
+
+.rootDark .infiniteFinished {
+  @apply bg-gray-800 text-gray-600;
 }

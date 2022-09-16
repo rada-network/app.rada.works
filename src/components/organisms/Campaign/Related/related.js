@@ -3,9 +3,11 @@ import { shape, string } from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './related.module.css';
+import useThemes from '../../../../hooks/useThemes';
 import { useStyle } from '../../../classify';
 import { useList } from '../../../../hooks/Campaign';
 import Item from './item';
+import classes from '../NftCollection/List/list.module.css';
 
 const Related = (props) => {
   const { currentCampaign, classes: propClasses } = props;
@@ -13,6 +15,8 @@ const Related = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('common');
+
+  const { rootClassName } = useThemes();
 
   const {
     data,
@@ -79,7 +83,6 @@ const Related = (props) => {
       );
 
       child = (
-        // <ul id="scrollableRelatedCampaigns" className="list-none m-0 p-0">
         <InfiniteScroll
           className={classes.couponList}
           dataLength={infiniteItems.length}
@@ -87,19 +90,17 @@ const Related = (props) => {
           hasMore={infiniteHasMore}
           loader={loader}
           endMessage={endMessage}
-          // scrollableTarget="scrollableRelatedCampaigns"
         >
           {infiniteItems.map((campaign) => (
             <Item key={campaign.id} data={campaign} />
           ))}
         </InfiniteScroll>
-        // </ul>
       );
     }
   }
   return (
     <Fragment>
-      <div className={classes.Box}>
+      <div className={`${classes[rootClassName]}`}>
         {blockHeading}
         <div className={classes.boxBody}>{child}</div>
       </div>

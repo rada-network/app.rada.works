@@ -2,6 +2,10 @@
 	@apply mx-auto max-w-screen-xl py-12 px-6 lg:px-0;
 }
 
+.rootDark {
+	composes: root;
+}
+
 .headingWrap {
 	@apply mb-20;
 }

@@ -1,7 +1,9 @@
 .root {
-	@apply container mx-auto;
+	@apply container mx-auto py-24 px-4 md:px-5 lg:px-0 mx-auto max-w-screen-xl relative;
 }
-
+.rootDark {
+	composes: root;
+}
 .headingWrap {
 	@apply mb-20;
 }
@@ -35,4 +37,21 @@
 
 .rootDark .loadMore {
 	@apply border border-gray-700;
+}
+
+.loading {
+	padding: 10px;
+	text-align: center;
+}
+
+.infiniteLoading {
+	@apply text-gray-800 col-start-1 col-end-4 text-center pt-3 pb-3;
+}
+
+.infiniteFinished {
+	@apply bg-gray-100 text-gray-800 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+}
+
+.rootDark .infiniteFinished {
+	@apply bg-gray-800 text-gray-600;
 }

@@ -1,20 +1,58 @@
 import { useQuery } from '@apollo/client';
-import API from './list.api.gql';
+import API, { getNextNftCollectionsFunc } from './list.api.gql';
+import { useState } from 'react';
 
 export default (props) => {
-  let filter = {
+  const { getNftCollections, getNextCampaignsFunc } = API;
+
+  //vars for infinite loading
+  const [page, setPage] = useState(2);
+  const [infiniteItems, setInfiniteItems] = useState([]);
+  const [infiniteHasMore, setInfiniteHasMore] = useState(true);
+
+  let defaultFilter = {
     status: { _eq: 'published' }
   };
-  let limit = 18;
+  let defaultLimit = 6;
+  let defaultSort = ['-date_created'];
 
-  const { getNftCollections } = API;
+  // vars for filter tool bar
+  const [filter, setFilter] = useState(defaultFilter);
+  const [limit, setLimit] = useState(defaultLimit);
+  const [sort, setSort] = useState(defaultSort);
+
+  const getNextItems = async () => {
+    const nextItems = await getNextNftCollectionsFunc({
+      filter,
+      limit,
+      page,
+      sort
+    });
+
+    return nextItems;
+  };
+
+  // Loading items in first page
   const { data, loading, error } = useQuery(getNftCollections, {
     variables: {
       filter,
       limit,
-      sort: ['-date_created']
+      page: 1,
+      sort
     }
   });
 
-  return { loading, data, error };
+  //return data
+  return {
+    data,
+    loading,
+    error,
+    page,
+    setPage,
+    getNextItems,
+    infiniteItems,
+    setInfiniteItems,
+    infiniteHasMore,
+    setInfiniteHasMore
+  };
 };
