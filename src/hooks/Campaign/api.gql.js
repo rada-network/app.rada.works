@@ -5,7 +5,6 @@ export const CREATE_CAMPAIGN_FUNC = gql`
     $title: String!
     $slug: String!
     $nft_collection_ids: [create_campaign_nft_collection_input]
-    $nft_collection_opt_selected: String
     $description: String
     $discount_value: Int!
     $coupon_codes: String!
@@ -21,7 +20,6 @@ export const CREATE_CAMPAIGN_FUNC = gql`
         title: $title
         slug: $slug
         nft_collection_ids: $nft_collection_ids
-        nft_collection_opt_selected: $nft_collection_opt_selected
         description: $description
         discount_value: $discount_value
         coupon_codes: $coupon_codes
@@ -46,7 +44,6 @@ export const EDIT_CAMPAIGN_FUNC = gql`
     $title: String!
     $slug: String!
     $nft_collection_ids: [update_campaign_nft_collection_input]
-    $nft_collection_opt_selected: String
     $description: String
     $discount_value: Int!
     $coupon_codes: String!
@@ -63,7 +60,6 @@ export const EDIT_CAMPAIGN_FUNC = gql`
         title: $title
         slug: $slug
         nft_collection_ids: $nft_collection_ids
-        nft_collection_opt_selected: $nft_collection_opt_selected
         description: $description
         discount_value: $discount_value
         coupon_codes: $coupon_codes
@@ -96,7 +92,14 @@ export const LOAD_CAMPAIGN_BY_ID = gql`
       show_on_rada
       date_start
       date_end
-      nft_collection_opt_selected
+      nft_collection_ids {
+        nft_collection_id {
+          id
+          name
+          contract_address
+          chain_name
+        }
+      }
     }
   }
 `;

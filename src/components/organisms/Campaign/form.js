@@ -89,7 +89,7 @@ const CampaignForm = (props) => {
   useEffect(() => {
     const initNftCollections =
       initialValues && initialValues.nft_collection_opt_selected
-        ? JSON.parse(initialValues.nft_collection_opt_selected)
+        ? initialValues.nft_collection_opt_selected
         : [];
     if (initNftCollections.length) {
       setNftCollections(initNftCollections);
@@ -133,7 +133,7 @@ const CampaignForm = (props) => {
               <Selector
                 selectedOption={
                   initialValues && initialValues.nft_collection_opt_selected
-                    ? JSON.parse(initialValues.nft_collection_opt_selected)
+                    ? initialValues.nft_collection_opt_selected
                     : []
                 }
                 handleChange={setNftCollections}

@@ -43,22 +43,19 @@ const Details = (props) => {
 
       const handleAddCampaign = () => {
         const storage = new BrowserPersistence();
-        const chainName = capitalize(nftCollection.chain_name);
-        const contractAdd = ellipsify({
-          str: nftCollection.contract_address,
-          start: 5,
-          end: 4
-        });
         const nftCollectionOption = [
           {
             value: parseInt(nftCollection.id),
-            label: `${chainName} > ${nftCollection.name} (${contractAdd})`
+            label: `${capitalize(nftCollection.chain_name)} > ${
+              nftCollection.name
+            } (${ellipsify({
+              str: nftCollection.contract_address,
+              start: 5,
+              end: 4
+            })})`
           }
         ];
-        storage.setItem(
-          'nft_collection_opt_selected',
-          JSON.stringify(nftCollectionOption)
-        );
+        storage.setItem('nft_collection_opt_selected', nftCollectionOption);
 
         Router.push(`/create-campaign`);
       };

@@ -1,35 +1,41 @@
 import Router from 'next/router';
-import { useCallback, useRef, useMemo } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useCallback, useRef, useMemo, useEffect } from 'react';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import slugify from 'slugify';
 import API from './api.gql';
 import BrowserPersistence from '../../utils/simplePersistence';
+import { capitalize, ellipsify } from '../../utils/strUtils';
 
 export default (props) => {
   const { campaignId, afterSavedCampaign } = props;
-
   const { addMutation, editMutation, loadCampaignByIdQuery } = API;
 
   const storage = new BrowserPersistence();
   const currentCampaign = storage.getItem('currentCampaign');
-  let initialValues = currentCampaign ? currentCampaign : null;
+  let initialValues = currentCampaign ? currentCampaign : [];
 
   //load campaign information for initial values on form
-  const {
-    loading: campaignLoading,
-    error: campaignLoadError,
-    data: campaignLoaded
-  } = useQuery(loadCampaignByIdQuery, {
-    fetchPolicy: 'no-cache',
-    skip: !campaignId,
-    variables: {
-      id: campaignId
-    }
+  const [
+    getCampaign,
+    { loading: campaignLoading, error: campaignLoadError, data: campaignLoaded }
+  ] = useLazyQuery(loadCampaignByIdQuery, {
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first'
   });
+  useEffect(() => {
+    if (campaignId) {
+      getCampaign({
+        skip: !campaignId,
+        variables: {
+          id: campaignId
+        }
+      });
+    }
+  }, [campaignId, getCampaign]);
 
   initialValues = useMemo(() => {
     return !campaignLoading && campaignLoaded && campaignLoaded.campaign_by_id
-      ? campaignLoaded.campaign_by_id
+      ? { ...campaignLoaded.campaign_by_id }
       : [];
   }, [campaignLoaded]);
 
@@ -42,6 +48,23 @@ export default (props) => {
       initialValues = [];
     }
     initialValues.nft_collection_opt_selected = nftCollectionOptionSelected;
+  } else {
+    //build nft collection options
+    if (initialValues.nft_collection_ids) {
+      const nftCollectionOptions = [];
+      initialValues.nft_collection_ids.map((nftCollection) => {
+        const data = nftCollection.nft_collection_id;
+        nftCollectionOptions.push({
+          value: parseInt(data.id),
+          label: `${capitalize(data.chain_name)} > ${data.name} (${ellipsify({
+            str: data.contract_address,
+            start: 5,
+            end: 4
+          })})`
+        });
+      });
+      initialValues.nft_collection_opt_selected = nftCollectionOptions;
+    }
   }
 
   const formApiRef = useRef(initialValues);
@@ -69,13 +92,6 @@ export default (props) => {
   const handleSaveCampaign = useCallback(
     async (submittedValues) => {
       try {
-        //we saving this to using in the edit campaign context
-        const nft_collection_opt_selected = JSON.stringify(
-          submittedValues.nftCollections
-        );
-        submittedValues.nft_collection_opt_selected =
-          nft_collection_opt_selected;
-
         //saving submitted data to local storage
         storage.setItem('currentCampaign', submittedValues, 3600);
 
@@ -97,7 +113,6 @@ export default (props) => {
           variables: {
             id: campaignId ? parseInt(campaignId) : null,
             nft_collection_ids,
-            nft_collection_opt_selected,
             ...submittedValues
           }
         });

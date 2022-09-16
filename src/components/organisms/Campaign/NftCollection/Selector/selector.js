@@ -35,15 +35,13 @@ const Selector = (props) => {
     const rs = [];
     if (data && data.nft_collection) {
       data.nft_collection.map(function (obj) {
-        const chainName = capitalize(obj.chain_name);
-        const contractAdd = ellipsify({
-          str: obj.contract_address,
-          start: 5,
-          end: 4
-        });
         rs.push({
           value: parseInt(obj.id),
-          label: `${chainName} > ${obj.name} (${contractAdd})`
+          label: `${capitalize(obj.chain_name)} > ${obj.name} (${ellipsify({
+            str: obj.contract_address,
+            start: 5,
+            end: 4
+          })})`
         });
       });
     }
