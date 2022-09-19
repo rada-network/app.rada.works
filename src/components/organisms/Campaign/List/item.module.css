@@ -129,9 +129,9 @@
 
 /* Get coupon button */
 .getCoupon {
-	@apply bg-blue-50 hover:bg-blue-700 ring-1 ring-blue-400 hover:ring-0 text-blue-600 hover:text-white py-1.5 px-3 rounded-md text-sm font-normal transition-all duration-200 ease-in-out hover:cursor-pointer ml-auto;
+	@apply bg-blue-50 hover:bg-blue-700 border border-blue-400 hover:border-blue-700 text-blue-600 hover:text-white py-1.5 px-3 rounded-md text-sm font-normal transition-all duration-200 ease-in-out hover:cursor-pointer ml-auto;
 }
 
 .rootDark .getCoupon {
-	@apply bg-transparent hover:bg-blue-700 hover:text-white;
+	@apply bg-gray-900 hover:bg-blue-700 border-blue-700 text-white hover:text-white;
 }
