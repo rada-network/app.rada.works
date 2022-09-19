@@ -60,18 +60,20 @@
 }
 
 .toolbarWrap {
-	/*for example only*/
-	padding: 10px 0px;
-	background-color: lightgray;
+	padding: 20px;
+	@apply grid lg:grid-cols-3 gap-6 mt-8;
+}
+
+.toolbarWrap .searchField {
+}
+
+.toolbarWrap .searchField .searchInput {
 }
 
 .toolbarWrap .totalResults {
-
+	text-align: center;
 }
 
 .toolbarWrap .sortWrap {
-
-}
-.toolbarWrap .searchWrap {
-
+	text-align: right;
 }

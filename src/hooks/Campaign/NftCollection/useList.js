@@ -34,6 +34,8 @@ export default (props) => {
 
   // Loading items in first page
   const { data, loading, error } = useQuery(getNftCollections, {
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
     variables: {
       filter,
       limit,

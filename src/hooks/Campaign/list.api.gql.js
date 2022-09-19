@@ -1,6 +1,14 @@
 import { gql } from '@apollo/client';
 import { initializeApollo } from '../../libs/apolloClient';
 
+export const GET_TOTAL_CAMPAIGNS = gql`
+  query getCampaigns($filter: campaign_filter, $search: String) {
+    campaign(filter: $filter, search: $search) {
+      id
+    }
+  }
+`;
+
 export const GET_CAMPAIGNS = gql`
   query getCampaigns(
     $filter: campaign_filter
@@ -48,7 +56,7 @@ export const GET_CAMPAIGNS = gql`
 `;
 
 export const getNextCampaignsFunc = async (props) => {
-  const { filter, limit, page, sort } = props;
+  const { search, filter, limit, page, sort } = props;
 
   let rs = [];
   const client = initializeApollo();
@@ -56,6 +64,7 @@ export const getNextCampaignsFunc = async (props) => {
     const { data } = await client.query({
       query: GET_CAMPAIGNS,
       variables: {
+        search,
         filter,
         limit,
         page,
@@ -77,6 +86,7 @@ export const getNextCampaignsFunc = async (props) => {
 };
 
 export default {
+  getTotalCampaigns: GET_TOTAL_CAMPAIGNS,
   getCampaigns: GET_CAMPAIGNS,
   getNextCampaignsFunc
 };

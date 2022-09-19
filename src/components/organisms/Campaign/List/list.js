@@ -21,6 +21,9 @@ const List = (props) => {
     data,
     loading,
     error,
+    totalItems,
+    handleSearch,
+    limit,
     page,
     setPage,
     getNextItems,
@@ -32,11 +35,17 @@ const List = (props) => {
 
   useEffect(() => {
     if (data) {
-      if (data.campaign.length) {
+      const size = data.campaign.length;
+      if (size) {
         setInfiniteItems(data.campaign);
+        if (size < totalItems) {
+          setInfiniteHasMore(true);
+        } else {
+          setInfiniteHasMore(false);
+        }
       }
     }
-  }, [data]);
+  }, [data, totalItems]);
 
   let child = null;
   if (!data) {
@@ -61,7 +70,6 @@ const List = (props) => {
         const nextItems = await getNextItems();
         // Set more items
         setInfiniteItems([...infiniteItems, ...nextItems]);
-
         if (!nextItems.length) {
           setInfiniteHasMore(false);
         }
@@ -106,31 +114,41 @@ const List = (props) => {
   }
 
   const heading = (
-    <Heading HeadingType="h1" subHeading={`${subheading}`}>
-      {headingTitle}
-    </Heading>
+    <div className={classes.headingWrap}>
+      <Heading HeadingType="h1" subHeading={`${subheading}`}>
+        {headingTitle}
+      </Heading>
+    </div>
   );
 
-  /*const filters = (
-    <div className={classes.filter}>
-      <Form className={classes.filterForm}>
-        <Select
-          field="filter"
-          items={[
-            { label: 'Option 1', value: 'opt1' },
-            { label: 'Option 2', value: 'opt2' }
-          ]}
-        />
-      </Form>
+  const searchField = (
+    <input
+      autoComplete="off"
+      className={classes.searchInput}
+      type="text"
+      id="campaign_keyword"
+      name="keyword"
+      onChange={handleSearch}
+      placeholder={t('Search by keyword...')}
+    />
+  );
+
+  const sortField = totalItems ? '[WIP] Sort options...' : null;
+
+  const toolbar = (
+    <div className={classes.toolbarWrap}>
+      <div className={classes.searchField}>{searchField}</div>
+      <div
+        className={classes.totalResults}
+      >{`${totalItems.toLocaleString()} ${t('items')}`}</div>
+      <div className={classes.sortWrap}>{sortField}</div>
     </div>
-  );*/
+  );
 
   return (
     <div className={`${classes[rootClassName]}`}>
-      <div className={classes.headingWrap}>{heading}</div>
-
-      {/*{filters}*/}
-
+      {heading}
+      {toolbar}
       {child}
     </div>
   );
