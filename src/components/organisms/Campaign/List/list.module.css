@@ -58,3 +58,20 @@
 .rootDark .infiniteFinished {
 	@apply bg-gray-800 text-gray-600;
 }
+
+.toolbarWrap {
+	/*for example only*/
+	padding: 10px 0px;
+	background-color: lightgray;
+}
+
+.toolbarWrap .totalResults {
+
+}
+
+.toolbarWrap .sortWrap {
+
+}
+.toolbarWrap .searchWrap {
+
+}
