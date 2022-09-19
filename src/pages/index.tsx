@@ -1,13 +1,15 @@
-// import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { NextPage } from 'next';
-// import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
 import HomeTmpl from '../components/templates/homeTmpl';
 
 const HomePage: NextPage = () => {
-  // const router = useRouter();
-  // useEffect(() => {
-  //
-  // }, [router.isReady]);
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session?.error === 'RefreshAccessTokenError') {
+      signOut(); // Force sign in to hopefully resolve error
+    }
+  }, [session]);
 
   const child = <HomeTmpl />;
 
