@@ -1,5 +1,5 @@
 .root {
-	@apply mx-auto max-w-screen-xl py-12 px-4 lg:px-0;
+	@apply mx-auto max-w-screen-xl py-12 lg:py-24 px-4 lg:px-0;
 }
 
 .rootDark {

@@ -131,3 +131,7 @@
 .getCoupon {
 	@apply bg-blue-50 hover:bg-blue-700 ring-1 ring-blue-400 hover:ring-0 text-blue-600 hover:text-white py-1.5 px-3 rounded-md text-sm font-normal transition-all duration-200 ease-in-out hover:cursor-pointer ml-auto;
 }
+
+.rootDark .getCoupon {
+	@apply bg-transparent hover:bg-blue-700 hover:text-white;
+}

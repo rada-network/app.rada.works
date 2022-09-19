@@ -8,11 +8,11 @@ const HomeTmpl = (props) => {
     <Fragment>
       <MainTmpl>
         {/* Hero */}
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 dark:bg-gray-900">
           <div className="container max-w-screen-xl mx-auto px-4 lg:px-0">
             <div className="flex flex-wrap items-center py-16">
               <div className="basis-full lg:basis-2/5 lg:pr-20 text-center lg:text-left">
-                <h1 className="my-0 text-4xl lg:text-6xl font-semibold text-gray-800 leading-relaxed">
+                <h1 className="my-0 text-4xl lg:text-6xl font-semibold text-gray-800 dark:text-white leading-relaxed">
                   A multichain NFT design flatform
                 </h1>
                 <p className="text-lg">
@@ -55,17 +55,17 @@ const HomeTmpl = (props) => {
         <List position="home-page" />
 
         {/* FAQs */}
-        <div className="border-t border-gray-200 py-20">
+        <div className="border-t border-gray-200 dark:border-gray-800 py-20">
           <div className="container max-w-screen-xl mx-auto px-4 lg:px-0">
             <div className="mb-14">
-              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-0 mb-0">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0">
                 FAQs
               </h2>
             </div>
 
             <div className="flex flex-wrap lg:flex-nowrap lg:gap-6">
               <div className="basis-full lg:basis-1/2">
-                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     Is there a free trial available?
                   </h3>
@@ -75,7 +75,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     Can I change my plan later?
                   </h3>
@@ -85,7 +85,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     What is your cancellation policy?
                   </h3>
@@ -103,7 +103,7 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full lg:basis-1/2">
-                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     Can other info be added to an invoice?
                   </h3>
@@ -118,7 +118,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     How does billing work?
                   </h3>
@@ -129,7 +129,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     How do I change my account email?
                   </h3>
