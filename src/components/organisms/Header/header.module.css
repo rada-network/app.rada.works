@@ -1,5 +1,5 @@
 .root {
-  @apply bg-white border-b border-b-gray-200 md:sticky top-0 flex flex-wrap justify-between items-center px-4 lg:px-6 py-3.5 space-x-4 z-10 text-sm font-medium;
+  @apply bg-white border-b border-b-gray-200 md:sticky top-0 flex justify-between items-center px-4 lg:px-6 py-3.5 space-x-4 z-10 text-sm font-medium;
 }
 
 .rootDark {
@@ -8,7 +8,7 @@
 }
 
 .logoContainer {
-  @apply w-16;
+  @apply w-16 absolute top-4 md:top-auto md:relative;
 }
 
 .logoContainer .logo {
@@ -21,6 +21,7 @@
 
 .menuContainer {
   @apply flex flex-wrap items-center space-x-4;
+  margin-left: auto !important;
 }
 
 /* Main Nav */
@@ -29,11 +30,11 @@
 }
 
 .linkGroup {
-  @apply flex flex-wrap;
+  @apply border md:border-0 rounded-lg md:rounded-none mt-3 md:mt-0 flex flex-wrap flex-col md:flex-row ml-0;
 }
 
 .linkGroup li {
-  @apply flex flex-wrap justify-center align-middle px-4 py-2;
+  @apply flex flex-wrap md:justify-center align-middle px-4 py-2;
 }
 
 .linkGroup li a {

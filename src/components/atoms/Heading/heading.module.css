@@ -1,9 +1,9 @@
 .heading {
-  @apply md:text-4xl lg:text-5xl font-semibold text-gray-800 text-center mb-6;
+  @apply text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 text-center mb-6;
 }
 
-.headingDark{
-	composes:heading;
+.headingDark {
+	composes: heading;
 	@apply text-gray-100;
 }
 
@@ -12,6 +12,6 @@
 }
 
 .subHeadingDark {
-	composes:subHeading;
+	composes: subHeading;
 	@apply text-gray-100;
 }

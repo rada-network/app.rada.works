@@ -9,13 +9,11 @@ const HomeTmpl = (props) => {
       <MainTmpl>
         {/* Hero */}
         <div className="bg-gray-100">
-          <div className="container max-w-screen-xl mx-auto">
-            <div className="flex items-center lg:py-8">
-              <div className="basis-2/5 pr-20 text-center lg:text-left">
-                <h1 className="my-0 text-3xl lg:text-6xl font-semibold text-gray-800 leading-relaxed">
-                  A multichain
-                  <br /> NFT design
-                  <br /> flatform
+          <div className="container max-w-screen-xl mx-auto px-4 lg:px-0">
+            <div className="flex flex-wrap items-center py-16">
+              <div className="basis-full lg:basis-2/5 lg:pr-20 text-center lg:text-left">
+                <h1 className="my-0 text-4xl lg:text-6xl font-semibold text-gray-800 leading-relaxed">
+                  A multichain NFT design flatform
                 </h1>
                 <p className="text-lg">
                   Morbi eros tortor, bibendum in erat non, pretium efficitur
@@ -58,17 +56,17 @@ const HomeTmpl = (props) => {
 
         {/* FAQs */}
         <div className="border-t border-gray-200 py-20">
-          <div className="container max-w-screen-xl mx-auto">
+          <div className="container max-w-screen-xl mx-auto px-4 lg:px-0">
             <div className="mb-14">
-              <h2 className="text-center lg:text-5xl font-bold text-gray-800 mt-0 mb-0">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-0 mb-0">
                 FAQs
               </h2>
             </div>
 
-            <div className="flex lg:gap-6">
+            <div className="flex flex-wrap lg:flex-nowrap lg:gap-6">
               <div className="basis-full lg:basis-1/2">
                 <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
-                  <h3 className="mt-0 mb-4">
+                  <h3 className="mt-0 mb-4 leading-6">
                     Is there a free trial available?
                   </h3>
                   <p className="m-0">
@@ -78,7 +76,9 @@ const HomeTmpl = (props) => {
                 </div>{' '}
                 {/* End question */}
                 <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4">Can I change my plan later?</h3>
+                  <h3 className="mt-0 mb-4 leading-6">
+                    Can I change my plan later?
+                  </h3>
                   <p className="m-0">
                     Donec id dictum felis. Fusce ac nunc commodo, vestibulum
                     nisi ac, finibus ipsum. Vivamus vel tortor turpis.
@@ -86,7 +86,7 @@ const HomeTmpl = (props) => {
                 </div>{' '}
                 {/* End question */}
                 <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4">
+                  <h3 className="mt-0 mb-4 leading-6">
                     What is your cancellation policy?
                   </h3>
                   <p className="m-0">
@@ -104,7 +104,7 @@ const HomeTmpl = (props) => {
 
               <div className="basis-full lg:basis-1/2">
                 <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
-                  <h3 className="mt-0 mb-4">
+                  <h3 className="mt-0 mb-4 leading-6">
                     Can other info be added to an invoice?
                   </h3>
                   <p className="m-0">
@@ -119,7 +119,9 @@ const HomeTmpl = (props) => {
                 </div>{' '}
                 {/* End question */}
                 <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4">How does billing work?</h3>
+                  <h3 className="mt-0 mb-4 leading-6">
+                    How does billing work?
+                  </h3>
                   <p className="m-0">
                     Etiam lacinia risus metus, ac molestie lectus hendrerit
                     vitae. Aliquam erat volutpat. Nulla faucibus auctor finibus.
@@ -128,7 +130,7 @@ const HomeTmpl = (props) => {
                 </div>{' '}
                 {/* End question */}
                 <div className="border border-gray-200 hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4">
+                  <h3 className="mt-0 mb-4 leading-6">
                     How do I change my account email?
                   </h3>
                   <p className="m-0">

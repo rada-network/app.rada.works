@@ -168,7 +168,7 @@ const Details = (props) => {
               <div className="lg:pl-6 w-full flex-1">
                 <div className="mb-5">
                   <ul className="flex flex-wrap list-none m-0 p-0">
-                    <li className="flex items-center md:w-1/2 m-0 mb-3 p-0">
+                    <li className="flex items-center md:w-1/2 m-0 mb-3 p-0 mr-6">
                       <span className="flex text-gray-500 items-center mr-2">
                         <svg
                           className="w-4 h-4 fill-gray-500 mr-2.5"
