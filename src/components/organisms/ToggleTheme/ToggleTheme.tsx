@@ -9,7 +9,10 @@ const ToggleTheme = () => {
     isDark ? setTheme('light') : setTheme('dark');
   };
   return (
-    <button className="w-4" onClick={toggleThemeClick}>
+    <button
+      className={`${classes.toggleThemeBtn} w-4 ml-auto`}
+      onClick={toggleThemeClick}
+    >
       <img src={imgSrc} alt="Toggle theme" className={classes.image} />
     </button>
   );
