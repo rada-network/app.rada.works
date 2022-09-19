@@ -48,7 +48,7 @@
 }
 
 .infiniteLoading {
-	@apply text-gray-800 col-start-1 col-end-4 text-center pt-3 pb-3;
+	@apply text-gray-800 col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
 }
 
 .infiniteFinished {
