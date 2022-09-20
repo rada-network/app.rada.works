@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <ThemeProvider attribute="class">
       <ApolloProvider client={apolloClient}>
         <Provider store={store}>
-          <SessionProvider session={session}>
+          <SessionProvider session={session} refetchInterval={1200}>
             <Web3Provider>
               <Component {...pageProps} />
               <Toast />

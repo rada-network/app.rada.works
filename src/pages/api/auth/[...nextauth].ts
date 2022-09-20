@@ -1,5 +1,4 @@
 import NextAuth from 'next-auth';
-import Router from 'next/router';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
@@ -179,8 +178,6 @@ export default async function auth(
           const { valid } = getTokenState(session.access_token);
           if (!valid) {
             console.log('session expired', session);
-            // if (window?.location?.pathname)
-            //   Router.reload(window?.location?.pathname);
           }
         }
         return session;
