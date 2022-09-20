@@ -67,7 +67,8 @@
 .toolbarWrap .searchField {
 }
 
-.toolbarWrap .searchField .searchInput {
+.searchInput {
+	composes: input from '../../../atoms/TextInput/textInput.module.css'
 }
 
 .toolbarWrap .totalResults {

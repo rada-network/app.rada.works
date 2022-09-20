@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { shape, string, number } from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
-// import { Form } from 'informed';
 import { useTranslation } from 'next-i18next';
 import { Heading } from '../../../atoms/Heading';
-// import Select from '../../../atoms/Select';
 import classes from './list.module.css';
 import useThemes from '../../../../hooks/useThemes';
 import { useList } from '../../../../hooks/Campaign';
 import Item from './item';
+import Sort from '../../Campaign/Sort';
 
 const List = (props) => {
   const { t } = useTranslation('list_campaign');
@@ -23,7 +22,7 @@ const List = (props) => {
     error,
     totalItems,
     handleSearch,
-    limit,
+    sortProps,
     page,
     setPage,
     getNextItems,
@@ -100,19 +99,18 @@ const List = (props) => {
     }
   }
 
-  const subheading =
-    position === 'home-page'
-      ? t(
-          'Aliquam dignissim enim ut est suscipit, ut euismod lacus tincidunt. Nunc feugiat ex id mi hendrerit, et efficitur ligula bibendum.'
-        )
-      : '';
   let headingTitle = t('🎉 Browse Coupons');
   if (position === 'home-page') {
     headingTitle = t('Best Offers');
   } else if (position === 'nft-collection-details') {
     headingTitle = t('All Deals');
   }
-
+  const subheading =
+    position === 'home-page'
+      ? t(
+          'Aliquam dignissim enim ut est suscipit, ut euismod lacus tincidunt. Nunc feugiat ex id mi hendrerit, et efficitur ligula bibendum.'
+        )
+      : '';
   const heading = (
     <div className={classes.headingWrap}>
       <Heading HeadingType="h1" subHeading={`${subheading}`}>
@@ -133,7 +131,7 @@ const List = (props) => {
     />
   );
 
-  const sortField = totalItems ? '[WIP] Sort options...' : null;
+  const sortField = totalItems ? <Sort sortProps={sortProps} /> : null;
 
   const toolbar = (
     <div className={classes.toolbarWrap}>

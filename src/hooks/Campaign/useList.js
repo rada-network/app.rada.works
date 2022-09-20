@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import API from './list.api.gql';
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import { useSort } from './useSort';
 
 export default (props) => {
   const { getCampaigns, getTotalCampaigns, getNextCampaignsFunc } = API;
@@ -16,7 +17,7 @@ export default (props) => {
     status: { _eq: 'published' }
   };
   let defaultLimit = 6;
-  let defaultSort = ['-date_created'];
+  let sort = []; //['-date_created']
 
   if (position === 'related') {
     defaultLimit = 5;
@@ -45,9 +46,20 @@ export default (props) => {
 
   const [filter, setFilter] = useState(defaultFilter);
   const [limit, setLimit] = useState(defaultLimit);
-  const [sort, setSort] = useState(defaultSort);
 
+  // for sorting
+  const sortProps = useSort();
+  const [currentSort] = sortProps;
+  const previousSort = useRef(currentSort);
+  if (currentSort.sortDirection === 'DESC') {
+    sort.push(`-${currentSort.sortAttribute}`);
+  } else {
+    sort.push(`${currentSort.sortAttribute}`);
+  }
+
+  // for search by keyword
   const [search, setSearch] = useState(null);
+  const previousSearch = useRef(search);
   const handleSearch = useCallback(
     (event) => {
       const value = event.target.value;
@@ -58,12 +70,26 @@ export default (props) => {
       } else {
         setSearch(null);
       }
-      //reset for infinite loading
-      setPage(2);
-      setInfiniteHasMore(true);
     },
     [search, setSearch]
   );
+
+  useEffect(() => {
+    if (
+      previousSort.current.sortAttribute !== currentSort.sortAttribute ||
+      previousSort.current.sortDirection !== currentSort.sortDirection ||
+      previousSearch.current !== search
+    ) {
+      // Reset to first page
+      setPage(2);
+      setInfiniteItems([]);
+      setInfiniteHasMore(true);
+
+      // And update the ref.
+      previousSearch.current = search;
+      previousSort.current = currentSort;
+    }
+  }, [search, currentSort]);
 
   const getNextItems = async () => {
     const nextItems = await getNextCampaignsFunc({
@@ -114,7 +140,7 @@ export default (props) => {
     totalItems,
     search,
     handleSearch,
-    limit,
+    sortProps,
     page,
     setPage,
     getNextItems,
