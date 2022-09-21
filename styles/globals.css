@@ -30,7 +30,7 @@ p {
 }
 
 ul, ol {
-  @apply list-disc ml-8;
+  @apply list-disc/* ml-8*/;
 }
 
 ul li,
