@@ -42,8 +42,7 @@ export default (props) => {
       };
     }
   }
-  // vars for filter tool bar
-
+  // vars for filter toolbar
   const [filter, setFilter] = useState(defaultFilter);
   const [limit, setLimit] = useState(defaultLimit);
 
@@ -114,6 +113,21 @@ export default (props) => {
       sort
     }
   });
+
+  // set infinite items from the first page
+  useEffect(() => {
+    if (data) {
+      const size = data.campaign.length;
+      if (size) {
+        setInfiniteItems(data.campaign);
+        if (size < totalItems) {
+          setInfiniteHasMore(true);
+        } else {
+          setInfiniteHasMore(false);
+        }
+      }
+    }
+  }, [data, totalItems]);
 
   // reset vars if needed
   useEffect(() => {

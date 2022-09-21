@@ -32,20 +32,6 @@ const List = (props) => {
     setInfiniteHasMore
   } = useList({ position, nftCollectionId });
 
-  useEffect(() => {
-    if (data) {
-      const size = data.campaign.length;
-      if (size) {
-        setInfiniteItems(data.campaign);
-        if (size < totalItems) {
-          setInfiniteHasMore(true);
-        } else {
-          setInfiniteHasMore(false);
-        }
-      }
-    }
-  }, [data, totalItems]);
-
   let child = null;
   if (!data) {
     if (error) {
