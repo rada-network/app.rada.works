@@ -35,15 +35,13 @@ const Sort = (props) => {
   const sortMethodsFromConfig = availableSortMethods
     ? availableSortMethods
         .map((method) => {
-          const { value, label } = method;
-          if (value !== 'price' && value !== 'sort') {
-            return {
-              id: `sortItem.${value}`,
-              text: label,
-              attribute: value,
-              sortDirection: 'ASC'
-            };
-          }
+          const { attribute, direction, label } = method;
+          return {
+            id: `sortItem.${attribute}${direction}`,
+            text: label,
+            attribute,
+            sortDirection: direction
+          };
         })
         .filter((method) => !!method)
     : null;
@@ -82,12 +80,6 @@ const Sort = (props) => {
         id: 'sortItem.oldest',
         text: t('Oldest'),
         attribute: 'date_created',
-        sortDirection: 'ASC'
-      },
-      {
-        id: 'sortItem.title',
-        text: t('Title'),
-        attribute: 'title',
         sortDirection: 'ASC'
       }
     ];

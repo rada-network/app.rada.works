@@ -135,7 +135,24 @@ const List = (props) => {
     />
   );
 
-  const sortField = totalItems ? <Sort sortProps={sortProps} /> : null;
+  const sortOptions = [
+    {
+      attribute: 'discount_value',
+      direction: 'ASC',
+      label: t('Discount Value Ascending')
+    },
+    {
+      attribute: 'discount_value',
+      direction: 'DESC',
+      label: t('Discount Value Descending')
+    },
+    { attribute: 'sort', direction: 'ASC', label: t('Position Ascending') },
+    { attribute: 'sort', direction: 'DESC', label: t('Position Descending') },
+    { attribute: 'title', direction: 'ASC', label: t('Title') }
+  ];
+  const sortField = totalItems ? (
+    <Sort sortProps={sortProps} availableSortMethods={sortOptions} />
+  ) : null;
 
   const toolbar = (
     <div className={classes.toolbarWrap}>
