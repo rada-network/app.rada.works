@@ -7,7 +7,7 @@
 }
 
 .menu {
-
+    @apply absolute bg-clip-padding bg-white border border-solid list-none mb-0 min-w-[10rem] mt-0.5 mx-0 right-0 rounded text-left top-[110%];
 }
 
 .rootDark .menu {
