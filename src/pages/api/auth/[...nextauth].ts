@@ -12,6 +12,31 @@ import {
 } from '../../../hooks/User/useUsers';
 import { utils } from 'ethers';
 import { NextApiRequest, NextApiResponse } from 'next';
+/**
+ * Takes a token, and returns a new token with updated
+ * `accessToken` and `accessTokenExpires`. If an error occurs,
+ * returns the old token and an error property
+ */
+async function refreshAccessToken(token: any) {
+  try {
+    console.log('refreshAccessToken', token);
+    const refreshedTokens = await authRefresh({
+      refresh_token: token.refresh_token
+    });
+
+    return {
+      ...token,
+      access_token: refreshedTokens.access_token,
+      refresh_token: refreshedTokens.refresh_token ?? token.refresh_token // Fall back to old refresh token
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      ...token,
+      error: 'RefreshAccessTokenError'
+    };
+  }
+}
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -36,7 +61,7 @@ export default async function auth(
     CredentialsProvider({
       name: 'BSC',
       credentials: {},
-      async authorize(credentials: any) {
+      authorize: async (credentials: any) => {
         try {
           const nonce = '0x' + credentials?.csrfToken;
           const address = utils.verifyMessage(
@@ -49,6 +74,8 @@ export default async function auth(
             email: address,
             name: address
           };
+          console.log('authorize user', user);
+
           return user;
         } catch (e) {
           return null;
@@ -70,7 +97,8 @@ export default async function auth(
     providers,
     session: {
       strategy: 'jwt', // Seconds - How long until an idle session expires and is no longer valid.
-      maxAge: 21 * 60 // 20 minutes
+      maxAge: 15 * 60, // 20 minutes
+      updateAge: 14 * 60 // 20 minutes
     },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
@@ -120,26 +148,36 @@ export default async function auth(
         else if (new URL(url).origin === baseUrl) return url;
         return baseUrl;
       },
-      async jwt({ token, user }) {
+      async jwt({ token, user, account }) {
         // Persist the OAuth access_token to the token right after signin
-        if (user) {
+        if (account && user) {
           token.access_token = user.access_token;
           token.id = user.id;
           token.refresh_token = user.refresh_token;
+          console.log('user:', user);
+          return token;
         }
-        return token;
+        console.log(token.exp);
+
+        const { valid } = getTokenState(token.access_token);
+        // Return previous token if the access token has not expired yet
+        if (valid) {
+          console.log('token not expired');
+          return token;
+        }
+
+        // Access token has expired, try to update it
+        return refreshAccessToken(token);
       },
       async session({ session, token }) {
         session.id = token.id;
         session.access_token = token.access_token;
+        session.error = token.error;
+
         if (session) {
           const { valid } = getTokenState(session.access_token);
           if (!valid) {
-            const directusToken = await authRefresh({
-              refresh_token: token.refresh_token
-            });
-            session.access_token = directusToken.auth_refresh.access_token;
-            console.log('session', session);
+            console.log('session expired', session);
           }
         }
         return session;

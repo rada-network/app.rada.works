@@ -58,3 +58,23 @@
 .rootDark .infiniteFinished {
 	@apply bg-gray-800 text-gray-600;
 }
+
+.toolbarWrap {
+	padding: 20px;
+	@apply grid lg:grid-cols-3 gap-6 mt-8;
+}
+
+.toolbarWrap .searchField {
+}
+
+.searchInput {
+	composes: input from '../../../atoms/TextInput/textInput.module.css'
+}
+
+.toolbarWrap .totalResults {
+	text-align: center;
+}
+
+.toolbarWrap .sortWrap {
+	text-align: right;
+}

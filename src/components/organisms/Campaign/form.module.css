@@ -99,3 +99,7 @@
 .rdwDatepicker :global(.react-datepicker-wrapper) input:focus {
   @apply shadow-none;
 }
+.loading {
+  text-align: center;
+  padding: 10px;
+}

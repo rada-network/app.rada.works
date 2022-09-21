@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client';
 import API from './list.api.gql';
-import { useState } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import { useSort } from './useSort';
 
 export default (props) => {
-  const { getCampaigns, getNextCampaignsFunc } = API;
+  const { getCampaigns, getTotalCampaigns, getNextCampaignsFunc } = API;
 
   const { position, currentCampaign = null, nftCollectionId } = props;
 
@@ -16,7 +17,7 @@ export default (props) => {
     status: { _eq: 'published' }
   };
   let defaultLimit = 6;
-  let defaultSort = ['-date_created'];
+  let sort = []; //['-date_created']
 
   if (position === 'related') {
     defaultLimit = 5;
@@ -42,12 +43,40 @@ export default (props) => {
     }
   }
   // vars for filter tool bar
+
   const [filter, setFilter] = useState(defaultFilter);
   const [limit, setLimit] = useState(defaultLimit);
-  const [sort, setSort] = useState(defaultSort);
+
+  // for sorting
+  const sortProps = useSort();
+  const [currentSort] = sortProps;
+  const previousSort = useRef(currentSort);
+  if (currentSort.sortDirection === 'DESC') {
+    sort.push(`-${currentSort.sortAttribute}`);
+  } else {
+    sort.push(`${currentSort.sortAttribute}`);
+  }
+
+  // for search by keyword
+  const [search, setSearch] = useState(null);
+  const previousSearch = useRef(search);
+  const handleSearch = useCallback(
+    (event) => {
+      const value = event.target.value;
+      const hasValue = !!value;
+      const isValid = hasValue && value.length > 2;
+      if (isValid) {
+        setSearch(value);
+      } else {
+        setSearch(null);
+      }
+    },
+    [search, setSearch]
+  );
 
   const getNextItems = async () => {
     const nextItems = await getNextCampaignsFunc({
+      search,
       filter,
       limit,
       page,
@@ -57,9 +86,28 @@ export default (props) => {
     return nextItems;
   };
 
+  // Get current total of items
+  const { data: allItemsData, loading: totalItemsLoading } = useQuery(
+    getTotalCampaigns,
+    {
+      fetchPolicy: 'cache-and-network',
+      nextFetchPolicy: 'cache-first',
+      variables: {
+        filter,
+        search
+      }
+    }
+  );
+  const totalItems = useMemo(() => {
+    return allItemsData ? allItemsData.campaign.length : 0;
+  }, [allItemsData]);
+
   // Loading items in first page
   const { data, loading, error } = useQuery(getCampaigns, {
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
     variables: {
+      search,
       filter,
       limit,
       page: 1,
@@ -67,11 +115,33 @@ export default (props) => {
     }
   });
 
+  // reset vars if needed
+  useEffect(() => {
+    if (
+      previousSort.current.sortAttribute !== currentSort.sortAttribute ||
+      previousSort.current.sortDirection !== currentSort.sortDirection ||
+      previousSearch.current !== search
+    ) {
+      // Reset to first page
+      setPage(2);
+      setInfiniteItems([]);
+      setInfiniteHasMore(true);
+
+      // And update the ref.
+      previousSearch.current = search;
+      previousSort.current = currentSort;
+    }
+  }, [search, currentSort]);
+
   //return data
   return {
     data,
-    loading,
+    loading: loading || totalItemsLoading ? true : false,
     error,
+    totalItems,
+    search,
+    handleSearch,
+    sortProps,
     page,
     setPage,
     getNextItems,

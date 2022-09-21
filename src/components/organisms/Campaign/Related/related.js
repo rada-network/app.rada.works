@@ -7,7 +7,6 @@ import useThemes from '../../../../hooks/useThemes';
 import { useStyle } from '../../../classify';
 import { useList } from '../../../../hooks/Campaign';
 import Item from './item';
-import classes from '../NftCollection/List/list.module.css';
 
 const Related = (props) => {
   const { currentCampaign, classes: propClasses } = props;

@@ -5,7 +5,7 @@ import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'react-redux';
 import { useStore } from 'src/libs/redux';
 import { Web3Provider } from 'src/libs/web3-context';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider, signOut } from 'next-auth/react';
 import { useApollo } from '../libs/apolloClient';
 import Toast from '../components/organisms/Toast';
 import { ThemeProvider } from 'next-themes';
@@ -23,8 +23,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     } else {
       storage.removeItem('access_token');
     }
+    if (session?.error === 'RefreshAccessTokenError') {
+      signOut(); // Force sign in to hopefully resolve error
+    }
   });
-
   const apolloClient = useApollo(
     pageProps.initialApolloState ? pageProps.initialApolloState : null
   );
@@ -33,7 +35,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <ThemeProvider attribute="class">
       <ApolloProvider client={apolloClient}>
         <Provider store={store}>
-          <SessionProvider session={session}>
+          <SessionProvider session={session} refetchInterval={1200}>
             <Web3Provider>
               <Component {...pageProps} />
               <Toast />

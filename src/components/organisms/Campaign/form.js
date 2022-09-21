@@ -19,8 +19,8 @@ import { useStyle } from '../../classify';
 import { Percent } from 'react-feather';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import defaultClasses from './form.module.css';
 import Selector from './NftCollection/Selector';
+import defaultClasses from './form.module.css';
 
 const CampaignForm = (props) => {
   const { classes: propClasses, campaignId } = props;
@@ -287,7 +287,7 @@ const CampaignForm = (props) => {
       </div>
     );
   } else {
-    child = t('Loading...');
+    child = <div className={classes.loading}>{t('Loading...')}</div>;
   }
 
   return <Fragment>{child}</Fragment>;
