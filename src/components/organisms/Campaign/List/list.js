@@ -65,14 +65,18 @@ const List = (props) => {
       );
     } else {
       const fetchMoreData = async () => {
-        // Load items in next page
-        const nextItems = await getNextItems();
-        // Set more items
-        setInfiniteItems([...infiniteItems, ...nextItems]);
-        if (!nextItems.length) {
+        if (infiniteItems.length < totalItems) {
+          // Load items in next page
+          const nextItems = await getNextItems();
+          // Set more items
+          setInfiniteItems([...infiniteItems, ...nextItems]);
+          if (!nextItems.length) {
+            setInfiniteHasMore(false);
+          }
+          setPage(page + 1);
+        } else {
           setInfiniteHasMore(false);
         }
-        setPage(page + 1);
       };
       const loader = (
         <div className={classes.infiniteLoading}>{t('Loading more...')}</div>

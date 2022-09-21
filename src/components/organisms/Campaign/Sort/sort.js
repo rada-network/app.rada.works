@@ -36,7 +36,7 @@ const Sort = (props) => {
     ? availableSortMethods
         .map((method) => {
           const { value, label } = method;
-          if (value !== 'price' && value !== 'position') {
+          if (value !== 'price' && value !== 'sort') {
             return {
               id: `sortItem.${value}`,
               text: label,
@@ -139,9 +139,7 @@ const Sort = (props) => {
     <div ref={elementRef} className={`${classes[rootClassName]}`}>
       <Button
         priority={'low'}
-        classes={{
-          root_lowPriority: classes.sortButton
-        }}
+        classes={{ root_lowPriority: classes.sortButton }}
         onPress={handleSortClick}
       >
         <span className={classes.mobileText}>{t('Sort')}</span>

@@ -74,23 +74,6 @@ export default (props) => {
     [search, setSearch]
   );
 
-  useEffect(() => {
-    if (
-      previousSort.current.sortAttribute !== currentSort.sortAttribute ||
-      previousSort.current.sortDirection !== currentSort.sortDirection ||
-      previousSearch.current !== search
-    ) {
-      // Reset to first page
-      setPage(2);
-      setInfiniteItems([]);
-      setInfiniteHasMore(true);
-
-      // And update the ref.
-      previousSearch.current = search;
-      previousSort.current = currentSort;
-    }
-  }, [search, currentSort]);
-
   const getNextItems = async () => {
     const nextItems = await getNextCampaignsFunc({
       search,
@@ -131,6 +114,24 @@ export default (props) => {
       sort
     }
   });
+
+  // reset vars if needed
+  useEffect(() => {
+    if (
+      previousSort.current.sortAttribute !== currentSort.sortAttribute ||
+      previousSort.current.sortDirection !== currentSort.sortDirection ||
+      previousSearch.current !== search
+    ) {
+      // Reset to first page
+      setPage(2);
+      setInfiniteItems([]);
+      setInfiniteHasMore(true);
+
+      // And update the ref.
+      previousSearch.current = search;
+      previousSort.current = currentSort;
+    }
+  }, [search, currentSort]);
 
   //return data
   return {
