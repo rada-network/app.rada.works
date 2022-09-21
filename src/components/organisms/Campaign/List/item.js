@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 import slugify from 'slugify';
+import Image from 'next/image';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
@@ -71,6 +72,27 @@ const Item = (props) => {
       ))
     : null;
 
+  // Build store info
+  const storeLogo = data.store_logo_url ? (
+    <img
+      className={`${classes.storeLogo}`}
+      src={data.store_logo_url}
+      alt={`cover_${data.store_name}`}
+    />
+  ) : null;
+  const storeInfo = data.store_url ? (
+    <TextLink
+      className={classes.storeLink}
+      target={`_blank`}
+      href={data.store_url}
+    >
+      {storeLogo}
+      <span className={classes.storeName}> {data.store_name} </span>
+    </TextLink>
+  ) : (
+    <span className={classes.storeName}> {data.store_name} </span>
+  );
+
   return (
     <div className={`${classes[rootClassName]}`}>
       <div className={classes.itemHead}>
@@ -107,6 +129,7 @@ const Item = (props) => {
       </div>
 
       <div className={classes.itemFoot}>
+        {storeInfo}
         <Button
           priority="high"
           type="button"
