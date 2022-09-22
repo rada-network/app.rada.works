@@ -62,7 +62,7 @@ const UserItem = (props: any) => {
   );
 
   return (
-    <div className="flex items-center bg-gray-50 hover:bg-white dark:bg-gray-900 border border-transparent hover:border-blue-600 dark:border-gray-800 dark:hover:border-blue-500  py-4 mb-3 rounded-xl transition-all duration-300">
+    <div className="flex items-center bg-gray-50 hover:bg-white dark:bg-gray-900 border border-gray-200 hover:border-blue-600 dark:border-gray-800 dark:hover:border-blue-500  py-4 mb-3 rounded-xl transition-all duration-300">
       <div className="flex items-center px-4 w-24">{storeInfo}</div>
       <div className="px-4">
         <a
@@ -77,12 +77,18 @@ const UserItem = (props: any) => {
           <span className="inline-block border border-green-300 text-sm font-normal text-green-500 px-1.5 rounded-md leading-none pt-0.5 pb-1 mr-2">
             Active
           </span>
-          <span className="text-sm text-gray-500">
-            Start: <date className="text-gray-700">Sep 14 2022</date>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Start:{' '}
+            <date className="text-gray-700 dark:text-gray-200">
+              Sep 14 2022
+            </date>
           </span>
           &nbsp;-&nbsp;
-          <span className="text-sm text-gray-500">
-            End: <date className="text-gray-700">Sep 25 2022</date>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            End:{' '}
+            <date className="text-gray-700 dark:text-gray-200">
+              Sep 25 2022
+            </date>
           </span>
         </div>
       </div>
