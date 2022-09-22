@@ -3,12 +3,9 @@ import Router from 'next/router';
 import slugify from 'slugify';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
-import { toHTML, subStrWords } from '../../../../utils/strUtils';
 import Button from '../../../atoms/Button';
 import classes from './item.module.css';
 import TextLink from '../../../atoms/TextLink';
-
-const DESC_MAX_LENGTH = 200;
 
 const UserItem = (props: any) => {
   const { data } = props;
@@ -79,16 +76,12 @@ const UserItem = (props: any) => {
           </span>
           <span className="text-sm text-gray-500 dark:text-gray-400">
             Start:{' '}
-            <date className="text-gray-700 dark:text-gray-200">
-              Sep 14 2022
-            </date>
+            <div className="text-gray-700 dark:text-gray-200">Sep 14 2022</div>
           </span>
           &nbsp;-&nbsp;
           <span className="text-sm text-gray-500 dark:text-gray-400">
             End:{' '}
-            <date className="text-gray-700 dark:text-gray-200">
-              Sep 25 2022
-            </date>
+            <div className="text-gray-700 dark:text-gray-200">Sep 25 2022</div>
           </span>
         </div>
       </div>
