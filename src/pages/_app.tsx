@@ -19,10 +19,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   getSession().then((session) => {
     const storage = new BrowserPersistence();
     if (session && session.access_token) {
-      storage.setItem('access_token', session.access_token, 20 * 60);
+      storage.setItem('access_token', session.access_token, 15 * 60);
     } else {
       storage.removeItem('access_token');
     }
+
     if (session?.error === 'RefreshAccessTokenError') {
       signOut(); // Force sign in to hopefully resolve error
     }
@@ -35,7 +36,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <ThemeProvider attribute="class">
       <ApolloProvider client={apolloClient}>
         <Provider store={store}>
-          <SessionProvider session={session} refetchInterval={1200}>
+          <SessionProvider session={session} refetchInterval={900}>
             <Web3Provider>
               <Component {...pageProps} />
               <Toast />

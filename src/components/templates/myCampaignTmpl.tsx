@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import MainTmpl from './_mainTmpl';
-import Dashboard from '../organisms/Dashboard';
+import UserCampaign from '../organisms/User/myCampaign';
 
-const DashboardTmpl = (props: any) => {
+const MyCampaignTmpl = (props: any) => {
   const { walletAddress } = props;
 
-  const child = <Dashboard walletAddress={walletAddress} />;
+  const child = <UserCampaign walletAddress={walletAddress} />;
 
   return (
     <Fragment>
@@ -14,4 +14,4 @@ const DashboardTmpl = (props: any) => {
   );
 };
 
-export default DashboardTmpl;
+export default MyCampaignTmpl;

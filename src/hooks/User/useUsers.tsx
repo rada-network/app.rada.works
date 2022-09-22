@@ -88,3 +88,28 @@ export const getTokenState = (token: any) => {
     return { valid: true, needRefresh: false };
   }
 };
+/**
+ * Takes a token, and returns a new token with updated
+ * `accessToken` and `accessTokenExpires`. If an error occurs,
+ * returns the old token and an error property
+ */
+export async function refreshAccessToken(token: any) {
+  try {
+    console.log('refreshAccessToken', token);
+    const refreshedTokens = await authRefresh({
+      refresh_token: token.refresh_token
+    });
+
+    return {
+      ...token,
+      access_token: refreshedTokens.access_token,
+      refresh_token: refreshedTokens.refresh_token ?? token.refresh_token // Fall back to old refresh token
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      ...token,
+      error: 'RefreshAccessTokenError'
+    };
+  }
+}
