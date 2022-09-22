@@ -31,7 +31,7 @@ const UserItem = (props: any) => {
       priority="normal"
       type="button"
       onPress={handleEdit}
-      className={`${classes.btnEdit}`}
+      classes={{ root: classes.btnEdit }}
     >
       {t('Edit')}
     </Button>
