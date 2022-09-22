@@ -21,6 +21,7 @@ const List = (props) => {
     loading,
     error,
     totalItems,
+    search,
     handleSearch,
     sortProps,
     page,
@@ -109,17 +110,29 @@ const List = (props) => {
     </div>
   );
 
-  const searchField = (
-    <input
-      autoComplete="off"
-      className={classes.searchInput}
-      type="text"
-      id="campaign_keyword"
-      name="keyword"
-      onChange={handleSearch}
-      placeholder={t('Search by keyword...')}
-    />
-  );
+  const searchField =
+    totalItems || search ? (
+      <div className={classes.searchField}>
+        {' '}
+        {}
+        <input
+          autoComplete="off"
+          className={classes.searchInput}
+          type="text"
+          id="campaign_keyword"
+          name="keyword"
+          onChange={handleSearch}
+          placeholder={t('Search by keyword...')}
+        />
+      </div>
+    ) : null;
+
+  const totalResult =
+    totalItems || search ? (
+      <div
+        className={classes.totalResults}
+      >{`${totalItems.toLocaleString()} ${t('items')}`}</div>
+    ) : null;
 
   const sortOptions = [
     {
@@ -137,18 +150,19 @@ const List = (props) => {
     { attribute: 'title', direction: 'ASC', label: t('Title') }
   ];
   const sortField = totalItems ? (
-    <Sort sortProps={sortProps} availableSortMethods={sortOptions} />
+    <div className={classes.sortWrap}>
+      <Sort sortProps={sortProps} availableSortMethods={sortOptions} />
+    </div>
   ) : null;
 
-  const toolbar = (
-    <div className={classes.toolbarWrap}>
-      <div className={classes.searchField}>{searchField}</div>
-      <div
-        className={classes.totalResults}
-      >{`${totalItems.toLocaleString()} ${t('items')}`}</div>
-      <div className={classes.sortWrap}>{sortField}</div>
-    </div>
-  );
+  const toolbar =
+    position === 'search-coupon-page' ? (
+      <div className={classes.toolbarWrap}>
+        {searchField}
+        {totalResult}
+        {sortField}
+      </div>
+    ) : null;
 
   return (
     <div className={`${classes[rootClassName]}`}>
