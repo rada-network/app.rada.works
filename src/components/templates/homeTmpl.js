@@ -8,14 +8,14 @@ const HomeTmpl = (props) => {
     <Fragment>
       <MainTmpl>
         {/* Hero */}
-        <div className="bg-gray-100 dark:bg-gray-900">
-          <div className="container max-w-screen-xl mx-auto px-4 lg:px-0">
-            <div className="flex flex-wrap items-center py-16">
-              <div className="basis-full lg:basis-2/5 lg:pr-20 text-center lg:text-left">
+        <div className="">
+          <div className="container max-w-screen-xl mx-auto px-4 lg:px-4">
+            <div className="flex flex-wrap items-center py-8">
+              <div className="basis-full lg:basis-4/12 text-center lg:text-left pr-4">
                 <h1 className="my-0 text-4xl lg:text-6xl font-semibold text-gray-800 dark:text-white leading-relaxed">
                   A multichain NFT design flatform
                 </h1>
-                <p className="text-lg">
+                <p className="text-xl">
                   Morbi eros tortor, bibendum in erat non, pretium efficitur
                   felis. Sed id enim ut arcu molestie aliquet. Cras ac metus ac
                   enim dapibus feugiat vitae ac orci. Nullam neque ipsum,
@@ -26,7 +26,7 @@ const HomeTmpl = (props) => {
                   <a
                     href="#"
                     title="View more"
-                    className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 px-6 inline-flex items-center transition-all duration-300"
+                    className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 inline-flex items-center justify-center transition-all duration-300 w-44"
                   >
                     Learn more
                     <svg
@@ -44,7 +44,7 @@ const HomeTmpl = (props) => {
                 </div>
               </div>
 
-              <div className="hidden lg:flex justify-end flex-1 text-right">
+              <div className="hidden lg:flex justify-end basis-8/12 text-right pl-4">
                 <img src="hero-1.png" alt="Hero decor" />
               </div>
             </div>
@@ -56,7 +56,7 @@ const HomeTmpl = (props) => {
 
         {/* FAQs */}
         <div className="border-t border-gray-200 dark:border-gray-800 py-20">
-          <div className="container max-w-screen-xl mx-auto px-4 lg:px-0">
+          <div className="container max-w-screen-xl mx-auto px-4">
             <div className="mb-14">
               <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0">
                 FAQs
