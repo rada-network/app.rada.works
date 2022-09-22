@@ -87,7 +87,9 @@ const UserCampaign = (props: any) => {
     <Fragment>
       <div className="">
         <div className="container max-w-screen-xl mx-auto py-12 lg:py-24 px-4">
-          <h2 className="text-5xl text-gray-800 mt-0 mb-6">Coupon list</h2>
+          <h2 className="dark:text-white text-5xl text-gray-800 mt-0 mb-6">
+            Coupon list
+          </h2>
           {child}
         </div>
       </div>
