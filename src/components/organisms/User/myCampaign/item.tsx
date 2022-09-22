@@ -57,33 +57,33 @@ const UserItem = (props: any) => {
   );
 
   return (
-    <div className="flex border-b border-gray-200 hover:bg-gray-50 py-4">
-      <div className="px-4">{data.title}</div>
-      <div>{storeInfo}</div>
+    <div className="flex items-center border border-gray-200 hover:border-blue-500 py-4 mb-3 rounded-xl hover:shadow-md transition-all duration-300">
+      <div className="flex items-center px-4">{storeInfo}</div>
+      <div className="font-semibold px-4">{data.title}</div>
 
-      <div
+      {/* <div
         className="px-4"
         dangerouslySetInnerHTML={toHTML(
           subStrWords(data?.description, DESC_MAX_LENGTH)
         )}
-      />
+      /> */}
 
       <div className="px-4 ml-auto">
         <a
           href="#"
           title="Edit"
-          className="bg-blue-600 hover:bg-blue-700 text-white rounded py-2 px-4 transition-all duration-300"
+          className="bg-white border border-blue-500 hover:border-blue-700 hover:bg-blue-700 text-gray-600 hover:text-white text-sm font-semibold rounded-md mr-4 py-1.5 px-4 transition-all duration-300"
           onClick={viewDetails}
         >
           View Details
         </a>
-      </div>
-      <div className="px-4 ml-auto">{editButton}</div>
-      <div className="px-4">
+
+        {editButton}
+
         <a
           href="#"
           title="Delete"
-          className="bg-red-600 hover:bg-red-700 text-white rounded py-2 px-4 transition-all duration-300"
+          className="bg-white hover:bg-red-700 border border-red-500 hover:border-red-700 text-sm font-semibold text-gray-600 hover:text-white rounded-md py-1.5 px-4 transition-all duration-300 ml-4"
           onClick={handleDelete}
         >
           Delete

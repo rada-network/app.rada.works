@@ -6,8 +6,8 @@ import UserItem from './item';
 import classes from './myCampaign.module.css';
 const UserCampaign = (props: any) => {
   const { t } = useTranslation('list_campaign');
-  const { walletAddress } = props;
-  // const walletAddress = '0x26f9Cb15a8527C34B794897B004BC51c7b917930';
+  // const { walletAddress } = props;
+  const walletAddress = '0x26f9Cb15a8527C34B794897B004BC51c7b917930';
   const {
     data,
     loading,
@@ -66,15 +66,6 @@ const UserCampaign = (props: any) => {
       );
       child = (
         <Fragment>
-          <div className="border-t border-gray-200">
-            <div className="flex border-b border-gray-200 py-4">
-              <div className="px-4">
-                <span className="chain bsc">Title</span>
-              </div>
-              <div className="px-4">Description</div>
-              <div className="px-4 ml-auto">actions</div>
-            </div>
-          </div>
           <InfiniteScroll
             className={classes.listWrap}
             dataLength={infiniteItems.length}
@@ -95,10 +86,8 @@ const UserCampaign = (props: any) => {
   return (
     <Fragment>
       <div className="">
-        <div className="container max-w-screen-xl mx-auto py-12 lg:py-24">
-          <div>
-            <h3>coupon list</h3>
-          </div>
+        <div className="container max-w-screen-xl mx-auto py-12 lg:py-24 px-4">
+          <h2 className="text-5xl text-gray-800 mt-0 mb-6">Coupon list</h2>
           {child}
         </div>
       </div>
