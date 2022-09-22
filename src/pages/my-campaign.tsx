@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
-import DashboardTmpl from '../components/templates/dashboardTmpl';
+import MyCampaignTmpl from '../components/templates/myCampaignTmpl';
 
 const Dashboard: NextPage = () => {
   const { data, status } = useSession();
@@ -17,7 +17,7 @@ const Dashboard: NextPage = () => {
   } else if (status === 'authenticated') {
     const walletAddress = data?.user?.email;
 
-    child = <DashboardTmpl walletAddress={walletAddress} />;
+    child = <MyCampaignTmpl walletAddress={walletAddress} />;
   } else {
     Router.push('/');
   }
