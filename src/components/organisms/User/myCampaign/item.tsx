@@ -64,15 +64,27 @@ const UserItem = (props: any) => {
   return (
     <div className="flex items-center border border-gray-200 hover:border-blue-500 dark:border-gray-800 dark:hover:border-blue-500  py-4 mb-3 rounded-xl hover:shadow-md transition-all duration-300">
       <div className="flex items-center px-4 w-24">{storeInfo}</div>
-      <div className="text-lg dark:text-white font-semibold px-4">
+      <div className="px-4">
         <a
           href="#"
           title="View detail"
-          className="hover:text-blue-600"
+          className="inline-block text-xl font-semibold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-600 mb-2"
           onClick={viewDetails}
         >
           {data.title}
         </a>
+        <div className="">
+          <span className="inline-block border border-green-300 text-sm font-normal text-green-500 px-1.5 rounded-md leading-none pt-0.5 pb-1 mr-2">
+            Active
+          </span>
+          <span className="text-sm text-gray-500">
+            Start: <date className="text-gray-700">Sep 14 2022</date>
+          </span>
+          &nbsp;-&nbsp;
+          <span className="text-sm text-gray-500">
+            End: <date className="text-gray-700">Sep 25 2022</date>
+          </span>
+        </div>
       </div>
 
       {/* <div
