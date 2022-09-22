@@ -24,6 +24,8 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-family: 'Kanit', sans-serif;
+  font-weight: 500;
+  letter-spacing: -2px;
 }
 
 h1 {

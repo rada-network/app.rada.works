@@ -65,7 +65,7 @@ const HomeTmpl = (props) => {
 
             <div className="flex flex-wrap lg:flex-nowrap lg:gap-6">
               <div className="basis-full lg:basis-1/2">
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     Is there a free trial available?
                   </h3>
@@ -75,7 +75,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     Can I change my plan later?
                   </h3>
@@ -85,7 +85,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     What is your cancellation policy?
                   </h3>
@@ -103,7 +103,7 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full lg:basis-1/2">
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-xl p-4 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     Can other info be added to an invoice?
                   </h3>
@@ -118,7 +118,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     How does billing work?
                   </h3>
@@ -129,7 +129,7 @@ const HomeTmpl = (props) => {
                   </p>
                 </div>{' '}
                 {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-xl p-4 mt-5 transition-all duration-300">
+                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
                   <h3 className="mt-0 mb-4 leading-6">
                     How do I change my account email?
                   </h3>
