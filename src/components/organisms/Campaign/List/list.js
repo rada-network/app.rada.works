@@ -156,7 +156,7 @@ const List = (props) => {
   ) : null;
 
   const toolbar =
-    position === 'search-coupon-page' ? (
+    position === 'campaigns-page' ? (
       <div className={classes.toolbarWrap}>
         {searchField}
         {totalResult}

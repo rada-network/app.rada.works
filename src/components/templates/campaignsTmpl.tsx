@@ -4,20 +4,20 @@ import { shape, string } from 'prop-types';
 import MainTmpl from './_mainTmpl';
 import List from '../organisms/Campaign/List';
 
-const SearchCouponTmpl = () => {
+const CampaignsTmpl = () => {
   return (
     <Fragment>
       <MainTmpl>
-        <List position="search-coupon-page" />
+        <List position="campaigns-page" />
       </MainTmpl>
     </Fragment>
   );
 };
 
-SearchCouponTmpl.propTypes = {
+CampaignsTmpl.propTypes = {
   classes: shape({
     root: string
   })
 };
 
-export default SearchCouponTmpl;
+export default CampaignsTmpl;

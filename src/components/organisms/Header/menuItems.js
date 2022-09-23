@@ -4,7 +4,7 @@ const menuItems = new Map()
   .set('Home', '/')
   .set('How it works', '/how-it-works')
   .set('NFT Collections', '/nft-collections')
-  .set('Browse coupons', '/coupons')
+  .set('Browse campaigns', '/campaigns')
   .set('My Campaign', {
     path: '/my-campaign',
     component: CreateLink
