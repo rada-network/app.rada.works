@@ -1,4 +1,4 @@
-# Rada Couponize
+# Rada SoulMint
 
 ## Setting VS Code (Prerequisite)
 
