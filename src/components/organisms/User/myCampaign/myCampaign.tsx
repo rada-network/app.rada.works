@@ -6,15 +6,13 @@ import UserItem from './item';
 import classes from './myCampaign.module.css';
 const UserCampaign = (props: any) => {
   const { t } = useTranslation('list_campaign');
-  // const { walletAddress } = props;
-  const walletAddress = '0x26f9Cb15a8527C34B794897B004BC51c7b917930';
+  let { walletAddress } = props;
+  walletAddress = '0x26f9Cb15a8527C34B794897B004BC51c7b917930';
   const {
     data,
     loading,
     error,
     totalItems,
-    handleSearch,
-    sortProps,
     page,
     setPage,
     getNextItems,
@@ -47,7 +45,7 @@ const UserCampaign = (props: any) => {
           // Load items in next page
           const nextItems = await getNextItems();
           // Set more items
-          setInfiniteItems([...infiniteItems, ...nextItems]);
+          setInfiniteItems(infiniteItems.concat(nextItems));
           if (!nextItems.length) {
             setInfiniteHasMore(false);
           }
