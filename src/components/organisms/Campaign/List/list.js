@@ -152,9 +152,11 @@ const List = (props) => {
 
   return (
     <div className={`${classes[rootClassName]}`}>
-      {heading}
-      {toolbar}
-      {child}
+      <div className="mx-auto max-w-screen-xl py-12 lg:py-24 px-4">
+        {heading}
+        {toolbar}
+        {child}
+      </div>
     </div>
   );
 };

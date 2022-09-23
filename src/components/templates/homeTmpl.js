@@ -8,7 +8,7 @@ const HomeTmpl = (props) => {
     <Fragment>
       <MainTmpl>
         {/* Hero */}
-        <div className="">
+        <div className="bg-gray-50">
           <div className="container max-w-screen-xl mx-auto px-4 lg:px-4">
             <div className="flex flex-wrap items-center py-8">
               <div className="basis-full lg:basis-4/12 text-center lg:text-left pr-4">
@@ -55,11 +55,11 @@ const HomeTmpl = (props) => {
         <List position="home-page" />
 
         {/* FAQs */}
-        <div className="border-t border-gray-200 dark:border-gray-800 py-20">
+        <div className="py-20">
           <div className="container max-w-screen-xl mx-auto px-4">
             <div className="mb-14">
-              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0">
-                FAQs
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
+                How it work?
               </h2>
             </div>
 
