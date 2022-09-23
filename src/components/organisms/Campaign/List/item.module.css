@@ -1,5 +1,5 @@
 .root {
-	@apply border border-gray-200 hover:border-blue-600 p-4 rounded-2xl hover:shadow-lg transition-shadow flex flex-col items-stretch transition-all duration-500;
+	@apply bg-white shadow hover:border-blue-600 p-4 rounded-2xl hover:shadow-md transition-shadow flex flex-col items-stretch transition-all duration-500;
 }
 
 .rootDark {
@@ -129,19 +129,21 @@
 
 /* Get coupon button */
 .getCoupon {
-	@apply bg-blue-50 hover:bg-blue-700 border border-blue-400 hover:border-blue-700 text-blue-600 hover:text-white py-1.5 px-3 rounded-md text-sm font-normal transition-all duration-200 ease-in-out hover:cursor-pointer ml-auto;
+	@apply bg-blue-50 hover:bg-blue-700 border border-blue-400 hover:border-blue-700 text-blue-600 hover:text-white py-1.5 px-3 rounded-lg text-sm font-normal transition-all duration-200 ease-in-out hover:cursor-pointer ml-auto;
 }
 
 .rootDark .getCoupon {
 	@apply bg-gray-900 hover:bg-blue-700 border-blue-700 text-white hover:text-white;
 }
+
 .storeLogo {
 	height: 14px;
 	/*width: 65px;*/
 }
-.storeLink {
 
+.storeLink {
 }
+
 .storeName {
 	margin: 0px 0px 0px 10px;
 }

@@ -3,12 +3,9 @@ import Router from 'next/router';
 import slugify from 'slugify';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
-import { toHTML, subStrWords } from '../../../../utils/strUtils';
 import Button from '../../../atoms/Button';
 import classes from './item.module.css';
 import TextLink from '../../../atoms/TextLink';
-
-const DESC_MAX_LENGTH = 200;
 
 const UserItem = (props: any) => {
   const { data } = props;
@@ -34,7 +31,7 @@ const UserItem = (props: any) => {
       priority="normal"
       type="button"
       onPress={handleEdit}
-      className={`${classes.btnEdit}`}
+      classes={{ root: classes.btnEdit }}
     >
       {t('Edit')}
     </Button>
@@ -62,17 +59,31 @@ const UserItem = (props: any) => {
   );
 
   return (
-    <div className="flex items-center border border-gray-200 hover:border-blue-500 dark:border-gray-800 dark:hover:border-blue-500  py-4 mb-3 rounded-xl hover:shadow-md transition-all duration-300">
+    <div className="flex items-center bg-gray-50 hover:bg-white dark:bg-gray-900 border border-transparent hover:border-blue-600 dark:border-gray-800 dark:hover:border-blue-500  py-4 mb-3 rounded-xl transition-all duration-300">
       <div className="flex items-center px-4 w-24">{storeInfo}</div>
-      <div className="text-lg dark:text-white font-semibold px-4">
+      <div className="px-4">
         <a
           href="#"
           title="View detail"
-          className="hover:text-blue-600"
+          className="inline-block text-lg font-bold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-600 mb-2"
           onClick={viewDetails}
         >
           {data.title}
         </a>
+        <div className="">
+          <span className="inline-block border border-green-300 text-sm font-normal text-green-500 px-1.5 rounded-md leading-none pt-0.5 pb-1 mr-2">
+            Active
+          </span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Start:{' '}
+            <div className="text-gray-700 dark:text-gray-200">Sep 14 2022</div>
+          </span>
+          &nbsp;-&nbsp;
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            End:{' '}
+            <div className="text-gray-700 dark:text-gray-200">Sep 25 2022</div>
+          </span>
+        </div>
       </div>
 
       {/* <div
@@ -87,12 +98,12 @@ const UserItem = (props: any) => {
         <a
           href="#"
           title="Delete"
-          className="hover:bg-red-700 border border-gray-300 hover:border-red-700 flex items-center text-sm font-semibold text-gray-700 hover:text-white rounded-md py-2 px-3 transition-all duration-300 ml-2"
+          className="hover:bg-red-700 border border-gray-300 hover:border-red-700 dark:border-gray-700  dark:hover:border-red-700 flex items-center text-sm font-semibold text-gray-700 hover:text-white dark:text-white rounded-md py-2 px-3 transition-all duration-300 ml-3"
           onClick={handleDelete}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="fill-current w-4 h-4 mr-1"
+            className="fill-current w-4 h-4 mr-1 opacity-50"
             viewBox="0 0 16 16"
           >
             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />

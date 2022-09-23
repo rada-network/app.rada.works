@@ -1,5 +1,5 @@
 .root {
-	@apply mx-auto max-w-screen-xl py-12 lg:py-24 px-4;
+	@apply bg-gray-50;
 }
 
 .rootDark {
@@ -52,23 +52,24 @@
 }
 
 .infiniteFinished {
-	@apply bg-gray-100 text-gray-800 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+	@apply text-gray-600 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
 }
 
 .rootDark .infiniteFinished {
 	@apply bg-gray-800 text-gray-600;
 }
 
+/* Filter bar */
 .toolbarWrap {
-	padding: 20px;
-	@apply grid lg:grid-cols-3 gap-6 mt-8;
+	@apply flex items-center;
 }
 
 .toolbarWrap .searchField {
 }
 
 .searchInput {
-	composes: input from '../../../atoms/TextInput/textInput.module.css'
+	/* composes: input from '../../../atoms/TextInput/textInput.module.css' */
+	@apply border border-2 border-gray-300 ring-0 focus:ring-0 rounded-lg mr-2;
 }
 
 .toolbarWrap .totalResults {
@@ -76,5 +77,5 @@
 }
 
 .toolbarWrap .sortWrap {
-	text-align: right;
+	@apply ml-auto;
 }

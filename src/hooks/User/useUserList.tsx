@@ -20,8 +20,8 @@ const useUserList = (props: any) => {
   const sort: string[] = []; //['-date_created']
 
   // vars for filter tool bar
-  const [filter, setFilter] = useState(defaultFilter);
-  const [limit, setLimit] = useState(defaultLimit);
+  const [filter] = useState(defaultFilter);
+  const [limit] = useState(defaultLimit);
 
   // for sorting
   const sortProps = useSort();
