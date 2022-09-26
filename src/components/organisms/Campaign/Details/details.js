@@ -64,40 +64,43 @@ const Details = (props) => {
       child = <div className={classes.loading}>{t('Loading...')}</div>;
     }
   } else {
-    if (data.campaign) {
+    if (data.campaign.length) {
       const campaign = data.campaign[0];
 
       // Build NFT collection information
-      const nftCollectionInfo = campaign.nft_collection_ids.length
-        ? campaign.nft_collection_ids.map((nftCollection, index) => (
-            <div key={index} className={`${classes.nftCollectionWrap}`}>
-              <span
-                className={`${classes.chain} ${
-                  classes[nftCollection.nft_collection_id.chain_name]
-                }`}
-              >
-                {nftCollection.nft_collection_id.chain_name}
-              </span>
-              <TextLink
-                className={classes.nftCollectionLink}
-                href={`/nft-collection-details/${nftCollection.nft_collection_id.slug}`}
-              >
-                <span className={`${classes.collectionName}`}>
-                  {nftCollection.nft_collection_id.name}
-                </span>{' '}
-                <span className={classes.contractAdd}>
-                  (
-                  {ellipsify({
-                    str: nftCollection.nft_collection_id.contract_address,
-                    start: 6,
-                    end: 4
-                  })}
-                  )
-                </span>{' '}
-              </TextLink>
-            </div>
-          ))
-        : null;
+      const nftCollectionInfo =
+        campaign &&
+        campaign.nft_collection_ids &&
+        campaign.nft_collection_ids.length
+          ? campaign.nft_collection_ids.map((nftCollection, index) => (
+              <div key={index} className={`${classes.nftCollectionWrap}`}>
+                <span
+                  className={`${classes.chain} ${
+                    classes[nftCollection.nft_collection_id.chain_name]
+                  }`}
+                >
+                  {nftCollection.nft_collection_id.chain_name}
+                </span>
+                <TextLink
+                  className={classes.nftCollectionLink}
+                  href={`/nft-collection-details/${nftCollection.nft_collection_id.slug}`}
+                >
+                  <span className={`${classes.collectionName}`}>
+                    {nftCollection.nft_collection_id.name}
+                  </span>{' '}
+                  <span className={classes.contractAdd}>
+                    (
+                    {ellipsify({
+                      str: nftCollection.nft_collection_id.contract_address,
+                      start: 6,
+                      end: 4
+                    })}
+                    )
+                  </span>{' '}
+                </TextLink>
+              </div>
+            ))
+          : null;
 
       let viewCouponCodesArea = null;
       if (status === 'loading') {
@@ -183,6 +186,8 @@ const Details = (props) => {
           </div>
         </div>
       );
+    } else {
+      child = t('Not Found.');
     }
   }
 
