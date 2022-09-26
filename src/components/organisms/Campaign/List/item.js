@@ -1,7 +1,5 @@
 import React from 'react';
 import Router from 'next/router';
-import slugify from 'slugify';
-import Image from 'next/image';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';

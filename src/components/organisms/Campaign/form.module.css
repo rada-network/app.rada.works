@@ -38,13 +38,25 @@
   @apply border-t border-gray-800 mt-12 pt-12;
 }
 
-.detailsTitle {
+.fieldGroupTitle {
   composes: pageTitle;
-  @apply text-2xl leading-6 mt-0 mb-6;
+  @apply text-xl leading-6 mt-0 mb-6;
 }
 
-.rootDark .detailsTitle {
+.rootDark .fieldGroupTitle {
   @apply text-white;
+}
+
+.tokenOwnership {
+  composes: fieldGroupTitle;
+}
+
+.twitterTasks{
+  composes: fieldGroupTitle;
+}
+
+.rewardGroupTitle {
+
 }
 
 .rootDark input {
