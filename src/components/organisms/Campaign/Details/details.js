@@ -214,11 +214,13 @@ const Details = (props) => {
                 <div className="py-6 px-4 text-center">{storeInfo}</div>
 
                 <div className="border-b border-t border-gray-200 border-opacity-60 pt-6 px-4 pb-4 text-center">
-                  <div className="mb-4">
-                    <strong className="text-5xl font-bold">
-                      {campaign.discount_value}%
+                  <div className="flex flex-col mb-6">
+                    <strong className="text-5xl font-bold mb-1 text-gray-800">
+                      {campaign.discount_value}% Off
                     </strong>
-                    <span className="text-5xl font-light">Off</span>
+                    <span className="inline-block text-sm text-blue-600 font-medium uppercase tracking-widest">
+                      For all products
+                    </span>
                   </div>
 
                   <div className="flex items-center gap-8 mb-4 text-sm text-gray-500">
@@ -245,7 +247,7 @@ const Details = (props) => {
                   <div className="flex flex-wrap">{nftCollectionInfo}</div>
                 </div>
 
-                <div className="py-6 px-4">
+                <div className="py-4 px-4">
                   {viewCouponCodesArea}
                   {editButton}
                 </div>
