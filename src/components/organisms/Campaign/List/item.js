@@ -23,7 +23,7 @@ const Item = (props) => {
   const { t } = useTranslation('campaign_details');
 
   const viewDetails = () => {
-    const path = `/campaign-details/${slugify(data.title).toLowerCase()}`;
+    const path = `/campaign-details/${data.slug}`;
     Router.push(path);
   };
 

@@ -28,6 +28,7 @@ export const GET_CAMPAIGNS = gql`
     ) {
       id
       title
+      slug
       discount_value
       description
       store_name
