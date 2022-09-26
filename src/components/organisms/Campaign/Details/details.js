@@ -220,22 +220,45 @@ const Details = (props) => {
                   <a
                     href=""
                     title="@joomlart"
-                    className="bg-gray-50 text-sm font-medium block border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300 text-center mb-3"
+                    className="bg-gray-50 text-sm font-medium flex items-center border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300 mb-3"
                   >
                     Follow{' '}
                     <strong className="text-blue-600 font-semibold">
                       @joomlart
                     </strong>{' '}
                     on Twitter
+                    <span className="ml-auto">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="#16a34a"
+                        className="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                      </svg>
+                    </span>
                   </a>
 
                   <a
                     href=""
                     title="@joomlart"
-                    className="bg-gray-50 text-sm font-medium block border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300 text-center"
+                    className="bg-gray-50 text-sm font-medium flex items-center border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300"
                   >
-                    Must <strong>Like</strong> &amp; <strong>Retweet</strong>{' '}
-                    this tweet
+                    Must <strong>Retweet</strong> this tweet
+                    <span className="ml-auto">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="#16a34a"
+                        className="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                      </svg>
+                    </span>
                   </a>
                 </div>
               </div>

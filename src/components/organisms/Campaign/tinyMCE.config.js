@@ -1,5 +1,5 @@
 export const TOOL_BAR = `
-undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help
+undo redo | blocks | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help
 `;
 export const PLUGINS = [
   'advlist',

@@ -4,10 +4,14 @@ export const CREATE_CAMPAIGN_FUNC = gql`
   mutation CreateCampaignFunction(
     $title: String!
     $slug: String!
-    $nft_collection_ids: [create_campaign_nft_collection_input]
+    $short_desc: String
     $description: String
-    $discount_value: Int!
-    $coupon_codes: String!
+    $nft_collection_ids: [create_campaign_nft_collection_input]
+    $twitter_username: String
+    $twitter_tweet: String
+    $reward_overview: String
+    $discount_value: Int
+    $coupon_codes: String
     $store_name: String
     $store_logo_url: String
     $store_url: String
@@ -19,8 +23,12 @@ export const CREATE_CAMPAIGN_FUNC = gql`
       data: {
         title: $title
         slug: $slug
-        nft_collection_ids: $nft_collection_ids
+        short_desc: $short_desc
         description: $description
+        nft_collection_ids: $nft_collection_ids
+        twitter_username: $twitter_username
+        twitter_tweet: $twitter_tweet
+        reward_overview: $reward_overview
         discount_value: $discount_value
         coupon_codes: $coupon_codes
         store_name: $store_name
@@ -43,14 +51,18 @@ export const EDIT_CAMPAIGN_FUNC = gql`
     $id: ID!
     $title: String!
     $slug: String!
-    $nft_collection_ids: [update_campaign_nft_collection_input]
+    $short_desc: String
     $description: String
-    $discount_value: Int!
-    $coupon_codes: String!
+    $nft_collection_ids: [update_campaign_nft_collection_input]
+    $twitter_username: String
+    $twitter_tweet: String
+    $reward_overview: String
+    $discount_value: Int
+    $coupon_codes: String
     $store_name: String
     $store_logo_url: String
     $store_url: String
-    $show_on_rada: Boolean!
+    $show_on_rada: Boolean
     $date_start: Date
     $date_end: Date
   ) {
@@ -59,8 +71,12 @@ export const EDIT_CAMPAIGN_FUNC = gql`
       data: {
         title: $title
         slug: $slug
-        nft_collection_ids: $nft_collection_ids
+        short_desc: $short_desc
         description: $description
+        nft_collection_ids: $nft_collection_ids
+        twitter_username: $twitter_username
+        twitter_tweet: $twitter_tweet
+        reward_overview: $reward_overview
         discount_value: $discount_value
         coupon_codes: $coupon_codes
         store_name: $store_name
@@ -83,13 +99,11 @@ export const LOAD_CAMPAIGN_BY_ID = gql`
       id
       title
       slug
+      short_desc
       description
-      discount_value
-      coupon_codes
-      store_name
-      store_logo_url
-      store_url
-      show_on_rada
+      thumb_image
+      cover_image
+      #      show_on_rada
       date_start
       date_end
       nft_collection_ids {
@@ -100,6 +114,14 @@ export const LOAD_CAMPAIGN_BY_ID = gql`
           chain_name
         }
       }
+      twitter_username
+      twitter_tweet
+      reward_overview
+      discount_value
+      coupon_codes
+      store_name
+      store_logo_url
+      store_url
     }
   }
 `;
