@@ -3,6 +3,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
 import FacebookProvider from 'next-auth/providers/facebook';
+import TwitterProvider from 'next-auth/providers/twitter';
+
 import {
   isExistsUser,
   authLogin,
@@ -32,6 +34,12 @@ export default async function auth(
     FacebookProvider({
       clientId: `${process.env.FACEBOOK_CLIENT_ID}`,
       clientSecret: `${process.env.FACEBOOK_CLIENT_SECRET}`
+    }),
+
+    TwitterProvider({
+      clientId: `${process.env.TWITTER_ID}`,
+      clientSecret: `${process.env.TWITTER_SECRET}`,
+      version: '2.0'
     }),
     CredentialsProvider({
       name: 'BSC',
@@ -72,12 +80,14 @@ export default async function auth(
     providers,
     session: {
       strategy: 'jwt', // Seconds - How long until an idle session expires and is no longer valid.
-      maxAge: 15 * 60, // 20 minutes
-      updateAge: 14 * 60 // 20 minutes
+      maxAge: 300 // 20 minutes
     },
     secret: process.env.NEXTAUTH_SECRET,
+
     callbacks: {
       async signIn({ user, account, profile, email, credentials }) {
+        console.log('signIn', user, account, profile, email, credentials);
+        return true;
         const emailUser = user?.email || '';
         if (
           account?.provider === 'credentials' &&
@@ -129,11 +139,10 @@ export default async function auth(
           token.access_token = user.access_token;
           token.id = user.id;
           token.refresh_token = user.refresh_token;
-          console.log('user:', user);
-          return token;
         }
-        console.log(token.exp);
-
+        console.log('====================================');
+        console.log('token', token);
+        console.log('====================================');
         const { valid } = getTokenState(token.access_token);
         // Return previous token if the access token has not expired yet
         if (valid) {
@@ -149,12 +158,6 @@ export default async function auth(
         session.access_token = token.access_token;
         session.error = token.error;
 
-        if (session) {
-          const { valid } = getTokenState(session.access_token);
-          if (!valid) {
-            console.log('session expired', session);
-          }
-        }
         return session;
       }
     }

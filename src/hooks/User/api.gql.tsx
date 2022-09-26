@@ -18,6 +18,25 @@ export const UPDATE_USER_GQL = gql`
   }
 `;
 
+export const CREATE_SOCIAL_GQL = gql`
+  mutation create_social_link_item($data: create_social_link_input!) {
+    create_social_link_item(data: $data) {
+      id
+      name
+      username
+    }
+  }
+`;
+
+export const UPDATE_SOCIAL_GQL = gql`
+  mutation update_social_link_item($id: ID!, $data: update_social_link_input!) {
+    update_social_link_item(id: $id, data: $data) {
+      name
+      username
+    }
+  }
+`;
+
 export const LOGIN_GQL = gql`
   mutation auth_login($email: String!, $password: String!) {
     auth_login(email: $email, password: $password) {
@@ -131,6 +150,8 @@ export const getNextCampaignsFunc = async (props: any) => {
 export default {
   CREATE_USER_GQL,
   UPDATE_USER_GQL,
+  CREATE_SOCIAL_GQL,
+  UPDATE_SOCIAL_GQL,
   LOGIN_GQL,
   AUTH_REFRESH_GQL,
   USER_EXISTS_GQL,

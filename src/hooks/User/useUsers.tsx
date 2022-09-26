@@ -94,6 +94,7 @@ export const getTokenState = (token: any) => {
  * returns the old token and an error property
  */
 export async function refreshAccessToken(token: any) {
+  if (!token) return null;
   try {
     console.log('refreshAccessToken', token);
     const refreshedTokens = await authRefresh({

@@ -18,6 +18,9 @@ const Modal = (props: { connect: any }) => {
   const googleSigner = async () => {
     await signIn('google');
   };
+  const twitterSigner = async () => {
+    await signIn('twitter');
+  };
   // const gitSigner = async () => {
   //   await signIn('github');
   // };
@@ -86,6 +89,20 @@ const Modal = (props: { connect: any }) => {
                       </span>
                       <span className="flex-1 ml-3 whitespace-nowrap">
                         Sign-in with Google
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => twitterSigner()}
+                      href="#"
+                      className="bg-gray-50 dark:bg-gray-600 border border-gray-300 hover:bg-white hover:border-violet-600 shadow hover:shadow-md flex items-center p-3 text-base font-bold text-gray-900 rounded-lg hover:bg-gray-100 group dark:hover:bg-gray-500 dark:text-white"
+                    >
+                      <span className="w-6">
+                        <img src="/social/twitter.svg" alt="Twitter" />
+                      </span>
+                      <span className="flex-1 ml-3 whitespace-nowrap">
+                        Sign-in with Twitter
                       </span>
                     </a>
                   </li>

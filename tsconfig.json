@@ -22,7 +22,8 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "incremental": true,
-		"allowSyntheticDefaultImports" : true
+		"allowSyntheticDefaultImports" : true,
+		"strictNullChecks": false
   },
   "include": [
     "next-env.d.ts",

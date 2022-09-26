@@ -5,7 +5,7 @@ import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'react-redux';
 import { useStore } from 'src/libs/redux';
 import { Web3Provider } from 'src/libs/web3-context';
-import { SessionProvider, signOut } from 'next-auth/react';
+import { SessionProvider, signOut, useSession } from 'next-auth/react';
 import { useApollo } from '../libs/apolloClient';
 import Toast from '../components/organisms/Toast';
 import { ThemeProvider } from 'next-themes';
@@ -19,11 +19,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   getSession().then((session) => {
     const storage = new BrowserPersistence();
     if (session && session.access_token) {
-      storage.setItem('access_token', session.access_token, 15 * 60);
+      storage.setItem('access_token', session.access_token, 300);
     } else {
+      console.log('====================================');
+      console.log('session 2', session);
+      console.log('====================================');
       storage.removeItem('access_token');
     }
-
+    console.log('====================================');
+    console.log('session app:', session);
+    console.log('====================================');
     if (session?.error === 'RefreshAccessTokenError') {
       signOut(); // Force sign in to hopefully resolve error
     }
@@ -36,9 +41,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <ThemeProvider attribute="class">
       <ApolloProvider client={apolloClient}>
         <Provider store={store}>
-          <SessionProvider session={session} refetchInterval={900}>
+          <SessionProvider session={session}>
             <Web3Provider>
-              <Component {...pageProps} />
+              <Auth>
+                <Component {...pageProps} />
+              </Auth>
               <Toast />
             </Web3Provider>
           </SessionProvider>
@@ -47,5 +54,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     </ThemeProvider>
   );
 }
+function Auth({ children: child }: any): JSX.Element {
+  // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
+  const { status } = useSession({ required: false });
 
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  return child;
+}
 export default appWithTranslation(MyApp);
