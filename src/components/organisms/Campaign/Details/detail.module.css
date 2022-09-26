@@ -10,7 +10,7 @@
 }
 
 .pageTitle {
-  @apply text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8;
+  line-height: 1.5 !important;
 }
 
 .pageContent {
@@ -191,6 +191,11 @@
   text-align: center;
 }
 
-.storeInfo{
+.storeLogo {
+  @apply mx-auto;
+  max-width: 50%;  
+}
+
+.storeInfo {
 
 }

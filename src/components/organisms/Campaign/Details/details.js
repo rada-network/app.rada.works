@@ -163,25 +163,94 @@ const Details = (props) => {
           href={campaign.store_url}
         >
           {storeLogo}
-          <span className={classes.storeName}> {campaign.store_name} </span>
+          {/* <span className={classes.storeName}> {campaign.store_name} </span> */}
         </TextLink>
       ) : (
         <span className={classes.storeName}> {campaign.store_name} </span>
       );
 
       child = (
-        <div className={classes.pageWrap}>
-          <div className={classes.pageContent}>
-            <h1 className={classes.pageTitle}>{campaign.title}</h1>
+        <div className="bg-gray-50">
+          <div className="container mx-auto max-w-screen-xl flex items-stretch px-4 py-12 gap-8">
+            <div className="bg-white shadow-sm rounded-xl p-10 basis-full md:basis-2/3">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8 leading-relaxed">
+                {campaign.title}
+              </h1>
 
-            <div className="flex items-stretch">
-              <div className="">
-                <div
-                  className={classes.desc}
-                  dangerouslySetInnerHTML={{ __html: campaign.description }}
-                />
-              </div>{' '}
-              {/* // Description */}
+              <div
+                className={classes.desc}
+                dangerouslySetInnerHTML={{ __html: campaign.description }}
+              />
+            </div>
+            {/* // Description */}
+
+            <div className="basis-full basis-1/3">
+              <div className="bg-white shadow-sm rounded-xl p-4 pt-0 mb-6">
+                <div className="border-b border-gray-200 border-opacity-60 -ml-4 -mr-4 p-4">
+                  <h2 className="mt-0 mb-0 leading-normal text-2xl font-bold text-gray-800">
+                    Register
+                  </h2>
+                  <p className="text-sm text-gray-500 font-normal mt-0 mb-6">
+                    Follow the steps below to add yourself to this list.
+                  </p>
+                  <div className="">
+                    <a
+                      href="#"
+                      title="Login to Register"
+                      className="block bg-green-600 hover:bg-green-700 text-white py-3 px-4 text-center text-lg rounded-lg transition-all duration-300"
+                    >
+                      Login to Register
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Coupon code */}
+              <div className="bg-white shadow-sm rounded-xl p-4 mb-6" />
+              {/* Coupon code */}
+
+              {/* Coupon code */}
+              <div className="bg-white shadow-sm rounded-xl">
+                <div className="py-6 px-4 text-center">{storeInfo}</div>
+
+                <div className="border-b border-t border-gray-200 border-opacity-60 pt-6 px-4 pb-4 text-center">
+                  <div className="mb-4">
+                    <strong className="text-5xl font-bold">
+                      {campaign.discount_value}%
+                    </strong>
+                    <span className="text-5xl font-light">Off</span>
+                  </div>
+
+                  <div className="flex items-center gap-8 mb-4 text-sm text-gray-500">
+                    <div className="basis-1/2 text-left">
+                      <span className="inline-block mr-1 text-xs uppercase">
+                        Start:
+                      </span>
+                      <date className="text-gray-700 font-medium">
+                        {Moment(campaign.date_start).format('DD MMM YYYY')}
+                      </date>
+                    </div>
+                    <div className="basis-1/2 text-right">
+                      <span className="inline-block mr-1 text-xs uppercase">
+                        End:
+                      </span>
+                      <date className="text-gray-700 font-medium">
+                        {campaign.date_end
+                          ? Moment(campaign.date_end).format('DD MMM YYYY')
+                          : 'N/A'}
+                      </date>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap">{nftCollectionInfo}</div>
+                </div>
+
+                <div className="py-6 px-4">
+                  {viewCouponCodesArea}
+                  {editButton}
+                </div>
+              </div>
+              {/* Coupon code */}
             </div>
           </div>
         </div>
