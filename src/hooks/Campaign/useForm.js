@@ -69,9 +69,14 @@ export default (props) => {
 
   const formApiRef = useRef(initialValues);
   const setFormApi = useCallback((api) => (formApiRef.current = api), []);
-  const detailsEditorRef = useRef(
+  const detailsRef = useRef(
     initialValues && initialValues.description
       ? initialValues.description
+      : null
+  );
+  const rewardOverviewRef = useRef(
+    initialValues && initialValues.reward_overview
+      ? initialValues.reward_overview
       : null
   );
 
@@ -131,8 +136,8 @@ export default (props) => {
       if (formApiRef.current) {
         formApiRef.current.reset();
       }
-      if (detailsEditorRef.current) {
-        detailsEditorRef.current = null;
+      if (detailsRef.current) {
+        detailsRef.current = null;
       }
       storage.removeItem('currentCampaign');
       storage.removeItem('nft_collection_opt_selected');
@@ -157,7 +162,8 @@ export default (props) => {
   return {
     setFormApi,
     formApiRef,
-    detailsEditorRef,
+    detailsRef,
+    rewardOverviewRef,
     initialValues,
     handleSaveCampaign,
     handleCancel,
