@@ -185,36 +185,84 @@ const Details = (props) => {
             {/* // Description */}
 
             <div className="basis-full basis-1/3">
+              {/* How to get coupon */}
               <div className="bg-white shadow-sm rounded-xl mb-6">
-                <div className="border-b border-gray-200 border-opacity-60 p-4">
-                  <h2 className="mt-0 mb-0 leading-normal text-2xl font-bold text-gray-800">
-                    Register
-                  </h2>
-                  <p className="text-sm text-gray-500 font-normal mt-0 mb-6">
+                <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
+                  <h3 className="mt-0 mb-1 leading-normal text-xl font-bold text-gray-800">
+                    How to get coupon?
+                  </h3>
+                  <p className="mt-0 mb-0 text-sm text-color-400">
+                    Sample your text here...
+                  </p>
+                </div>
+
+                <div className="p-4 pt-6">
+                  <div className="flex items-start mb-4">
+                    <div className="basis-1/3 flex flex-col items-center text-center relative">
+                      <strong className="flex items-center justify-center bg-blue-500 text-white w-8 h-8 rounded-full font-semibold mb-3">
+                        1
+                      </strong>
+                      <span className="text-sm font-medium">Login twitter</span>
+                    </div>
+
+                    <div className="basis-1/3 flex flex-col items-center text-center">
+                      <strong className="flex items-center justify-center bg-gray-200 text-gray-400 w-8 h-8 rounded-full font-medium mb-3">
+                        2
+                      </strong>
+                      <span className="text-sm text-gray-500 font-medium">
+                        Follow / Retweet
+                      </span>
+                    </div>
+
+                    <div className="basis-1/3 flex flex-col items-center text-center">
+                      <strong className="flex items-center justify-center bg-gray-200 text-gray-400 w-8 h-8 rounded-full font-medium mb-3">
+                        3
+                      </strong>
+                      <span className="text-sm text-gray-500 font-medium">
+                        Get coupon
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* // How to get coupon */}
+
+              <div className="bg-white shadow-sm rounded-xl mb-6">
+                <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
+                  <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
+                    Your quest
+                  </h3>
+                  <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
                     Follow the steps below to add yourself to this list.
                   </p>
-                  <div className="">
-                    <a
-                      href="#"
-                      title="Login to Register"
-                      className="block bg-green-600 hover:bg-green-700 text-white py-3 px-4 text-center text-lg rounded-lg transition-all duration-300"
-                    >
-                      Login to Register
-                    </a>
-                  </div>
                 </div>
 
                 <div className="border-b border-gray-200 border-opacity-60 p-4">
-                  <div className="flex items-center text-lg font-medium mb-3">
+                  <div className="flex items-center text-md font-semibold mb-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h4 mr-2"
+                      className="w-5 h-5 mr-2"
                       fill="#5AC8FA"
                       viewBox="0 0 16 16"
                     >
                       <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
                     </svg>
                     Twitter
+                    <a
+                      href="#"
+                      title="Login"
+                      className="bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-full py-1.5 pl-3 pr-4 ml-auto transition duration-300"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-4 h-4 mr-1"
+                        fill="#fff"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                      </svg>
+                      Login
+                    </a>
                   </div>
 
                   <a
@@ -246,7 +294,7 @@ const Details = (props) => {
                     title="@joomlart"
                     className="bg-gray-50 text-sm font-medium flex items-center border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300"
                   >
-                    Must <strong>Retweet</strong> this tweet
+                    Must&nbsp;<strong>Retweet</strong>&nbsp;this tweet
                     <span className="ml-auto">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
