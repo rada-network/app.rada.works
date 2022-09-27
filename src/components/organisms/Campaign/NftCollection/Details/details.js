@@ -96,7 +96,7 @@ const Details = (props) => {
             <div className="py-32 mx-auto max-w-screen-xl relative">
               <a
                 title={nftCollection.name}
-                className="bg-gray-100 dark:bg-gray-900 shadow-md border border-4 border-white dark:border-gray-700 block h-20 w-20 rounded-full overflow-hidden absolute -bottom-8 left-1/2 -mx-10"
+                className="bg-gray-100 dark:bg-gray-900 shadow-md border-4 border-white dark:border-gray-700 block h-20 w-20 rounded-full overflow-hidden absolute -bottom-8 left-1/2 -mx-10"
               >
                 {thumbImage}
               </a>
