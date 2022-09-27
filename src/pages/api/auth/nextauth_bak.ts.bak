@@ -32,9 +32,9 @@ export default async function auth(
           //  create newUser or return existent user
           const createdUser = await createUser({
             email: address,
-            password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD,
+            password: process.env.SM_USER_PASSWORD,
             role: {
-              id: process.env.DIRECTUS_DEFAULT_ROLE,
+              id: process.env.SM_USER_ROLE_ID,
               name: 'Rada works',
               app_access: true,
               icon: 'supervised_user_circle',
@@ -84,7 +84,7 @@ export default async function auth(
       async signIn({ user, account, profile, email, credentials }) {
         const directusToken = await authLogin({
           email: user.email,
-          password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
+          password: process.env.SM_USER_PASSWORD
         });
         console.log(directusToken);
         user.access_token = directusToken.auth_login.access_token;

@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from 'next-auth/providers/twitter';
-// import { saveSocialData } from '../../../hooks/User/useSocial';
+import { saveSocialData } from '../../../hooks/User/useSocial';
 import {
   isExistsUser,
   authLogin,
@@ -73,9 +73,9 @@ export const authOptions: NextAuthOptions = {
       if (!checkUser?.id) {
         const CreateUser = await createUser({
           email: user.email,
-          password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD,
+          password: process.env.SM_USER_PASSWORD,
           role: {
-            id: process.env.DIRECTUS_DEFAULT_ROLE,
+            id: process.env.SM_USER_ROLE_ID,
             name: 'Soulmint Users',
             app_access: true,
             icon: 'supervised_user_circle',
@@ -90,7 +90,7 @@ export const authOptions: NextAuthOptions = {
       //connect to directus create user & get access token
       const directusToken = await authLogin({
         email: user.email,
-        password: process.env.DIRECTUS_SUPER_ADMIN_PASSWORD
+        password: process.env.SM_USER_PASSWORD
       });
       user.access_token = directusToken.auth_login.access_token;
       user.refresh_token = directusToken.auth_login.refresh_token;
@@ -121,12 +121,12 @@ export const authOptions: NextAuthOptions = {
             authSecret: account.oauth_token_secret
           };
         }
-        // const userName = profile?.screen_name;
-        // await saveSocialData({
-        //   name: token.name,
-        //   username: userName,
-        //   user_created: token.sud
-        // });
+        const userName = profile?.screen_name;
+        await saveSocialData({
+          name: token.name,
+          username: userName,
+          user_created: token.sud
+        });
       }
 
       // Persist the OAuth access_token to the token right after signin
