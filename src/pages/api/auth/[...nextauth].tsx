@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from 'next-auth/providers/twitter';
-import { saveSocialData } from '../../../hooks/User/useSocial';
+
 import {
   isExistsUser,
   authLogin,
@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt', // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: 10 * 60 // 10 minutes
+    maxAge: 24 * 60 * 60 // 1day
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
@@ -121,12 +121,6 @@ export const authOptions: NextAuthOptions = {
             authSecret: account.oauth_token_secret
           };
         }
-        const userName = profile?.screen_name;
-        await saveSocialData({
-          name: token.name,
-          username: userName,
-          user_created: token.sud
-        });
       }
 
       // Persist the OAuth access_token to the token right after signin

@@ -19,16 +19,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   getSession().then((session) => {
     const storage = new BrowserPersistence();
     if (session && session.access_token) {
-      storage.setItem('access_token', session.access_token, 300);
+      storage.setItem('access_token', session.access_token, 24 * 60 * 60);
     } else {
-      console.log('====================================');
-      console.log('session 2', session);
-      console.log('====================================');
       storage.removeItem('access_token');
+      signOut();
     }
-    console.log('====================================');
-    console.log('session app:', session);
-    console.log('====================================');
     if (session?.error === 'RefreshAccessTokenError') {
       signOut(); // Force sign in to hopefully resolve error
     }
