@@ -11,7 +11,7 @@ import {
   refreshAccessToken,
   createUser,
   getTokenState
-} from '../../../hooks/User/useUsers';
+} from '../../../hooks/User/useUser';
 import { utils } from 'ethers';
 import { NextApiRequest, NextApiResponse } from 'next';
 
