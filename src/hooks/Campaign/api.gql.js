@@ -101,8 +101,16 @@ export const LOAD_CAMPAIGN_BY_ID = gql`
       slug
       short_desc
       description
-      thumb_image
-      cover_image
+      thumb_image {
+        id
+        title
+        filename_download
+      }
+      cover_image {
+        id
+        title
+        filename_download
+      }
       #      show_on_rada
       date_start
       date_end
