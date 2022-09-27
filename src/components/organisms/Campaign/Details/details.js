@@ -4,8 +4,8 @@ import { useTheme } from 'next-themes';
 import Moment from 'moment';
 import Button from '../../../atoms/Button';
 import TextLink from '../../../atoms/TextLink';
-import Related from '../Related';
-import Subcribe from '../Subcribe';
+// import Related from '../Related';
+// import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
@@ -171,8 +171,8 @@ const Details = (props) => {
 
       child = (
         <div className="bg-gray-50">
-          <div className="container mx-auto max-w-screen-xl flex items-stretch px-4 py-12 gap-8">
-            <div className="bg-white shadow-sm rounded-xl p-10 basis-full md:basis-2/3">
+          <div className="container mx-auto max-w-screen-xl flex items-stretch py-12">
+            <div className="py-10 px-4 basis-full md:basis-2/3">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8 leading-relaxed">
                 {campaign.title}
               </h1>
@@ -184,53 +184,29 @@ const Details = (props) => {
             </div>
             {/* // Description */}
 
-            <div className="basis-full basis-1/3">
-              {/* How to get coupon */}
-              <div className="bg-white shadow-sm rounded-xl mb-6">
-                <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
-                  <h3 className="mt-0 mb-1 leading-normal text-xl font-bold text-gray-800">
-                    How to get coupon?
+            <div className="basis-full basis-1/3 px-4">
+              {/* About Reward */}
+              <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-xl mb-6">
+                <div className="border-b border-orange-200 border-opacity-60 py-3 px-4">
+                  <h3 className="my-0 leading-normal text-xl font-bold text-gray-800">
+                    About Reward
                   </h3>
-                  <p className="mt-0 mb-0 text-sm text-color-400">
-                    Sample your text here...
-                  </p>
                 </div>
 
-                <div className="p-4 pt-6">
-                  <div className="flex items-start mb-4">
-                    <div className="basis-1/3 flex flex-col items-center text-center relative">
-                      <strong className="flex items-center justify-center bg-blue-500 text-white w-8 h-8 rounded-full font-semibold mb-3">
-                        1
-                      </strong>
-                      <span className="text-sm font-medium">Login twitter</span>
-                    </div>
-
-                    <div className="basis-1/3 flex flex-col items-center text-center">
-                      <strong className="flex items-center justify-center bg-gray-200 text-gray-400 w-8 h-8 rounded-full font-medium mb-3">
-                        2
-                      </strong>
-                      <span className="text-sm text-gray-500 font-medium">
-                        Follow / Retweet
-                      </span>
-                    </div>
-
-                    <div className="basis-1/3 flex flex-col items-center text-center">
-                      <strong className="flex items-center justify-center bg-gray-200 text-gray-400 w-8 h-8 rounded-full font-medium mb-3">
-                        3
-                      </strong>
-                      <span className="text-sm text-gray-500 font-medium">
-                        Get coupon
-                      </span>
-                    </div>
-                  </div>
+                <div className="p-4">
+                  <strong>There are many NFT variations</strong> of passages of
+                  Lorem Ipsum available, but the majority have suffered
+                  alteration in some form, by injected humour, or randomised
+                  words which don not look even slightly believable.
                 </div>
               </div>
-              {/* // How to get coupon */}
+              {/* // About Reward */}
 
+              {/* Require Tasks */}
               <div className="bg-white shadow-sm rounded-xl mb-6">
                 <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
                   <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
-                    Your quest
+                    Require Tasks
                   </h3>
                   <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
                     Follow the steps below to add yourself to this list.
@@ -248,10 +224,21 @@ const Details = (props) => {
                       <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
                     </svg>
                     Twitter
+                    <span className="border border-2 border-sky-400 text-sky-500 flex items-center text-sm font-medium rounded-full py-1.5 pl-3 pr-4 ml-auto transition duration-300">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-4 h-4 mr-1"
+                        fill="#38bdf8"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                      </svg>
+                      Login
+                    </span>
                     <a
                       href="#"
                       title="Login"
-                      className="bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-full py-1.5 pl-3 pr-4 ml-auto transition duration-300"
+                      className="bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-full py-1.5 pl-3 pr-4 ml-2 transition duration-300"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -268,7 +255,7 @@ const Details = (props) => {
                   <a
                     href=""
                     title="@joomlart"
-                    className="bg-gray-50 text-sm font-medium flex items-center border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300 mb-3"
+                    className="bg-gray-50 text-sm font-medium flex items-center border border-red-500 hover:border-red-500 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300 mb-3"
                   >
                     Follow{' '}
                     <strong className="text-blue-600 font-semibold">
@@ -280,14 +267,17 @@ const Details = (props) => {
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
                         height="16"
-                        fill="#16a34a"
-                        className="bi bi-check-circle-fill"
+                        fill="#dc2626"
+                        className="bi bi-x-circle-fill"
                         viewBox="0 0 16 16"
                       >
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
                       </svg>
                     </span>
                   </a>
+                  <small className="-mt-2 mb-3 block text-red-600 text-xs">
+                    Please try again...
+                  </small>
 
                   <a
                     href=""
@@ -311,11 +301,204 @@ const Details = (props) => {
                 </div>
               </div>
 
-              {/* Coupon code */}
-              <div className="bg-white shadow-sm rounded-xl p-4 mb-6">
-                Abcdef
+              {/* How to claim */}
+              <div className="bg-white shadow-sm rounded-xl mb-6">
+                <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
+                  <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
+                    How to claim?
+                  </h3>
+                  <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+                    Follow the steps below to claim your tocken.
+                  </p>
+                </div>
+
+                <div className="p-4">
+                  <div
+                    className={`${classes.howtoSteps} flex flex-col mb-8 relative`}
+                  >
+                    <div className="flex items-center mb-8 z-10">
+                      <strong className="bg-blue-100 border border-2 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full shadow-sm">
+                        1
+                      </strong>
+                      <div className="flex-1 pl-4">
+                        Connect wallet majority have suffered alteration in some
+                        form
+                      </div>
+                    </div>
+
+                    <div className="flex items-center mb-8 z-10">
+                      <strong className="bg-blue-100 border border-w border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full shadow-sm">
+                        2
+                      </strong>
+                      <div className="flex-1 pl-4">
+                        Majority have suffered alteration in some form
+                      </div>
+                    </div>
+
+                    <div className="flex items-center z-10">
+                      <strong className="bg-blue-100 border border-2 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full shadow-sm">
+                        3
+                      </strong>
+                      <div className="flex-1 pl-4">
+                        The majority have suffered alteration in some form
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <a
+                      href="#"
+                      title="Claim"
+                      className="bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300"
+                    >
+                      Claim tocken
+                    </a>
+                  </div>
+                </div>
               </div>
-              {/* Coupon code */}
+              {/* // How to claim */}
+
+              {/* Quester */}
+              <div className="bg-white shadow-sm rounded-xl mb-6">
+                <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
+                  <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
+                    Questers (8077)
+                  </h3>
+                  <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+                    Follow the steps below to claim your tocken.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between py-6 px-4 gap-3">
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-gray-100 text-gray-600`}
+                  >
+                    Q
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-blue-100 text-blue-600`}
+                  >
+                    T
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-cyan-100 text-cyan-600`}
+                  >
+                    K
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-gray-100 text-gray-600`}
+                  >
+                    H
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-gray-100 text-gray-600`}
+                  >
+                    M
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-sky-100 text-sky-600`}
+                  >
+                    K
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-sky-100 text-sky-600`}
+                  >
+                    V
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-violet-100 text-violet-600`}
+                  >
+                    M
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-sky-100 text-sky-600`}
+                  >
+                    L
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-pink-100 text-pink-600`}
+                  >
+                    N
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-sky-100 text-sky-600`}
+                  >
+                    S
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-sky-100 text-sky-600`}
+                  >
+                    K
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-red-100 text-red-600`}
+                  >
+                    W
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-sky-100 text-sky-600`}
+                  >
+                    K
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-blue-100 text-blue-600`}
+                  >
+                    F
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-green-100 text-green-600`}
+                  >
+                    K
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-sky-100 text-sky-600`}
+                  >
+                    K
+                  </a>
+                  <a
+                    href="#"
+                    title="Quynh"
+                    className={`${classes.questerAvt} bg-gray-100 text-gray-600`}
+                  >
+                    ...
+                  </a>
+                </div>
+              </div>
+              {/* // Quester */}
 
               {/* Coupon code */}
               <div className="bg-white shadow-sm rounded-xl">
@@ -326,9 +509,6 @@ const Details = (props) => {
                     <strong className="text-5xl font-bold mb-1 text-gray-800">
                       {campaign.discount_value}% Off
                     </strong>
-                    <span className="inline-block text-sm text-blue-600 font-medium uppercase tracking-widest">
-                      For all products
-                    </span>
                   </div>
 
                   <div className="flex items-center gap-8 mb-4 text-sm text-gray-500">
