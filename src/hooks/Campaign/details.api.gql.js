@@ -17,6 +17,12 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
           chain_name
         }
       }
+      thumb_image {
+        id
+      }
+      cover_image {
+        id
+      }
       discount_value
       store_name
       store_logo_url

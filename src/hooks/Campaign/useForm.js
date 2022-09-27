@@ -10,6 +10,7 @@ export default (props) => {
   const { campaignId, afterSavedCampaign } = props;
   const { addMutation, editMutation, loadCampaignByIdQuery } = API;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const storage = new BrowserPersistence();
   const currentCampaign = storage.getItem('currentCampaign');
   let initialValues = currentCampaign ? currentCampaign : [];
@@ -37,7 +38,7 @@ export default (props) => {
     return !campaignLoading && campaignLoaded && campaignLoaded.campaign_by_id
       ? { ...campaignLoaded.campaign_by_id }
       : [];
-  }, [campaignLoaded]);
+  }, [campaignLoaded, campaignLoading]);
 
   // Update selected NFT collection from NFT collection details page context
   const nftCollectionOptionSelected = storage.getItem(
@@ -143,7 +144,7 @@ export default (props) => {
       storage.removeItem('nft_collection_opt_selected');
     },
 
-    [saveCampaignInformation, storage]
+    [afterSavedCampaign, campaignId, saveCampaignInformation, storage]
   );
 
   const handleCancel = useCallback(() => {
@@ -156,7 +157,7 @@ export default (props) => {
         [campaignId ? 'editMutation' : 'addMutation', createCampaignError],
         ['loadCampaignQuery', campaignLoadError]
       ]),
-    [createCampaignError, campaignLoadError]
+    [campaignId, createCampaignError, campaignLoadError]
   );
 
   return {
