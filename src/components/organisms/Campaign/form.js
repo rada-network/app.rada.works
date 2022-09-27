@@ -178,8 +178,8 @@ const CampaignForm = (props) => {
                 id="cpCoverImage"
                 storageKeyName="cpCoverImageUploaded"
                 uploaderContainerId="cpCoverContainer"
-                previewContainerId="cpPreviewContainer"
-                allowedFileTypes={['image/*', '.jpg', '.jpeg', '.png', '.gif']}
+                previewContainerId="cpCoverPreviewContainer"
+                allowedFileTypes={['.jpg', '.jpeg', '.png', '.gif']}
                 allowMultipleFiles={false}
                 maxNumberOfFiles={1}
                 storageFolder={{
@@ -189,7 +189,19 @@ const CampaignForm = (props) => {
               />
             </Field>
             <Field id="campaign-thumb-image" label={t('Thumb Image')}>
-              [coming soon] Upload image...
+              <Uploader
+                id="cpThumbImage"
+                storageKeyName="cpThumbImageUploaded"
+                uploaderContainerId="cpThumbContainer"
+                previewContainerId="cpThumbPreviewContainer"
+                allowedFileTypes={['.jpg', '.jpeg', '.png', '.gif']}
+                allowMultipleFiles={false}
+                maxNumberOfFiles={1}
+                storageFolder={{
+                  id: '5cfb4e1e-16e8-4ae0-98ca-bda9a9b743cc',
+                  name: 'campaign'
+                }}
+              />
             </Field>
             <Field
               id="campaign-dates"

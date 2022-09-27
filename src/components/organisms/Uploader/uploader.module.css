@@ -5,6 +5,10 @@
     @apply flex mb-4 flex-wrap justify-between;
 }
 
+.root :global(.uppy-Container) {
+    width: 100%;
+}
+
 .root :global(.uploading) {
     opacity: 0.45;
     pointer-events: none;
@@ -13,6 +17,7 @@
 
 .root .previewContainer {
     list-style: none;
+    width: 100%;
 }
 
 .root .previewItem {
@@ -22,7 +27,7 @@
     border: 1px solid #d6d6d6;
 }
 .root .previewItem .thumb {
-
+    width: 100%;
 }
 .root .previewItem .fileUploaded {
     margin: 0px 10px 0px 0px;
@@ -35,4 +40,8 @@
 }
 .root .previewItem .btnDelete:hover {
     text-decoration: underline;
+}
+
+.root :global(.uppy-DragDrop-inner) {
+    padding: 20px;
 }

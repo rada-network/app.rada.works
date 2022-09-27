@@ -20,7 +20,6 @@ const Uploader = (props) => {
     storageKeyName = 'uploadedFiles',
     uploaderContainerId = 'uploader-container',
     previewContainerId = 'preview-container',
-
     allowedFileTypes = [
       'image/*',
       '.jpg',
@@ -148,22 +147,18 @@ const Uploader = (props) => {
 
   const child = (
     <div id={uploaderContainerId} className={`${classes.uploaderContainer}`}>
-      <div className={`w-1/4 block`}>
-        <DragDrop
-          uppy={uppy}
-          allowMultipleFiles={allowMultipleFiles}
-          locale={{
-            strings: {
-              dropHereOr: t('Drag and drop file here or click to %{browse}'),
-              browse: t('browse')
-            }
-          }}
-          note={`${t('Allowed file types:')} ${allowedFileTypes.join(', ')}`}
-        />
-      </div>
-      <div className={`w-3/4 block order-last`}>
-        <ul id={previewContainerId} className={`${classes.previewContainer}`} />
-      </div>
+      <DragDrop
+        uppy={uppy}
+        allowMultipleFiles={allowMultipleFiles}
+        locale={{
+          strings: {
+            dropHereOr: t('Drag and drop file here or click to %{browse}'),
+            browse: t('browse')
+          }
+        }}
+        note={`${t('Allowed file types:')} ${allowedFileTypes.join(', ')}`}
+      />
+      <ul id={previewContainerId} className={`${classes.previewContainer}`} />
     </div>
   );
 
@@ -202,7 +197,7 @@ const updatePreview = (
     if (/(jpe?g|png|gif|bmp)$/i.test(file.extension)) {
       // create thumb
       const img = new Image();
-      img.width = 100;
+      // img.width = 100;
       img.alt = file.name;
       img.src = uploadedUrl;
       img.className = classes.thumb;
