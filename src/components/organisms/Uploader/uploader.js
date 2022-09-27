@@ -11,14 +11,16 @@ import BrowserPersistence from '../../../utils/simplePersistence';
 import {
   importFileFunc,
   deleteFileFunc
-} from '../../../hooks/CreateJob/createJobForm.gql';
+} from '../../../hooks/Uploader/api.gql';
+import { ellipsify } from '../../../utils/strUtils';
 
 const Uploader = (props) => {
   const {
     id = 'upload-files',
     storageKeyName = 'uploadedFiles',
-    // tusUploadEndpoint = 'http://127.0.0.1:8585',
-    tusUploadEndpoint = 'https://tusd.tusdemo.net/files/',
+    uploaderContainerId = 'uploader-container',
+    previewContainerId = 'preview-container',
+
     allowedFileTypes = [
       'image/*',
       '.jpg',
@@ -30,12 +32,35 @@ const Uploader = (props) => {
       '.gz',
       '.tar.gz'
     ],
+    allowMultipleFiles = true,
     maxNumberOfFiles = 5,
     maxFileSize = 3000000, // 3M
-    minFileSize = 1024 //1KB
+    minFileSize = 1024, //1KB
+    /**
+     * Example with parent folder:
+     * {
+            id: '39561e14-335c-4f11-b6bb-33a9814c67e0',
+            name: 'attachments',
+            parent: {
+              id: '9eb6ae9d-acce-4b44-ab23-2b660fb48e01',
+              name: 'job'
+            }
+          }
+     */
+    storageFolder = {
+      id: '39561e14-335c-4f11-b6bb-33a9814c67e0',
+      name: 'attachments',
+      parent: {
+        id: '9eb6ae9d-acce-4b44-ab23-2b660fb48e01',
+        name: 'job'
+      }
+    },
+
+    // tusUploadEndpoint = 'http://127.0.0.1:8585',
+    tusUploadEndpoint = 'https://tusd.tusdemo.net/files/'
   } = props;
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('uploader');
 
   const addFile = (file) => {
     const storage = new BrowserPersistence();
@@ -67,56 +92,51 @@ const Uploader = (props) => {
     });
   });
   uppy.on('upload', (data) => {
-    setUploadingState();
+    setUploadingState(uploaderContainerId);
   });
   uppy.on('upload-success', (file, response) => {
-    setTimeout(function () {
+    setTimeout(async function () {
       // import as directus file
-      importFileFunc({
+      await importFileFunc({
         url: response.uploadURL,
         data: {
           title: file.name,
           type: file.type,
           storage: 'local',
-          folder: {
-            id: '39561e14-335c-4f11-b6bb-33a9814c67e0',
-            name: 'attachments',
-            parent: {
-              id: '9eb6ae9d-acce-4b44-ab23-2b660fb48e01',
-              name: 'job'
-            }
-          },
+          folder: storageFolder,
           filename_download: file.name,
           uploaded_on: new Date(),
           modified_on: new Date()
         }
       }).then(function (rs) {
-        console.log(rs);
+        console.log('Imported File: ', rs);
+        if (rs.data && rs.data.import_file) {
+          // saving uploaded file to local storage
+          const directusFile = {
+            id: rs.data.import_file.id,
+            storage: rs.data.import_file.storage,
+            filename_download: rs.data.import_file.filename_download,
+            uploaded_on: rs.data.import_file.uploaded_on,
+            modified_on: rs.data.import_file.modified_on
+          };
+          file.directus_file = directusFile;
+          addFile(file.directus_file);
 
-        const directusFile = {
-          id: rs.data.import_file.id,
-          storage: rs.data.import_file.storage,
-          filename_download: rs.data.import_file.filename_download,
-          uploaded_on: rs.data.import_file.uploaded_on,
-          modified_on: rs.data.import_file.modified_on
-        };
-        file.directus_file = directusFile;
-
-        addFile(file.directus_file);
-
-        updatePreview(
-          t,
-          storageKeyName,
-          'preview-container',
-          uppy,
-          file,
-          response.uploadURL
-        );
+          // update preview
+          updatePreview(
+            t,
+            storageKeyName,
+            previewContainerId,
+            uppy,
+            file,
+            response.uploadURL
+          );
+        }
       });
-    }, 1000);
+    }, 1500);
   });
   uppy.on('complete', (result) => {
-    cleanUploadingState();
+    cleanUploadingState(uploaderContainerId);
   });
 
   useEffect(() => {
@@ -127,23 +147,22 @@ const Uploader = (props) => {
   }, [uppy]);
 
   const child = (
-    <div id={`uploader-container`} className={`${classes.uploaderContainer}`}>
+    <div id={uploaderContainerId} className={`${classes.uploaderContainer}`}>
       <div className={`w-1/4 block`}>
         <DragDrop
           uppy={uppy}
+          allowMultipleFiles={allowMultipleFiles}
           locale={{
             strings: {
               dropHereOr: t('Drag and drop file here or click to %{browse}'),
               browse: t('browse')
             }
           }}
+          note={`${t('Allowed file types:')} ${allowedFileTypes.join(', ')}`}
         />
       </div>
       <div className={`w-3/4 block order-last`}>
-        <ul
-          id={`preview-container`}
-          className={`${classes.previewContainer}`}
-        />
+        <ul id={previewContainerId} className={`${classes.previewContainer}`} />
       </div>
     </div>
   );
@@ -151,29 +170,19 @@ const Uploader = (props) => {
   return <div className={`${classes.root}`}>{child}</div>;
 };
 
-const setUploadingState = () => {
-  const uploaderContainer = document.getElementById('uploader-container');
+const setUploadingState = (uploaderContainerId) => {
+  const uploaderContainer = document.getElementById(uploaderContainerId);
   uploaderContainer.className = uploaderContainer.className + ' uploading';
 };
 
-const cleanUploadingState = () => {
+const cleanUploadingState = (uploaderContainerId) => {
   setTimeout(function () {
-    const uploaderContainer = document.getElementById('uploader-container');
+    const uploaderContainer = document.getElementById(uploaderContainerId);
     uploaderContainer.className = uploaderContainer.className.replace(
       'loading',
       ''
     );
   }, 1000);
-};
-
-const ellipsify = (props) => {
-  if (typeof props.start === 'undefined') props.start = 5;
-  if (!props.end) props.end = 3;
-  const { str, start, end } = props;
-  if (str.length > start) {
-    return str.slice(0, start) + '...' + str.slice(str.length - end);
-  }
-  return str;
 };
 
 const updatePreview = (
@@ -204,7 +213,7 @@ const updatePreview = (
     const fileLink = document.createElement('a');
     fileLink.href = uploadedUrl;
     fileLink.target = '_blank';
-    fileLink.className = classes.fileAttachment;
+    fileLink.className = classes.fileUploaded;
     const fileLinkText = document.createTextNode(
       ellipsify({ str: file.name, start: 5, end: 4 })
     );

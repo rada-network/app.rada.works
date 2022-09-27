@@ -12,6 +12,7 @@ import TextInput from '../../atoms/TextInput';
 import TextArea from '../../atoms/TextArea';
 import Button from '../../atoms/Button';
 // import Checkbox from '../../atoms/Checkbox';
+import Uploader from '../../organisms/Uploader';
 import { Editor } from '@tinymce/tinymce-react';
 import TINY_MCE_CONFIG from './tinyMCE.config';
 import { useForm } from '../../../hooks/Campaign';
@@ -37,7 +38,7 @@ const CampaignForm = (props) => {
     branding: false,
     height: 300,
     menubar: false,
-    placeholder: t('Other detail for your customers?'),
+    placeholder: t('Other detail about your campaign?'),
     plugins,
     toolbar,
     skin: 'oxide',
@@ -173,7 +174,19 @@ const CampaignForm = (props) => {
               </span>
             </Field>
             <Field id="campaign-cover-image" label={t('Cover Image')}>
-              [coming soon] Upload image...
+              <Uploader
+                id="cpCoverImage"
+                storageKeyName="cpCoverImageUploaded"
+                uploaderContainerId="cpCoverContainer"
+                previewContainerId="cpPreviewContainer"
+                allowedFileTypes={['image/*', '.jpg', '.jpeg', '.png', '.gif']}
+                allowMultipleFiles={false}
+                maxNumberOfFiles={1}
+                storageFolder={{
+                  id: '5cfb4e1e-16e8-4ae0-98ca-bda9a9b743cc',
+                  name: 'campaign'
+                }}
+              />
             </Field>
             <Field id="campaign-thumb-image" label={t('Thumb Image')}>
               [coming soon] Upload image...
