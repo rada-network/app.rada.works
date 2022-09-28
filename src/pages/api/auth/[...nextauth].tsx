@@ -1,10 +1,10 @@
 import NextAuth from 'next-auth';
-import type { NextAuthOptions } from 'next-auth';
-import { NextApiRequest, NextApiResponse } from 'next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
+import GithubProvider from 'next-auth/providers/github';
+import FacebookProvider from 'next-auth/providers/facebook';
 import TwitterProvider from 'next-auth/providers/twitter';
-import { saveSocialData } from '../../../hooks/User/useSocial';
+
 import {
   isExistsUser,
   authLogin,
@@ -13,17 +13,33 @@ import {
   getTokenState
 } from '../../../hooks/User/useUser';
 import { utils } from 'ethers';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export const authOptions: NextAuthOptions = {
-  providers: [
+// For more information on each option (and a full list of options) go to
+// https://next-auth.js.org/configuration/options
+export default async function auth(
+  req: NextApiRequest,
+  res: NextApiResponse<any>
+) {
+  const providers = [
+    GithubProvider({
+      clientId: `${process.env.GITHUB_ID}`,
+      clientSecret: `${process.env.GITHUB_SECRET}`
+    }),
     GoogleProvider({
       clientId: `${process.env.GOOGLE_ID}`,
       clientSecret: `${process.env.GOOGLE_SECRET}`,
       checks: 'none'
     }),
+    FacebookProvider({
+      clientId: `${process.env.FACEBOOK_CLIENT_ID}`,
+      clientSecret: `${process.env.FACEBOOK_CLIENT_SECRET}`
+    }),
+
     TwitterProvider({
-      clientId: `${process.env.TWITTER_CONSUMER_KEY}`,
-      clientSecret: `${process.env.TWITTER_CONSUMER_SECRET}`
+      clientId: `${process.env.TWITTER_ID}`,
+      clientSecret: `${process.env.TWITTER_SECRET}`,
+      version: '2.0'
     }),
     CredentialsProvider({
       name: 'BSC',
@@ -49,120 +65,118 @@ export const authOptions: NextAuthOptions = {
         }
       }
     })
-  ],
-  pages: {
-    error: '/_error'
-  },
-  session: {
-    strategy: 'jwt', // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: 1200 // 10 minutes
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      const emailUser = user?.email || '';
-      if (
-        account?.provider === 'credentials' &&
-        email &&
-        profile &&
-        credentials
-      ) {
-        console.log('wallet connected');
-      }
-      const checkUser = await isExistsUser(emailUser);
-      if (!checkUser?.id) {
-        const CreateUser = await createUser({
-          email: user.email,
-          password: process.env.SM_USER_PASSWORD,
-          role: {
-            id: process.env.SM_USER_ROLE_ID,
-            name: 'Soulmint Users',
-            app_access: true,
-            icon: 'supervised_user_circle',
-            admin_access: false,
-            enforce_tfa: false
-          },
-          provider: 'default',
-          status: 'active'
-        });
-        checkUser.id = CreateUser.id;
-      }
-      //connect to directus create user & get access token
-      const directusToken = await authLogin({
-        email: user.email,
-        password: process.env.SM_USER_PASSWORD
-      });
-      user.access_token = directusToken.auth_login.access_token;
-      user.refresh_token = directusToken.auth_login.refresh_token;
-      user.id = checkUser.id;
+  ];
 
-      return true;
-    },
-    async redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
-      if (url.startsWith('/')) return `${baseUrl}${url}`;
-      // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url;
-      return baseUrl;
-    },
-    async jwt({ token, user, account, profile }) {
-      if (account?.provider === 'twitter') {
-        if (profile) {
-          token['userProfile'] = {
-            followersCount: profile.followers_count,
-            twitterHandle: profile.screen_name,
-            followingCount: profile.friends_count,
-            userID: profile.id
-          };
-        }
-        if (account) {
-          token['credentials'] = {
-            authToken: account.oauth_token,
-            authSecret: account.oauth_token_secret
-          };
-        }
-        const userName = profile?.screen_name;
-        await saveSocialData({
-          name: token.name,
-          username: userName,
-          user_created: token.sud
-        });
-      }
+  const isDefaultSigninPage =
+    req.method === 'GET' && req.query.nextauth.includes('signin');
 
-      // Persist the OAuth access_token to the token right after signin
-      if (account && user) {
-        token.access_token = user.access_token;
-        token.refresh_token = user.refresh_token;
-      } else {
-        const { needRefresh } = getTokenState(token.access_token);
-        console.log('needRefresh', needRefresh);
-        if (needRefresh) {
-          const { access_token, refresh_token } = await refreshAccessToken(
-            token.refresh_token
-          );
-          token.access_token = access_token;
-          token.refresh_token = refresh_token;
-        }
-      }
-
-      console.log('====================================');
-      console.log('2. token', token);
-      console.log('====================================');
-      return token;
-    },
-    async session({ session, token }) {
-      // Send properties to the client, like an access_token from a provider.
-      session.id = token.sud;
-      session.access_token = token.access_token;
-
-      return session;
-    }
+  // Hide Sign-In with Ethereum from default sign page
+  if (isDefaultSigninPage) {
+    providers.pop();
   }
-};
 
-export default async function auth(
-  req: NextApiRequest,
-  res: NextApiResponse<any>
-) {
-  return await NextAuth(req, res, authOptions);
+  return await NextAuth(req, res, {
+    // https://next-auth.js.org/configuration/providers/oauth
+    providers,
+    session: {
+      strategy: 'jwt', // Seconds - How long until an idle session expires and is no longer valid.
+      maxAge: 24 * 60 * 60 // 20 minutes
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+
+    callbacks: {
+      async signIn({ user, account, profile, email, credentials }) {
+        const emailUser = user?.email || '';
+        if (
+          account?.provider === 'credentials' &&
+          email &&
+          profile &&
+          credentials
+        ) {
+          console.log('wallet connected');
+        }
+        const checkUser = await isExistsUser(emailUser);
+        if (!checkUser?.id) {
+          const CreateUser = await createUser({
+            email: user.email,
+            password: process.env.SM_USER_PASSWORD,
+            role: {
+              id: process.env.SM_USER_ROLE_ID,
+              name: 'Soulmint Users',
+              app_access: true,
+              icon: 'supervised_user_circle',
+              admin_access: false,
+              enforce_tfa: false
+            },
+            provider: 'default',
+            status: 'active'
+          });
+          checkUser.id = CreateUser.id;
+        }
+        //connect to directus create user & get access token
+        const directusToken = await authLogin({
+          email: user.email,
+          password: process.env.SM_USER_PASSWORD
+        });
+        user.access_token = directusToken.auth_login.access_token;
+        user.refresh_token = directusToken.auth_login.refresh_token;
+        user.id = checkUser.id;
+
+        return true;
+      },
+      async redirect({ url, baseUrl }) {
+        // Allows relative callback URLs
+        if (url.startsWith('/')) return `${baseUrl}${url}`;
+        // Allows callback URLs on the same origin
+        else if (new URL(url).origin === baseUrl) return url;
+        return baseUrl;
+      },
+      async jwt({ token, user, account, profile }) {
+        if (account?.provider === 'twitter') {
+          if (profile) {
+            token['userProfile'] = {
+              followersCount: profile.followers_count,
+              twitterHandle: profile.screen_name,
+              followingCount: profile.friends_count,
+              userID: profile.id
+            };
+          }
+          if (account) {
+            token['credentials'] = {
+              authToken: account.oauth_token,
+              authSecret: account.oauth_token_secret
+            };
+          }
+        }
+
+        // Persist the OAuth access_token to the token right after signin
+        if (account && user) {
+          token.access_token = user.access_token;
+          token.refresh_token = user.refresh_token;
+        } else {
+          const { needRefresh } = getTokenState(token.access_token);
+          console.log('needRefresh', needRefresh);
+          if (needRefresh) {
+            const { access_token, refresh_token } = await refreshAccessToken(
+              token.refresh_token
+            );
+            token.access_token = access_token;
+            token.refresh_token = refresh_token;
+          }
+        }
+
+        console.log('====================================');
+        console.log('2. token', token);
+        console.log('====================================');
+        return token;
+      },
+      async session({ session, token }) {
+        // Send properties to the client, like an access_token from a provider.
+        session.id = token.sud;
+        session.access_token = token.access_token;
+
+        return session;
+      }
+    }
+  });
 }
