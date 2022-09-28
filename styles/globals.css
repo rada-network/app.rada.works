@@ -36,7 +36,7 @@ h2 {
 }
 
 h3 {
-  @apply my-6 font-semibold text-xl leading-3;
+  @apply my-6 font-semibold text-xl;
 }
 
 p {

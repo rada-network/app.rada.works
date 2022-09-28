@@ -123,16 +123,20 @@ const Item = (props) => {
       <div className="bg-gray-100 rounded-lg">{coverImage}</div>
       <div className="bg-gray-100 rounded-lg">{thumbImage}</div>
 
-      <h3 className={classes.title}>{data.title}</h3>
-      {editButton}
-
-      <div className={classes.itemBody}>
+      <div className="p-4">
+        <h3 className="text-lg text-gray-800 font-semibold leading-6 mt-0 mb-2">
+          {data.title}
+        </h3>
         <div
           dangerouslySetInnerHTML={toHTML(
             subStrWords(data?.description, DESC_MAX_LENGTH)
           )}
         />
+      </div>
 
+      {editButton}
+
+      <div className={classes.itemBody}>
         <div className="flex items-center flex-wrap mt-5">
           {nftCollectionInfo}
         </div>
