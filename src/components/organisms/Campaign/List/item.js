@@ -38,7 +38,7 @@ const Item = (props) => {
       </Button>
     ) : null;
 
-  //build NFT collection information
+  // Build NFT collection information
   const nftCollectionInfo = data.nft_collection_ids.length
     ? data.nft_collection_ids.map((nftCollection, index) => (
         <div key={index} className={`${classes.nftCollectionWrap}`}>
@@ -97,9 +97,31 @@ const Item = (props) => {
     </span>
   ) : null;
 
+  // Build cover and thumb images
+  const assetsBaseUrl = process.env.MEDIA_BASE_URL;
+  const coverOptions = 'fit=cover&width=300&height=300&quality=75';
+  const thumbOptions = 'fit=cover&width=100&height=100&quality=75';
+  const coverImage =
+    data.cover_image && data.cover_image.id ? (
+      <img
+        className={`${classes.campaignCover}`}
+        src={`${assetsBaseUrl}/${data.cover_image.id}?${coverOptions}`}
+        alt={`${data.cover_image.title}`}
+      />
+    ) : null;
+  const thumbImage =
+    data.cover_image && data.thumb_image.id ? (
+      <img
+        className={`${classes.campaignThumb}`}
+        src={`${assetsBaseUrl}/${data.thumb_image.id}?${thumbOptions}`}
+        alt={`${data.thumb_image.title}`}
+      />
+    ) : null;
+
   return (
     <div className={`${classes[rootClassName]}`}>
-      <div className="bg-gray-100 rounded-lg">Cover</div>
+      <div className="bg-gray-100 rounded-lg">{coverImage}</div>
+      <div className="bg-gray-100 rounded-lg">{thumbImage}</div>
 
       <div className={`${classes.itemContent} p-4`}>
         <h3 className="text-lg text-gray-800 font-bold leading-6 mt-0 mb-3">

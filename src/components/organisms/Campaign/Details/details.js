@@ -5,8 +5,6 @@ import Moment from 'moment';
 import Button from '../../../atoms/Button';
 import TextLink from '../../../atoms/TextLink';
 // import Image from "../../../atoms/Image";
-// import Related from '../Related';
-// import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
 import { useDetails } from '../../../../hooks/Campaign';
 import classes from './detail.module.css';
@@ -171,11 +169,11 @@ const Details = (props) => {
       );
 
       // Build cover and thumb images
-      const assetBaseUrl = process.env.MEDIA_BASE_URL;
+      const assetsBaseUrl = process.env.MEDIA_BASE_URL;
+      const coverOptions = 'fit=cover&width=600&height=600&quality=75';
+      const thumbOptions = 'fit=cover&width=200&height=200&quality=75';
       const coverImage =
         campaign.cover_image && campaign.cover_image.id ? (
-          // Example access a directus image file
-          // example.com/assets/1ac73658-8b62-4dea-b6da-529fbc9d01a4?fit=cover&width=200&height=200&quality=80
           //Todo: Switching to use NextImage later
           // <Image
           //   className={`${classes.campaignCover}`}
@@ -187,7 +185,7 @@ const Details = (props) => {
           // />
           <img
             className={`${classes.campaignCover}`}
-            src={`${assetBaseUrl}/${campaign.cover_image.id}`}
+            src={`${assetsBaseUrl}/${campaign.cover_image.id}?${coverOptions}`}
             alt={`${campaign.cover_image.title}`}
           />
         ) : null;
@@ -195,7 +193,7 @@ const Details = (props) => {
         campaign.cover_image && campaign.thumb_image.id ? (
           <img
             className={`${classes.campaignThumb}`}
-            src={`${assetBaseUrl}/${campaign.thumb_image.id}`}
+            src={`${assetsBaseUrl}/${campaign.thumb_image.id}?${thumbOptions}`}
             alt={`${campaign.thumb_image.title}`}
           />
         ) : null;

@@ -52,6 +52,16 @@ export const GET_CAMPAIGNS = gql`
       user_created {
         id
       }
+      thumb_image {
+        id
+        title
+        #          filename_download
+      }
+      cover_image {
+        id
+        title
+        #          filename_download
+      }
     }
   }
 `;
