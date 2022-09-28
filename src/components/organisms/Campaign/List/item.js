@@ -101,8 +101,8 @@ const Item = (props) => {
     <div className={`${classes[rootClassName]}`}>
       <div className="bg-gray-100 rounded-lg">Cover</div>
 
-      <div className="p-4">
-        <h3 className="text-lg text-gray-800 font-semibold leading-6 mt-0 mb-2">
+      <div className={`${classes.itemContent} p-4`}>
+        <h3 className="text-lg text-gray-800 font-bold leading-6 mt-0 mb-3">
           {data.title}
         </h3>
         <div
@@ -114,23 +114,24 @@ const Item = (props) => {
 
       {editButton}
 
-      <div className={classes.itemBody}>
+      <div className={`${classes.itemBody} py-0 px-4`}>
         <div className="flex items-center flex-wrap mt-5">
           {nftCollectionInfo}
         </div>
       </div>
 
+      <Button
+        priority="high"
+        type="button"
+        onPress={viewDetails}
+        className={classes.getCoupon}
+      >
+        {t('Get this deal')}
+      </Button>
+
       <div className={classes.itemFoot}>
         {storeInfo}
         {discountAmountInfo}
-        <Button
-          priority="high"
-          type="button"
-          onPress={viewDetails}
-          className={classes.getCoupon}
-        >
-          {t('Get this deal')}
-        </Button>
       </div>
     </div>
   );
