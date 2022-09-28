@@ -22,24 +22,14 @@ export default async function auth(
   res: NextApiResponse<any>
 ) {
   const providers = [
-    GithubProvider({
-      clientId: `${process.env.GITHUB_ID}`,
-      clientSecret: `${process.env.GITHUB_SECRET}`
-    }),
     GoogleProvider({
       clientId: `${process.env.GOOGLE_ID}`,
       clientSecret: `${process.env.GOOGLE_SECRET}`,
       checks: 'none'
     }),
-    FacebookProvider({
-      clientId: `${process.env.FACEBOOK_CLIENT_ID}`,
-      clientSecret: `${process.env.FACEBOOK_CLIENT_SECRET}`
-    }),
-
     TwitterProvider({
-      clientId: `${process.env.TWITTER_ID}`,
-      clientSecret: `${process.env.TWITTER_SECRET}`,
-      version: '2.0'
+      clientId: `${process.env.TWITTER_CONSUMER_KEY}`,
+      clientSecret: `${process.env.TWITTER_CONSUMER_SECRET}`
     }),
     CredentialsProvider({
       name: 'BSC',
@@ -174,7 +164,9 @@ export default async function auth(
         // Send properties to the client, like an access_token from a provider.
         session.id = token.sud;
         session.access_token = token.access_token;
-
+        console.log('====================================');
+        console.log('3. token', token);
+        console.log('====================================');
         return session;
       }
     }
