@@ -25,7 +25,7 @@ export const authRefresh = async (auth: any) => {
     variables: { refresh_token }
   });
   console.log(data);
-  return data;
+  return data.auth_refresh;
 };
 export const isExistsUser = async (email: string) => {
   let checkUsser = { id: '', email: '' };
