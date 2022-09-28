@@ -4,7 +4,7 @@
 
 .rootDark {
   composes: root;
-	@apply border-gray-800;
+	@apply bg-gray-800 border-gray-800;
 }
 
 .root:hover .getCoupon {
@@ -37,12 +37,12 @@
 }
 
 .itemCover img {
-	@apply absolute h-full;
+	@apply absolute h-full max-w-none;
 }
 
 /*  */
 .itemDesc p {
-	@apply my-0 text-gray-600;
+	@apply my-0;
 	font-size: 0.938rem;
 }
 
