@@ -1,5 +1,5 @@
 .root {
-	@apply bg-white shadow hover:border-blue-600 p-4 rounded-2xl hover:shadow-md transition-shadow flex flex-col items-stretch transition-all duration-500;
+	@apply bg-white shadow hover:border-blue-600 rounded-lg hover:shadow-md transition-shadow flex flex-col items-stretch transition-all duration-500;
 }
 
 .rootDark {
