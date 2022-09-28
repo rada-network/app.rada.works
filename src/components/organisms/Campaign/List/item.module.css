@@ -7,6 +7,10 @@
 	@apply border-gray-800;
 }
 
+.root:hover .getCoupon {
+	@apply bg-blue-600 text-white;
+}
+
 .couponAmoun {
 	@apply inline-block text-2xl font-bold text-gray-800 mr-4;
 }
@@ -27,24 +31,19 @@
 	@apply ml-auto border border-violet-600 hover:bg-violet-600 hover:text-white hover:border-opacity-0 cursor-pointer rounded-md py-0.5 px-2 transition-all;
 }
 
-.itemContent p {
+/* Item cover */
+.itemCover {
+	min-height: 180px;
+}
+
+.itemCover img {
+	@apply absolute h-full;
+}
+
+/*  */
+.itemDesc p {
 	@apply my-0 text-gray-600;
-}
-
-.itemBody {
-	@apply py-4;
-}
-
-.itemBody p {
-	@apply my-0;
-}
-
-.itemFoot {
-	@apply flex items-center justify-end border-t border-gray-200 pt-3 mt-auto;
-}
-
-.rootDark .itemFoot {
-	@apply border-t border-gray-800;
+	font-size: 0.938rem;
 }
 
 /* All Chains */
@@ -94,7 +93,7 @@
 	@apply border border-red-800 flex items-center mt-8;
 }
 
-/* All chain */
+/* All chains */
 .bsc {
   @apply bg-gray-100 inline-block rounded-full mr-1 w-5 h-5 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
 }
@@ -128,22 +127,22 @@
 }
 
 /* Get coupon button */
-.getCoupon {
-	@apply bg-blue-50 hover:bg-blue-700 border border-blue-400 hover:border-blue-700 text-blue-600 hover:text-white py-1.5 px-3 rounded-lg text-sm font-normal transition-all duration-200 ease-in-out hover:cursor-pointer ml-auto;
-}
-
-.rootDark .getCoupon {
-	@apply bg-gray-900 hover:bg-blue-700 border-blue-700 text-white hover:text-white;
+.getCoupon span {
+	@apply block text-center w-full;
 }
 
 .storeLogo {
-	height: 14px;
-	/*width: 65px;*/
 }
 
 .storeLink {
+	@apply flex w-full items-center justify-center;
+}
+
+.storeLink img {
+	position: relative;
+	height: auto;
+	max-width: 50%;
 }
 
 .storeName {
-	margin: 0px 0px 0px 10px;
 }
