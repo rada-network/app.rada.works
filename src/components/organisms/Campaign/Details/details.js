@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import Moment from 'moment';
 import Button from '../../../atoms/Button';
 import TextLink from '../../../atoms/TextLink';
+// import Image from "../../../atoms/Image";
 // import Related from '../Related';
 // import Subcribe from '../Subcribe';
 import { useSession } from 'next-auth/react';
@@ -153,7 +154,7 @@ const Details = (props) => {
         <img
           className={`${classes.storeLogo}`}
           src={campaign.store_logo_url}
-          alt={`cover_${campaign.store_name}`}
+          alt={`${campaign.store_name}`}
         />
       ) : null;
       const storeInfo = campaign.store_url ? (
@@ -169,14 +170,42 @@ const Details = (props) => {
         <span className={classes.storeName}> {campaign.store_name} </span>
       );
 
+      // Build cover and thumb images
+      const assetBaseUrl = process.env.MEDIA_BASE_URL;
+      const coverImage =
+        campaign.cover_image && campaign.cover_image.id ? (
+          // Example access a directus image file
+          // example.com/assets/1ac73658-8b62-4dea-b6da-529fbc9d01a4?fit=cover&width=200&height=200&quality=80
+          //Todo: Switching to use NextImage later
+          // <Image
+          //   className={`${classes.campaignCover}`}
+          //   layout="responsive"
+          //   width="100%"
+          //   height="100%"
+          //   src={`${assetBaseUrl}/${campaign.cover_image.id}`}
+          //   alt={`cover_${campaign.slug}`}
+          // />
+          <img
+            className={`${classes.campaignCover}`}
+            src={`${assetBaseUrl}/${campaign.cover_image.id}`}
+            alt={`${campaign.cover_image.title}`}
+          />
+        ) : null;
+      const thumbImage =
+        campaign.cover_image && campaign.thumb_image.id ? (
+          <img
+            className={`${classes.campaignThumb}`}
+            src={`${assetBaseUrl}/${campaign.thumb_image.id}`}
+            alt={`${campaign.thumb_image.title}`}
+          />
+        ) : null;
+
       child = (
         <div className="bg-gray-50">
           <div className="container mx-auto max-w-screen-xl flex items-stretch py-12">
             <div className="py-10 px-4 basis-full md:basis-2/3">
-              <div className="">
-                {/* {campaign.cover_image}
-                {campaign.thumb_image} */}
-              </div>
+              {coverImage}
+              {thumbImage}
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8 leading-relaxed">
                 {campaign.title}

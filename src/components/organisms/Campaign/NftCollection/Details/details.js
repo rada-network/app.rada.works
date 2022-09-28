@@ -7,7 +7,7 @@ import useThemes from '../../../../../hooks/useThemes';
 import Button from '../../../../atoms/Button';
 import { useDetails } from '../../../../../hooks/Campaign/NftCollection';
 import classes from './detail.module.css';
-import Image from 'next/image';
+import Image from '../../../../atoms/Image';
 import { capitalize, ellipsify, toHTML } from '../../../../../utils/strUtils';
 import List from '../../List';
 import BrowserPersistence from '../../../../../utils/simplePersistence';
@@ -83,7 +83,7 @@ const Details = (props) => {
           width={`100%`}
           height={`100%`}
           src={nftCollection.thumb_image}
-          alt={nftCollection.name}
+          alt={`thumb_${nftCollection.name}`}
         />
       ) : null;
 

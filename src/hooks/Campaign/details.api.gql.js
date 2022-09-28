@@ -19,9 +19,13 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       }
       thumb_image {
         id
+        title
+        #          filename_download
       }
       cover_image {
         id
+        title
+        #          filename_download
       }
       discount_value
       store_name

@@ -16,6 +16,7 @@ module.exports = (phase) => {
       process.env.RADA_AUCTION_HOUSE_CONTRACT_ADDRESS,
       BSC_EXPLORER_URL: process.env.BSC_EXPLORER_URL,
       PUBLIC_URL: process.env.PUBLIC_URL,
+      MEDIA_BASE_URL: process.env.MEDIA_BASE_URL,
 
       GRAPHQL_ENDPOINT_URL: process.env.GRAPHQL_ENDPOINT_URL,
       GRAPHQL_ENDPOINT_SYSTEM_URL: process.env.GRAPHQL_ENDPOINT_SYSTEM_URL,
@@ -37,7 +38,8 @@ module.exports = (phase) => {
         "public.nftstatic.com",
         "lh3.googleusercontent.com",
         "public.bnbstatic.com",
-        "s2.coinmarketcap.com"
+        "s2.coinmarketcap.com",
+        "dev.dhunt.io"
       ],
     }
   };
