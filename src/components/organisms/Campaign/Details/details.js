@@ -173,9 +173,26 @@ const Details = (props) => {
         <div className="bg-gray-50">
           <div className="container mx-auto max-w-screen-xl flex items-stretch py-12">
             <div className="py-10 px-4 basis-full md:basis-2/3">
+              <div className="">
+                {campaign.cover_image}
+                {campaign.thumb_image}
+              </div>
+
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8 leading-relaxed">
                 {campaign.title}
               </h1>
+
+              {/* Campain meta */}
+              <div className="flex items-center justify-center">
+                <div>Ongoing</div>
+                <div>
+                  {Moment(campaign.date_start).format('DD MMM YYYY')} -
+                  {campaign.date_end
+                    ? Moment(campaign.date_end).format('DD MMM YYYY')
+                    : 'N/A'}
+                </div>
+              </div>
+              {/* // Campain meta */}
 
               <div
                 className={classes.desc}
@@ -187,12 +204,6 @@ const Details = (props) => {
             <div className="basis-full basis-1/3 px-4">
               {/* About Reward */}
               <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-xl mb-6">
-                <div className="border-b border-orange-200 border-opacity-60 py-3 px-4">
-                  <h3 className="my-0 leading-normal text-xl font-bold text-gray-800">
-                    About Reward
-                  </h3>
-                </div>
-
                 <div className="p-4">
                   <strong>There are many NFT variations</strong> of passages of
                   Lorem Ipsum available, but the majority have suffered
@@ -268,10 +279,10 @@ const Details = (props) => {
                         width="16"
                         height="16"
                         fill="#dc2626"
-                        className="bi bi-x-circle-fill"
+                        className="bi bi-exclamation-circle-fill"
                         viewBox="0 0 16 16"
                       >
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
                     </span>
                   </a>
@@ -317,7 +328,7 @@ const Details = (props) => {
                     className={`${classes.howtoSteps} flex flex-col mb-8 relative`}
                   >
                     <div className="flex items-center mb-8 z-10">
-                      <strong className="bg-blue-100 border border-2 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full shadow-sm">
+                      <strong className="bg-blue-100 border border-4 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full">
                         1
                       </strong>
                       <div className="flex-1 pl-4">
@@ -327,7 +338,7 @@ const Details = (props) => {
                     </div>
 
                     <div className="flex items-center mb-8 z-10">
-                      <strong className="bg-blue-100 border border-w border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full shadow-sm">
+                      <strong className="bg-blue-100 border border-4 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full">
                         2
                       </strong>
                       <div className="flex-1 pl-4">
@@ -336,7 +347,7 @@ const Details = (props) => {
                     </div>
 
                     <div className="flex items-center z-10">
-                      <strong className="bg-blue-100 border border-2 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full shadow-sm">
+                      <strong className="bg-blue-100 border border-4 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full">
                         3
                       </strong>
                       <div className="flex-1 pl-4">
@@ -509,27 +520,6 @@ const Details = (props) => {
                     <strong className="text-5xl font-bold mb-1 text-gray-800">
                       {campaign.discount_value}% Off
                     </strong>
-                  </div>
-
-                  <div className="flex items-center gap-8 mb-4 text-sm text-gray-500">
-                    <div className="basis-1/2 text-left">
-                      <span className="inline-block mr-1 text-xs uppercase">
-                        Start:
-                      </span>
-                      <date className="text-gray-700 font-medium">
-                        {Moment(campaign.date_start).format('DD MMM YYYY')}
-                      </date>
-                    </div>
-                    <div className="basis-1/2 text-right">
-                      <span className="inline-block mr-1 text-xs uppercase">
-                        End:
-                      </span>
-                      <date className="text-gray-700 font-medium">
-                        {campaign.date_end
-                          ? Moment(campaign.date_end).format('DD MMM YYYY')
-                          : 'N/A'}
-                      </date>
-                    </div>
                   </div>
 
                   <div className="flex flex-wrap">{nftCollectionInfo}</div>
