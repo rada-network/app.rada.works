@@ -98,7 +98,7 @@ export async function refreshAccessToken(token: any) {
   try {
     console.log('refreshAccessToken', token);
     const refreshedTokens = await authRefresh({
-      refresh_token: token.refresh_token
+      refresh_token: token
     });
 
     return {
