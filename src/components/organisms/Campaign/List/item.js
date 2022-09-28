@@ -85,7 +85,7 @@ const Item = (props) => {
       href={data.store_url}
     >
       {storeLogo}
-      <span className={classes.storeName}> {data.store_name} </span>
+      {/* <span className={classes.storeName}> {data.store_name} </span> */}
     </TextLink>
   ) : (
     <span className={classes.storeName}> {data.store_name} </span>
@@ -99,8 +99,8 @@ const Item = (props) => {
 
   // Build cover and thumb images
   const assetsBaseUrl = process.env.MEDIA_BASE_URL;
-  const coverOptions = 'fit=cover&width=300&height=300&quality=75';
-  const thumbOptions = 'fit=cover&width=100&height=100&quality=75';
+  const coverOptions = 'fit=cover';
+  const thumbOptions = 'fit=cover';
   const coverImage =
     data.cover_image && data.cover_image.id ? (
       <img
@@ -119,14 +119,37 @@ const Item = (props) => {
     ) : null;
 
   return (
-    <div className={`${classes[rootClassName]}`}>
-      <div className="bg-gray-100 rounded-lg">{coverImage}</div>
-      <div className="bg-gray-100 rounded-lg">{thumbImage}</div>
+    <div className={`${classes[rootClassName]} p-4`}>
+      <div
+        className={`${classes.itemCover} bg-gray-100 overflow-hidden relative rounded-md mb-5 flex items-center justify-center`}
+      >
+        {coverImage}
+        {storeInfo}
+      </div>
 
-      <div className={`${classes.itemContent} p-4`}>
-        <h3 className="text-lg text-gray-800 font-bold leading-6 mt-0 mb-3">
+      <div className="flex items-start mb-4">
+        <h3 className="flex-1 text-lg text-gray-800 font-bold leading-6 my-0">
           {data.title}
         </h3>
+
+        <span className="bg-green-100 text-green-600 flex items-center rounded-xl text-xs py-1 pl-1 pr-2 ml-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            fill="currentColor"
+            className="bi bi-check-circle-fill mr-1"
+            viewBox="0 0 16 16"
+          >
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+          </svg>
+          {t('Verified')}
+        </span>
+      </div>
+
+      <div className={`${classes.itemDesc}`}>
+        {/* {thumbImage} */}
+
         <div
           dangerouslySetInnerHTML={toHTML(
             subStrWords(data?.description, DESC_MAX_LENGTH)
@@ -136,25 +159,25 @@ const Item = (props) => {
 
       {editButton}
 
-      <div className={`${classes.itemBody} py-0 px-4`}>
-        <div className="flex items-center flex-wrap mt-5">
-          {nftCollectionInfo}
-        </div>
+      <div className="flex items-center flex-wrap mt-4 mb-4">
+        {nftCollectionInfo}
       </div>
 
-      <Button
-        priority="high"
-        type="button"
-        onPress={viewDetails}
-        className={classes.getCoupon}
-      >
-        {t('Get this deal')}
-      </Button>
+      <div className="mt-auto">
+        <Button
+          priority="high"
+          type="button"
+          onPress={viewDetails}
+          className={`${classes.getCoupon} bg-gray-100 hover:bg-blue-600 text-gray-600 hover:text-white font-medium flex jusity-center rounded-lg block w-full text-center py-2 px-0 transition-all duration-300`}
+        >
+          {t('Get this deal')}
+        </Button>
+      </div>
 
-      <div className={classes.itemFoot}>
+      {/* <div className={classes.itemFoot}>
         {storeInfo}
         {discountAmountInfo}
-      </div>
+      </div> */}
     </div>
   );
 };
