@@ -91,12 +91,16 @@ const Item = (props) => {
     <span className={classes.storeName}> {data.store_name} </span>
   );
 
+  const discountAmountInfo = data.discount_value ? (
+    <span className={classes.couponAmoun}>
+      {data.discount_value}% {t('Off')}
+    </span>
+  ) : null;
+
   return (
     <div className={`${classes[rootClassName]}`}>
       <div className={classes.itemHead}>
-        <span className={classes.couponAmoun}>
-          {data.discount_value}% {t('Off')}
-        </span>
+        <h3 className={classes.title}>{data.title}</h3>
         <span className={classes.couponLabel}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -128,6 +132,7 @@ const Item = (props) => {
 
       <div className={classes.itemFoot}>
         {storeInfo}
+        {discountAmountInfo}
         <Button
           priority="high"
           type="button"
