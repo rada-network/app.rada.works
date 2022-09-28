@@ -97,6 +97,7 @@ const Item = (props) => {
         <span className={classes.couponAmoun}>
           {data.discount_value}% {t('Off')}
         </span>
+
         <span className={classes.couponLabel}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

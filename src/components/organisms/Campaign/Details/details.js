@@ -174,8 +174,8 @@ const Details = (props) => {
           <div className="container mx-auto max-w-screen-xl flex items-stretch py-12">
             <div className="py-10 px-4 basis-full md:basis-2/3">
               <div className="">
-                {campaign.cover_image}
-                {campaign.thumb_image}
+                {/* {campaign.cover_image}
+                {campaign.thumb_image} */}
               </div>
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8 leading-relaxed">
