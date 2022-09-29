@@ -8,18 +8,19 @@ const HomeTmpl = (props) => {
     <Fragment>
       <MainTmpl>
         {/* Hero */}
-        <div className="bg-gray-50">
+        <div className="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); bg-opacity-60">
           <div className="container max-w-screen-xl mx-auto px-4 lg:px-4">
-            <div className="flex flex-wrap items-center py-8">
-              <div className="basis-full lg:basis-4/12 text-center lg:text-left pr-4">
-                <h1 className="my-0 text-4xl lg:text-6xl font-semibold text-gray-800 dark:text-white leading-relaxed">
-                  A multichain NFT design flatform
+            <div className="flex flex-wrap items-center py-16">
+              <div className="basis-full lg:basis-7/12 text-center lg:text-left pr-4">
+                <h1 className="my-0 text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white leading-relaxed">
+                  SoulMint
+                  <span className="block font-light">
+                    the reward-focused platform for verifiable credentials
+                  </span>
                 </h1>
                 <p className="text-xl">
-                  Morbi eros tortor, bibendum in erat non, pretium efficitur
-                  felis. Sed id enim ut arcu molestie aliquet. Cras ac metus ac
-                  enim dapibus feugiat vitae ac orci. Nullam neque ipsum,
-                  iaculis in tincidunt quis, egestas id arcu.
+                  Build your Web3 reputation through your SoulBound tokens.
+                  Explore and earn special rewards, curated by us.
                 </p>
 
                 <div className="mt-8">
@@ -44,7 +45,7 @@ const HomeTmpl = (props) => {
                 </div>
               </div>
 
-              <div className="hidden lg:flex justify-end basis-8/12 text-right pl-4">
+              <div className="hidden lg:flex justify-end basis-5/12 text-right pl-4">
                 <img src="hero-1.png" alt="Hero decor" />
               </div>
             </div>
@@ -54,92 +55,114 @@ const HomeTmpl = (props) => {
 
         <List position="home-page" />
 
+        {/* SoulMint Features */}
+        <div className="bg-white">
+          <div className="container max-w-screen-xl mx-auto py-20">
+            <div className="mb-16 text-center">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
+                SoulMint Features
+              </h2>
+            </div>
+
+            <div className="flex items-start">
+              <div className="basis-1/4 text-center">
+                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+                  Incentivized participation
+                </h3>
+                <p className="my-0">
+                  Users earn rewards by completing tasks. No extra steps, no KYC
+                </p>
+              </div>
+
+              <div className="basis-1/4 text-center">
+                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+                  Chain-agnostic
+                </h3>
+                <p className="my-0">
+                  No more pain switching between chains. One profile with
+                  verified identity can enjoy perks on any chain.
+                </p>
+              </div>
+
+              <div className="basis-1/4 text-center">
+                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+                  Rewards, aggregated
+                </h3>
+                <p className="my-0">
+                  Verified Souls get privileged access to various allow-lists,
+                  all in one place.
+                </p>
+              </div>
+
+              <div className="basis-1/4 text-center">
+                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+                  No-code campaign creator tool
+                </h3>
+                <p className="my-0">
+                  Projects can freely apply to create a campaign and reward
+                  users via SoulBound tokens.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* // SoulMint Features */}
+
+        {/* SoulMint How it work */}
+        <div className="bg-gray-50 dark:bg-gray-800">
+          <div className="container max-w-screen-xl mx-auto py-20">
+            <div className="mb-16 text-center">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
+                How it works
+              </h2>
+            </div>
+
+            <div className="flex items-center justify-center">
+              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
+                  1
+                </span>
+                <h4 className="font-semibold text-base">Connect wallet</h4>
+              </div>
+
+              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
+                  2
+                </span>
+                <h4 className="font-semibold text-base">
+                  Browse available campaigns
+                </h4>
+              </div>
+
+              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
+                  3
+                </span>
+                <h4 className="font-semibold text-base">
+                  Complete tasks and receive rewards
+                </h4>
+              </div>
+
+              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
+                  4
+                </span>
+                <h4 className="font-semibold text-base">
+                  Manage your profile & view achievements
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* // SoulMint How it work */}
+
         {/* FAQs */}
         <div className="py-20">
           <div className="container max-w-screen-xl mx-auto px-4">
             <div className="mb-14">
               <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
-                How it work?
+                SoulMint news
               </h2>
-            </div>
-
-            <div className="flex flex-wrap lg:flex-nowrap lg:gap-6">
-              <div className="basis-full lg:basis-1/2">
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 transition-all duration-300">
-                  <h3 className="mt-0 mb-4 leading-6">
-                    Is there a free trial available?
-                  </h3>
-                  <p className="m-0">
-                    Donec id dictum felis. Fusce ac nunc commodo, vestibulum
-                    nisi ac, finibus ipsum. Vivamus vel tortor turpis.
-                  </p>
-                </div>{' '}
-                {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4 leading-6">
-                    Can I change my plan later?
-                  </h3>
-                  <p className="m-0">
-                    Donec id dictum felis. Fusce ac nunc commodo, vestibulum
-                    nisi ac, finibus ipsum. Vivamus vel tortor turpis.
-                  </p>
-                </div>{' '}
-                {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4 leading-6">
-                    What is your cancellation policy?
-                  </h3>
-                  <p className="m-0">
-                    Donec id dictum felis. Fusce ac nunc commodo, vestibulum
-                    nisi ac, finibus ipsum. Vivamus vel tortor turpis. Proin
-                    pharetra nibh tellus, ac venenatis leo pretium luctus.
-                    Nullam ut massa vitae purus semper ornare et sit amet eros.
-                    Cras fringilla ipsum nec luctus cursus. Duis eget finibus
-                    lacus. Ut quis diam sagittis, dignissim erat sed,
-                    ullamcorper sapien.
-                  </p>
-                </div>{' '}
-                {/* End question */}
-              </div>
-
-              <div className="basis-full lg:basis-1/2">
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 transition-all duration-300">
-                  <h3 className="mt-0 mb-4 leading-6">
-                    Can other info be added to an invoice?
-                  </h3>
-                  <p className="m-0">
-                    Donec id dictum felis. Fusce ac nunc commodo, vestibulum
-                    nisi ac, finibus ipsum. Vivamus vel tortor turpis. Proin
-                    pharetra nibh tellus, ac venenatis leo pretium luctus.
-                    Nullam ut massa vitae purus semper ornare et sit amet eros.
-                    Cras fringilla ipsum nec luctus cursus. Duis eget finibus
-                    lacus. Ut quis diam sagittis, dignissim erat sed,
-                    ullamcorper sapien.
-                  </p>
-                </div>{' '}
-                {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4 leading-6">
-                    How does billing work?
-                  </h3>
-                  <p className="m-0">
-                    Etiam lacinia risus metus, ac molestie lectus hendrerit
-                    vitae. Aliquam erat volutpat. Nulla faucibus auctor finibus.
-                    Sed molestie justo sed sem venenatis tempus.
-                  </p>
-                </div>{' '}
-                {/* End question */}
-                <div className="border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 mt-5 transition-all duration-300">
-                  <h3 className="mt-0 mb-4 leading-6">
-                    How do I change my account email?
-                  </h3>
-                  <p className="m-0">
-                    Donec id dictum felis. Fusce ac nunc commodo, vestibulum
-                    nisi ac, finibus ipsum. Vivamus vel tortor turpis.
-                  </p>
-                </div>{' '}
-                {/* End question */}
-              </div>
             </div>
           </div>
         </div>

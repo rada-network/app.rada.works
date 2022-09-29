@@ -170,8 +170,8 @@ const Details = (props) => {
 
       // Build cover and thumb images
       const assetsBaseUrl = process.env.MEDIA_BASE_URL;
-      const coverOptions = 'fit=cover&width=600&height=600&quality=75';
-      const thumbOptions = 'fit=cover&width=200&height=200&quality=75';
+      const coverOptions = 'fit=cover';
+      const thumbOptions = 'fit=cover';
       const coverImage =
         campaign.cover_image && campaign.cover_image.id ? (
           //Todo: Switching to use NextImage later
@@ -201,36 +201,47 @@ const Details = (props) => {
       child = (
         <div className="bg-gray-50">
           <div className="container mx-auto max-w-screen-xl flex items-stretch py-12">
-            <div className="py-10 px-4 basis-full md:basis-2/3">
-              {coverImage}
-              {thumbImage}
-
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8 leading-relaxed">
-                {campaign.title}
-              </h1>
-
-              {/* Campain meta */}
-              <div className="flex items-center justify-center">
-                <div>Ongoing</div>
-                <div>
-                  {Moment(campaign.date_start).format('DD MMM YYYY')} -
-                  {campaign.date_end
-                    ? Moment(campaign.date_end).format('DD MMM YYYY')
-                    : 'N/A'}
+            <div className="px-4 basis-full md:basis-2/3">
+              <div className="bg-white rounded-lg shadow-sm p-4 pt-0">
+                <div className="rounded-t-lg overflow-hidden mb-8 -mx-4">
+                  {coverImage}
                 </div>
-              </div>
-              {/* // Campain meta */}
 
-              <div
-                className={classes.desc}
-                dangerouslySetInnerHTML={{ __html: campaign.description }}
-              />
+                {/* {thumbImage} */}
+
+                <h1
+                  className={`${classes.pageTitle} text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8`}
+                >
+                  {campaign.title}
+                </h1>
+
+                {/* Campain meta */}
+                <div className="border-b border-gray-200 flex items-center justify-start pb-4 gap-6">
+                  <div className="bg-green-100 text-green-600 rounded-full py-1 px-3 text-sm font-medium">
+                    Ongoing
+                  </div>
+                  <div>
+                    {Moment(campaign.date_start).format('DD MMM YYYY')} -
+                    {campaign.date_end
+                      ? Moment(campaign.date_end).format('DD MMM YYYY')
+                      : 'N/A'}
+                  </div>
+
+                  {storeInfo}
+                </div>
+                {/* // Campain meta */}
+
+                <div
+                  className={classes.desc}
+                  dangerouslySetInnerHTML={{ __html: campaign.description }}
+                />
+              </div>
+              {/* // Description */}
             </div>
-            {/* // Description */}
 
             <div className="basis-1/3 px-4">
               {/* About Reward */}
-              <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-xl mb-6">
+              <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6">
                 <div className="p-4">
                   <strong>There are many NFT variations</strong> of passages of
                   Lorem Ipsum available, but the majority have suffered
@@ -241,7 +252,7 @@ const Details = (props) => {
               {/* // About Reward */}
 
               {/* Require Tasks */}
-              <div className="bg-white shadow-sm rounded-xl mb-6">
+              <div className="bg-white shadow-sm rounded-lg mb-6">
                 <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
                   <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
                     Require Tasks
@@ -251,7 +262,7 @@ const Details = (props) => {
                   </p>
                 </div>
 
-                <div className="border-b border-gray-200 border-opacity-60 p-4">
+                <div className="p-4">
                   <div className="flex items-center text-md font-semibold mb-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -340,7 +351,7 @@ const Details = (props) => {
               </div>
 
               {/* How to claim */}
-              <div className="bg-white shadow-sm rounded-xl mb-6">
+              <div className="bg-white shadow-sm rounded-lg mb-6">
                 <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
                   <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
                     How to claim?
@@ -397,7 +408,7 @@ const Details = (props) => {
               {/* // How to claim */}
 
               {/* Quester */}
-              <div className="bg-white shadow-sm rounded-xl mb-6">
+              <div className="bg-white shadow-sm rounded-lg mb-6">
                 <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
                   <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
                     Questers (8077)
@@ -538,10 +549,8 @@ const Details = (props) => {
               </div>
               {/* // Quester */}
 
-              {/* Coupon code */}
+              {/* Coupon code
               <div className="bg-white shadow-sm rounded-xl">
-                <div className="py-6 px-4 text-center">{storeInfo}</div>
-
                 <div className="border-b border-t border-gray-200 border-opacity-60 pt-6 px-4 pb-4 text-center">
                   <div className="flex flex-col mb-6">
                     <strong className="text-5xl font-bold mb-1 text-gray-800">
@@ -557,7 +566,7 @@ const Details = (props) => {
                   {editButton}
                 </div>
               </div>
-              {/* Coupon code */}
+              Coupon code */}
             </div>
           </div>
         </div>

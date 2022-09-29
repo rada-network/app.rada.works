@@ -49,6 +49,7 @@
 /* All Chains */
 .nftCollectionWrap {
 	@apply bg-gray-100 rounded-full flex items-center pr-3 pl-1 py-0.5 mr-1 mb-1 relative overflow-hidden;
+	max-width: 33%;
 }
 
 .rootDark .nftCollectionWrap {
@@ -57,6 +58,10 @@
 
 .nftCollectionWrap:hover {
 	@apply overflow-visible hover:border-gray-400;
+}
+
+.nftCollectionWrap a {
+	@apply flex-1 truncate;
 }
 
 .collectionName {
@@ -145,4 +150,12 @@
 }
 
 .storeName {
+}
+
+.dateStart:not(:empty)::before {
+	@apply bg-green-500 content-[''] inline-block h-1.5 w-1.5 rounded-full mr-1.5 mb-0.5;
+}
+
+.dateEnd:not(:empty)::before {
+	@apply bg-red-500 content-[''] inline-block h-1.5 w-1.5 rounded-full mr-1.5 mb-0.5;
 }
