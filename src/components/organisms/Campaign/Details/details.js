@@ -216,8 +216,8 @@ const Details = (props) => {
                 </h1>
 
                 {/* Campain meta */}
-                <div className="flex items-center justify-start">
-                  <div className="bg-green-100 text-green-600 rounded-full py-1 px-3 text-sm font-medium mr-4">
+                <div className="border-b border-gray-200 flex items-center justify-start pb-4 gap-6">
+                  <div className="bg-green-100 text-green-600 rounded-full py-1 px-3 text-sm font-medium">
                     Ongoing
                   </div>
                   <div>
@@ -549,7 +549,7 @@ const Details = (props) => {
               </div>
               {/* // Quester */}
 
-              {/* Coupon code */}
+              {/* Coupon code
               <div className="bg-white shadow-sm rounded-xl">
                 <div className="border-b border-t border-gray-200 border-opacity-60 pt-6 px-4 pb-4 text-center">
                   <div className="flex flex-col mb-6">
@@ -566,7 +566,7 @@ const Details = (props) => {
                   {editButton}
                 </div>
               </div>
-              {/* Coupon code */}
+              Coupon code */}
             </div>
           </div>
         </div>
