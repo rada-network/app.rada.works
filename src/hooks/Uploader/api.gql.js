@@ -27,7 +27,13 @@ export const importFileFunc = async (props) => {
       // nextFetchPolicy: 'cache-first'
     });
     if (importData && importData.import_file) {
-      rs = importData.import_file.id;
+      rs = {
+        id: importData.import_file.id,
+        storage: importData.import_file.storage,
+        filename_download: importData.import_file.filename_download,
+        uploaded_on: importData.import_file.uploaded_on,
+        modified_on: importData.import_file.modified_on
+      };
     }
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
@@ -47,13 +53,24 @@ export const DELETE_FILE = gql`
   }
 `;
 export const deleteFileFunc = async (fileId) => {
-  const client = initializeApollo();
-  return await client.mutate({
-    mutation: DELETE_FILE,
-    variables: { fileId },
-    fetchPolicy: 'no-cache'
-    // nextFetchPolicy: 'cache-first'
-  });
+  let rs = null;
+  try {
+    const client = initializeApollo();
+    const { data } = await client.mutate({
+      mutation: DELETE_FILE,
+      variables: { fileId },
+      fetchPolicy: 'no-cache'
+      // nextFetchPolicy: 'cache-first'
+    });
+    rs = data;
+  } catch (error) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(error);
+    }
+    return false;
+  }
+
+  return rs;
 };
 
 export default {

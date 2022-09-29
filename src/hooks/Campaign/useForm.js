@@ -98,6 +98,18 @@ export default (props) => {
   const handleSaveCampaign = useCallback(
     async (submittedValues) => {
       try {
+        //checking to update cover & thumb images if it has
+        const coverUploadedFiles = storage.getItem('cpCoverImageUploaded');
+        submittedValues.cover_image =
+          coverUploadedFiles && coverUploadedFiles[0]
+            ? coverUploadedFiles[0].directus_file
+            : null;
+        const thumbUploadedFiles = storage.getItem('cpThumbImageUploaded');
+        submittedValues.thumb_image =
+          thumbUploadedFiles && thumbUploadedFiles[0]
+            ? thumbUploadedFiles[0].directus_file
+            : null;
+
         //saving submitted data to local storage
         storage.setItem('currentCampaign', submittedValues, 3600);
 

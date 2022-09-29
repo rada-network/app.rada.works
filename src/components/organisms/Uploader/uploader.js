@@ -87,7 +87,7 @@ const Uploader = (props) => {
       const found = uploadedFiles.some((el) => el.id === file.id);
       if (!found) {
         // Import to Directus file
-        const directUsFileId = await importFileFunc({
+        const directUsFile = await importFileFunc({
           url: file.uploadURL,
           data: {
             title: file.name,
@@ -99,8 +99,8 @@ const Uploader = (props) => {
             modified_on: new Date()
           }
         });
-        if (directUsFileId) {
-          file.directus_file_id = directUsFileId;
+        if (directUsFile) {
+          file.directus_file = directUsFile;
           uploadedFiles[key] = file;
           //save to local storage
           storage.setItem(storageKeyName, uploadedFiles, 24 * 60 * 60); // 1 day
@@ -163,9 +163,7 @@ const Uploader = (props) => {
               }
 
               if (file.directus_file_id) {
-                await deleteFileFunc(file.directus_file_id).then(function (rs) {
-                  console.log('Deleted:', rs);
-                });
+                await deleteFileFunc(file.directus_file_id);
               }
 
               //clean preview element on DOM
@@ -204,10 +202,9 @@ const Uploader = (props) => {
     setUploadingState();
   });
   uppy.on('complete', (result) => {
-    console.log('complete');
     const uploadedFiles = result.successful.length ? result.successful : [];
     if (uploadedFiles.length) {
-      // Save uploaded files to local storage
+      // Import uploaded files
       importFiles(uploadedFiles);
       // Generate preview
       setTimeout(() => {
@@ -222,14 +219,12 @@ const Uploader = (props) => {
     storage.removeItem(storageKeyName);
   }, []);
 
-  /*useEffect(() => {
-    //refresh local storage
-    storage.removeItem(storageKeyName);
+  useEffect(() => {
     return () => {
       uppy.reset();
       uppy.close({ reason: 'unmount' });
     };
-  }, [uppy]);*/
+  }, [uppy]);
 
   const typesAllowed = `${t('Allows file types:')} ${allowedFileTypes.join(
     ', '

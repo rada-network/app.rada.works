@@ -6,6 +6,8 @@ export const CREATE_CAMPAIGN_FUNC = gql`
     $slug: String!
     $short_desc: String
     $description: String
+    $cover_image: create_directus_files_input
+    $thumb_image: create_directus_files_input
     $nft_collection_ids: [create_campaign_nft_collection_input]
     $twitter_username: String
     $twitter_tweet: String
@@ -25,6 +27,8 @@ export const CREATE_CAMPAIGN_FUNC = gql`
         slug: $slug
         short_desc: $short_desc
         description: $description
+        cover_image: $cover_image
+        thumb_image: $thumb_image
         nft_collection_ids: $nft_collection_ids
         twitter_username: $twitter_username
         twitter_tweet: $twitter_tweet
@@ -53,6 +57,8 @@ export const EDIT_CAMPAIGN_FUNC = gql`
     $slug: String!
     $short_desc: String
     $description: String
+    $cover_image: update_directus_files_input
+    $thumb_image: update_directus_files_input
     $nft_collection_ids: [update_campaign_nft_collection_input]
     $twitter_username: String
     $twitter_tweet: String
@@ -73,6 +79,8 @@ export const EDIT_CAMPAIGN_FUNC = gql`
         slug: $slug
         short_desc: $short_desc
         description: $description
+        cover_image: $cover_image
+        thumb_image: $thumb_image
         nft_collection_ids: $nft_collection_ids
         twitter_username: $twitter_username
         twitter_tweet: $twitter_tweet
