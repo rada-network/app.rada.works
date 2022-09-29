@@ -8,9 +8,9 @@ const HomeTmpl = (props) => {
     <Fragment>
       <MainTmpl>
         {/* Hero */}
-        <div className="bg-gray-50">
+        <div className="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); bg-opacity-60">
           <div className="container max-w-screen-xl mx-auto px-4 lg:px-4">
-            <div className="flex flex-wrap items-center py-8">
+            <div className="flex flex-wrap items-center py-16">
               <div className="basis-full lg:basis-7/12 text-center lg:text-left pr-4">
                 <h1 className="my-0 text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white leading-relaxed">
                   SoulMint
@@ -58,6 +58,12 @@ const HomeTmpl = (props) => {
         {/* SoulMint Features */}
         <div className="bg-white">
           <div className="container max-w-screen-xl mx-auto py-20">
+            <div className="mb-16 text-center">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
+                SoulMint Features
+              </h2>
+            </div>
+
             <div className="flex items-start">
               <div className="basis-1/4 text-center">
                 <h3 className="my-0 text-2xl text-gray-800 mb-4">
@@ -116,14 +122,14 @@ const HomeTmpl = (props) => {
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   1
                 </span>
-                <h4 className="font-medium text-lg">Connect wallet</h4>
+                <h4 className="font-semibold text-base">Connect wallet</h4>
               </div>
 
               <div className="flex flex-col items-center text-center px-4 basis-1/4">
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   2
                 </span>
-                <h4 className="font-medium text-lg">
+                <h4 className="font-semibold text-base">
                   Browse available campaigns
                 </h4>
               </div>
@@ -132,7 +138,7 @@ const HomeTmpl = (props) => {
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   3
                 </span>
-                <h4 className="font-medium text-lg">
+                <h4 className="font-semibold text-base">
                   Complete tasks and receive rewards
                 </h4>
               </div>
@@ -141,7 +147,7 @@ const HomeTmpl = (props) => {
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   4
                 </span>
-                <h4 className="font-medium text-lg">
+                <h4 className="font-semibold text-base">
                   Manage your profile & view achievements
                 </h4>
               </div>
