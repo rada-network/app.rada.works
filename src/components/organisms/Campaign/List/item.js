@@ -142,9 +142,6 @@ const Item = (props) => {
           {data.title}
         </h3>
 
-        <span className={classes.dateStart}>{dateStart}</span>
-        <span className={classes.dateEnd}>{dateEnd}</span>
-
         <span className="bg-green-100 text-green-600 flex items-center rounded-xl text-xs py-1 pl-1 pr-2 ml-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +157,14 @@ const Item = (props) => {
         </span>
       </div>
 
-      <div className={`${classes.itemDesc} text-gray-600 dark:text-gray-400`}>
+      <div className="flex items-center text-sm justify-between mb-4 -mt-2">
+        <span className={`${classes.dateStart}`}>{dateStart}</span>
+        <span className={`${classes.dateEnd}`}>{dateEnd}</span>
+      </div>
+
+      <div
+        className={`${classes.itemDesc} text-gray-600 dark:text-gray-400 mb-4`}
+      >
         {/* {thumbImage} */}
 
         <div
@@ -170,11 +174,11 @@ const Item = (props) => {
         />
       </div>
 
-      {editButton}
-
-      <div className="flex items-center flex-wrap mt-4 mb-4">
+      <div className="flex items-center flex-wrap mb-4">
         {nftCollectionInfo}
       </div>
+
+      {editButton}
 
       <div className="mt-auto">
         <Button

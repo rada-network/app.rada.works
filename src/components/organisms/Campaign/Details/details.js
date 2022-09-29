@@ -226,6 +226,8 @@ const Details = (props) => {
                       ? Moment(campaign.date_end).format('DD MMM YYYY')
                       : 'N/A'}
                   </div>
+
+                  {storeInfo}
                 </div>
                 {/* // Campain meta */}
 
@@ -549,8 +551,6 @@ const Details = (props) => {
 
               {/* Coupon code */}
               <div className="bg-white shadow-sm rounded-xl">
-                <div className="py-6 px-4 text-center">{storeInfo}</div>
-
                 <div className="border-b border-t border-gray-200 border-opacity-60 pt-6 px-4 pb-4 text-center">
                   <div className="flex flex-col mb-6">
                     <strong className="text-5xl font-bold mb-1 text-gray-800">
