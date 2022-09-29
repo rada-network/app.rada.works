@@ -7,13 +7,9 @@ import { DragDrop, useUppy } from '@uppy/react';
 import Tus from '@uppy/tus';
 import '@uppy/core/dist/style.css';
 import '@uppy/drag-drop/dist/style.css';
-import BrowserPersistence from '../../../utils/simplePersistence';
-/*import {
-  importFileFunc,
-  deleteFileFunc
-} from '../../../hooks/Uploader/api.gql';*/
 import { ellipsify } from '../../../utils/strUtils';
-import { getPageFiles } from 'next/dist/server/get-page-files';
+import { formatBytes } from '../../../utils/numberUtils';
+import BrowserPersistence from '../../../utils/simplePersistence';
 
 const Uploader = (props) => {
   const {
@@ -79,7 +75,7 @@ const Uploader = (props) => {
       if (!found) uploadedFiles.push(file);
     });
     //save
-    storage.setItem(storageKeyName, uploadedFiles, 24 * 60 * 60);
+    storage.setItem(storageKeyName, uploadedFiles, 24 * 60 * 60); // 1 day
   };
 
   const uppy = useUppy(() => {
@@ -124,6 +120,12 @@ const Uploader = (props) => {
     };
   }, [uppy]);
 
+  const typesAllowed = `${t('Allows file types:')} ${allowedFileTypes.join(
+    ', '
+  )}`;
+  const sizeAllowed = `${t('Allows file size:')} ${formatBytes(
+    minFileSize
+  )} - ${formatBytes(maxFileSize)}`;
   const child = (
     <div id={uploaderContainerId} className={`${classes.uploaderContainer}`}>
       <DragDrop
@@ -135,7 +137,7 @@ const Uploader = (props) => {
             browse: t('browse')
           }
         }}
-        note={`${t('Allows file types:')} ${allowedFileTypes.join(', ')}`}
+        note={`${typesAllowed} | ${sizeAllowed}`}
       />
       <ul id={previewContainerId} className={`${classes.previewContainer}`} />
     </div>
@@ -181,13 +183,17 @@ const generatePreview = (t, previewContainerId, storageKeyName, uppy) => {
 
         // create file name with link
         const fileLink = document.createElement('a');
-        fileLink.href = file.uploadUrl;
-        fileLink.target = '_blank';
+        // fileLink.href = file.uploadURL;
+        // fileLink.target = '_blank';
         fileLink.className = classes.fileUploaded;
         const fileLinkText = document.createTextNode(
           ellipsify({ str: file.name, start: 5, end: 4 })
         );
+        const fileSizeText = document.createTextNode(
+          ', ' + formatBytes(file.size)
+        );
         fileLink.appendChild(fileLinkText);
+        fileLink.appendChild(fileSizeText);
         item.appendChild(fileLink);
 
         // create remove button

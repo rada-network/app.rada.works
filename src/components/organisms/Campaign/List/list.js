@@ -90,11 +90,11 @@ const List = (props) => {
     }
   }
 
-  let headingTitle = t('🎉 Browse Coupons');
+  let headingTitle = t('🎉 Browse Rewards');
   if (position === 'home-page') {
-    headingTitle = t('Best Offers');
+    headingTitle = t('Best Rewards');
   } else if (position === 'nft-collection-details') {
-    headingTitle = t('All Deals');
+    headingTitle = t('All Rewards');
   }
   const subheading =
     position === 'home-page'
