@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
+import Moment from 'moment';
 import { toHTML, subStrWords, ellipsify } from '../../../../utils/strUtils';
 import Button from '../../../atoms/Button';
 import classes from './item.module.css';
@@ -19,6 +20,8 @@ const Item = (props) => {
   const { rootClassName } = useThemes();
 
   const { t } = useTranslation('campaign_details');
+
+  Moment.locale('en');
 
   const viewDetails = () => {
     const path = `/campaign-details/${data.slug}`;
@@ -118,6 +121,13 @@ const Item = (props) => {
       />
     ) : null;
 
+  const dateStart = data.date_start
+    ? t('Start from ') + Moment(data.date_start).fromNow()
+    : '';
+  const dateEnd = data.date_end
+    ? t('Ends ') + Moment(data.date_end).fromNow()
+    : '';
+
   return (
     <div className={`${classes[rootClassName]} p-4`}>
       <div
@@ -131,6 +141,9 @@ const Item = (props) => {
         <h3 className="flex-1 text-lg text-gray-800 dark:text-white font-bold leading-6 my-0">
           {data.title}
         </h3>
+
+        <span className={classes.dateStart}>{dateStart}</span>
+        <span className={classes.dateEnd}>{dateEnd}</span>
 
         <span className="bg-green-100 text-green-600 flex items-center rounded-xl text-xs py-1 pl-1 pr-2 ml-4">
           <svg
