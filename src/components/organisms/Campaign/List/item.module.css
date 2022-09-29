@@ -152,10 +152,10 @@
 .storeName {
 }
 
-.dateStart::before {
+.dateStart:not(:empty)::before {
 	@apply bg-green-500 content-[''] inline-block h-1.5 w-1.5 rounded-full mr-1.5 mb-0.5;
 }
 
-.dateEnd::before {
+.dateEnd:not(:empty)::before {
 	@apply bg-red-500 content-[''] inline-block h-1.5 w-1.5 rounded-full mr-1.5 mb-0.5;
 }
