@@ -10,6 +10,10 @@ import '@uppy/drag-drop/dist/style.css';
 import { ellipsify } from '../../../utils/strUtils';
 import { formatBytes } from '../../../utils/numberUtils';
 import BrowserPersistence from '../../../utils/simplePersistence';
+import {
+  importFileFunc,
+  deleteFileFunc
+} from '../../../hooks/Uploader/api.gql';
 
 const Uploader = (props) => {
   const {
@@ -57,28 +61,127 @@ const Uploader = (props) => {
   } = props;
 
   const { t } = useTranslation('uploader');
+  const storage = new BrowserPersistence();
 
-  useEffect(() => {
-    //refresh local storage
-    const storage = new BrowserPersistence();
-    storage.removeItem(storageKeyName);
-  }, []);
+  const setUploadingState = () => {
+    const uploaderContainer = document.getElementById(uploaderContainerId);
+    uploaderContainer.className = uploaderContainer.className + ' uploading';
+  };
 
-  const addFiles = (files) => {
-    const storage = new BrowserPersistence();
+  const cleanUploadingState = () => {
+    setTimeout(function () {
+      const uploaderContainer = document.getElementById(uploaderContainerId);
+      uploaderContainer.className = uploaderContainer.className.replace(
+        'loading',
+        ''
+      );
+    }, 1000);
+  };
+
+  const importFiles = (files) => {
     let uploadedFiles = storage.getItem(storageKeyName);
     if (uploadedFiles === undefined) {
       uploadedFiles = [];
     }
-    files.map((file) => {
+    files.map(async (file, key) => {
       const found = uploadedFiles.some((el) => el.id === file.id);
-      if (!found) uploadedFiles.push(file);
+      if (!found) {
+        // Import to Directus file
+        const directUsFileId = await importFileFunc({
+          url: file.uploadURL,
+          data: {
+            title: file.name,
+            type: file.type,
+            storage: 'local',
+            folder: storageFolder,
+            filename_download: file.name,
+            uploaded_on: new Date(),
+            modified_on: new Date()
+          }
+        });
+        if (directUsFileId) {
+          file.directus_file_id = directUsFileId;
+          uploadedFiles[key] = file;
+          //save to local storage
+          storage.setItem(storageKeyName, uploadedFiles, 24 * 60 * 60); // 1 day
+        }
+      }
     });
-    //save
-    storage.setItem(storageKeyName, uploadedFiles, 24 * 60 * 60); // 1 day
   };
 
-  const uppy = useUppy(() => {
+  const generatePreview = () => {
+    const uploadedFiles = storage.getItem(storageKeyName);
+    if (uploadedFiles) {
+      uploadedFiles.map((file) => {
+        if (!document.getElementById(file.id)) {
+          // preview item
+          const item = document.createElement('li');
+          item.id = file.id;
+          item.className = classes.previewItem;
+
+          if (/(jpe?g|png|gif|bmp)$/i.test(file.extension)) {
+            // create thumb
+            const img = new Image();
+            img.alt = file.name;
+            img.src = file.uploadURL;
+            img.className = classes.previewImage;
+            item.appendChild(img);
+          }
+
+          // create file name with link
+          const fileLink = document.createElement('a');
+          // fileLink.href = file.uploadURL;
+          // fileLink.target = '_blank';
+          fileLink.className = classes.fileUploaded;
+          const fileLinkText = document.createTextNode(
+            ellipsify({ str: file.name, start: 5, end: 4 })
+          );
+          const fileSizeText = document.createTextNode(
+            ', ' + formatBytes(file.size)
+          );
+          fileLink.appendChild(fileLinkText);
+          fileLink.appendChild(fileSizeText);
+          item.appendChild(fileLink);
+
+          // create remove button
+          if (item.id) {
+            const rmBtn = document.createElement('span');
+            rmBtn.className = classes.btnRemove;
+            const rmBtnText = document.createTextNode(t('Remove'));
+            rmBtn.appendChild(rmBtnText);
+
+            rmBtn.onclick = async (e) => {
+              // remove file from uppy
+              uppy.removeFile(file.id);
+
+              // remove file from local storage
+              if (uploadedFiles) {
+                const newFiles = uploadedFiles.filter((obj) => {
+                  return obj.id !== file.id;
+                });
+                storage.setItem(storageKeyName, newFiles);
+              }
+
+              if (file.directus_file_id) {
+                await deleteFileFunc(file.directus_file_id).then(function (rs) {
+                  console.log('Deleted:', rs);
+                });
+              }
+
+              //clean preview element on DOM
+              document.getElementById(file.id).remove();
+            };
+
+            item.appendChild(rmBtn);
+          }
+          document.getElementById(previewContainerId).appendChild(item);
+        }
+      });
+    }
+  };
+
+  let uppy = `uppy_${id}`;
+  uppy = useUppy(() => {
     return new Uppy({
       id,
       debug: true,
@@ -97,28 +200,36 @@ const Uploader = (props) => {
       }
     });
   });
-
   uppy.on('upload', (data) => {
-    setUploadingState(uploaderContainerId);
+    setUploadingState();
   });
-
   uppy.on('complete', (result) => {
+    console.log('complete');
     const uploadedFiles = result.successful.length ? result.successful : [];
     if (uploadedFiles.length) {
       // Save uploaded files to local storage
-      addFiles(uploadedFiles);
+      importFiles(uploadedFiles);
       // Generate preview
-      generatePreview(t, previewContainerId, storageKeyName, uppy);
+      setTimeout(() => {
+        generatePreview();
+      }, 1000);
     }
-    cleanUploadingState(uploaderContainerId);
+    cleanUploadingState();
   });
 
   useEffect(() => {
+    //refresh local storage
+    storage.removeItem(storageKeyName);
+  }, []);
+
+  /*useEffect(() => {
+    //refresh local storage
+    storage.removeItem(storageKeyName);
     return () => {
       uppy.reset();
       uppy.close({ reason: 'unmount' });
     };
-  }, [uppy]);
+  }, [uppy]);*/
 
   const typesAllowed = `${t('Allows file types:')} ${allowedFileTypes.join(
     ', '
@@ -144,87 +255,6 @@ const Uploader = (props) => {
   );
 
   return <div className={`${classes.root}`}>{child}</div>;
-};
-
-const setUploadingState = (uploaderContainerId) => {
-  const uploaderContainer = document.getElementById(uploaderContainerId);
-  uploaderContainer.className = uploaderContainer.className + ' uploading';
-};
-
-const cleanUploadingState = (uploaderContainerId) => {
-  setTimeout(function () {
-    const uploaderContainer = document.getElementById(uploaderContainerId);
-    uploaderContainer.className = uploaderContainer.className.replace(
-      'loading',
-      ''
-    );
-  }, 1000);
-};
-
-const generatePreview = (t, previewContainerId, storageKeyName, uppy) => {
-  const storage = new BrowserPersistence();
-  const uploadedFiles = storage.getItem(storageKeyName);
-  if (uploadedFiles) {
-    uploadedFiles.map((file) => {
-      if (!document.getElementById(file.id)) {
-        // preview item
-        const item = document.createElement('li');
-        item.id = file.id;
-        item.className = classes.previewItem;
-
-        if (/(jpe?g|png|gif|bmp)$/i.test(file.extension)) {
-          // create thumb
-          const img = new Image();
-          img.alt = file.name;
-          img.src = file.uploadURL;
-          img.className = classes.previewImage;
-          item.appendChild(img);
-        }
-
-        // create file name with link
-        const fileLink = document.createElement('a');
-        // fileLink.href = file.uploadURL;
-        // fileLink.target = '_blank';
-        fileLink.className = classes.fileUploaded;
-        const fileLinkText = document.createTextNode(
-          ellipsify({ str: file.name, start: 5, end: 4 })
-        );
-        const fileSizeText = document.createTextNode(
-          ', ' + formatBytes(file.size)
-        );
-        fileLink.appendChild(fileLinkText);
-        fileLink.appendChild(fileSizeText);
-        item.appendChild(fileLink);
-
-        // create remove button
-        if (item.id) {
-          const rmBtn = document.createElement('span');
-          rmBtn.className = classes.btnRemove;
-          const rmBtnText = document.createTextNode(t('Remove'));
-          rmBtn.appendChild(rmBtnText);
-
-          rmBtn.onclick = (e) => {
-            // remove file from uppy
-            uppy.removeFile(file.id);
-
-            // remove file from local storage
-            if (uploadedFiles) {
-              const newFiles = uploadedFiles.filter((obj) => {
-                return obj.id !== file.id;
-              });
-              storage.setItem(storageKeyName, newFiles);
-            }
-
-            //clean preview element on DOM
-            document.getElementById(file.id).remove();
-          };
-
-          item.appendChild(rmBtn);
-        }
-        document.getElementById(previewContainerId).appendChild(item);
-      }
-    });
-  }
 };
 
 Uploader.propTypes = {

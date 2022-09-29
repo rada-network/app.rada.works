@@ -16,21 +16,27 @@ export const IMPORT_FILE = gql`
   }
 `;
 export const importFileFunc = async (props) => {
+  let rs = null;
   try {
     const { url, data } = props;
     const client = initializeApollo();
-    return await client.mutate({
+    const { data: importData } = await client.mutate({
       mutation: IMPORT_FILE,
       variables: { url, data },
       fetchPolicy: 'no-cache'
       // nextFetchPolicy: 'cache-first'
     });
+    if (importData && importData.import_file) {
+      rs = importData.import_file.id;
+    }
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
       console.error(error);
     }
-    return error;
+    return false;
   }
+
+  return rs;
 };
 
 export const DELETE_FILE = gql`
