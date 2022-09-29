@@ -92,15 +92,13 @@ const List = (props) => {
 
   let headingTitle = t('🎉 Browse Rewards');
   if (position === 'home-page') {
-    headingTitle = t('Best Rewards');
+    headingTitle = t('Discover, participate and earn');
   } else if (position === 'nft-collection-details') {
     headingTitle = t('All Rewards');
   }
   const subheading =
     position === 'home-page'
-      ? t(
-          'Aliquam dignissim enim ut est suscipit, ut euismod lacus tincidunt. Nunc feugiat ex id mi hendrerit, et efficitur ligula bibendum.'
-        )
+      ? t('We curate the most exclusive and popular rewards right here')
       : '';
   const heading = (
     <div className={classes.headingWrap}>

@@ -202,7 +202,7 @@ const Details = (props) => {
         <div className="bg-gray-50">
           <div className="container mx-auto max-w-screen-xl flex items-stretch py-12">
             <div className="px-4 basis-full md:basis-2/3">
-              <div className="bg-white rounded-lg p-4 pt-0">
+              <div className="bg-white rounded-lg shadow-sm p-4 pt-0">
                 <div className="rounded-t-lg overflow-hidden mb-8 -mx-4">
                   {coverImage}
                 </div>
@@ -241,7 +241,7 @@ const Details = (props) => {
 
             <div className="basis-full basis-1/3 px-4">
               {/* About Reward */}
-              <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-xl mb-6">
+              <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6">
                 <div className="p-4">
                   <strong>There are many NFT variations</strong> of passages of
                   Lorem Ipsum available, but the majority have suffered
@@ -252,7 +252,7 @@ const Details = (props) => {
               {/* // About Reward */}
 
               {/* Require Tasks */}
-              <div className="bg-white shadow-sm rounded-xl mb-6">
+              <div className="bg-white shadow-sm rounded-lg mb-6">
                 <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
                   <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
                     Require Tasks
@@ -262,7 +262,7 @@ const Details = (props) => {
                   </p>
                 </div>
 
-                <div className="border-b border-gray-200 border-opacity-60 p-4">
+                <div className="p-4">
                   <div className="flex items-center text-md font-semibold mb-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -351,7 +351,7 @@ const Details = (props) => {
               </div>
 
               {/* How to claim */}
-              <div className="bg-white shadow-sm rounded-xl mb-6">
+              <div className="bg-white shadow-sm rounded-lg mb-6">
                 <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
                   <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
                     How to claim?
@@ -408,7 +408,7 @@ const Details = (props) => {
               {/* // How to claim */}
 
               {/* Quester */}
-              <div className="bg-white shadow-sm rounded-xl mb-6">
+              <div className="bg-white shadow-sm rounded-lg mb-6">
                 <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
                   <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
                     Questers (8077)
