@@ -228,7 +228,7 @@ const Details = (props) => {
             </div>
             {/* // Description */}
 
-            <div className="basis-full basis-1/3 px-4">
+            <div className="basis-1/3 px-4">
               {/* About Reward */}
               <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-xl mb-6">
                 <div className="p-4">
