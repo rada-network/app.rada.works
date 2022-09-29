@@ -155,18 +155,14 @@ export default async function auth(
           }
         }
 
-        console.log('====================================');
-        console.log('2. token', token);
-        console.log('====================================');
         return token;
       },
       async session({ session, token }) {
         // Send properties to the client, like an access_token from a provider.
         session.id = token.sud;
         session.access_token = token.access_token;
-        console.log('====================================');
-        console.log('3. token', token);
-        console.log('====================================');
+        session.error = token.error;
+
         return session;
       }
     }
