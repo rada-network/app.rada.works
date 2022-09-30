@@ -22,14 +22,19 @@ const HomeTmpl = (props) => {
               </h2>
             </div>
 
-            <div className="flex items-start">
-              <div className="basis-1/4 text-center">
-                <h3 className="my-0 text-2xl text-gray-800 mb-4">
-                  Incentivized participation
-                </h3>
-                <p className="my-0">
-                  Users earn rewards by completing tasks. No extra steps, no KYC
-                </p>
+            <div className="flex flex-wrap items-start">
+              <div className="flex items-center">
+                <div className="basis-full md:basis-1/2">fsdf</div>
+
+                <div className="basis-full md:basis-1/2 text-center">
+                  <h3 className="my-0 text-2xl text-gray-800 mb-4">
+                    Incentivized participation
+                  </h3>
+                  <p className="my-0">
+                    Users earn rewards by completing tasks. No extra steps, no
+                    KYC
+                  </p>
+                </div>
               </div>
 
               <div className="basis-1/4 text-center">
