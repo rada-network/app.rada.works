@@ -9,14 +9,15 @@ const HomeTmpl = (props) => {
     <Fragment>
       <MainTmpl>
         <Hero />
-
-        <List position="home-page" />
+        <div className="bg-white">
+          <List position="home-page" />
+        </div>
 
         {/* SoulMint Features */}
         <div className="bg-white">
           <div className="container max-w-screen-xl mx-auto py-20">
             <div className="mb-16 text-center">
-              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-medium text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
                 SoulMint Features
               </h2>
             </div>
@@ -66,30 +67,30 @@ const HomeTmpl = (props) => {
         {/* // SoulMint Features */}
 
         {/* SoulMint How it work */}
-        <div className="bg-gray-50 dark:bg-gray-800">
-          <div className="container max-w-screen-xl mx-auto py-20">
+        <div className="bg-indigo-500 dark:bg-gray-800">
+          <div className="container max-w-screen-xl mx-auto py-24">
             <div className="mb-16 text-center">
               <h3 className="bg-indigo-50 text-indigo-600 inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
                 SoulMint
               </h3>
-              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-medium text-white dark:text-white mt-0 mb-0 tracking-tight">
                 How it works
               </h2>
             </div>
 
-            <div className="flex items-center justify-center">
+            <div className="flex items-start justify-center">
               <div className="flex flex-col items-center text-center px-4 basis-1/4">
-                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
+                <span className="bg-white flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   1
                 </span>
-                <h4 className="font-semibold text-base">Connect wallet</h4>
+                <h4 className="font-semibold text-white">Connect wallet</h4>
               </div>
 
               <div className="flex flex-col items-center text-center px-4 basis-1/4">
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   2
                 </span>
-                <h4 className="font-semibold text-base">
+                <h4 className="font-semibold text-white">
                   Browse available campaigns
                 </h4>
               </div>
@@ -98,7 +99,7 @@ const HomeTmpl = (props) => {
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   3
                 </span>
-                <h4 className="font-semibold text-base">
+                <h4 className="font-semibold text-white">
                   Complete tasks and receive rewards
                 </h4>
               </div>
@@ -107,7 +108,7 @@ const HomeTmpl = (props) => {
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   4
                 </span>
-                <h4 className="font-semibold text-base">
+                <h4 className="font-semibold text-white">
                   Manage your profile & view achievements
                 </h4>
               </div>
@@ -117,13 +118,13 @@ const HomeTmpl = (props) => {
         {/* // SoulMint How it work */}
 
         {/* SoulMint News */}
-        <div className="py-20">
+        <div className="bg-gray-50 p-24">
           <div className="container max-w-screen-xl mx-auto px-4">
             <div className="mb-14 text-center">
               <h3 className="bg-indigo-50 text-indigo-600 inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
                 SoulMint News
               </h3>
-              <h2 className="text-center text-3xl md:text-4xl lg:text-4xl font-semibold text-gray-800 dark:text-white mt-0 mb-0 tracking-tighter">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-4xl font-semibold text-gray-800 dark:text-white mt-0 mb-0">
                 Related Articles
               </h2>
             </div>
