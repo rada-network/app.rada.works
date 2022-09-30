@@ -17,14 +17,14 @@ const HomeTmpl = (props) => {
         <div className="bg-white">
           <div className="container max-w-screen-xl mx-auto py-20 px-4">
             <div className="mb-16 text-center">
-              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-medium text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
+              <h2 className="text-center text-4xl lg:text-5xl font-medium text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
                 SoulMint Features
               </h2>
             </div>
 
             <div className="flex flex-wrap items-start">
-              <div className="basis-full md:basis-1/4 text-center mb-10 md:mb-0">
-                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+              <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
+                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
                   Incentivized participation
                 </h3>
                 <p className="my-0">
@@ -32,8 +32,8 @@ const HomeTmpl = (props) => {
                 </p>
               </div>
 
-              <div className="basis-full md:basis-1/4 text-center mb-10 md:mb-0">
-                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+              <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
+                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
                   Chain-agnostic
                 </h3>
                 <p className="my-0">
@@ -42,8 +42,8 @@ const HomeTmpl = (props) => {
                 </p>
               </div>
 
-              <div className="basis-full md:basis-1/4 text-center mb-10 md:mb-0">
-                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+              <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
+                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
                   Rewards, aggregated
                 </h3>
                 <p className="my-0">
@@ -53,7 +53,7 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full md:basis-1/4 text-center">
-                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
                   No-code campaign creator tool
                 </h3>
                 <p className="my-0">
@@ -118,7 +118,7 @@ const HomeTmpl = (props) => {
         {/* // SoulMint How it work */}
 
         {/* SoulMint News */}
-        <div className="bg-gray-50 p-24">
+        <div className="bg-gray-50 py-24">
           <div className="container max-w-screen-xl mx-auto px-4">
             <div className="mb-14 text-center">
               <h3 className="bg-indigo-50 text-indigo-600 inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
@@ -129,9 +129,9 @@ const HomeTmpl = (props) => {
               </h2>
             </div>
 
-            <div className="flex flex-wrap md:flex-nowrap items-stretch gap-8">
-              <div className="basis-full md:basis-1/3">
-                <div className="h-56 overflow-hidden rounded-lg mb-4">
+            <div className="flex flex-wrap md:flex-nowrap items-stretch gap-0 md:gap-8">
+              <div className="basis-full md:basis-1/3 mb-8 md:mb-0">
+                <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-lg mb-4">
                   <img src="/samples/news-1.jpg" alt="Sample image" />
                 </div>
 
@@ -151,7 +151,7 @@ const HomeTmpl = (props) => {
                   <date>Oct 01, 2022</date>
                 </div>
 
-                <p className="my-0">
+                <p className="md:hidden lg:block my-0">
                   ConsenSys and StarkWare have expanded their partnership to
                   include ConsenSys Diligence smart contract auditing, providing
                   a one-stop-shop for Web3 development.
@@ -159,8 +159,8 @@ const HomeTmpl = (props) => {
               </div>
               {/* // News item */}
 
-              <div className="basis-full md:basis-1/3">
-                <div className="h-56 overflow-hidden rounded-lg mb-4">
+              <div className="basis-full md:basis-1/3 mb-8 md:mb-0">
+                <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-lg mb-4">
                   <img src="/samples/news-2.jpg" alt="Sample image" />
                 </div>
 
@@ -180,7 +180,7 @@ const HomeTmpl = (props) => {
                   <date>Oct 01, 2022</date>
                 </div>
 
-                <p className="my-0">
+                <p className="md:hidden lg:block my-0">
                   ConsenSys and StarkWare have expanded their partnership to
                   include ConsenSys Diligence smart contract auditing, providing
                   a one-stop-shop for Web3 development.
@@ -189,7 +189,7 @@ const HomeTmpl = (props) => {
               {/* // News item */}
 
               <div className="basis-full md:basis-1/3">
-                <div className="h-56 overflow-hidden rounded-lg mb-4">
+                <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-lg mb-4">
                   <img src="/samples/news-4.png" alt="Sample image" />
                 </div>
 
@@ -209,7 +209,7 @@ const HomeTmpl = (props) => {
                   <date>Sep 10, 2022</date>
                 </div>
 
-                <p className="my-0">
+                <p className="md:hidden lg:block my-0">
                   ConsenSys and StarkWare have expanded their partnership to
                   include ConsenSys Diligence smart contract auditing, providing
                   a one-stop-shop for Web3 development.
