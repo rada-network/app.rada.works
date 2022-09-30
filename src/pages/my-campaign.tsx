@@ -3,24 +3,15 @@ import { NextPage } from 'next';
 import Router from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSession } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
 import MyCampaignTmpl from '../components/templates/myCampaignTmpl';
 
 const Dashboard: NextPage = () => {
   const { data, status } = useSession();
 
-  const { t } = useTranslation('create_campaign');
-
-  let child = null;
-  if (status === 'loading') {
-    child = t('Session loading...');
-  } else if (status === 'authenticated') {
-    const walletAddress = data?.user?.email;
-
-    child = <MyCampaignTmpl walletAddress={walletAddress} />;
-  } else {
-    Router.push('/');
-  }
+  const child =
+    status === 'authenticated' ? (
+      <MyCampaignTmpl walletAddress={data?.user?.email} />
+    ) : null;
 
   useEffect(() => {
     if (status === 'unauthenticated') {

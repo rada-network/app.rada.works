@@ -76,7 +76,7 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
 
   let child = null;
   if (status === 'loading') {
-    child = 'Session loading...'; //coming soon with Skeleton loading.
+    child = t('Loading...'); //coming soon with Skeleton loading.
   } else {
     child =
       status === 'authenticated' ? (
