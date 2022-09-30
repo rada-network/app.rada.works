@@ -165,7 +165,7 @@ const Item = (props) => {
         </span>
       </div>
 
-      <div className="flex items-center text-sm justify-between mb-4 -mt-2">
+      <div className="flex flex-wrap items-center text-sm justify-between mb-4 -mt-2">
         <span className={`${classes.dateStart}`}>{dateStart}</span>
         <span className={`${classes.dateEnd}`}>{dateEnd}</span>
       </div>

@@ -15,7 +15,7 @@ const HomeTmpl = (props) => {
 
         {/* SoulMint Features */}
         <div className="bg-white">
-          <div className="container max-w-screen-xl mx-auto py-20">
+          <div className="container max-w-screen-xl mx-auto py-20 px-4">
             <div className="mb-16 text-center">
               <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-medium text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
                 SoulMint Features
@@ -23,21 +23,16 @@ const HomeTmpl = (props) => {
             </div>
 
             <div className="flex flex-wrap items-start">
-              <div className="flex items-center">
-                <div className="basis-full md:basis-1/2">fsdf</div>
-
-                <div className="basis-full md:basis-1/2 text-center">
-                  <h3 className="my-0 text-2xl text-gray-800 mb-4">
-                    Incentivized participation
-                  </h3>
-                  <p className="my-0">
-                    Users earn rewards by completing tasks. No extra steps, no
-                    KYC
-                  </p>
-                </div>
+              <div className="basis-full md:basis-1/4 text-center mb-10 md:mb-0">
+                <h3 className="my-0 text-2xl text-gray-800 mb-4">
+                  Incentivized participation
+                </h3>
+                <p className="my-0">
+                  Users earn rewards by completing tasks. No extra steps, no KYC
+                </p>
               </div>
 
-              <div className="basis-1/4 text-center">
+              <div className="basis-full md:basis-1/4 text-center mb-10 md:mb-0">
                 <h3 className="my-0 text-2xl text-gray-800 mb-4">
                   Chain-agnostic
                 </h3>
@@ -47,7 +42,7 @@ const HomeTmpl = (props) => {
                 </p>
               </div>
 
-              <div className="basis-1/4 text-center">
+              <div className="basis-full md:basis-1/4 text-center mb-10 md:mb-0">
                 <h3 className="my-0 text-2xl text-gray-800 mb-4">
                   Rewards, aggregated
                 </h3>
@@ -57,7 +52,7 @@ const HomeTmpl = (props) => {
                 </p>
               </div>
 
-              <div className="basis-1/4 text-center">
+              <div className="basis-full md:basis-1/4 text-center">
                 <h3 className="my-0 text-2xl text-gray-800 mb-4">
                   No-code campaign creator tool
                 </h3>
@@ -83,15 +78,15 @@ const HomeTmpl = (props) => {
               </h2>
             </div>
 
-            <div className="flex items-start justify-center">
-              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+            <div className="flex flex-wrap items-start justify-center">
+              <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
                 <span className="bg-white flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   1
                 </span>
                 <h4 className="font-semibold text-white">Connect wallet</h4>
               </div>
 
-              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+              <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   2
                 </span>
@@ -100,7 +95,7 @@ const HomeTmpl = (props) => {
                 </h4>
               </div>
 
-              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+              <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   3
                 </span>
@@ -109,7 +104,7 @@ const HomeTmpl = (props) => {
                 </h4>
               </div>
 
-              <div className="flex flex-col items-center text-center px-4 basis-1/4">
+              <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
                 <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
                   4
                 </span>
