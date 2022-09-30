@@ -10,7 +10,7 @@ import classes from './item.module.css';
 import useThemes from '../../../../hooks/useThemes';
 import TextLink from '../../../atoms/TextLink';
 
-const DESC_MAX_LENGTH = 300;
+const DESC_MAX_LENGTH = 200;
 
 const Item = (props) => {
   const { data } = props;

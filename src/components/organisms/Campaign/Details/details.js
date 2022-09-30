@@ -198,6 +198,31 @@ const Details = (props) => {
           />
         ) : null;*/
 
+      const shortDesc = campaign.short_desc ? (
+        <div
+          className={classes.shortDesc}
+          dangerouslySetInnerHTML={{ __html: campaign.short_desc }}
+        />
+      ) : null;
+
+      const description = campaign.description ? (
+        <div
+          className={classes.desc}
+          dangerouslySetInnerHTML={{ __html: campaign.description }}
+        />
+      ) : null;
+
+      const rewardOverview = campaign.reward_overview ? (
+        <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6">
+          <div className="p-4">
+            <div
+              className={classes.rewardOverview}
+              dangerouslySetInnerHTML={{ __html: campaign.reward_overview }}
+            />
+          </div>
+        </div>
+      ) : null;
+
       child = (
         <div className="bg-gray-50">
           <div className="container mx-auto max-w-screen-xl flex items-stretch py-12">
@@ -231,24 +256,16 @@ const Details = (props) => {
                 </div>
                 {/* // Campain meta */}
 
-                <div
-                  className={classes.desc}
-                  dangerouslySetInnerHTML={{ __html: campaign.description }}
-                />
+                {shortDesc}
+
+                {description}
               </div>
               {/* // Description */}
             </div>
 
             <div className="basis-1/3 px-4">
               {/* About Reward */}
-              <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6">
-                <div className="p-4">
-                  <strong>There are many NFT variations</strong> of passages of
-                  Lorem Ipsum available, but the majority have suffered
-                  alteration in some form, by injected humour, or randomised
-                  words which don not look even slightly believable.
-                </div>
-              </div>
+              {rewardOverview}
               {/* // About Reward */}
 
               {/* Require Tasks */}
