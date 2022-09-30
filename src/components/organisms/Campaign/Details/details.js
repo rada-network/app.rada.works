@@ -189,14 +189,14 @@ const Details = (props) => {
             alt={`${campaign.cover_image.title}`}
           />
         ) : null;
-      const thumbImage =
-        campaign.cover_image && campaign.thumb_image.id ? (
+      /*const thumbImage =
+        campaign.thumb_image && campaign.thumb_image.id ? (
           <img
             className={`${classes.campaignThumb}`}
             src={`${assetsBaseUrl}/${campaign.thumb_image.id}?${thumbOptions}`}
             alt={`${campaign.thumb_image.title}`}
           />
-        ) : null;
+        ) : null;*/
 
       child = (
         <div className="bg-gray-50">

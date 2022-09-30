@@ -10,7 +10,7 @@ import classes from './item.module.css';
 import useThemes from '../../../../hooks/useThemes';
 import TextLink from '../../../atoms/TextLink';
 
-const DESC_MAX_LENGTH = 200;
+const DESC_MAX_LENGTH = 300;
 
 const Item = (props) => {
   const { data } = props;
@@ -112,14 +112,14 @@ const Item = (props) => {
         alt={`${data.cover_image.title}`}
       />
     ) : null;
-  const thumbImage =
-    data.cover_image && data.thumb_image.id ? (
+  /*const thumbImage =
+    data.thumb_image && data.thumb_image.id ? (
       <img
         className={`${classes.campaignThumb}`}
         src={`${assetsBaseUrl}/${data.thumb_image.id}?${thumbOptions}`}
         alt={`${data.thumb_image.title}`}
       />
-    ) : null;
+    ) : null;*/
 
   const dateStart = data.date_start
     ? t('Start from ') + Moment(data.date_start).fromNow()
@@ -127,6 +127,14 @@ const Item = (props) => {
   const dateEnd = data.date_end
     ? t('Ends ') + Moment(data.date_end).fromNow()
     : '';
+
+  const shortDesc = data.short_desc ? (
+    <div
+      dangerouslySetInnerHTML={toHTML(
+        subStrWords(data?.short_desc, DESC_MAX_LENGTH)
+      )}
+    />
+  ) : null;
 
   return (
     <div className={`${classes[rootClassName]} p-4`}>
@@ -167,11 +175,7 @@ const Item = (props) => {
       >
         {/* {thumbImage} */}
 
-        <div
-          dangerouslySetInnerHTML={toHTML(
-            subStrWords(data?.description, DESC_MAX_LENGTH)
-          )}
-        />
+        {shortDesc}
       </div>
 
       <div className="flex items-center flex-wrap mb-4">

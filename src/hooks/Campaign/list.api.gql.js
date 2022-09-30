@@ -30,7 +30,8 @@ export const GET_CAMPAIGNS = gql`
       title
       slug
       discount_value
-      description
+      short_desc
+      #      description
       store_name
       store_logo_url
       store_url
