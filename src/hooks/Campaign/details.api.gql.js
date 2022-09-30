@@ -7,6 +7,7 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       id
       slug
       title
+      short_desc
       description
       nft_collection_ids {
         nft_collection_id {
@@ -27,6 +28,7 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
         title
         #          filename_download
       }
+      reward_overview
       discount_value
       store_name
       store_logo_url
