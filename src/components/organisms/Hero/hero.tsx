@@ -23,7 +23,7 @@ const Hero = () => {
                 <a
                   href="#"
                   title="View more"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3 inline-flex items-center justify-center transition-all duration-300 w-44"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3.5 inline-flex items-center justify-center transition-all duration-300 w-44 uppercase tracking-wide"
                 >
                   Learn more
                   <svg
