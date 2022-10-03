@@ -107,7 +107,7 @@ const Details = (props) => {
       let stateInfo =
         now > endDate ? (
           <div className="bg-gray-100 text-red-600 rounded-full py-1 px-3 text-sm font-medium">
-            {t('Ends')}
+            {t('Ended')}
           </div>
         ) : (
           <div className="bg-green-100 text-green-600 rounded-full py-1 px-3 text-sm font-medium">

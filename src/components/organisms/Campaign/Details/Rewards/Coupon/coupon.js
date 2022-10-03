@@ -1,16 +1,17 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment } from 'react';
 import { shape, string, number } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './coupon.module.css';
 import { useStyle } from '../../../../../classify';
 
-// import getCouponCodes from './details.api.gql';
+// import { getCouponCodes } from './details.api.gql';
 /*import {EvmChain} from "@moralisweb3/evm-utils";
 import Moralis from "moralis";*/
 
 // import TextLink from "../../../../atoms/TextLink";
 // import {ellipsify} from "../../../../../utils/strUtils";
-/*import Button from "../../../../atoms/Button";
+import Button from '../../../../../atoms/Button';
+/*
 import Router from "next/router";
 import Moment from "moment";*/
 
@@ -19,6 +20,10 @@ const Coupon = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('campaign_details');
+
+  const claimReward = () => {
+    console.log('claimReward()');
+  };
 
   /*
   // Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
@@ -136,8 +141,8 @@ const Coupon = (props) => {
     );
   }*/
 
-  let child = campaign.discount_value ? (
-    <div className="bg-white shadow-sm rounded-xl">
+  const couponReward = campaign.discount_value ? (
+    <Fragment>
       <div className="border-b border-t border-gray-200 border-opacity-60 pt-6 px-4 pb-4 text-center">
         <div className="flex flex-col mb-6">
           <strong className="text-5xl font-bold mb-1 text-gray-800">
@@ -146,10 +151,26 @@ const Coupon = (props) => {
         </div>
       </div>
       <div className="py-4 px-4">{viewCouponCodesArea}</div>
-    </div>
+    </Fragment>
   ) : null;
 
-  return child;
+  return (
+    <div className="bg-white shadow-sm rounded-xl">
+      {couponReward}
+
+      <div className="py-4 px-4">
+        <Button
+          id={`btn-claim-reward`}
+          className="bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300 w-full"
+          priority="high"
+          type="button"
+          onPress={() => claimReward()}
+        >
+          {t('Claim Reward')}
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 Coupon.propTypes = {

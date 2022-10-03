@@ -29,13 +29,13 @@ const Rewards = (props) => {
     <Fragment>
       {rewardOverview}
 
-      <Quest campaign={campaign} />
-
-      <Questers campaign={campaign} />
-
       <HowClaim campaign={campaign} />
 
+      <Quest campaign={campaign} />
+
       <Coupon campaign={campaign} />
+
+      <Questers campaign={campaign} />
     </Fragment>
   );
 };

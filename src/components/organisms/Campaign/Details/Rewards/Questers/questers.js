@@ -11,7 +11,7 @@ const Questers = (props) => {
   const { t } = useTranslation('campaign_details');
 
   return (
-    <div className="bg-white shadow-sm rounded-lg mb-6">
+    <div className="bg-white shadow-sm rounded-lg mb-6 mt-10">
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
         <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
           Questers (8077)
