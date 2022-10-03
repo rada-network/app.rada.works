@@ -16,15 +16,18 @@ const HomeTmpl = (props) => {
         {/* SoulMint Features */}
         <div className="bg-white">
           <div className="container max-w-screen-xl mx-auto py-20 px-4">
-            <div className="mb-16 text-center">
-              <h2 className="text-center text-4xl lg:text-5xl font-medium text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
+            <div className="mb-20 text-center">
+              <h2 className="text-center text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
                 SoulMint Features
               </h2>
             </div>
 
-            <div className="flex flex-wrap items-start">
+            <div className="flex flex-wrap lg:flex-nowrap items-start gap-8">
               <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl font-bold text-gray-800 mb-4">
                   Incentivized participation
                 </h3>
                 <p className="my-0">
@@ -33,7 +36,10 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
                   Chain-agnostic
                 </h3>
                 <p className="my-0">
@@ -43,7 +49,10 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
                   Rewards, aggregated
                 </h3>
                 <p className="my-0">
@@ -53,7 +62,10 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full md:basis-1/4 text-center">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
                   No-code campaign creator tool
                 </h3>
                 <p className="my-0">
@@ -69,26 +81,26 @@ const HomeTmpl = (props) => {
         {/* SoulMint How it work */}
         <div className="bg-indigo-500 dark:bg-gray-800">
           <div className="container max-w-screen-xl mx-auto py-24">
-            <div className="mb-16 text-center">
+            <div className="mb-20 text-center">
               <h3 className="bg-indigo-50 text-indigo-600 inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
                 SoulMint
               </h3>
-              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-medium text-white dark:text-white mt-0 mb-0 tracking-tight">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0 tracking-tight">
                 How it works
               </h2>
             </div>
 
             <div className="flex flex-wrap items-start justify-center">
               <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
-                <span className="bg-white flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
-                  1
+                <span className="bg-white flex items-center justify-center h-14 w-14 rounded-full text-xl font-bold mb-4">
+                  01
                 </span>
                 <h4 className="font-semibold text-white">Connect wallet</h4>
               </div>
 
               <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
-                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
-                  2
+                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full text-xl font-bold mb-4">
+                  02
                 </span>
                 <h4 className="font-semibold text-white">
                   Browse available campaigns
@@ -96,8 +108,8 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
-                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
-                  3
+                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full text-xl font-bold mb-4">
+                  03
                 </span>
                 <h4 className="font-semibold text-white">
                   Complete tasks and receive rewards
@@ -105,8 +117,8 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
-                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full font-bold mb-4">
-                  4
+                <span className="bg-gray-200 flex items-center justify-center h-14 w-14 rounded-full text-xl font-bold mb-4">
+                  04
                 </span>
                 <h4 className="font-semibold text-white">
                   Manage your profile & view achievements
@@ -118,13 +130,13 @@ const HomeTmpl = (props) => {
         {/* // SoulMint How it work */}
 
         {/* SoulMint News */}
-        <div className="bg-gray-50 py-24">
+        <div className="bg-gray-900 py-24">
           <div className="container max-w-screen-xl mx-auto px-4">
             <div className="mb-14 text-center">
               <h3 className="bg-indigo-50 text-indigo-600 inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
                 SoulMint News
               </h3>
-              <h2 className="text-center text-3xl md:text-4xl lg:text-4xl font-semibold text-gray-800 dark:text-white mt-0 mb-0">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0">
                 Related Articles
               </h2>
             </div>
@@ -135,7 +147,7 @@ const HomeTmpl = (props) => {
                   <img src="/samples/news-1.jpg" alt="Sample image" />
                 </div>
 
-                <h3 className="mt-0 mb-2 text-gray-800 text-lg">
+                <h3 className="mt-0 mb-2 text-gray-200 text-xl">
                   <a
                     href="#"
                     title="Sample link"
@@ -146,12 +158,12 @@ const HomeTmpl = (props) => {
                   </a>
                 </h3>
 
-                <div className="text-sm mb-4">
+                <div className="text-sm mb-4 text-gray-500">
                   <span className="font-semibold mr-2">SoulMint</span>
                   <date>Oct 01, 2022</date>
                 </div>
 
-                <p className="md:hidden lg:block my-0">
+                <p className="md:hidden lg:block my-0 text-gray-400">
                   ConsenSys and StarkWare have expanded their partnership to
                   include ConsenSys Diligence smart contract auditing, providing
                   a one-stop-shop for Web3 development.
@@ -164,7 +176,7 @@ const HomeTmpl = (props) => {
                   <img src="/samples/news-2.jpg" alt="Sample image" />
                 </div>
 
-                <h3 className="mt-0 mb-2 text-gray-800 text-lg">
+                <h3 className="mt-0 mb-2 text-gray-200 text-xl">
                   <a
                     href="#"
                     title="Sample link"
@@ -175,12 +187,12 @@ const HomeTmpl = (props) => {
                   </a>
                 </h3>
 
-                <div className="text-sm mb-4">
+                <div className="text-sm mb-4 text-gray-500">
                   <span className="font-semibold mr-2">SoulMint</span>
                   <date>Oct 01, 2022</date>
                 </div>
 
-                <p className="md:hidden lg:block my-0">
+                <p className="md:hidden lg:block my-0 text-gray-400">
                   ConsenSys and StarkWare have expanded their partnership to
                   include ConsenSys Diligence smart contract auditing, providing
                   a one-stop-shop for Web3 development.
@@ -193,7 +205,7 @@ const HomeTmpl = (props) => {
                   <img src="/samples/news-4.png" alt="Sample image" />
                 </div>
 
-                <h3 className="mt-0 mb-2 text-gray-800 text-lg overflow-hidden ellipsis">
+                <h3 className="mt-0 mb-2 text-gray-200 text-xl overflow-hidden ellipsis">
                   <a
                     href="#"
                     title="Sample link"
@@ -204,12 +216,12 @@ const HomeTmpl = (props) => {
                   </a>
                 </h3>
 
-                <div className="text-sm mb-4">
+                <div className="text-sm mb-4 text-gray-500">
                   <span className="font-semibold mr-2">SoulMint</span>
                   <date>Sep 10, 2022</date>
                 </div>
 
-                <p className="md:hidden lg:block my-0">
+                <p className="md:hidden lg:block my-0 text-gray-400">
                   ConsenSys and StarkWare have expanded their partnership to
                   include ConsenSys Diligence smart contract auditing, providing
                   a one-stop-shop for Web3 development.

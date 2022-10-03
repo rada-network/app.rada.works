@@ -3,23 +3,19 @@ import classes from './hero.module.css';
 const Hero = () => {
   return (
     <Fragment>
-      <div className={`${classes.root} relative`}>
+      <div className={`${classes.root} bg-[#a5f3fc] relative`}>
         <div className="container max-w-screen-xl mx-auto px-4 lg:px-4 z-10 relative">
           <div className="flex flex-wrap items-center py-16">
             <div className="basis-full lg:basis-7/12 text-center lg:text-left pr-4">
-              <h1 className="text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white leading-relaxed mt-0 mb-6">
-                <span className="text-indigo-600">SoulMint</span>
-                <span className="block font-light">
+              <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-relaxed uppercase tracking-tight mt-0 mb-6">
+                <span className="text-purple-600">SoulMint</span>
+                <span className="block">
                   the reward-focused platform for verifiable credentials
                 </span>
               </h1>
-              <p className="text-xl font-light mt-0 mb-12">
-                Build your{' '}
-                <strong className="font-semibold text-indigo-600">Web3</strong>{' '}
-                reputation through your{' '}
-                <strong className="font-semibold text-indigo-600">
-                  SoulBound
-                </strong>{' '}
+              <p className="text-2xl font-normal mt-0 mb-12 space-mono text-gray-900">
+                Build your <strong>Web3</strong> reputation through your{' '}
+                <strong>SoulBound</strong>
                 tokens. Explore and earn special rewards, curated by us.
               </p>
 
