@@ -5,33 +5,54 @@
 .rootDark {
 }
 
-.pageWrap {
-  @apply py-10 lg:py-16 px-4 lg:px-0 mx-auto max-w-screen-xl relative flex flex-wrap items-stretch;
-}
+/*.pageWrap {*/
+/*  @apply py-10 lg:py-16 px-4 lg:px-0 mx-auto max-w-screen-xl relative flex flex-wrap items-stretch;*/
+/*}*/
 
 .pageTitle {
+  @apply text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8;
   line-height: 1.375 !important;
-}
-
-.pageContent {
-  @apply bg-white rounded-xl w-full md:w-2/3;
-}
-
-.rootDark .pageContent {
-  @apply border-r border-gray-800;
-}
-
-.pageSidebar {
-  @apply w-full md:w-1/3 md:pl-4 lg:pl-14;
 }
 
 .rootDark .pageTitle {
   @apply text-white;
 }
 
-/* Campaign meta */
+.pageWrapper {
+  @apply bg-gray-50;
+}
+
+.pageContainer {
+  @apply container mx-auto max-w-screen-xl flex items-stretch py-12;
+}
+
+.pageContent {
+  @apply px-4 basis-full md:basis-2/3;
+}
+
+.rootDark .pageContent {
+  @apply border-r border-gray-800;
+}
+
+.pageContentInner {
+  @apply bg-white rounded-lg shadow-sm p-4 pt-0
+}
+
+.coverImage {
+  @apply rounded-t-lg overflow-hidden mb-8 -mx-4;
+}
+
 .campaignMeta {
-  @apply flex items-start mb-6;
+  @apply border-b border-gray-200 flex items-center justify-start pb-4 gap-6;
+}
+
+.pageSidebar {
+  @apply basis-1/3 px-4;
+}
+
+.loading {
+  padding: 10px;
+  text-align: center;
 }
 
 .dateStart {
@@ -44,54 +65,6 @@
 
 .dateEnd {
   @apply pl-4;
-}
-
-.dateLabel {
-  @apply text-gray-500 mr-2;
-}
-
-.bsc {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/bsc.svg')] bg-cover;
-}
-
-.ethereum {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/ethereum.svg')] bg-cover;
-}
-
-.polygon {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/polygon.svg')] bg-cover;
-}
-
-.solana {
-  @apply bg-gray-100 inline-block rounded-full mr-2 w-6 h-6 indent-96 overflow-hidden bg-[url('/chains/solana.svg')] bg-cover;
-}
-
-.rootDark .btnGetCoupon {
-  @apply text-white;
-}
-
-.couponNotes {
-  @apply bg-orange-100 text-orange-700 text-sm flex items-center rounded-lg py-3 px-4;
-}
-
-.rootDark .couponNotes {
-  @apply bg-orange-200 text-orange-800;
-}
-
-.getCoupon {
-  @apply flex items-center;
-}
-
-.couponContainer {
-  @apply w-full;
-}
-
-.couponCodes {
-  @apply bg-orange-50 text-orange-600 rounded block py-2 px-4 w-full;
-}
-
-.root .title {
-  @apply font-semibold;
 }
 
 .rootDark .desc {
@@ -130,65 +103,12 @@
   @apply py-6 px-4;
 }
 
-.couponList {
-  @apply list-none m-0 p-0;
-}
-
-.couponList li {
-  @apply m-0 p-0;
-}
-
-.couponList li + li {
-  @apply mt-2;
-}
-
-.couponItem {
-  @apply bg-white border border-gray-200 hover:border-blue-600 hover:shadow-md rounded-md flex flex-col p-3 relative transition-all duration-200;
-}
-
-.rootDark .couponItem {
-  @apply bg-transparent border border-gray-700 hover:border-blue-600 transition-all duration-200;
-}
-
-.couponItem h4 {
-  @apply font-medium text-base mt-0 mb-2 p-0;
-}
-
-.rootDark .couponItem h4 {
-  @apply text-white;
-}
-
 .itemMeta {
   @apply text-xs text-gray-500 mb-2;
 }
 
 .rootDark .itemMeta {
   @apply text-gray-300;
-}
-
-.btnGetCoupon {
-  @apply hover:bg-violet-600 border border-violet-600 hover:text-white hover:cursor-pointer text-sm font-normal rounded absolute top-0 right-3 py-1.5 px-2 translate-y-2/4;
-}
-
-.nftCollectionWrap {
-  composes: nftCollectionWrap from '../../Campaign/List/item.module.css';
-  @apply flex items-center;
-}
-
-.nftCollectionLink {
-}
-
-.collectionName {
-  composes: collectionName from '../../Campaign/List/item.module.css';
-}
-
-.contractAdd {
-  composes: contractAdd from '../../Campaign/List/item.module.css';
-}
-
-.loading {
-  padding: 10px;
-  text-align: center;
 }
 
 .storeLogo {
@@ -200,14 +120,6 @@
 
 }
 
-.howtoSteps::after {
-  @apply bg-blue-100 content-[''] block w-0.5 absolute top-4 bottom-10 left-5 ml-0.5;
-}
-
-.questerAvt {
-  @apply block w-12 h-12 rounded-full flex items-center justify-center font-semibold shadow-sm;
-}
-
 .campaignCover {
 
 }
@@ -217,7 +129,4 @@
 }
 
 .shortDesc {
-}
-.rewardOverview {
-
 }
