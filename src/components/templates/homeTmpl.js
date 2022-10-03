@@ -136,7 +136,7 @@ const HomeTmpl = (props) => {
               <h3 className="bg-indigo-50 text-indigo-600 inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
                 SoulMint News
               </h3>
-              <h2 className="text-center text-3xl md:text-4xl lg:text-4xl font-semibold text-gray-800 dark:text-white mt-0 mb-0">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white mt-0 mb-0">
                 Related Articles
               </h2>
             </div>
@@ -147,7 +147,7 @@ const HomeTmpl = (props) => {
                   <img src="/samples/news-1.jpg" alt="Sample image" />
                 </div>
 
-                <h3 className="mt-0 mb-2 text-gray-800 text-lg">
+                <h3 className="mt-0 mb-2 text-gray-800 text-xl">
                   <a
                     href="#"
                     title="Sample link"
@@ -176,7 +176,7 @@ const HomeTmpl = (props) => {
                   <img src="/samples/news-2.jpg" alt="Sample image" />
                 </div>
 
-                <h3 className="mt-0 mb-2 text-gray-800 text-lg">
+                <h3 className="mt-0 mb-2 text-gray-800 text-xl">
                   <a
                     href="#"
                     title="Sample link"
@@ -205,7 +205,7 @@ const HomeTmpl = (props) => {
                   <img src="/samples/news-4.png" alt="Sample image" />
                 </div>
 
-                <h3 className="mt-0 mb-2 text-gray-800 text-lg overflow-hidden ellipsis">
+                <h3 className="mt-0 mb-2 text-gray-800 text-xl overflow-hidden ellipsis">
                   <a
                     href="#"
                     title="Sample link"
