@@ -15,8 +15,8 @@ const Hero = () => {
               </h1>
               <p className="text-2xl font-normal mt-0 mb-12 space-mono text-gray-900">
                 Build your <strong>Web3</strong> reputation through your{' '}
-                <strong>SoulBound</strong>
-                tokens. Explore and earn special rewards, curated by us.
+                <strong>SoulBound</strong> tokens. Explore and earn special
+                rewards, curated by us.
               </p>
 
               <div className="mt-8">
