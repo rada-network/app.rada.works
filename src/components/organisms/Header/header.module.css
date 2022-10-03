@@ -1,5 +1,5 @@
 .root {
-  @apply bg-white border-b border-b-gray-200 md:sticky top-0 px-4 lg:px-6 py-3.5 space-x-4 z-20 text-sm font-medium;
+  @apply bg-white border-b-2 border-b-gray-800 md:sticky top-0 px-4 lg:px-6 py-3.5 space-x-4 z-20 text-sm font-medium;
 }
 
 .rootDark {

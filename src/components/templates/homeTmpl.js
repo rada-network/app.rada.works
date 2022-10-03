@@ -16,15 +16,18 @@ const HomeTmpl = (props) => {
         {/* SoulMint Features */}
         <div className="bg-white">
           <div className="container max-w-screen-xl mx-auto py-20 px-4">
-            <div className="mb-16 text-center">
-              <h2 className="text-center text-4xl lg:text-5xl font-medium text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
+            <div className="mb-20 text-center">
+              <h2 className="text-center text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
                 SoulMint Features
               </h2>
             </div>
 
-            <div className="flex flex-wrap items-start">
+            <div className="flex flex-wrap lg:flex-nowrap items-start gap-8">
               <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl font-bold text-gray-800 mb-4">
                   Incentivized participation
                 </h3>
                 <p className="my-0">
@@ -33,7 +36,10 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
                   Chain-agnostic
                 </h3>
                 <p className="my-0">
@@ -43,7 +49,10 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
                   Rewards, aggregated
                 </h3>
                 <p className="my-0">
@@ -53,7 +62,10 @@ const HomeTmpl = (props) => {
               </div>
 
               <div className="basis-full md:basis-1/4 text-center">
-                <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4">
+                <div className="mb-4">
+                  <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                </div>
+                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
                   No-code campaign creator tool
                 </h3>
                 <p className="my-0">
@@ -69,11 +81,11 @@ const HomeTmpl = (props) => {
         {/* SoulMint How it work */}
         <div className="bg-indigo-500 dark:bg-gray-800">
           <div className="container max-w-screen-xl mx-auto py-24">
-            <div className="mb-16 text-center">
+            <div className="mb-20 text-center">
               <h3 className="bg-indigo-50 text-indigo-600 inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
                 SoulMint
               </h3>
-              <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-medium text-white dark:text-white mt-0 mb-0 tracking-tight">
+              <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0 tracking-tight">
                 How it works
               </h2>
             </div>

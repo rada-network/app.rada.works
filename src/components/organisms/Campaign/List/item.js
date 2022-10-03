@@ -139,14 +139,14 @@ const Item = (props) => {
   return (
     <div className={`${classes[rootClassName]} p-4`}>
       <div
-        className={`${classes.itemCover} bg-gray-100 dark:bg-gray-900 overflow-hidden relative rounded-md mb-5 flex items-center justify-center`}
+        className={`${classes.itemCover} bg-gray-100 dark:bg-gray-900 overflow-hidden relative rounded-lg mb-5 flex items-center justify-center`}
       >
         {coverImage}
         {storeInfo}
       </div>
 
       <div className="flex items-start mb-4">
-        <h3 className="flex-1 text-lg text-gray-800 dark:text-white font-bold leading-6 my-0">
+        <h3 className="flex-1 text-xl text-gray-800 space-mono dark:text-white font-bold leading-6 my-0">
           {data.title}
         </h3>
 
@@ -171,7 +171,7 @@ const Item = (props) => {
       </div>
 
       <div
-        className={`${classes.itemDesc} text-gray-600 dark:text-gray-400 mb-4`}
+        className={`${classes.itemDesc} text-gray-600 dark:text-gray-500 mb-4`}
       >
         {/* {thumbImage} */}
 
@@ -189,7 +189,7 @@ const Item = (props) => {
           priority="high"
           type="button"
           onPress={viewDetails}
-          className={`${classes.getCoupon} bg-gray-100 dark:bg-gray-700 hover:bg-blue-600 text-gray-600 dark:text-gray-400 hover:text-white font-medium flex jusity-center rounded-lg block w-full text-center py-2 px-0 transition-all duration-300`}
+          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-blue-600 text-gray-800 dark:text-gray-400 hover:text-white rounded-lg font-medium flex jusity-center block w-full text-center py-3 px-0 transition-all duration-300`}
         >
           {t('Get this deal')}
         </Button>
