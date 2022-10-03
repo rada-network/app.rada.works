@@ -15,15 +15,15 @@ const Hero = () => {
               </h1>
               <p className="text-2xl font-normal mt-0 mb-12 space-mono text-gray-900">
                 Build your <strong>Web3</strong> reputation through your{' '}
-                <strong>SoulBound</strong>
-                tokens. Explore and earn special rewards, curated by us.
+                <strong>SoulBound</strong> tokens. Explore and earn special
+                rewards, curated by us.
               </p>
 
               <div className="mt-8">
                 <a
                   href="#"
                   title="View more"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3 inline-flex items-center justify-center transition-all duration-300 w-44"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3.5 inline-flex items-center justify-center transition-all duration-300 w-44 uppercase tracking-wide"
                 >
                   Learn more
                   <svg
