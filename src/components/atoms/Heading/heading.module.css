@@ -8,7 +8,7 @@
 }
 
 .subHeading {
-  @apply mx-auto text-center text-2xl font-medium mb-4;
+  @apply mx-auto text-center text-xl font-medium mb-4;
 }
 
 .subHeadingDark {
