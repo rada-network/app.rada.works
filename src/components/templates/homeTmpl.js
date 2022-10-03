@@ -135,7 +135,7 @@ const HomeTmpl = (props) => {
         <div className="bg-gray-900 py-24">
           <div className="container max-w-screen-xl mx-auto px-4">
             <div className="mb-14 text-center">
-              <h3 className="bg-violet-500 text-white inline-block text-sm rounded-full py-1 px-3 mx-auto mt-0 mb-3">
+              <h3 className="bg-violet-500 text-white inline-block text-sm rounded-full py-1.5 px-4 mx-auto mt-0 mb-3">
                 SoulMint News
               </h3>
               <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0">
