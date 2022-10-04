@@ -1,4 +1,1 @@
-const DropDownMenu = () => {
-  console.log('DropDownMenu');
-};
-export default DropDownMenu;
+export { default } from './dropDownMenus';

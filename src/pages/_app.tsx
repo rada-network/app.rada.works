@@ -1,3 +1,4 @@
+import React from 'react';
 import '../../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
@@ -11,12 +12,12 @@ import Toast from '../components/organisms/Toast';
 import { ThemeProvider } from 'next-themes';
 import { getSession } from 'next-auth/react';
 import BrowserPersistence from '../utils/simplePersistence';
-import React from 'react';
+import { saveSocialData } from 'src/hooks/User/useSocial';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const store = useStore();
 
-  getSession().then((session) => {
+  getSession().then(async (session) => {
     const storage = new BrowserPersistence();
     if (session && session.access_token) {
       storage.setItem(
@@ -24,15 +25,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         session.access_token,
         24 * 60 * 60 * 1000
       );
+      const userProfile = session?.userProfile;
+      await saveSocialData({
+        name: session.user.name,
+        username: userProfile?.twitterHandle
+      });
     } else {
-      console.log('====================================');
-      console.log('session 2', session);
-      console.log('====================================');
       storage.removeItem('access_token');
     }
-    console.log('====================================');
-    console.log('session app:', session);
-    console.log('====================================');
     if (session?.error === 'RefreshAccessTokenError') {
       signOut(); // Force sign in to hopefully resolve error
     }
@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <ThemeProvider attribute="class">
       <ApolloProvider client={apolloClient}>
         <Provider store={store}>
-          <SessionProvider session={session}>
+          <SessionProvider session={session} refetchInterval={20 * 60}>
             <Web3Provider>
               <Component {...pageProps} />
               <Toast />
