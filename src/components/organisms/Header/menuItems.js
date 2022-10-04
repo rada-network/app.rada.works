@@ -5,10 +5,10 @@ const menuItems = new Map()
   // .set('How it works', '/how-it-works')
   .set('NFT Collections', '/nft-collections')
   // .set('Browse campaigns', '/campaigns')
-  .set('My Campaign', {
-    path: '/my-campaign',
-    component: CreateLink
-  })
+  // .set('My Campaign', {
+  //   path: '/my-campaign',
+  //   component: CreateLink
+  // })
   .set('Create Campaign', {
     path: '/create-campaign',
     component: CreateLink
