@@ -47,7 +47,7 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
         >
           <ul className="py-1 text-sm text-gray-700 dark:text-gray-200">
             <li>
-              <Link href="/create-campaign"> {t('Create Campaigns')}</Link>
+              <Link href="/create-campaign"> {t('Create Campaign')}</Link>
             </li>
             <li>
               <Link href="/my-campaign"> {t('My Campaigns')}</Link>
