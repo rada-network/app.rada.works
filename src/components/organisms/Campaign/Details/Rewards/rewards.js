@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { shape, string, number } from 'prop-types';
+import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './rewards.module.css';
 import { useStyle } from '../../../../classify';
@@ -8,12 +8,17 @@ import Quest from './Quest';
 import Questers from './Questers';
 import HowClaim from './HowClaim';
 import Button from '../../../../atoms/Button';
+import { useRewards } from '../../../../../hooks/Campaign/Rewards';
 
 const Rewards = (props) => {
   const { classes: propClasses, campaign } = props;
   const classes = useStyle(defaultClasses, propClasses);
-
   const { t } = useTranslation('campaign_details');
+
+  const { tasks, setTasks, handleClaimReward } = useRewards({
+    campaign,
+    classes
+  });
 
   const rewardOverview = campaign.reward_overview ? (
     <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6">
@@ -26,9 +31,6 @@ const Rewards = (props) => {
     </div>
   ) : null;
 
-  const claimReward = () => {
-    console.log('claimReward()');
-  };
   const btnClaimReward = (
     <div className="py-4 px-4">
       <Button
@@ -36,7 +38,7 @@ const Rewards = (props) => {
         priority="high"
         classes={{ root_highPriority: classes.btnClaimReward }}
         type="button"
-        onPress={() => claimReward()}
+        onPress={() => handleClaimReward()}
       >
         {t('Claim Reward')}
       </Button>
@@ -49,7 +51,7 @@ const Rewards = (props) => {
 
       <HowClaim campaign={campaign} />
 
-      <Quest campaign={campaign} />
+      <Quest tasks={tasks} setTasks={setTasks} />
 
       <Coupon campaign={campaign} />
 

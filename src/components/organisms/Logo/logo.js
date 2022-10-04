@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Image from '../../atoms/Image';
 import Image from 'next/image';
-// import logo from './logo.png';
 
 /**
  * A component that renders a logo in the header.
@@ -22,7 +20,7 @@ const Logo = (props) => {
       height={height}
       // layout="fill"
       src={'/logo-animate.svg'}
-      title={'Rada.Works'}
+      title={'SoulMint'}
       width={width}
     />
   );

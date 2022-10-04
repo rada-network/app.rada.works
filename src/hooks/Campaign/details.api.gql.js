@@ -29,6 +29,8 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
         #          filename_download
       }
       reward_overview
+      twitter_username
+      twitter_tweet
       discount_value
       store_name
       store_logo_url

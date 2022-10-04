@@ -1,4 +1,5 @@
 .root {
+    @apply bg-white shadow-sm rounded-lg mb-6
 }
 
 .bsc {
