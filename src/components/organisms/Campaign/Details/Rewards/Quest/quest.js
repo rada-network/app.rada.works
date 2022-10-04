@@ -71,28 +71,29 @@ const Quest = (props) => {
     </div>
   ) : null;
 
-  const child = tasks ? (
-    <Fragment>
-      <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
-        <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
-          {t('Require Tasks')}
-        </h3>
-        {/*<p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+  const child =
+    twitterLoginTask || twitterFollowTask || reTweetTask || nftOwnershipTask ? (
+      <Fragment>
+        <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
+          <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
+            {t('Require Tasks')}
+          </h3>
+          {/*<p className="text-sm text-gray-500 font-normal mt-0 mb-0">
             Follow the steps below to add yourself to this list.
           </p>*/}
-      </div>
+        </div>
 
-      <div className="p-4">
-        {twitterLoginTask}
+        <div className="p-4">
+          {twitterLoginTask}
 
-        {twitterFollowTask}
+          {twitterFollowTask}
 
-        {reTweetTask}
+          {reTweetTask}
 
-        {nftOwnershipTask}
-      </div>
-    </Fragment>
-  ) : null;
+          {nftOwnershipTask}
+        </div>
+      </Fragment>
+    ) : null;
 
   return <div className={`${classes.root}`}>{child}</div>;
 };
