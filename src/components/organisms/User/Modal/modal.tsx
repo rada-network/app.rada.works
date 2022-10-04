@@ -41,7 +41,7 @@ const Modal = (props: { connect: any }) => {
         <div
           id="crypto-modal"
           tabIndex={-1}
-          className="bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-90 backdrop-blur-sm overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex z-50"
+          className="bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-90 backdrop-blur-sm overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex"
           aria-modal="true"
           onClick={() => setShowModal(false)}
           role="dialog"

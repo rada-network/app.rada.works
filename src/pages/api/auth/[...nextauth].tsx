@@ -143,6 +143,7 @@ export default async function auth(
         if (account && user) {
           token.access_token = user.access_token;
           token.refresh_token = user.refresh_token;
+          token.id = user.id;
         } else {
           const { needRefresh } = getTokenState(token.access_token);
           console.log('needRefresh', needRefresh);
@@ -159,10 +160,14 @@ export default async function auth(
       },
       async session({ session, token }) {
         // Send properties to the client, like an access_token from a provider.
-        session.id = token.sud;
+        session.id = token.id;
         session.access_token = token.access_token;
+        session.userProfile = token.userProfile;
+        session.credentials = token.credentials;
         session.error = token.error;
-
+        console.log('====================================');
+        console.log('session', session);
+        console.log('====================================');
         return session;
       }
     }

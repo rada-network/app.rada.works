@@ -8,12 +8,12 @@ const Hero = () => {
           <div className="flex flex-wrap items-center py-16">
             <div className="basis-full lg:basis-7/12 text-center lg:text-left pr-4">
               <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-relaxed uppercase tracking-tight mt-0 mb-6">
-                <span className="text-purple-600">SoulMint</span>
+                <span className="text-violet-600">SoulMint</span>
                 <span className="block">
                   the reward-focused platform for verifiable credentials
                 </span>
               </h1>
-              <p className="text-2xl font-normal mt-0 mb-12 space-mono text-gray-900">
+              <p className="text-2xl font-normal mt-0 mb-12 text-gray-900">
                 Build your <strong>Web3</strong> reputation through your{' '}
                 <strong>SoulBound</strong> tokens. Explore and earn special
                 rewards, curated by us.
@@ -23,7 +23,7 @@ const Hero = () => {
                 <a
                   href="#"
                   title="View more"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3.5 inline-flex items-center justify-center transition-all duration-300 w-44 uppercase tracking-wide"
+                  className="bg-violet-600 hover:bg-violet-700 text-white rounded-lg py-3.5 inline-flex items-center justify-center transition-all duration-300 w-44 uppercase tracking-wide"
                 >
                   Learn more
                   <svg

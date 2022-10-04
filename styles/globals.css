@@ -53,3 +53,7 @@ ul li,
 ol li {
   @apply py-3 pl-1;
 }
+
+.web3modal-modal-lightbox {
+  z-index: 20;
+}

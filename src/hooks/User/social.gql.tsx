@@ -10,6 +10,15 @@ export const CREATE_SOCIAL_LINK_GQL = gql`
   }
 `;
 
+export const GET_SOCIAL_LINK_GQL = gql`
+  query get_social($user_created: directus_users_filter) {
+    social_link(filter: { user_created: $user_created }) {
+      name
+      username
+    }
+  }
+`;
+
 export const UPDATE_SOCIAL_LINK_GQL = gql`
   mutation update_social_link_item($id: ID!, $data: update_social_link_input!) {
     update_social_link_item(id: $id, data: $data) {
@@ -21,5 +30,6 @@ export const UPDATE_SOCIAL_LINK_GQL = gql`
 
 export default {
   CREATE_SOCIAL_LINK_GQL,
-  UPDATE_SOCIAL_LINK_GQL
+  UPDATE_SOCIAL_LINK_GQL,
+  GET_SOCIAL_LINK_GQL
 };

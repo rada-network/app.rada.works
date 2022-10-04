@@ -3,14 +3,13 @@ import Web3 from 'web3';
 import Web3Modal from 'web3modal';
 import { useDispatch } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
-import Button from '../../../atoms/Button';
-import { useSession, getCsrfToken, signIn, signOut } from 'next-auth/react';
+import { useSession, getCsrfToken, signIn } from 'next-auth/react';
 import { ethers } from 'ethers';
 import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
-// import classes from './ConnectWallet.module.css';
 import providerOptions from './providers';
 import { Modal } from './../Modal';
+import DropDownMenu from '../DropDownMenu';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -70,10 +69,6 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     }
   };
 
-  const disConnect = async () => {
-    await signOut({ callbackUrl: '/' });
-  };
-
   let child = null;
   if (status === 'loading') {
     child = t('Loading...'); //coming soon with Skeleton loading.
@@ -81,12 +76,13 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
     child =
       status === 'authenticated' ? (
         <div>
-          <div>
-            Account: {subString({ str: session?.user?.name, start: 5, end: 3 })}
-          </div>
-          <Button type="button" priority="high" onPress={disConnect}>
-            {t('Sign out')}
-          </Button>
+          <DropDownMenu
+            name={subString({
+              str: session?.user?.name,
+              start: 5,
+              end: 3
+            })}
+          />
         </div>
       ) : (
         <>
