@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { shape, string, bool, func } from 'prop-types';
+import { shape, string, array, func } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
@@ -31,6 +31,7 @@ const Quest = (props) => {
       </Button>
     </div>
   ) : null;
+
   const handleTwitterLogin = () => {
     console.log('twitterLogin()...');
   };
@@ -70,7 +71,7 @@ const Quest = (props) => {
     </div>
   ) : null;
 
-  const child = tasks.length ? (
+  const child = tasks ? (
     <Fragment>
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
         <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
@@ -100,10 +101,7 @@ Quest.propTypes = {
   classes: shape({
     root: string
   }),
-  tasks: shape({
-    name: string,
-    status: bool
-  }),
+  tasks: array,
   setTasks: func
 };
 

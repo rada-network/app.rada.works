@@ -5,7 +5,7 @@ import { ellipsify } from '../../../utils/strUtils';
 export default (props) => {
   const { campaign, classes } = props;
 
-  const requiredTasks = [];
+  const requiredTasks = null;
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks['twitter_login'] = {
       name: 'ck_twitter_login',
@@ -79,6 +79,7 @@ export default (props) => {
     console.log(campaign.reward_overview);
   }, [campaign]);
 
+  console.log(tasks);
   return {
     tasks,
     setTasks,
