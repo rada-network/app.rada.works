@@ -52,7 +52,7 @@ const HomeTmpl = (props) => {
                 <div className="mb-4">
                   <img src="/samples/sample-feature.svg" alt="Sample feature" />
                 </div>
-                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
+                <h3 className="my-0 text-xl lg:text-2xl font-extrabold text-gray-800 mb-4">
                   Rewards, aggregated
                 </h3>
                 <p className="my-0">
@@ -65,7 +65,7 @@ const HomeTmpl = (props) => {
                 <div className="mb-4">
                   <img src="/samples/sample-feature.svg" alt="Sample feature" />
                 </div>
-                <h3 className="my-0 text-xl lg:text-3xl text-gray-800 mb-4">
+                <h3 className="my-0 text-xl lg:text-2xl font-extrabold text-gray-800 mb-4">
                   No-code campaign creator tool
                 </h3>
                 <p className="my-0">
