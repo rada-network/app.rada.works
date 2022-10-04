@@ -9,7 +9,7 @@ import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
 import providerOptions from './providers';
 import { Modal } from './../Modal';
-import DropDownMenu from '../DropDownMenu';
+import DropDownMenu from './../DropdownMenu';
 
 export type ConnectWalletProps = {
   name?: string;

@@ -144,6 +144,7 @@ export default async function auth(
           token.access_token = user.access_token;
           token.refresh_token = user.refresh_token;
           token.id = user.id;
+          token.provider = account.provider;
         } else {
           const { needRefresh } = getTokenState(token.access_token);
           console.log('needRefresh', needRefresh);
@@ -162,6 +163,7 @@ export default async function auth(
         // Send properties to the client, like an access_token from a provider.
         session.id = token.id;
         session.access_token = token.access_token;
+        session.provider = token.provider;
         session.userProfile = token.userProfile;
         session.credentials = token.credentials;
         session.error = token.error;

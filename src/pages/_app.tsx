@@ -25,11 +25,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         session.access_token,
         24 * 60 * 60 * 1000
       );
-      const userProfile = session?.userProfile;
-      await saveSocialData({
-        name: session.user.name,
-        username: userProfile?.twitterHandle
-      });
+      const userProfile: any = session?.userProfile;
+      if (userProfile) {
+        await saveSocialData({
+          name: session.provider,
+          username: userProfile?.twitterHandle
+        });
+      }
     } else {
       storage.removeItem('access_token');
     }
