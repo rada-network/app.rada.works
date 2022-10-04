@@ -42,7 +42,12 @@
 }
 
 .twitterFollowTask {
-   @apply bg-gray-50 text-sm font-medium flex items-center border border-red-500 hover:border-red-500 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300 mb-3
+   @apply bg-gray-50 text-sm font-medium flex items-center border rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300 mb-3
+}
+
+.twitterFollowTaskError {
+    composes: twitterFollowTask;
+    @apply border-red-500 hover:border-red-500;
 }
 
 .twitterRetweetTask {
