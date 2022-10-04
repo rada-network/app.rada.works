@@ -12,29 +12,26 @@ export default (props) => {
 
   const { data: session } = useSession();
 
-  const requiredTasks = [];
+  const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
-    requiredTasks.push({
-      name: 'ck_twitter_login',
+    requiredTasks.ck_twitter_login = {
       status: false,
       msg: null
-    });
+    };
   }
   if (campaign.twitter_username) {
-    requiredTasks.push({
-      name: 'ck_twitter_follow',
+    requiredTasks.ck_twitter_follow = {
       username: campaign.twitter_username,
       status: false,
       msg: null
-    });
+    };
   }
   if (campaign.twitter_tweet) {
-    requiredTasks.push({
-      name: 'ck_twitter_retweet',
+    requiredTasks.ck_twitter_retweet = {
       tweet_url: campaign.twitter_tweet,
       status: false,
       msg: null
-    });
+    };
   }
   if (campaign.nft_collection_ids.length) {
     // Build NFT collection information
@@ -71,37 +68,44 @@ export default (props) => {
             </div>
           ))
         : null;
-    requiredTasks.push({
-      name: 'ck_nft_ownership',
+    requiredTasks.ck_nft_ownership = {
       nftCollectionInfo,
       status: false,
       msg: null
-    });
+    };
   }
-
   const [tasks, setTasks] = useState(requiredTasks);
 
-  const isFinishedRequiredTasks = () => {
-    return !tasks.some((task) => task.status === false);
+  const isFinishedTasks = () => {
+    let rs = true;
+    const keys = Object.keys(tasks);
+    if (keys.length) {
+      for (let i = 0; i < keys.length; i++) {
+        if (tasks[keys[i]] && tasks[keys[i]].status === false) {
+          rs = false;
+          break;
+        }
+      }
+    }
+
+    return rs;
   };
 
   const handleClaimReward = useCallback(() => {
     console.log('claimReward()');
 
-    //check connect wallet
+    //Check connect wallet
     if (!session || (session && session.user.email.includes('@'))) {
       return toast.warning(
-        t('You must collect your wallet before claiming rewards!')
+        t('You must connect your wallet before claiming rewards!')
       );
     }
 
     //Check required tasks
-    if (tasks.length) {
-      if (!isFinishedRequiredTasks()) {
-        return toast.warning(t('You must finish all required tasks!'));
-      } else {
-        // If all required tasks done
-      }
+    if (!isFinishedTasks()) {
+      return toast.warning(t('You must finish all required tasks!'));
+    } else {
+      // If all required tasks done
     }
   }, [campaign]);
 

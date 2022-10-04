@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { shape, string, array, func } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './quest.module.css';
@@ -18,15 +18,13 @@ const Quest = (props) => {
 
   const { t } = useTranslation('campaign_details');
 
-  const getTask = (taskName) => {
-    const rs = tasks.filter((task) => task.name === taskName);
-    return rs ? rs[0] : null;
-  };
+  const [twitterVerifiedName, setTwitterVerifiedName] = useState(null);
+  const [twitterFollowState, setTwitterFollowState] = useState(null);
+  const [twitterReTweetState, setTwitterReTweetState] = useState(null);
 
-  const twitterLoginTask = getTask('ck_twitter_login');
-  const twitterLoginTaskHtml = twitterLoginTask ? (
-    <div className={classes.twitterLoginTask}>
-      {TwitterIcon} {t('Twitter')}
+  let twitterLoginTask = null;
+  if (tasks.ck_twitter_login) {
+    const twitterLoginStatus = !tasks.ck_twitter_login.status ? (
       <Button
         id={`btn-twitter-login`}
         priority="high"
@@ -36,42 +34,134 @@ const Quest = (props) => {
       >
         {TwitterAuthIcon} {t('Login')}
       </Button>
-    </div>
-  ) : null;
-
+    ) : (
+      <span className={`ml-auto text-blue-600`}>{twitterVerifiedName}</span>
+    );
+    twitterLoginTask = (
+      <div className={classes.twitterLoginTask}>
+        {TwitterIcon} {t('Twitter')} {twitterLoginStatus}
+      </div>
+    );
+  }
   const handleTwitterLogin = () => {
-    console.log('twitterLogin()...');
+    console.log('twitterLogin()');
+    // do twitter login here...
+
+    // assume that
+    let result = {
+      status: true,
+      screen_name: '@Qvv85'
+    };
+
+    // update state
+    tasks.ck_twitter_login.status = result.status;
+    tasks.ck_twitter_login.screen_name = result.screen_name;
+    //trigger to re-render
+    setTwitterVerifiedName(tasks.ck_twitter_login.screen_name);
   };
 
-  const twitterFollowTask = getTask('ck_twitter_follow');
-  const twitterFollowTaskHtml = twitterFollowTask ? (
-    <div className={classes.twitterFollowTask}>
-      {t('Follow')}
-      <strong className="text-blue-600 font-semibold">
-        &nbsp; @{twitterFollowTask.username}
-      </strong>
-      &nbsp;
-      {t('on Twitter')}
-      {/*<span className={`ml-auto`}> {TaskFailIcon} </span>*/}
-      {/*<small className="-mt-2 mb-3 block text-red-600 text-xs">
-            Please try again...
-          </small>*/}
-    </div>
-  ) : null;
+  let twitterFollowTask = null;
+  if (tasks.ck_twitter_follow) {
+    const verifyTwitterFollowBtn = !twitterFollowState ? (
+      <Button
+        id={`btn-verify-twitter-follow`}
+        priority="high"
+        classes={{ root_highPriority: classes.btnVerifyTwitter }}
+        type="button"
+        onPress={() => handleCheckTwitterFollow()}
+      >
+        {t('Verify')}
+      </Button>
+    ) : null;
+    const twitterFollowStatus = (
+      <span className={`ml-auto`}>
+        {twitterFollowState === true
+          ? TaskSuccessIcon
+          : twitterFollowState === false
+          ? TaskFailIcon
+          : ''}
+      </span>
+    );
+    twitterFollowTask = (
+      <div className={classes.twitterFollowTask}>
+        {t('Follow')}
+        <strong className="text-blue-600 font-semibold">
+          &nbsp; @{tasks.ck_twitter_follow.username}
+        </strong>
+        &nbsp;
+        {t('on Twitter')}
+        {twitterFollowStatus}
+        {verifyTwitterFollowBtn}
+      </div>
+    );
+  }
+  const handleCheckTwitterFollow = () => {
+    console.log('handleCheckTwitterFollow()');
+    // checking twitter follow here...
 
-  const reTweetTask = getTask('ck_twitter_retweet');
-  const reTweetTaskHtml = reTweetTask ? (
-    <div className={classes.twitterRetweetTask}>
-      {t('Must')}&nbsp;<strong>{t('Retweet')}</strong>&nbsp;
-      <TextLink target="_blank" href={`${reTweetTask.tweet_url}`}>
-        {t('this tweet')}
-      </TextLink>
-      {/*<span className={`ml-auto`}>{TaskSuccessIcon}</span>*/}
-    </div>
-  ) : null;
+    // assume that
+    let result = {
+      status: true
+    };
 
-  const nftOwnershipTask = getTask('ck_nft_ownership');
-  const nftOwnershipTaskHtml = nftOwnershipTask ? (
+    // update state
+    tasks.ck_twitter_follow.status = result.status;
+    //trigger to re-render
+    setTwitterFollowState(tasks.ck_twitter_follow.status);
+  };
+
+  let twitterReTweetTask = null;
+  if (tasks.ck_twitter_retweet) {
+    const verifyTwitterReTweetBtn = !twitterReTweetState ? (
+      <Button
+        id={`btn-verify-twitter-re-tweet`}
+        priority="high"
+        classes={{ root_highPriority: classes.btnVerifyTwitter }}
+        type="button"
+        onPress={() => handleCheckTwitterReTweet()}
+      >
+        {t('Verify')}
+      </Button>
+    ) : null;
+    const twitterReTweetStatus = (
+      <span className={`ml-auto`}>
+        {twitterReTweetState === true
+          ? TaskSuccessIcon
+          : twitterReTweetState === false
+          ? TaskFailIcon
+          : ''}
+      </span>
+    );
+    twitterReTweetTask = (
+      <div className={classes.twitterRetweetTask}>
+        {t('Must')}&nbsp;<strong>{t('Retweet')}</strong>&nbsp;
+        <TextLink
+          target="_blank"
+          href={`${tasks.ck_twitter_retweet.tweet_url}`}
+        >
+          {t('this tweet')}
+        </TextLink>
+        {twitterReTweetStatus}
+        {verifyTwitterReTweetBtn}
+      </div>
+    );
+  }
+  const handleCheckTwitterReTweet = () => {
+    console.log('handleCheckTwitterReTweet()');
+    // checking twitter re-tweet here...
+
+    // assume that
+    let result = {
+      status: false
+    };
+
+    // update state
+    tasks.ck_twitter_retweet.status = result.status;
+    //trigger to re-render
+    setTwitterReTweetState(tasks.ck_twitter_retweet.status);
+  };
+
+  const nftOwnershipTask = tasks.ck_nft_ownership ? (
     <div className={classes.nftOwnershipTask}>
       <h4 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
         {t('NFT Ownership')}
@@ -81,11 +171,11 @@ const Quest = (props) => {
           'You must be holder of one NFT in the one of the following NFT collections'
         )}
       </p>
-      <div className="p-4"> {nftOwnershipTask.nftCollectionInfo} </div>
+      <div className="p-4"> {tasks.ck_nft_ownership.nftCollectionInfo} </div>
     </div>
   ) : null;
 
-  const child = tasks.length ? (
+  const child = Object.keys(tasks).length ? (
     <Fragment>
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
         <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
@@ -97,10 +187,10 @@ const Quest = (props) => {
       </div>
 
       <div className="p-4">
-        {twitterLoginTaskHtml}
-        {twitterFollowTaskHtml}
-        {reTweetTaskHtml}
-        {nftOwnershipTaskHtml}
+        {twitterLoginTask}
+        {twitterFollowTask}
+        {twitterReTweetTask}
+        {nftOwnershipTask}
       </div>
     </Fragment>
   ) : null;

@@ -57,3 +57,7 @@
 .nftOwnershipTask {
 
 }
+
+.btnVerifyTwitter {
+    @apply ml-auto;
+}

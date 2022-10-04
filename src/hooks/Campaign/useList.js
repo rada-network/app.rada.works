@@ -41,7 +41,10 @@ export default (props) => {
         nft_collection_id: { id: { _eq: nftCollectionId } }
       };
     }
+  } else if (position === 'home-page') {
+    defaultFilter.is_featured = { _eq: true };
   }
+
   // vars for filter toolbar
   const [filter, setFilter] = useState(defaultFilter);
   const [limit, setLimit] = useState(defaultLimit);

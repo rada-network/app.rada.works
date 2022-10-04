@@ -4,7 +4,7 @@ import TextLink from '../../atoms/TextLink';
 import { useTranslation } from 'next-i18next';
 import classes from './footer.module.css';
 import useThemes from 'src/hooks/useThemes';
-import { DEFAULT_LINKS, socialData, menuItemsData } from './sampleData';
+import { DEFAULT_LINKS, socialData, menuItemsData } from './menuItems';
 
 const Footer = (_props) => {
   const { isDark, rootClassName } = useThemes();
@@ -62,11 +62,8 @@ const Footer = (_props) => {
           <div className="block text-sm text-gray-500 w-full md:w-auto text-center md:text-left dark:text-gray-400">
             <span>
               {year}{' '}
-              <a
-                href="https://rada.works/"
-                className="hover:underline hover:text-blue-600"
-              >
-                Rada.Works
+              <a href="/" className="hover:underline hover:text-blue-600">
+                SoulMint
               </a>
             </span>
           </div>
