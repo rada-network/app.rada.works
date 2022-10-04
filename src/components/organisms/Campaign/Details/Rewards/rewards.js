@@ -7,6 +7,7 @@ import Coupon from './Coupon';
 import Quest from './Quest';
 import Questers from './Questers';
 import HowClaim from './HowClaim';
+import Button from '../../../../atoms/Button';
 
 const Rewards = (props) => {
   const { classes: propClasses, campaign } = props;
@@ -25,6 +26,23 @@ const Rewards = (props) => {
     </div>
   ) : null;
 
+  const claimReward = () => {
+    console.log('claimReward()');
+  };
+  const btnClaimReward = (
+    <div className="py-4 px-4">
+      <Button
+        id={`btn-claim-reward`}
+        priority="high"
+        classes={{ root_highPriority: classes.btnClaimReward }}
+        type="button"
+        onPress={() => claimReward()}
+      >
+        {t('Claim Reward')}
+      </Button>
+    </div>
+  );
+
   return (
     <Fragment>
       {rewardOverview}
@@ -34,6 +52,8 @@ const Rewards = (props) => {
       <Quest campaign={campaign} />
 
       <Coupon campaign={campaign} />
+
+      {btnClaimReward}
 
       <Questers campaign={campaign} />
     </Fragment>
@@ -45,7 +65,7 @@ Rewards.propTypes = {
     root: string
   }),
   campaign: shape({
-    id: number
+    id: string
   })
 };
 

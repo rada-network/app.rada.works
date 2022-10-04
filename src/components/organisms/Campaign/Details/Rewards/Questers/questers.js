@@ -1,5 +1,5 @@
 import React from 'react';
-import { shape, string, number } from 'prop-types';
+import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './questers.module.css';
 import { useStyle } from '../../../../../classify';
@@ -158,7 +158,7 @@ Questers.propTypes = {
     root: string
   }),
   campaign: shape({
-    id: number
+    id: string
   })
 };
 

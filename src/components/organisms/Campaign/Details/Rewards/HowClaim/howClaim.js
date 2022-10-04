@@ -1,5 +1,5 @@
 import React from 'react';
-import { shape, string, number } from 'prop-types';
+import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './howClaim.module.css';
 import { useStyle } from '../../../../../classify';
@@ -14,15 +14,15 @@ const HowClaim = (props) => {
     <div className="bg-white shadow-sm rounded-lg mb-6">
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
         <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
-          How to claim?
+          {t('How to claim?')}
         </h3>
         <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-          Follow the steps below to claim your rewards.
+          {t('Follow the steps below to claim your rewards.')}
         </p>
       </div>
 
       <div className="p-4">
-        <div className={`${classes.howtoSteps} flex flex-col mb-8 relative`}>
+        <div className={`${classes.howtoSteps}`}>
           <div className="flex items-center mb-8 z-10">
             <strong className="bg-blue-100 border border-4 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full">
               1
@@ -43,7 +43,7 @@ const HowClaim = (props) => {
             </strong>
             <div className="flex-1 pl-4">
               {t(
-                "Click on the 'Claim' button to receive your reward information."
+                "Click on the 'Claim Reward' button to receive your reward information."
               )}
             </div>
           </div>
@@ -58,7 +58,7 @@ HowClaim.propTypes = {
     root: string
   }),
   campaign: shape({
-    id: number
+    id: string
   })
 };
 

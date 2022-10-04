@@ -1,6 +1,6 @@
 .root {
 }
 
-.howtoSteps::after {
-    @apply bg-blue-100 content-[''] block w-0.5 absolute top-4 bottom-10 left-5 ml-0.5;
+.btnClaimReward {
+    @apply bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300 w-full;
 }

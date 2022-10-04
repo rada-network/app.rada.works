@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { shape, string, number } from 'prop-types';
+import { shape, string } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import defaultClasses from './coupon.module.css';
 import { useStyle } from '../../../../../classify';
@@ -20,10 +20,6 @@ const Coupon = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('campaign_details');
-
-  const claimReward = () => {
-    console.log('claimReward()');
-  };
 
   /*
   // Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
@@ -154,23 +150,7 @@ const Coupon = (props) => {
     </Fragment>
   ) : null;
 
-  return (
-    <div className="bg-white shadow-sm rounded-xl">
-      {couponReward}
-
-      <div className="py-4 px-4">
-        <Button
-          id={`btn-claim-reward`}
-          className="bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300 w-full"
-          priority="high"
-          type="button"
-          onPress={() => claimReward()}
-        >
-          {t('Claim Reward')}
-        </Button>
-      </div>
-    </div>
-  );
+  return <div className="bg-white shadow-sm rounded-xl">{couponReward}</div>;
 };
 
 Coupon.propTypes = {
@@ -178,7 +158,7 @@ Coupon.propTypes = {
     root: string
   }),
   campaign: shape({
-    id: number
+    id: string
   })
 };
 
