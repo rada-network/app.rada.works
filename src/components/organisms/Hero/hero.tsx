@@ -3,7 +3,7 @@ import classes from './hero.module.css';
 const Hero = () => {
   return (
     <Fragment>
-      <div className={`${classes.root} bg-[#a5f3fc] relative`}>
+      <div className={`${classes.root} bg-[#5fe0b0] relative`}>
         <div className="container max-w-screen-xl mx-auto px-4 lg:px-4 z-10 relative">
           <div className="flex flex-wrap items-center py-16">
             <div className="basis-full lg:basis-7/12 text-center lg:text-left pr-4">
