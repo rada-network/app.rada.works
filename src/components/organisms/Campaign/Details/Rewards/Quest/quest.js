@@ -11,12 +11,15 @@ import {
   TaskFailIcon,
   TaskSuccessIcon
 } from '../../../../Svg/SvgIcons';
+import { useSession } from 'next-auth/react';
 
 const Quest = (props) => {
   const { classes: propClasses, tasks, setTasks, onClaimReward } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('campaign_details');
+
+  const { data: session } = useSession();
 
   const [twitterVerifiedName, setTwitterVerifiedName] = useState(null);
   const [twitterFollowState, setTwitterFollowState] = useState(null);
@@ -137,6 +140,7 @@ const Quest = (props) => {
         {t('Must')}&nbsp;<strong>{t('Retweet')}</strong>&nbsp;
         <TextLink
           target="_blank"
+          title={t('Open this tweet.')}
           href={`${tasks.ck_twitter_retweet.tweet_url}`}
         >
           {t('this tweet')}
@@ -175,6 +179,8 @@ const Quest = (props) => {
     </div>
   ) : null;
 
+  const isWalletConnected =
+    !session || (session && session.user.email.includes('@')) ? false : true;
   const isFinishedTasks =
     !twitterVerifiedName || !twitterFollowState || !twitterReTweetState
       ? false
@@ -185,9 +191,10 @@ const Quest = (props) => {
         id={`btn-claim-reward`}
         priority="high"
         classes={{
-          root_highPriority: isFinishedTasks
-            ? classes.btnClaimReward
-            : classes.btnClaimRewardDisabled
+          root_highPriority:
+            isWalletConnected || isFinishedTasks
+              ? classes.btnClaimReward
+              : classes.btnClaimRewardDisabled
         }}
         type="button"
         onPress={() => onClaimReward()}

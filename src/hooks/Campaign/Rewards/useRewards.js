@@ -1,16 +1,13 @@
 import { useCallback, useState } from 'react';
 import TextLink from '../../../components/atoms/TextLink';
 import { ellipsify } from '../../../utils/strUtils';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
-import { useSession } from 'next-auth/react';
 
 export default (props) => {
   const { campaign, classes } = props;
 
   const { t } = useTranslation('campaign_details');
-
-  const { data: session } = useSession();
 
   const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
@@ -95,18 +92,18 @@ export default (props) => {
     console.log('claimReward()');
 
     //Check connect wallet
-    if (!session || (session && session.user.email.includes('@'))) {
+    /*if (!session || (session && session.user.email.includes('@'))) {
       return toast.warning(
         t('You must connect your wallet before claiming rewards!')
       );
-    }
+    }*/
 
     //Check required tasks
-    if (!isFinishedTasks()) {
+    /*if (!isFinishedTasks()) {
       return toast.warning(t('You must finish all required tasks!'));
     } else {
       // If all required tasks done
-    }
+    }*/
   }, [campaign]);
 
   return {
