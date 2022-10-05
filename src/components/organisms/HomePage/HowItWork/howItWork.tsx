@@ -17,7 +17,7 @@ const HowItWork = () => {
           <div
             className={`${classes.steps} flex flex-wrap items-start justify-center`}
           >
-            <div className="flex flex-col items-center text-center px-4 basis-full md:basis-1/2 lg:basis-1/4">
+            <div className="flex flex-col items-center text-center rounded-2xl px-4 basis-full md:basis-1/2 lg:basis-1/4">
               <span className="bg-white text-violet-600 flex items-center justify-center h-16 w-16 rounded-full ring-4 ring-violet-700 text-2xl font-bold mb-8">
                 01
               </span>
