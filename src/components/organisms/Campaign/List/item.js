@@ -146,7 +146,7 @@ const Item = (props) => {
       </div>
 
       <div className="flex items-start mb-4">
-        <h3 className="flex-1 text-xl text-gray-800 space-mono dark:text-white font-bold leading-6 my-0">
+        <h3 className="flex-1 text-xl text-gray-800 dark:text-white font-bold leading-7 my-0">
           {data.title}
         </h3>
 
@@ -189,7 +189,7 @@ const Item = (props) => {
           priority="high"
           type="button"
           onPress={viewDetails}
-          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-blue-600 text-gray-800 dark:text-gray-400 hover:text-white rounded-lg font-semibold flex jusity-center block w-full text-center py-3 px-0 transition-all duration-300 uppercase tracking-wide`}
+          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-violet-600 text-gray-700 dark:text-gray-400 hover:text-white rounded-lg font-medium flex jusity-center block w-full text-center text-lg py-3 px-0 transition-all duration-300`}
         >
           {t('Get this deal')}
         </Button>
