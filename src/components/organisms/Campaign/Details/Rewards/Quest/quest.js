@@ -14,7 +14,13 @@ import {
 import { useSession } from 'next-auth/react';
 
 const Quest = (props) => {
-  const { classes: propClasses, tasks, setTasks, onClaimReward } = props;
+  const {
+    classes: propClasses,
+    tasks,
+    setTasks,
+    onClaimReward,
+    verifyNftOwnership
+  } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('campaign_details');
@@ -221,17 +227,12 @@ const Quest = (props) => {
       </div>
     </div>
   ) : null;
-  const handleCheckNftOwnership = () => {
+  const handleCheckNftOwnership = async () => {
     console.log('handleCheckNftOwnership()');
     // verify NFT ownership here...
-
-    // assume that
-    let result = {
-      status: false
-    };
-
+    let result = await verifyNftOwnership();
     // update state
-    tasks.ck_nft_ownership.status = result.status;
+    tasks.ck_nft_ownership.status = result;
     //trigger to re-render
     setNftOwnershipState(tasks.ck_nft_ownership.status);
   };
@@ -252,12 +253,14 @@ const Quest = (props) => {
         priority="high"
         classes={{
           root_highPriority:
-            isWalletConnected || isFinishedTasks
+            isWalletConnected && isFinishedTasks
               ? classes.btnClaimReward
               : classes.btnClaimRewardDisabled
         }}
         type="button"
-        onPress={() => onClaimReward()}
+        onPress={
+          isWalletConnected && isFinishedTasks ? () => onClaimReward() : null
+        }
       >
         {t('Claim Reward')}
       </Button>
@@ -294,6 +297,7 @@ Quest.propTypes = {
   }),
   tasks: array,
   setTasks: func,
+  verifyNftOwnership: func,
   onClaimReward: func
 };
 

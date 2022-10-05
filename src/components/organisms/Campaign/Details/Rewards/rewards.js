@@ -14,10 +14,11 @@ const Rewards = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
   // const { t } = useTranslation('campaign_details');
 
-  const { tasks, setTasks, handleClaimReward } = useRewards({
-    campaign,
-    classes
-  });
+  const { tasks, setTasks, handleClaimReward, handleVerifyNftOwnership } =
+    useRewards({
+      campaign,
+      classes
+    });
 
   const rewardOverview = campaign.reward_overview ? (
     <div className="bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6">
@@ -38,6 +39,7 @@ const Rewards = (props) => {
         tasks={tasks}
         setTasks={setTasks}
         onClaimReward={handleClaimReward}
+        verifyNftOwnership={handleVerifyNftOwnership}
       />
       <Coupon campaign={campaign} />
       <Questers campaign={campaign} />

@@ -1,6 +1,9 @@
 import { useCallback, useState } from 'react';
 import TextLink from '../../../components/atoms/TextLink';
 import { ellipsify } from '../../../utils/strUtils';
+import { EvmChain } from '@moralisweb3/evm-utils';
+import Moralis from 'moralis';
+import { useSession } from 'next-auth/react';
 // import { toast } from 'react-toastify';
 // import { useTranslation } from 'next-i18next';
 
@@ -8,6 +11,8 @@ export default (props) => {
   const { campaign, classes } = props;
 
   // const { t } = useTranslation('campaign_details');
+
+  const { data: session } = useSession();
 
   const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
@@ -93,6 +98,65 @@ export default (props) => {
     return rs;
   };*/
 
+  // Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
+  const verifyNFTOwnership = async (chainName, tokenAddress, address) => {
+    if (!address.includes('0x')) {
+      return false;
+    }
+
+    let chain = null;
+    if (chainName === 'bsc') {
+      chain = EvmChain.BSC;
+    }
+    if (chainName === 'bsc_testnet') {
+      chain = EvmChain.BSC_TESTNET;
+    } else if (chainName === 'ethereum') {
+      chain = EvmChain.ETHEREUM;
+    } else if (chainName === 'polygon') {
+      chain = EvmChain.POLYGON;
+    }
+    await Moralis.start({
+      apiKey: process.env.MORALIS_API_KEY
+      // ...and any other configuration
+    });
+    const response = await Moralis.EvmApi.account.getNFTsForContract({
+      address,
+      tokenAddress,
+      chain
+    });
+
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('verifyNFTOwnership:', response.result);
+    }
+
+    return response.result.length ? true : false;
+  };
+
+  const handleVerifyNftOwnership = useCallback(async () => {
+    const isCampaignOwner =
+      session && session.id === campaign.user_created.id ? true : false;
+    let isNFTOwnership = isCampaignOwner ? true : false;
+    const nftCollections = campaign.nft_collection_ids;
+    const accountAdd = session && session.user ? session.user.email : null;
+    if (accountAdd && accountAdd.includes('0x') && nftCollections.length) {
+      for (let i = 0; i < nftCollections.length; i++) {
+        const nftCollection = nftCollections[i].nft_collection_id;
+        const chainName = nftCollection.chain_name;
+        const contractAdd = nftCollection.contract_address;
+        if (contractAdd && contractAdd.toLowerCase() !== 'n/a') {
+          isNFTOwnership = await verifyNFTOwnership(
+            chainName,
+            contractAdd,
+            accountAdd
+          );
+          if (isNFTOwnership) break;
+        }
+      }
+    }
+
+    return isNFTOwnership;
+  }, [campaign]);
+
   const handleClaimReward = useCallback(() => {
     console.log('claimReward()');
 
@@ -114,6 +178,7 @@ export default (props) => {
   return {
     tasks,
     setTasks,
-    handleClaimReward
+    handleClaimReward,
+    handleVerifyNftOwnership
   };
 };

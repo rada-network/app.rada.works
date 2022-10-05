@@ -104,7 +104,7 @@ const Coupon = (props) => {
     }
   };*/
 
-  let viewCouponCodesArea = '[coming soon]View coupons area...';
+  let viewCouponCodesArea = '[coming soon]View coupon codes area...';
   /*if (status === 'loading') {
     viewCouponCodesArea = t('Loading...');
   } else if (status === 'authenticated') {
