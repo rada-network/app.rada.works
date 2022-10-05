@@ -88,10 +88,16 @@ const Quest = (props) => {
     twitterFollowTask = (
       <div className={classes.twitterFollowTask}>
         {t('Follow')}
-        <strong className="text-blue-600 font-semibold">
-          &nbsp; @{tasks.ck_twitter_follow.username}
-        </strong>
-        &nbsp;
+        <TextLink
+          target="_blank"
+          title={t('Go to this Twitter channel.')}
+          href={`https://twitter.com/${tasks.ck_twitter_follow.username}`}
+        >
+          <strong className="text-blue-600 font-semibold">
+            &nbsp; @{tasks.ck_twitter_follow.username}
+          </strong>
+          &nbsp;
+        </TextLink>
         {t('on Twitter')}
         {twitterFollowStatus}
         {verifyTwitterFollowBtn}
