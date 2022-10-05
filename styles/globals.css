@@ -1,11 +1,12 @@
 /*@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css');*/
-@import url('//fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;200;300;400;500;600;700;800&display=swap');
+/* @import url('//fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;200;300;400;500;600;700;800&display=swap'); */
+@import url('http://fonts.cdnfonts.com/css/pt-root-ui');
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 @layer base {
   html {
@@ -23,11 +24,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Big Shoulders Display', cursive;
-}
-
-.space-mono {
-  font-family: 'Space Mono', monospace;
+  font-family: 'PT Root UI', sans-serif;
 }
 
 h1 {
@@ -54,6 +51,8 @@ ol li {
   @apply py-3 pl-1;
 }
 
+
+/* Improve style for Web3 modal */
 .web3modal-modal-lightbox {
   z-index: 20;
 }
