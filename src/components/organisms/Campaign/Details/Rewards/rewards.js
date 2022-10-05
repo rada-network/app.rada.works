@@ -31,31 +31,19 @@ const Rewards = (props) => {
     </div>
   ) : null;
 
-  const btnClaimReward = (
-    <div className="py-4 px-4">
-      <Button
-        id={`btn-claim-reward`}
-        priority="high"
-        classes={{ root_highPriority: classes.btnClaimReward }}
-        type="button"
-        onPress={() => handleClaimReward()}
-      >
-        {t('Claim Reward')}
-      </Button>
-    </div>
-  );
-
   return (
     <Fragment>
       {rewardOverview}
 
       <HowClaim campaign={campaign} />
 
-      <Quest tasks={tasks} setTasks={setTasks} />
+      <Quest
+        tasks={tasks}
+        setTasks={setTasks}
+        onClaimReward={handleClaimReward}
+      />
 
       <Coupon campaign={campaign} />
-
-      {btnClaimReward}
 
       <Questers campaign={campaign} />
     </Fragment>

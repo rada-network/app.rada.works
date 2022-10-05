@@ -13,7 +13,7 @@ import {
 } from '../../../../Svg/SvgIcons';
 
 const Quest = (props) => {
-  const { classes: propClasses, tasks, setTasks } = props;
+  const { classes: propClasses, tasks, setTasks, onClaimReward } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('campaign_details');
@@ -175,6 +175,28 @@ const Quest = (props) => {
     </div>
   ) : null;
 
+  const isFinishedTasks =
+    !twitterVerifiedName || !twitterFollowState || !twitterReTweetState
+      ? false
+      : true;
+  const btnClaimReward = (
+    <div className={`${classes.btnClaimRewardWrap}`}>
+      <Button
+        id={`btn-claim-reward`}
+        priority="high"
+        classes={{
+          root_highPriority: isFinishedTasks
+            ? classes.btnClaimReward
+            : classes.btnClaimRewardDisabled
+        }}
+        type="button"
+        onPress={() => onClaimReward()}
+      >
+        {t('Claim Reward')}
+      </Button>
+    </div>
+  );
+
   const child = Object.keys(tasks).length ? (
     <Fragment>
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
@@ -191,6 +213,7 @@ const Quest = (props) => {
         {twitterFollowTask}
         {twitterReTweetTask}
         {nftOwnershipTask}
+        {btnClaimReward}
       </div>
     </Fragment>
   ) : null;
@@ -203,7 +226,8 @@ Quest.propTypes = {
     root: string
   }),
   tasks: array,
-  setTasks: func
+  setTasks: func,
+  onClaimReward: func
 };
 
 export default Quest;

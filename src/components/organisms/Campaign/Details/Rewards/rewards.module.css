@@ -1,6 +1,3 @@
 .root {
 }
 
-.btnClaimReward {
-    @apply bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300 w-full;
-}
