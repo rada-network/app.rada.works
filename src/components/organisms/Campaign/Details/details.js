@@ -138,17 +138,12 @@ const Details = (props) => {
             <div className={`${classes.pageContent}`}>
               <div className={`${classes.pageContentInner}`}>
                 <div className={`${classes.coverImage}`}>{coverImage}</div>
-
                 <h1 className={`${classes.pageTitle}`}> {campaign.title} </h1>
-
                 {metaInfo}
-
                 {shortDesc}
-
                 {description}
               </div>
             </div>
-
             <div className={`${classes.pageSidebar}`}>
               <Rewards campaign={campaign} />
             </div>
@@ -156,7 +151,7 @@ const Details = (props) => {
         </div>
       );
     } else {
-      child = t('Not Found.');
+      child = <div className={classes.notFound}>{t('Not Found.')}</div>;
     }
   }
 

@@ -2,22 +2,24 @@ import { useCallback, useState } from 'react';
 import TextLink from '../../../components/atoms/TextLink';
 import { ellipsify } from '../../../utils/strUtils';
 // import { toast } from 'react-toastify';
-import { useTranslation } from 'next-i18next';
+// import { useTranslation } from 'next-i18next';
 
 export default (props) => {
   const { campaign, classes } = props;
 
-  const { t } = useTranslation('campaign_details');
+  // const { t } = useTranslation('campaign_details');
 
   const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
+      id: 1,
       status: false,
       msg: null
     };
   }
   if (campaign.twitter_username) {
     requiredTasks.ck_twitter_follow = {
+      id: 2,
       username: campaign.twitter_username,
       status: false,
       msg: null
@@ -25,6 +27,7 @@ export default (props) => {
   }
   if (campaign.twitter_tweet) {
     requiredTasks.ck_twitter_retweet = {
+      id: 3,
       tweet_url: campaign.twitter_tweet,
       status: false,
       msg: null
@@ -66,6 +69,7 @@ export default (props) => {
           ))
         : null;
     requiredTasks.ck_nft_ownership = {
+      id: 4,
       nftCollectionInfo,
       status: false,
       msg: null
@@ -73,7 +77,7 @@ export default (props) => {
   }
   const [tasks, setTasks] = useState(requiredTasks);
 
-  const isFinishedTasks = () => {
+  /*const isFinishedTasks = () => {
     let rs = true;
     const keys = Object.keys(tasks);
     if (keys.length) {
@@ -86,7 +90,7 @@ export default (props) => {
     }
 
     return rs;
-  };
+  };*/
 
   const handleClaimReward = useCallback(() => {
     console.log('claimReward()');

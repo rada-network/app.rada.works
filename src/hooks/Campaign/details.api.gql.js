@@ -3,7 +3,7 @@ import { initializeApollo } from '../../libs/apolloClient';
 
 export const LOAD_CAMPAIGN_BY_SLUG = gql`
   query LoadCampainBySlug($slug: string_filter_operators!) {
-    campaign(filter: { slug: $slug }) {
+    campaign(filter: { slug: $slug, status: { _eq: "published" } }) {
       id
       slug
       title

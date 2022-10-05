@@ -55,6 +55,11 @@
   text-align: center;
 }
 
+.notFound {
+  padding: 10px;
+  text-align: center;
+}
+
 .dateStart {
   @apply border-r border-gray-200 pr-4;
 }

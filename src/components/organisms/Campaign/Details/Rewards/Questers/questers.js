@@ -16,9 +16,9 @@ const Questers = (props) => {
         <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
           Questers (8077)
         </h3>
-        <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+        {/*<p className="text-sm text-gray-500 font-normal mt-0 mb-0">
           Follow the steps below to claim your tocken.
-        </p>
+        </p>*/}
       </div>
 
       <div className="flex flex-wrap items-center justify-between py-6 px-4 gap-3">
