@@ -21,9 +21,18 @@ const Quest = (props) => {
 
   const { data: session } = useSession();
 
-  const [twitterVerifiedName, setTwitterVerifiedName] = useState(null);
-  const [twitterFollowState, setTwitterFollowState] = useState(null);
-  const [twitterReTweetState, setTwitterReTweetState] = useState(null);
+  const [twitterVerifiedName, setTwitterVerifiedName] = useState(
+    tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
+  );
+  const [twitterFollowState, setTwitterFollowState] = useState(
+    tasks.ck_twitter_follow ? tasks.ck_twitter_login.status : true
+  );
+  const [twitterReTweetState, setTwitterReTweetState] = useState(
+    tasks.ck_twitter_retweet ? tasks.ck_twitter_retweet.status : true
+  );
+  const [nftOwnershipState, setNftOwnershipState] = useState(
+    tasks.ck_nft_ownership ? tasks.ck_nft_ownership.status : true
+  );
 
   let twitterLoginTask = null;
   if (tasks.ck_twitter_login) {
@@ -174,6 +183,26 @@ const Quest = (props) => {
     setTwitterReTweetState(tasks.ck_twitter_retweet.status);
   };
 
+  const verifyNftOwnershipBtn = !nftOwnershipState ? (
+    <Button
+      id={`btn-verify-nft-ownership`}
+      priority="high"
+      classes={{ root_highPriority: classes.btnVerifyTwitter }}
+      type="button"
+      onPress={() => handleCheckNftOwnership()}
+    >
+      {t('Verify')}
+    </Button>
+  ) : null;
+  const nftOwnershipStatus = (
+    <span className={`ml-auto`}>
+      {nftOwnershipState === true
+        ? TaskSuccessIcon
+        : nftOwnershipState === false
+        ? TaskFailIcon
+        : ''}
+    </span>
+  );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
     <div className={classes.nftOwnershipTask}>
       <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span>
@@ -185,14 +214,35 @@ const Quest = (props) => {
           'You must be holder of one NFT in the one of the following NFT collections'
         )}
       </p>
-      <div className="p-4"> {tasks.ck_nft_ownership.nftCollectionInfo} </div>
+      <div className="p-4">
+        {tasks.ck_nft_ownership.nftCollectionInfo}
+        {nftOwnershipStatus}
+        {verifyNftOwnershipBtn}
+      </div>
     </div>
   ) : null;
+  const handleCheckNftOwnership = () => {
+    console.log('handleCheckNftOwnership()');
+    // verify NFT ownership here...
+
+    // assume that
+    let result = {
+      status: false
+    };
+
+    // update state
+    tasks.ck_nft_ownership.status = result.status;
+    //trigger to re-render
+    setNftOwnershipState(tasks.ck_nft_ownership.status);
+  };
 
   const isWalletConnected =
     !session || (session && session.user.email.includes('@')) ? false : true;
   const isFinishedTasks =
-    !twitterVerifiedName || !twitterFollowState || !twitterReTweetState
+    !twitterVerifiedName ||
+    !twitterFollowState ||
+    !twitterReTweetState ||
+    !nftOwnershipState
       ? false
       : true;
   const btnClaimReward = (

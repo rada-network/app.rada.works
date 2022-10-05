@@ -13,7 +13,8 @@ export default (props) => {
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
       id: 1,
-      status: false,
+      status: null,
+      screen_name: null,
       msg: null
     };
   }
@@ -21,7 +22,7 @@ export default (props) => {
     requiredTasks.ck_twitter_follow = {
       id: 2,
       username: campaign.twitter_username,
-      status: false,
+      status: null,
       msg: null
     };
   }
@@ -29,7 +30,7 @@ export default (props) => {
     requiredTasks.ck_twitter_retweet = {
       id: 3,
       tweet_url: campaign.twitter_tweet,
-      status: false,
+      status: null,
       msg: null
     };
   }
@@ -71,7 +72,7 @@ export default (props) => {
     requiredTasks.ck_nft_ownership = {
       id: 4,
       nftCollectionInfo,
-      status: false,
+      status: null,
       msg: null
     };
   }
