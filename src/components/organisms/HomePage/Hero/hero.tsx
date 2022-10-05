@@ -5,40 +5,19 @@ const Hero = () => {
     <Fragment>
       <div className={`${classes.root} bg-[#5fe0b0] relative`}>
         <div className="container max-w-screen-xl mx-auto px-4 lg:px-4 z-10 relative">
-          <div className="flex flex-wrap items-center py-16">
+          <div className="flex flex-wrap items-center py-10 md:py-16 lg:py-16">
             <div className="basis-full lg:basis-7/12 text-center lg:text-left pr-4">
-              <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-relaxed uppercase tracking-tight mt-0 mb-6">
+              <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-relaxed tracking-tight mt-0 mb-8 font-pt-ui tracking-tight">
                 <span className="text-violet-600">SoulMint</span>
                 <span className="block">
                   the reward-focused platform for verifiable credentials
                 </span>
               </h1>
-              <p className="text-2xl font-normal mt-0 mb-12 text-gray-900">
+              <p className="lg:text-2xl font-normal my-0 text-gray-900">
                 Build your <strong>Web3</strong> reputation through your{' '}
                 <strong>SoulBound</strong> tokens. Explore and earn special
                 rewards, curated by us.
               </p>
-
-              <div className="mt-8">
-                <a
-                  href="#"
-                  title="View more"
-                  className="bg-violet-600 hover:bg-violet-700 text-white rounded-lg py-3.5 inline-flex items-center justify-center transition-all duration-300 w-44 uppercase tracking-wide"
-                >
-                  Learn more
-                  <svg
-                    className="h-4 w-4 ml-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-                    />
-                  </svg>
-                </a>
-              </div>
             </div>
 
             <div className="hidden lg:flex justify-end basis-5/12 text-right pl-4">
