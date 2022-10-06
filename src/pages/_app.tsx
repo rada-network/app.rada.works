@@ -13,7 +13,7 @@ import { ThemeProvider } from 'next-themes';
 import { getSession } from 'next-auth/react';
 import Head from 'next/head';
 import BrowserPersistence from '../utils/simplePersistence';
-import { saveSocialData } from 'src/hooks/User/useSocial';
+import { saveSocialLink } from 'src/hooks/User/useSocial';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const store = useStore();
@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       );
       const userProfile: any = session?.userProfile;
       if (userProfile) {
-        await saveSocialData({
+        await saveSocialLink({
           name: session.provider,
           username: userProfile?.twitterHandle
         });

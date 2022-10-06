@@ -9,7 +9,10 @@ import API from './api.gql';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { saveSocialLink, CheckSocial } from 'src/hooks/User/useSocial';
+import {
+  saveSocialLink,
+  checkExistsSocialLink
+} from 'src/hooks/User/useSocial';
 
 export default (props) => {
   const { campaign, classes } = props;
@@ -19,12 +22,21 @@ export default (props) => {
   const { t } = useTranslation('campaign_details');
 
   const { data: session } = useSession();
+
+  /*const checkExistSocialLink = async (socialName, userCreated) => {
+    const rs = await checkExistsSocialLink(socialName, userCreated);
+    return rs;
+  }
+  const userEmail = session?.user?.email;
+  if (userEmail) {
+    const rs = checkExistSocialLink(
+      { _eq: 'twitter' },
+      { email: { _eq: session?.user?.email } }
+    );
+    console.log("rs:", rs);
+  }*/
+
   let result_tw = { status: null, screen_name: null };
-  const { data, loading } = CheckSocial(session);
-  console.log('====================================');
-  console.log(data);
-  console.log(loading);
-  console.log('====================================');
   const router = useRouter();
   if (router.query.user) {
     const { user, name, uid } = router.query;
@@ -47,10 +59,10 @@ export default (props) => {
     console.log('====================================');
     requiredTasks.ck_twitter_login = {
       id: 1,
-      // status: true,
-      // screen_name: 'Qvv885',
-      status: result_tw?.status,
-      screen_name: result_tw?.screen_name,
+      status: true,
+      screen_name: 'Qvv885',
+      // status: result_tw?.status,
+      // screen_name: result_tw?.screen_name,
       msg: null
     };
   }
@@ -207,6 +219,12 @@ export default (props) => {
       return toast.warning(t('You must finish all required tasks!'));
     } else {
       try {
+        /*const rs = await checkExistsSocialLink(
+          { _eq: 'twitter' },
+          { email: { _eq: session?.user?.email } }
+        );
+        console.log('checkExistsSocialLink:', rs);*/
+
         // If all required tasks done
         // 1. Check was joined
         const userEmail = session?.user?.email;

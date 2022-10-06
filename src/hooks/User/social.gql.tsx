@@ -11,8 +11,11 @@ export const CREATE_SOCIAL_LINK_GQL = gql`
 `;
 
 export const GET_SOCIAL_LINK_GQL = gql`
-  query get_social($user_created: directus_users_filter) {
-    social_link(filter: { user_created: $user_created }) {
+  query get_social(
+    $social_name: string_filter_operators!
+    $user_created: directus_users_filter!
+  ) {
+    social_link(filter: { name: $social_name, user_created: $user_created }) {
       name
       username
     }
