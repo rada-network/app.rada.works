@@ -52,7 +52,7 @@ const Quest = (props) => {
     tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
   );
   const [twitterFollowState, setTwitterFollowState] = useState(
-    tasks.ck_twitter_follow ? tasks.ck_twitter_login.status : true
+    tasks.ck_twitter_follow ? tasks.ck_twitter_follow.status : true
   );
   const [twitterReTweetState, setTwitterReTweetState] = useState(
     tasks.ck_twitter_retweet ? tasks.ck_twitter_retweet.status : true
