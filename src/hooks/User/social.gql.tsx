@@ -19,15 +19,6 @@ export const GET_SOCIAL_LINK_GQL = gql`
   }
 `;
 
-export const GET_SOCIAL_LINK_GQL2 = gql`
-  query social_link($username: string_filter_operators) {
-    social_link(filter: { username: $username }) {
-      name
-      username
-    }
-  }
-`;
-
 export const UPDATE_SOCIAL_LINK_GQL = gql`
   mutation update_social_link_item($id: ID!, $data: update_social_link_input!) {
     update_social_link_item(id: $id, data: $data) {

@@ -2,12 +2,12 @@
 }
 
 .rootDark {
-
 }
 
 .howtoSteps {
-    @apply flex flex-col mb-8 relative
+  @apply flex flex-col mb-8 relative
 }
+
 .howtoSteps::after {
-    @apply bg-blue-100 content-[''] block w-0.5 absolute top-4 bottom-10 left-5 ml-0.5;
+  @apply bg-blue-100 content-[''] block w-0.5 absolute top-4 bottom-10 left-5 ml-0.5;
 }

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import TextLink from '../../../components/atoms/TextLink';
 import { ellipsify } from '../../../utils/strUtils';
 import { EvmChain } from '@moralisweb3/evm-utils';
@@ -8,22 +8,46 @@ import { useMutation } from '@apollo/client';
 import API from './api.gql';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { saveSocialData, CheckSocial } from 'src/hooks/User/useSocial';
 
 export default (props) => {
   const { campaign, classes } = props;
 
-  const { createQuester } = API;
+  const { isQuesterExistsFunc, createQuester } = API;
 
   const { t } = useTranslation('campaign_details');
 
   const { data: session } = useSession();
-
+  let result = {};
+  const { data, loading } = CheckSocial(session);
+  console.log('====================================');
+  console.log(data);
+  console.log(loading);
+  console.log('====================================');
+  const router = useRouter();
+  if (router.query.user) {
+    const { user, name, uid } = router.query;
+    result.name = name;
+    result.status = true;
+    result.uid = uid;
+    result.screen_name = user;
+    // saveSocialData({
+    //   name: 'twitter',
+    //   username: user,
+    //   uid
+    // });
+    // update state
+    result && router.push('/campaign-details/' + router.query.slug[0]);
+  }
   const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
       id: 1,
       status: true,
+      //status: result?.status | null,
       screen_name: 'Qvv885',
+      //screen_name: result?.screen_name | null,
       msg: null
     };
   }
@@ -181,12 +205,23 @@ export default (props) => {
     } else {
       try {
         // If all required tasks done
-        await saveQuester({
-          variables: {
-            campaign_id: parseInt(campaign.id),
-            status: 'pending'
-          }
-        });
+        // 1. Check was joined
+        const userEmail = session?.user?.email;
+        const found = await isQuesterExistsFunc(
+          { _eq: campaign.id },
+          { email: { _eq: userEmail } }
+        );
+        if (!found) {
+          // 2. Save if has not join yet
+          await saveQuester({
+            variables: {
+              campaign_id: campaign.id,
+              status: 'published'
+            }
+          });
+        } else {
+          return toast.warning(t('You have joined!'));
+        }
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(error);
@@ -196,11 +231,26 @@ export default (props) => {
     }
   }, [campaign]);
 
+  // Handle saving quest result
+  useEffect(() => {
+    if (saveQuestResult) {
+      return toast.success(t('Your request was saved successfully!'));
+    }
+
+    if (saveQuesterError) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(saveQuesterError);
+      }
+      return toast.error(t('Something went wrong. Please try again!'));
+    }
+  }, [saveQuestResult, saveQuesterError]);
+
   return {
     tasks,
     setTasks,
     handleClaimReward,
     handleVerifyNftOwnership,
-    saveQuesterLoading
+    saveQuesterLoading,
+    saveQuestResult
   };
 };
