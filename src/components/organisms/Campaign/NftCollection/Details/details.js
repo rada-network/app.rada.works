@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Moment from 'moment';
 import { useSession } from 'next-auth/react';
 import Router from 'next/router';
@@ -11,6 +11,7 @@ import Image from '../../../../atoms/Image';
 import { capitalize, ellipsify, toHTML } from '../../../../../utils/strUtils';
 import List from '../../List';
 import BrowserPersistence from '../../../../../utils/simplePersistence';
+import Head from 'next/head';
 
 const Details = (props) => {
   const { slug } = props;
@@ -27,6 +28,7 @@ const Details = (props) => {
     slug: { _eq: slug } ?? ''
   });
 
+  let pageTitle = null;
   let child = null;
   if (!data) {
     if (error) {
@@ -40,6 +42,7 @@ const Details = (props) => {
   } else {
     if (data.nft_collection) {
       const nftCollection = data.nft_collection[0];
+      pageTitle = nftCollection.name;
 
       const handleAddCampaign = () => {
         const storage = new BrowserPersistence();
@@ -174,7 +177,14 @@ const Details = (props) => {
     }
   }
 
-  return <div className={`${classes[rootClassName]}`}>{child}</div>;
+  return (
+    <Fragment>
+      <Head>
+        <title>{pageTitle} - SoulMint - The 1st SoulBound</title>
+      </Head>
+      <div className={`${classes[rootClassName]}`}>{child}</div>
+    </Fragment>
+  );
 };
 
 export default Details;

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useTranslation } from 'next-i18next';
 import Moment from 'moment';
+import Head from 'next/head';
 import TextLink from '../../../atoms/TextLink';
 // import Image from "../../../atoms/Image";
 import Rewards from './Rewards';
@@ -21,6 +22,7 @@ const Details = (props) => {
     slug: { _eq: slug } ?? ''
   });
 
+  let pageTitle = null;
   let child = null;
   if (!data) {
     if (error) {
@@ -34,6 +36,7 @@ const Details = (props) => {
   } else {
     if (data.campaign.length) {
       const campaign = data.campaign[0];
+      pageTitle = campaign.title;
 
       // Build store info
       const storeLogo = campaign.store_logo_url ? (
@@ -155,7 +158,14 @@ const Details = (props) => {
     }
   }
 
-  return <div className={`${classes[rootClassName]}`}>{child}</div>;
+  return (
+    <Fragment>
+      <Head>
+        <title>{pageTitle} - SoulMint - The 1st SoulBound</title>
+      </Head>
+      <div className={`${classes[rootClassName]}`}>{child}</div>
+    </Fragment>
+  );
 };
 
 export default Details;

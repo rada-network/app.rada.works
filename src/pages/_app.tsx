@@ -11,6 +11,7 @@ import { useApollo } from '../libs/apolloClient';
 import Toast from '../components/organisms/Toast';
 import { ThemeProvider } from 'next-themes';
 import { getSession } from 'next-auth/react';
+import Head from 'next/head';
 import BrowserPersistence from '../utils/simplePersistence';
 import { saveSocialData } from 'src/hooks/User/useSocial';
 
@@ -49,6 +50,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <Provider store={store}>
           <SessionProvider session={session} refetchInterval={20 * 60}>
             <Web3Provider>
+              <Head>
+                <title>SoulMint - The 1st SoulBound</title>
+              </Head>
               <Component {...pageProps} />
               <Toast />
             </Web3Provider>
