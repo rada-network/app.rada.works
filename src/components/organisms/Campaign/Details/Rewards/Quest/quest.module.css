@@ -20,7 +20,7 @@
 }
 
 .twitterRetweetTask {
-  @apply bg-gray-50 text-sm font-medium flex items-center border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300
+  @apply bg-gray-50 text-sm font-medium flex items-center border border-gray-200 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300
 }
 
 .nftOwnershipTask {
@@ -28,15 +28,19 @@
 }
 
 .btnVerifyTwitter {
-    @apply ml-auto;
+  @apply ml-auto;
 }
 
 .btnClaimRewardWrap {
-    @apply py-4 px-4;
+  @apply py-4;
+}
+
+.btnClaimRewardWrap button {
+  @apply bg-gray-200 flex items-center justify-center text-gray-500 text-center font-semibold;
 }
 
 .btnClaimReward {
-    @apply bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300 w-full;
+  @apply bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300 w-full;
 }
 
 .btnClaimRewardDisabled {

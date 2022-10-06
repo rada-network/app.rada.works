@@ -43,12 +43,17 @@ p {
 }
 
 ul, ol {
-  @apply list-disc/* ml-8*/;
+  @apply list-disc ml-8;
 }
 
 ul li,
 ol li {
   @apply py-3 pl-1;
+}
+
+ul li p,
+ol li p {
+  @apply my-0;
 }
 
 

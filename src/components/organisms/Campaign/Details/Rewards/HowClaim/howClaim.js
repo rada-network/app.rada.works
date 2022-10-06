@@ -13,7 +13,7 @@ const HowClaim = (props) => {
   return (
     <div className="bg-white shadow-sm rounded-lg mb-6">
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
-        <h3 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
+        <h3 className="mt-0 mb-0 leading-normal text-xl lg:text-2xl font-bold text-gray-800">
           {t('How to claim?')}
         </h3>
         <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
