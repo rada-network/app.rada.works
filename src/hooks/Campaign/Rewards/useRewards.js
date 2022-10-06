@@ -4,13 +4,17 @@ import { ellipsify } from '../../../utils/strUtils';
 import { EvmChain } from '@moralisweb3/evm-utils';
 import Moralis from 'moralis';
 import { useSession } from 'next-auth/react';
-// import { toast } from 'react-toastify';
-// import { useTranslation } from 'next-i18next';
+import { useMutation } from '@apollo/client';
+import API from './api.gql';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'next-i18next';
 
 export default (props) => {
   const { campaign, classes } = props;
 
-  // const { t } = useTranslation('campaign_details');
+  const { createQuester } = API;
+
+  const { t } = useTranslation('campaign_details');
 
   const { data: session } = useSession();
 
@@ -18,8 +22,8 @@ export default (props) => {
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
       id: 1,
-      status: null,
-      screen_name: null,
+      status: true,
+      screen_name: 'Qvv885',
       msg: null
     };
   }
@@ -27,7 +31,7 @@ export default (props) => {
     requiredTasks.ck_twitter_follow = {
       id: 2,
       username: campaign.twitter_username,
-      status: null,
+      status: true,
       msg: null
     };
   }
@@ -35,7 +39,7 @@ export default (props) => {
     requiredTasks.ck_twitter_retweet = {
       id: 3,
       tweet_url: campaign.twitter_tweet,
-      status: null,
+      status: true,
       msg: null
     };
   }
@@ -77,13 +81,13 @@ export default (props) => {
     requiredTasks.ck_nft_ownership = {
       id: 4,
       nftCollectionInfo,
-      status: null,
+      status: true,
       msg: null
     };
   }
   const [tasks, setTasks] = useState(requiredTasks);
 
-  /*const isFinishedTasks = () => {
+  const isFinishedTasks = () => {
     let rs = true;
     const keys = Object.keys(tasks);
     if (keys.length) {
@@ -96,7 +100,7 @@ export default (props) => {
     }
 
     return rs;
-  };*/
+  };
 
   // Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
   const verifyNFTOwnership = async (chainName, tokenAddress, address) => {
@@ -157,28 +161,46 @@ export default (props) => {
     return isNFTOwnership;
   }, [campaign]);
 
-  const handleClaimReward = useCallback(() => {
+  const [
+    saveQuester,
+    {
+      data: saveQuestResult,
+      error: saveQuesterError,
+      loading: saveQuesterLoading
+    }
+  ] = useMutation(createQuester, {
+    fetchPolicy: 'no-cache'
+  });
+
+  const handleClaimReward = useCallback(async () => {
     console.log('claimReward()');
 
-    //Check connect wallet
-    /*if (!session || (session && session.user.email.includes('@'))) {
-      return toast.warning(
-        t('You must connect your wallet before claiming rewards!')
-      );
-    }*/
-
     //Check required tasks
-    /*if (!isFinishedTasks()) {
+    if (!isFinishedTasks()) {
       return toast.warning(t('You must finish all required tasks!'));
     } else {
-      // If all required tasks done
-    }*/
+      try {
+        // If all required tasks done
+        await saveQuester({
+          variables: {
+            campaign_id: parseInt(campaign.id),
+            status: 'pending'
+          }
+        });
+      } catch (error) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.error(error);
+        }
+        return;
+      }
+    }
   }, [campaign]);
 
   return {
     tasks,
     setTasks,
     handleClaimReward,
-    handleVerifyNftOwnership
+    handleVerifyNftOwnership,
+    saveQuesterLoading
   };
 };
