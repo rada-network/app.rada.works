@@ -5,7 +5,7 @@ import { EvmChain } from '@moralisweb3/evm-utils';
 import Moralis from 'moralis';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { saveSocialData, CheckSocial } from 'src/hooks/User/useSocial';
+import { saveSocialLink, CheckSocial } from 'src/hooks/User/useSocial';
 // import { toast } from 'react-toastify';
 // import { useTranslation } from 'next-i18next';
 
@@ -14,7 +14,7 @@ export default (props) => {
 
   // const { t } = useTranslation('campaign_details');
   const { data: session } = useSession();
-  let result = {};
+  let result_tw = { status: false, screen_name: '' };
   const { data, loading } = CheckSocial(session);
   console.log('====================================');
   console.log(data);
@@ -23,24 +23,27 @@ export default (props) => {
   const router = useRouter();
   if (router.query.user) {
     const { user, name, uid } = router.query;
-    result.name = name;
-    result.status = true;
-    result.uid = uid;
-    result.screen_name = user;
-    // saveSocialData({
+    result_tw.name = name;
+    result_tw.status = true;
+    result_tw.uid = uid;
+    result_tw.screen_name = user;
+    // saveSocialLink({
     //   name: 'twitter',
     //   username: user,
     //   uid
     // });
     // update state
-    result && router.push('/campaign-details/' + router.query.slug[0]);
+    result_tw && router.push('/campaign-details/' + router.query.slug[0]);
   }
   const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
+    console.log('====================================');
+    console.log(result_tw?.screen_name);
+    console.log('====================================');
     requiredTasks.ck_twitter_login = {
       id: 1,
-      status: result?.status | null,
-      screen_name: result?.screen_name | null,
+      status: result_tw?.status,
+      screen_name: result_tw?.screen_name,
       msg: null
     };
   }
@@ -102,6 +105,9 @@ export default (props) => {
       msg: null
     };
   }
+  console.log('====================================');
+  console.log('requiredTasks:, ', requiredTasks);
+  console.log('====================================');
   const [tasks, setTasks] = useState(requiredTasks);
 
   /*const isFinishedTasks = () => {
@@ -195,7 +201,9 @@ export default (props) => {
       // If all required tasks done
     }*/
   }, [campaign]);
-
+  console.log('====================================');
+  console.log(tasks);
+  console.log('====================================');
   return {
     tasks,
     setTasks,

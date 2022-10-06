@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { initializeApollo } from '../../libs/apolloClient';
 import { CREATE_SOCIAL_LINK_GQL, GET_SOCIAL_LINK_GQL } from './social.gql';
 
-export const saveSocialData = async (data: any) => {
+export const saveSocialLink = async (data: any) => {
   const client = initializeApollo();
   try {
     const res = await client.mutate({
@@ -27,6 +27,6 @@ export const CheckSocial = (sestion: any) => {
   return { data, loading, error };
 };
 export default {
-  saveSocialData,
+  saveSocialLink,
   CheckSocial
 };
