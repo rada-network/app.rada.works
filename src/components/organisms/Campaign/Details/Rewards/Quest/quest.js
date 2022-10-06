@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { shape, string, array, func } from 'prop-types';
+import { shape, string, object, func } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
@@ -51,7 +52,7 @@ const Quest = (props) => {
     tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
   );
   const [twitterFollowState, setTwitterFollowState] = useState(
-    tasks.ck_twitter_follow ? tasks.ck_twitter_login.status : true
+    tasks.ck_twitter_follow ? tasks.ck_twitter_follow.status : true
   );
   const [twitterReTweetState, setTwitterReTweetState] = useState(
     tasks.ck_twitter_retweet ? tasks.ck_twitter_retweet.status : true
@@ -59,6 +60,8 @@ const Quest = (props) => {
   const [nftOwnershipState, setNftOwnershipState] = useState(
     tasks.ck_nft_ownership ? tasks.ck_nft_ownership.status : true
   );
+  const isWalletConnected =
+    !session || (session && session.user.email.includes('@')) ? false : true;
 
   let twitterLoginTask = null;
   if (tasks.ck_twitter_login) {
@@ -84,6 +87,13 @@ const Quest = (props) => {
   }
   const handleTwitterLogin = async () => {
     console.log('twitterLogin()');
+
+    if (!isWalletConnected) {
+      return toast.warning(
+        t('You must connect your wallet before do this task!')
+      );
+    }
+
     await TwitterLogin({ reference_url: router.asPath });
     // do twitter login here...
 
@@ -144,6 +154,13 @@ const Quest = (props) => {
   }
   const handleCheckTwitterFollow = () => {
     console.log('handleCheckTwitterFollow()');
+
+    if (!isWalletConnected) {
+      return toast.warning(
+        t('You must connect your wallet before do this task!')
+      );
+    }
+
     // checking twitter follow here...
 
     // assume that
@@ -197,6 +214,13 @@ const Quest = (props) => {
   }
   const handleCheckTwitterReTweet = () => {
     console.log('handleCheckTwitterReTweet()');
+
+    if (!isWalletConnected) {
+      return toast.warning(
+        t('You must connect your wallet before do this task!')
+      );
+    }
+
     // checking twitter re-tweet here...
 
     // assume that
@@ -250,6 +274,13 @@ const Quest = (props) => {
   ) : null;
   const handleCheckNftOwnership = async () => {
     console.log('handleCheckNftOwnership()');
+
+    if (!isWalletConnected) {
+      return toast.warning(
+        t('You must connect your wallet before do this task!')
+      );
+    }
+
     // verify NFT ownership here...
     let result = await verifyNftOwnership();
     // update state
@@ -258,8 +289,6 @@ const Quest = (props) => {
     setNftOwnershipState(tasks.ck_nft_ownership.status);
   };
 
-  const isWalletConnected =
-    !session || (session && session.user.email.includes('@')) ? false : true;
   const isFinishedTasks =
     !twitterVerifiedName ||
     !twitterFollowState ||
@@ -316,7 +345,7 @@ Quest.propTypes = {
   classes: shape({
     root: string
   }),
-  tasks: array,
+  tasks: object,
   setTasks: func,
   verifyNftOwnership: func,
   onClaimReward: func
