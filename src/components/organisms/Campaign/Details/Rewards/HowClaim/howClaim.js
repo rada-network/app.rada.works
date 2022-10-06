@@ -34,7 +34,9 @@ const HowClaim = (props) => {
             <strong className="bg-blue-100 border border-4 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full">
               2
             </strong>
-            <div className="flex-1 pl-4">{t('Do required tasks')}</div>
+            <div className="flex-1 pl-4">
+              {t('Do and then verify required tasks')}
+            </div>
           </div>
 
           <div className="flex items-center z-10">
