@@ -13,6 +13,7 @@ const NftCollectionDetailPage: NextPage = () => {
 export default NftCollectionDetailPage;
 
 export async function getStaticProps(props: { locale: string }) {
+  props.locale = props.locale ? props.locale : 'en';
   return {
     props: {
       ...(await serverSideTranslations(props.locale, [

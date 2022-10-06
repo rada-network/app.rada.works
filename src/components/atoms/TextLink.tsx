@@ -2,7 +2,7 @@ import Link, { LinkProps } from 'next/link';
 import React, {
   FunctionComponent,
   Fragment,
-  AnchorHTMLAttributes,
+  AnchorHTMLAttributes
 } from 'react';
 
 export type TextLinkProps = LinkProps &

@@ -35,7 +35,7 @@ app.prepare().then(() => {
     }
   }).listen(port, (err) => {
     if (err) throw err
-    console.log(`> Ready on http://${hostname}:${port}`)
+    console.log(`> SoulMint Server Ready on http://${hostname}:${port}`)
   });
 })
 

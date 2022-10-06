@@ -25,10 +25,13 @@ const Dashboard: NextPage = () => {
 export default Dashboard;
 
 export async function getStaticProps(props: { locale: string }) {
+  props.locale = props.locale ? props.locale : 'en';
   return {
     props: {
-      ...(await serverSideTranslations(props.locale, ['common', 'dashboard']))
-      // Will be passed to the page component as props
+      ...(await serverSideTranslations(props.locale, [
+        'common',
+        'list_campaign'
+      ]))
     }
   };
 }

@@ -22,10 +22,13 @@ const CreateCampaignPage: NextPage = () => {
 export default CreateCampaignPage;
 
 export async function getStaticProps(props: { locale: string }) {
+  props.locale = props.locale ? props.locale : 'en';
   return {
     props: {
-      ...(await serverSideTranslations(props.locale, ['common', 'createjob']))
-      // Will be passed to the page component as props
+      ...(await serverSideTranslations(props.locale ? props.locale : 'en', [
+        'common',
+        'create_campaign'
+      ]))
     }
   };
 }

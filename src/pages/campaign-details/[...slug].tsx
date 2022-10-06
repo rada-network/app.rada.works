@@ -13,13 +13,13 @@ const CampaignDetailPage: NextPage = () => {
 export default CampaignDetailPage;
 
 export async function getStaticProps(props: { locale: string }) {
+  props.locale = props.locale ? props.locale : 'en';
   return {
     props: {
       ...(await serverSideTranslations(props.locale, [
         'common',
         'campaign_details'
       ]))
-      // Will be passed to the page component as props
     }
   };
 }

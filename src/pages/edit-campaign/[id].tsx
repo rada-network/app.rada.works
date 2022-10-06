@@ -26,6 +26,7 @@ const EditCampaignPage: NextPage = () => {
 export default EditCampaignPage;
 
 export async function getStaticProps(props: { locale: string }) {
+  props.locale = props.locale ? props.locale : 'en';
   return {
     props: {
       ...(await serverSideTranslations(props.locale, [
