@@ -47,7 +47,7 @@ export default async function auth(
             email: address,
             name: address
           };
-          console.log('authorize user', user);
+          // console.log('authorize user', user);
 
           return user;
         } catch (e) {
@@ -83,7 +83,7 @@ export default async function auth(
           profile &&
           credentials
         ) {
-          console.log('wallet connected');
+          // console.log('wallet connected');
         }
         const checkUser = await isExistsUser(emailUser);
         if (!checkUser?.id) {
@@ -147,7 +147,7 @@ export default async function auth(
           token.provider = account.provider;
         } else {
           const { needRefresh } = getTokenState(token.access_token);
-          console.log('needRefresh', needRefresh);
+          // console.log('needRefresh', needRefresh);
           if (needRefresh) {
             const { access_token, refresh_token } = await refreshAccessToken(
               token.refresh_token
@@ -167,9 +167,9 @@ export default async function auth(
         session.userProfile = token.userProfile;
         session.credentials = token.credentials;
         session.error = token.error;
-        console.log('====================================');
+        /*console.log('====================================');
         console.log('session', session);
-        console.log('====================================');
+        console.log('====================================');*/
         return session;
       }
     }
