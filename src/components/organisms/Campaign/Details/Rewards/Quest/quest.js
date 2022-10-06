@@ -1,20 +1,21 @@
 import React, { Fragment, useState } from 'react';
 import { shape, string, array, func } from 'prop-types';
 import { useTranslation } from 'next-i18next';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
 import TwitterLogin from '../../../../../../hooks/Rewards/useTwitter';
+import { saveSocialData, CheckSocial } from 'src/hooks/User/useSocial';
+import BrowserPersistence from '../../../../../../utils/simplePersistence';
 import {
   TwitterIcon,
   TwitterAuthIcon,
   TaskFailIcon,
   TaskSuccessIcon
 } from '../../../../Svg/SvgIcons';
-import { useSession } from 'next-auth/react';
-import { CheckSocial } from 'src/hooks/User/useSocial';
 
 const Quest = (props) => {
   const {
@@ -26,6 +27,20 @@ const Quest = (props) => {
   } = props;
   const classes = useStyle(defaultClasses, propClasses);
   const router = useRouter();
+
+  const storange = new BrowserPersistence();
+
+  if (router.query.user) {
+    const { user, name, uid } = router.query;
+    const result = saveSocialData({
+      name,
+      username: user,
+      uid
+    });
+    // update state
+    storange.setItem('twitter', { name, username: user, uid });
+    result && router.push('/campaign-details/' + router.query.slug[0]);
+  }
   const { t } = useTranslation('campaign_details');
 
   const { data: session } = useSession();
@@ -69,20 +84,20 @@ const Quest = (props) => {
   }
   const handleTwitterLogin = async () => {
     console.log('twitterLogin()');
-    let result = await TwitterLogin({ refrence_url: router.asPath });
+    await TwitterLogin({ reference_url: router.asPath });
     // do twitter login here...
 
     // assume that
-    result = {
-      status: true,
-      screen_name: '@Qvv85'
-    };
+    // const result = {
+    //   status: true,
+    //   screen_name: '@Qvv85'
+    // };
 
-    // update state
-    tasks.ck_twitter_login.status = result.status;
-    tasks.ck_twitter_login.screen_name = result.screen_name;
-    //trigger to re-render
-    setTwitterVerifiedName(tasks.ck_twitter_login.screen_name);
+    // // update state
+    // tasks.ck_twitter_login.status = result.status;
+    // tasks.ck_twitter_login.screen_name = result.screen_name;
+    // //trigger to re-render
+    // setTwitterVerifiedName(tasks.ck_twitter_login.screen_name);
   };
 
   let twitterFollowTask = null;
