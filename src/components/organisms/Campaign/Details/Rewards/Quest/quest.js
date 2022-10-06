@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { shape, string, array, func } from 'prop-types';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
+import TwitterLogin from '../../../../../../hooks/Rewards/useTwitter';
 import {
   TwitterIcon,
   TwitterAuthIcon,
@@ -12,6 +14,7 @@ import {
   TaskSuccessIcon
 } from '../../../../Svg/SvgIcons';
 import { useSession } from 'next-auth/react';
+import { CheckSocial } from 'src/hooks/User/useSocial';
 
 const Quest = (props) => {
   const {
@@ -22,10 +25,12 @@ const Quest = (props) => {
     verifyNftOwnership
   } = props;
   const classes = useStyle(defaultClasses, propClasses);
-
+  const router = useRouter();
   const { t } = useTranslation('campaign_details');
 
   const { data: session } = useSession();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const social_exits = CheckSocial(session);
 
   const [twitterVerifiedName, setTwitterVerifiedName] = useState(
     tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
@@ -62,12 +67,13 @@ const Quest = (props) => {
       </div>
     );
   }
-  const handleTwitterLogin = () => {
+  const handleTwitterLogin = async () => {
     console.log('twitterLogin()');
+    let result = await TwitterLogin({ refrence_url: router.asPath });
     // do twitter login here...
 
     // assume that
-    let result = {
+    result = {
       status: true,
       screen_name: '@Qvv85'
     };
