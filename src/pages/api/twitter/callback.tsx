@@ -1,6 +1,6 @@
 import { Client, auth } from 'twitter-api-sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
-import BrowserPersistence from '../../../utils/simplePersistence';
+
 // eslint-disable-next-line import/no-anonymous-default-export
 const authClient = new auth.OAuth2User({
   client_id: process.env.TWITTER_ID,
@@ -9,14 +9,16 @@ const authClient = new auth.OAuth2User({
   scopes: ['tweet.read', 'users.read', 'offline.access']
 });
 const client = new Client(authClient);
-const storage = new BrowserPersistence();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { code, state } = req.query;
+    const { code, state, reference_url } = req.query;
+    console.log('====================================');
+    console.log(req.query);
+    console.log('====================================');
     if (state === 'login') {
       const authUrl = authClient.generateAuthURL({
-        state: 'verify',
+        state: reference_url,
         code_challenge_method: 's256'
       });
       res.redirect(authUrl);
@@ -24,9 +26,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const access_res = await authClient.requestAccessToken(code as string);
       if (access_res) {
         const response = await client.users.findMyUser();
-        storage.setItem('twitter', response, 24 * 60 * 60 * 1000);
-        const ref = storage.getItem('reference_url');
-        res.redirect(ref ? ref : '/');
+        const ref = decodeURIComponent(state as string);
+        res.redirect(
+          ref
+            ? ref +
+                '?user=kienduong911&name=' +
+                response.data.name +
+                '&uid=' +
+                response.data.id
+            : '/'
+        );
       }
     }
   } catch (error) {

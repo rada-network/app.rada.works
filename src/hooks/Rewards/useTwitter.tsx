@@ -4,9 +4,12 @@ const TwitterLogin = (props: any) => {
   const { reference_url } = props;
   const storage = new BrowserPersistence();
   if (reference_url) {
-    storage.setItem('reference_url', reference_url, 24 * 60 * 60 * 1000);
+    storage.setItem('reference_url', reference_url, 24 * 60 * 60);
   }
-  Router.push('/api/twitter/callback?state=login');
+  Router.push(
+    '/api/twitter/callback?state=login&reference_url=' +
+      encodeURIComponent(reference_url)
+  );
 
   return true;
 };
