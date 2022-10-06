@@ -10,7 +10,7 @@
 /*}*/
 
 .pageTitle {
-  @apply text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 mt-0 mb-2 lg:mb-8;
+  @apply text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mt-0 mb-2 lg:mb-8;
   line-height: 1.375 !important;
 }
 
