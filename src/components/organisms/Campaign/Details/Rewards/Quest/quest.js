@@ -9,8 +9,6 @@ import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
 import TwitterLogin from '../../../../../../hooks/Rewards/useTwitter';
-import { saveSocialData, CheckSocial } from 'src/hooks/User/useSocial';
-import BrowserPersistence from '../../../../../../utils/simplePersistence';
 import {
   TwitterIcon,
   TwitterAuthIcon,
@@ -29,19 +27,6 @@ const Quest = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
   const router = useRouter();
 
-  const storange = new BrowserPersistence();
-
-  if (router.query.user) {
-    const { user, name, uid } = router.query;
-    const result = saveSocialData({
-      name,
-      username: user,
-      uid
-    });
-    // update state
-    storange.setItem('twitter', { name, username: user, uid });
-    result && router.push('/campaign-details/' + router.query.slug[0]);
-  }
   const { t } = useTranslation('campaign_details');
 
   const { data: session } = useSession();

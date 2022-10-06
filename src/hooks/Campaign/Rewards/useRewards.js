@@ -4,6 +4,8 @@ import { ellipsify } from '../../../utils/strUtils';
 import { EvmChain } from '@moralisweb3/evm-utils';
 import Moralis from 'moralis';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { saveSocialData, CheckSocial } from 'src/hooks/User/useSocial';
 // import { toast } from 'react-toastify';
 // import { useTranslation } from 'next-i18next';
 
@@ -11,15 +13,34 @@ export default (props) => {
   const { campaign, classes } = props;
 
   // const { t } = useTranslation('campaign_details');
-
   const { data: session } = useSession();
-
+  let result = {};
+  const { data, loading } = CheckSocial(session);
+  console.log('====================================');
+  console.log(data);
+  console.log(loading);
+  console.log('====================================');
+  const router = useRouter();
+  if (router.query.user) {
+    const { user, name, uid } = router.query;
+    result.name = name;
+    result.status = true;
+    result.uid = uid;
+    result.screen_name = user;
+    // saveSocialData({
+    //   name: 'twitter',
+    //   username: user,
+    //   uid
+    // });
+    // update state
+    result && router.push('/campaign-details/' + router.query.slug[0]);
+  }
   const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
       id: 1,
-      status: null,
-      screen_name: null,
+      status: result?.status | null,
+      screen_name: result?.screen_name | null,
       msg: null
     };
   }

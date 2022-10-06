@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     console.log('====================================');
     if (state === 'login') {
       const authUrl = authClient.generateAuthURL({
-        state: reference_url,
+        state: `${reference_url}`,
         code_challenge_method: 's256'
       });
       res.redirect(authUrl);
@@ -30,12 +30,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.redirect(
           ref
             ? ref +
-                '?user=kienduong911&name=' +
+                '?user=' +
+                response.data.username +
+                '&name=' +
                 response.data.name +
                 '&uid=' +
                 response.data.id
             : '/'
         );
+      } else {
+        res.redirect(decodeURIComponent(state as string));
       }
     }
   } catch (error) {

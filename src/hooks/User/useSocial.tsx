@@ -1,12 +1,8 @@
-import { initializeApollo } from '../../libs/apolloClient';
 import { useQuery } from '@apollo/client';
-import {
-  CREATE_SOCIAL_LINK_GQL,
-  GET_SOCIAL_LINK_GQL,
-  GET_SOCIAL_LINK_GQL2
-} from './social.gql';
+import { initializeApollo } from '../../libs/apolloClient';
+import { CREATE_SOCIAL_LINK_GQL, GET_SOCIAL_LINK_GQL } from './social.gql';
 
-export async function saveSocialData(data: any) {
+export const saveSocialData = async (data: any) => {
   const client = initializeApollo();
   try {
     const res = await client.mutate({
@@ -18,31 +14,19 @@ export async function saveSocialData(data: any) {
     console.log(error);
     return error;
   }
-}
-export async function CheckSocial(sestion: any) {
-  const client = initializeApollo();
+};
+export const CheckSocial = (sestion: any) => {
   const user_email = sestion?.user?.email;
-  const data = {
+  const filter = {
     user_created: { email: { _eq: user_email } }
   };
-  try {
-    const res = await client.query({
-      query: GET_SOCIAL_LINK_GQL,
-      variables: { data },
-      fetchPolicy: 'no-cache'
-    });
-    return res.data.social_link;
-  } catch (error) {
-    console.log(error);
-    // return error;
-    return null;
-  }
-}
-export async function CheckSocial2(fillter: any) {
-  const { data, loading, error } = useQuery(GET_SOCIAL_LINK_GQL2, {
-    fetchPolicy: 'cache-and-network',
-    nextFetchPolicy: 'cache-first',
-    variables: { fillter }
+  const { data, loading, error } = useQuery(GET_SOCIAL_LINK_GQL, {
+    variables: { filter },
+    fetchPolicy: 'no-cache'
   });
   return { data, loading, error };
-}
+};
+export default {
+  saveSocialData,
+  CheckSocial
+};
