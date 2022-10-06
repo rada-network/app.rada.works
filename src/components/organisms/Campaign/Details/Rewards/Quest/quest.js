@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { shape, string, array, func } from 'prop-types';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
+import TwitterLogin from '../../../../../../hooks/Rewards/useTwitter';
 import {
   TwitterIcon,
   TwitterAuthIcon,
@@ -12,6 +14,7 @@ import {
   TaskSuccessIcon
 } from '../../../../Svg/SvgIcons';
 import { useSession } from 'next-auth/react';
+import { CheckSocial } from 'src/hooks/User/useSocial';
 
 const Quest = (props) => {
   const {
@@ -22,10 +25,12 @@ const Quest = (props) => {
     verifyNftOwnership
   } = props;
   const classes = useStyle(defaultClasses, propClasses);
-
+  const router = useRouter();
   const { t } = useTranslation('campaign_details');
 
   const { data: session } = useSession();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const social_exits = CheckSocial(session);
 
   const [twitterVerifiedName, setTwitterVerifiedName] = useState(
     tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
@@ -57,17 +62,18 @@ const Quest = (props) => {
     );
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
-        <span className={classes.taskIndex}>{tasks.ck_twitter_login.id}</span>
+        {/* <span className={classes.taskIndex}>{tasks.ck_twitter_login.id}</span> */}
         {TwitterIcon} {t('Twitter')} {twitterLoginStatus}
       </div>
     );
   }
-  const handleTwitterLogin = () => {
+  const handleTwitterLogin = async () => {
     console.log('twitterLogin()');
+    let result = await TwitterLogin({ refrence_url: router.asPath });
     // do twitter login here...
 
     // assume that
-    let result = {
+    result = {
       status: true,
       screen_name: '@Qvv85'
     };
@@ -103,7 +109,7 @@ const Quest = (props) => {
     );
     twitterFollowTask = (
       <div className={classes.twitterFollowTask}>
-        <span className={classes.taskIndex}>{tasks.ck_twitter_follow.id}</span>
+        {/* <span className={classes.taskIndex}>{tasks.ck_twitter_follow.id}</span> */}
         {t('Follow')}
         <TextLink
           target="_blank"
@@ -160,7 +166,7 @@ const Quest = (props) => {
     );
     twitterReTweetTask = (
       <div className={classes.twitterRetweetTask}>
-        <span className={classes.taskIndex}>{tasks.ck_twitter_retweet.id}</span>
+        {/* <span className={classes.taskIndex}>{tasks.ck_twitter_retweet.id}</span> */}
         {t('Must')}&nbsp;<strong>{t('Retweet')}</strong>&nbsp;
         <TextLink
           target="_blank"
@@ -211,8 +217,8 @@ const Quest = (props) => {
   );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
     <div className={classes.nftOwnershipTask}>
-      <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span>
-      <h4 className="mt-0 mb-0 leading-normal text-xl font-bold text-gray-800">
+      {/* <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span> */}
+      <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
         {t('NFT Ownership')}
       </h4>
       <p className="text-sm text-gray-500 font-normal mt-0 mb-0">

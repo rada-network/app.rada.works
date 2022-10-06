@@ -1,13 +1,13 @@
 .root {
-    @apply bg-white shadow-sm rounded-lg mb-6
+  @apply bg-white shadow-sm rounded-lg mb-6
 }
 
 .twitterLoginTask {
-    @apply flex items-center font-semibold mb-3;
+  @apply flex items-center font-semibold mb-3;
 }
 
 .btnTwitterLogin {
-    @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-full py-1.5 pl-3 pr-4 ml-2 transition duration-300
+  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-full py-1.5 pl-3 pr-4 ml-2 transition duration-300 ml-auto
 }
 
 .twitterFollowTask {
@@ -15,12 +15,12 @@
 }
 
 .twitterFollowTaskError {
-    composes: twitterFollowTask;
-    @apply border-red-500 hover:border-red-500;
+  composes: twitterFollowTask;
+  @apply border-red-500 hover:border-red-500;
 }
 
 .twitterRetweetTask {
-    @apply bg-gray-50 text-sm font-medium flex items-center border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300
+  @apply bg-gray-50 text-sm font-medium flex items-center border border-gray-200 hover:border-blue-600 rounded-lg py-3 px-4 hover:shadow-sm transition-all duration-300
 }
 
 .nftOwnershipTask {
@@ -30,18 +30,21 @@
 .btnVerifyTwitter {
     @apply ml-auto;
 }
+
 .btnClaimRewardWrap {
     @apply py-4 px-4;
 }
+
 .btnClaimReward {
     @apply bg-blue-500 hover:bg-blue-600 text-white block py-2.5 px-4 text-center rounded-lg transition-all duration-300 w-full;
 }
+
 .btnClaimRewardDisabled {
-    composes: btnClaimReward;
-    @apply bg-gray-600 hover:bg-gray-600;
-    cursor: not-allowed;
-    pointer-events: none;
+  composes: btnClaimReward;
+  @apply bg-gray-600 hover:bg-gray-600;
+  cursor: not-allowed;
+  pointer-events: none;
 }
+
 .taskIndex {
-    margin: 10px;
 }
