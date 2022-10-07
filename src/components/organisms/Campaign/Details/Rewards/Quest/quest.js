@@ -27,10 +27,10 @@ const Quest = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
   const router = useRouter();
   const { t } = useTranslation('campaign_details');
-  const { handleCheckTwitterFollow } = useTwitterFollow({
+  /*const { handleCheckTwitterFollow } = useTwitterFollow({
     user_id: '805827086787035136',
     owner_id: '1574963666918600704'
-  });
+  });*/
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [twitterFollowState, setTwitterFollowState] = useState(
@@ -137,29 +137,31 @@ const Quest = (props) => {
       </div>
     );
   }
-  // const handleCheckTwitterFollow = () => {
-  //   console.log('handleCheckTwitterFollow()');
+  const handleCheckTwitterFollow = () => {
+    console.log('handleCheckTwitterFollow()');
 
-  //   if (!isWalletConnected) {
-  //     return toast.warning(
-  //       t('You must connect your wallet before do this task!')
-  //     );
-  //   }
-  //   const data = TwitterFollow({ uid: 1, twitter_id: 2 });
-  //   // checking twitter follow here...
-  //   console.log('====================================');
-  //   console.log(data);
-  //   console.log('====================================');
-  //   // assume that
-  //   let result = {
-  //     status: true
-  //   };
+    if (!isWalletConnected) {
+      return toast.warning(
+        t('You must connect your wallet before do this task!')
+      );
+    }
 
-  //   // update state
-  //   tasks.ck_twitter_follow.status = result.status;
-  //   //trigger to re-render
-  //   setTwitterFollowState(tasks.ck_twitter_follow.status);
-  // };
+    /*const data = TwitterFollow({ uid: 1, twitter_id: 2 });
+    // checking twitter follow here...
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');*/
+
+    // assume that
+    let result = {
+      status: true
+    };
+
+    // update state
+    tasks.ck_twitter_follow.status = result.status;
+    //trigger to re-render
+    setTwitterFollowState(tasks.ck_twitter_follow.status);
+  };
 
   let twitterReTweetTask = null;
   if (tasks.ck_twitter_retweet) {
