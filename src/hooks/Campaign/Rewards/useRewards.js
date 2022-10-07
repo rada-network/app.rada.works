@@ -59,10 +59,10 @@ export default (props) => {
     console.log('====================================');
     requiredTasks.ck_twitter_login = {
       id: 1,
-      // status: true,
-      // screen_name: 'Qvv885',
-      status: result_tw?.status,
-      screen_name: result_tw?.screen_name,
+      status: true,
+      screen_name: 'Qvv885',
+      /*status: result_tw?.status,
+      screen_name: result_tw?.screen_name,*/
       msg: null
     };
   }
@@ -219,11 +219,11 @@ export default (props) => {
       return toast.warning(t('You must finish all required tasks!'));
     } else {
       try {
-        /*const rs = await checkExistsSocialLink(
+        const rs = await checkExistsSocialLink(
           { _eq: 'twitter' },
           { email: { _eq: session?.user?.email } }
         );
-        console.log('checkExistsSocialLink:', rs);*/
+        console.log('checkExistsSocialLink:', rs);
 
         // If all required tasks done
         // 1. Check was joined
