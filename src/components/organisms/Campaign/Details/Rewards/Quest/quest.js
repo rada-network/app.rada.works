@@ -32,9 +32,6 @@ const Quest = (props) => {
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const social_exits = CheckSocial(session);
-  console.log('====================================');
-  console.log(tasks.ck_twitter_login);
-  console.log('====================================');
   const [twitterVerifiedName, setTwitterVerifiedName] = useState(
     tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
   );
