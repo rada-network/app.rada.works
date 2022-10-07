@@ -63,3 +63,7 @@
 .soulBoundTokenTask {
   @apply border border-gray-200 rounded-lg mt-3 flex items-start p-2 ml-3;
 }
+.bsc {
+  composes: bsc from '../../Rewards/rewards.module.css';
+  float: left;
+}

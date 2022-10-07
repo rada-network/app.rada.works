@@ -270,11 +270,11 @@ const Quest = (props) => {
       <div className="flex-1 flex">
         <div>
           <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
+            <span className={classes.bsc} />
             {t('SoulBound Token Ownership')}
           </h4>
           <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
             {t('Must hold Binance Account Bound Token in wallet.')}{' '}
-            <span className={classes.bsc} />
           </p>
         </div>
 
