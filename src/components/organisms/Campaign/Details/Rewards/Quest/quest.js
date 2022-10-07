@@ -308,7 +308,7 @@ const Quest = (props) => {
     <Fragment>
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
         <h3 className="mt-0 mb-0 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
-          {t('Required Tasks')}
+          {t('How to Claim?')}
         </h3>
         {/*<p className="text-sm text-gray-500 font-normal mt-0 mb-0">
             Follow the steps below to add yourself to this list.
