@@ -238,18 +238,16 @@ const Quest = (props) => {
     </span>
   );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
-    <div className={classes.nftOwnershipTask}>
+    <div className={classes.soulBoundTokenTask}>
       {/* <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span> */}
       <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
-        {t('NFT Ownership')}
+        {t('SoulBound Token Ownership')}
       </h4>
       <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-        {t(
-          'You must be holder of one NFT in the one of the following NFT collections'
-        )}
+        {t('Must hold Binance Account Bound Token in wallet')}
       </p>
       <div className="p-4">
-        {tasks.ck_nft_ownership.nftCollectionInfo}
+        {/*{tasks.ck_nft_ownership.nftCollectionInfo}*/}
         {nftOwnershipStatus}
         {verifyNftOwnershipBtn}
       </div>
@@ -295,7 +293,7 @@ const Quest = (props) => {
           isWalletConnected && isFinishedTasks ? () => onClaimReward() : null
         }
       >
-        {t('Claim Reward')}
+        {t('Submit')}
       </Button>
     </div>
   );
@@ -304,12 +302,10 @@ const Quest = (props) => {
     <Fragment>
       <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
         <h3 className="mt-0 mb-0 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
-          {t('How to Claim?')}
+          {t('Require tasks')}
         </h3>
         <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-          {t(
-            'After connected your wallet. Please do the social tasks below. And then click to "Claim Reward" button to add yourself to whitelist of this campaign.'
-          )}
+          {t('Complete all task below to be eligible.')}
         </p>
       </div>
 

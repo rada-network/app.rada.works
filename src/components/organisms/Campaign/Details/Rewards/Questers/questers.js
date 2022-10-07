@@ -7,7 +7,7 @@ import { useQuesters } from '../../../../../../hooks/Campaign/Rewards';
 import defaultClasses from './questers.module.css';
 import { useStyle } from '../../../../../classify';
 import { ellipsify } from '../../../../../../utils/strUtils';
-import Avatar from 'boring-avatars';
+// import Avatar from 'boring-avatars';
 
 const Questers = (props) => {
   const { classes: propClasses, campaignId } = props;
@@ -41,7 +41,7 @@ const Questers = (props) => {
 
   const blockHeading = (
     <h3 className="border-b border-gray-200 border-opacity-60 py-3 px-4">
-      {t('Questers')} ({totalItems})
+      {t('Souls')} ({totalItems})
     </h3>
   );
 
@@ -73,11 +73,11 @@ const Questers = (props) => {
       const loader = (
         <div className={classes.infiniteLoading}>{t('Loading more...')}</div>
       );
-      const endMessage = (
+      /*const endMessage = (
         <div className={classes.infiniteFinished}>
           <span>{t('That is all!')}</span>
         </div>
-      );
+      );*/
       child = (
         <InfiniteScroll
           className={classes.questerList}
@@ -88,7 +88,7 @@ const Questers = (props) => {
           endMessage={null}
         >
           {infiniteItems.map((quester) => (
-            <Avatar
+            /*<Avatar
               key={quester.id}
               size={50}
               square={false}
@@ -100,8 +100,9 @@ const Questers = (props) => {
               })}
               variant="marble" //oneOf: marble (default), beam, pixel,sunset, ring, bauhaus
               colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
-            />
-            /*<a
+            />*/
+            <div
+              key={quester.id}
               title={quester.user_created.email}
               className={`${classes.questerAvt} bg-gray-100 text-gray-600`}
             >
@@ -110,7 +111,7 @@ const Questers = (props) => {
                 start: 6,
                 end: 4
               })}
-            </a>*/
+            </div>
           ))}
         </InfiniteScroll>
       );

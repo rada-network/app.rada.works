@@ -239,7 +239,7 @@ export default (props) => {
             }
           });
         } else {
-          return toast.warning(t('You have joined!'));
+          return toast.warning(t('You have submitted!'));
         }
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {
