@@ -19,7 +19,7 @@ const Logo = (props) => {
       className={classes.logo}
       height={height}
       // layout="fill"
-      src={'/logo-animate.svg'}
+      src={'/soulmint.svg'}
       title={'SoulMint'}
       width={width}
     />
