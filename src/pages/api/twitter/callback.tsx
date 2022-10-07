@@ -13,9 +13,6 @@ const client = new Client(authClient);
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { code, state, reference_url, error } = req.query;
-    console.log('====================================');
-    console.log(req.query);
-    console.log('====================================');
     if (state === 'login') {
       const authUrl = authClient.generateAuthURL({
         state: `${reference_url}`,
@@ -23,22 +20,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
       res.redirect(authUrl);
       res.end();
-    } else if (!error) {
-      const access_res = await authClient.requestAccessToken(code as string);
-      if (access_res) {
+    } else if (state) {
+      const accessToken = await authClient.requestAccessToken(code as string);
+      if (accessToken) {
         const response = await client.users.findMyUser();
-        const ref = decodeURIComponent(state as string);
-        res.redirect(
-          ref
-            ? ref +
-                '?user=' +
-                response.data.username +
-                '&name=' +
-                response.data.name +
-                '&uid=' +
-                response.data.id
-            : '/'
-        );
+        const redirectUrl = state
+          ? `${state}?user=${encodeURIComponent(
+              response.data.username
+            )}&name=${encodeURIComponent(response.data.name)}&uid=${
+              response.data.id
+            }`
+          : '/';
+        res.redirect(redirectUrl);
         res.end();
       } else {
         res.redirect(decodeURIComponent(state as string));
@@ -49,10 +42,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.redirect(decodeURIComponent(state as string) + '?error=' + error);
       res.end();
     }
-    res.status(404).json({ error: 'Action not found' });
-    res.end();
   } catch (error) {
-    console.log(error);
-    res.status(404).json({ error: 'Action not found' });
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(error);
+    }
+    res.status(404).json({ error: 'Something went wrong.' });
   }
 };

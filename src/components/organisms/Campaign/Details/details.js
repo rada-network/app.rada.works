@@ -117,16 +117,17 @@ const Details = (props) => {
             {t('Ongoing')}
           </div>
         );
-      const datesInfo = (
-        <div>
-          <span className={classes.dateStart}>
-            {startDate.format('DD MMM YYYY')}
-          </span>
-          <span className={classes.dateEnd}>
-            {endDate.format('DD MMM YYYY')}
-          </span>
-        </div>
-      );
+      const datesInfo =
+        campaign.date_start || campaign.date_end ? (
+          <div>
+            <span className={classes.dateStart}>
+              {startDate.format('DD MMM YYYY')}
+            </span>
+            <span className={classes.dateEnd}>
+              {endDate.format('DD MMM YYYY')}
+            </span>
+          </div>
+        ) : null;
       const metaInfo = (
         <div className={`${classes.campaignMeta}`}>
           {stateInfo}

@@ -36,33 +36,31 @@ export default (props) => {
     console.log("rs:", rs);
   }*/
 
-  let result_tw = { status: null, screen_name: null };
+  let twLoginResult = { status: null, screen_name: null };
   const router = useRouter();
   if (router.query.user) {
     const { user, name, uid } = router.query;
-    result_tw.name = name;
-    result_tw.status = true;
-    result_tw.uid = uid;
-    result_tw.screen_name = user;
+    twLoginResult.name = name;
+    twLoginResult.status = true;
+    twLoginResult.uid = uid;
+    twLoginResult.screen_name = user;
     // saveSocialLink({
     //   name: 'twitter',
     //   username: user,
     //   uid
     // });
-    // update state
-    result_tw && router.push('/campaign-details/' + router.query.slug[0]);
+
+    // Refresh page
+    twLoginResult && router.push('/campaign-details/' + router.query.slug[0]);
   }
   const requiredTasks = {};
   if (campaign.twitter_tweet || campaign.twitter_username) {
-    console.log('====================================');
-    console.log(result_tw?.screen_name);
-    console.log('====================================');
     requiredTasks.ck_twitter_login = {
       id: 1,
-      status: true,
-      screen_name: 'Qvv885',
-      /*status: result_tw?.status,
-      screen_name: result_tw?.screen_name,*/
+      /*status: true,
+      screen_name: 'Qvv85',*/
+      status: twLoginResult?.status,
+      screen_name: twLoginResult?.screen_name,
       msg: null
     };
   }
