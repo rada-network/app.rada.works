@@ -11,7 +11,6 @@ import TextLink from '../../../../../../components/atoms/TextLink';
 import TwitterLogin from '../../../../../../hooks/Campaign/Rewards/useTwitter';
 import {
   TwitterIcon,
-  TwitterAuthIcon,
   TaskFailIcon,
   TaskSuccessIcon
 } from '../../../../Svg/SvgIcons';
@@ -31,9 +30,6 @@ const Quest = (props) => {
 
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [twitterVerifiedName, setTwitterVerifiedName] = useState(
-    tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
-  );
   const [twitterFollowState, setTwitterFollowState] = useState(
     tasks.ck_twitter_follow ? tasks.ck_twitter_follow.status : true
   );
@@ -59,7 +55,9 @@ const Quest = (props) => {
         {t('Login')}
       </Button>
     ) : (
-      <span className={`ml-auto text-blue-600`}>@{twitterVerifiedName}</span>
+      <span className={`ml-auto text-blue-600`}>
+        @{tasks.ck_twitter_login.screen_name}
+      </span>
     );
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
@@ -86,19 +84,6 @@ const Quest = (props) => {
     }
 
     await TwitterLogin({ reference_url: router.asPath });
-    // do twitter login here...
-
-    // assume that
-    // const result = {
-    //   status: true,
-    //   screen_name: '@Qvv85'
-    // };
-
-    // // update state
-    // tasks.ck_twitter_login.status = result.status;
-    // tasks.ck_twitter_login.screen_name = result.screen_name;
-    // //trigger to re-render
-    // setTwitterVerifiedName(tasks.ck_twitter_login.screen_name);
   };
 
   let twitterFollowTask = null;
@@ -306,10 +291,7 @@ const Quest = (props) => {
   };
 
   const isFinishedTasks =
-    !twitterVerifiedName ||
-    !twitterFollowState ||
-    !twitterReTweetState ||
-    !nftOwnershipState
+    !twitterFollowState || !twitterReTweetState || !nftOwnershipState
       ? false
       : true;
   const btnClaimReward = (

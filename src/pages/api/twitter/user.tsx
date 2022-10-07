@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const access_token: any = token?.credentials;
-    const userProfile: any = token?.userProfile;
+    const twUserProfile: any = token?.twUserProfile;
     const twitterClient = new Twitter({
       consumer_key: `${process.env.TWITTER_CONSUMER_KEY}`,
       consumer_secret: `${process.env.TWITTER_CONSUMER_SECRET}`,
@@ -20,12 +20,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
     //
     const userData = await twitterClient.get('users/show', {
-      id: userProfile.userID,
-      screen_name: userProfile.twitterHandle
+      id: twUserProfile.userId,
+      screen_name: twUserProfile.screenName
     });
 
     const data = {
-      twitterHandle: userData.screen_name,
+      screenName: userData.screen_name,
       followersCount: userData.followers_count,
       followingCount: userData.friends_count,
       description: userData.description,

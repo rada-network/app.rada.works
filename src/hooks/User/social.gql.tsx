@@ -3,21 +3,22 @@ import { gql } from '@apollo/client';
 export const CREATE_SOCIAL_LINK_GQL = gql`
   mutation create_social_link_item($data: create_social_link_input!) {
     create_social_link_item(data: $data) {
-      id
-      name
+      uid
       username
+      name
     }
   }
 `;
 
 export const GET_SOCIAL_LINK_GQL = gql`
-  query get_social(
+  query get_social_link(
     $social_name: string_filter_operators!
-    $user_created: directus_users_filter!
+    $uid: string_filter_operators!
   ) {
-    social_link(filter: { name: $social_name, user_created: $user_created }) {
-      name
+    social_link(filter: { name: $social_name, uid: $uid }) {
+      uid
       username
+      name
     }
   }
 `;

@@ -13,7 +13,10 @@ import { ThemeProvider } from 'next-themes';
 import { getSession } from 'next-auth/react';
 import Head from 'next/head';
 import BrowserPersistence from '../utils/simplePersistence';
-import { saveSocialLink } from 'src/hooks/User/useSocial';
+import {
+  checkExistsSocialLink,
+  saveSocialLink
+} from 'src/hooks/User/useSocial';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const store = useStore();
@@ -26,12 +29,21 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         session.access_token,
         24 * 60 * 60 * 1000
       );
-      const userProfile: any = session?.userProfile;
-      if (userProfile) {
-        await saveSocialLink({
-          name: session.provider,
-          username: userProfile?.twitterHandle
-        });
+      //Auto sync social link if is social login
+      const twUserProfile: any = session?.twUserProfile;
+      if (twUserProfile) {
+        //check exits
+        const found = await checkExistsSocialLink(
+          { _eq: session.provider },
+          { _eq: `${twUserProfile.userId}` }
+        );
+        if (!found) {
+          await saveSocialLink({
+            name: session.provider,
+            username: twUserProfile?.screenName,
+            uid: twUserProfile.userId ? `${twUserProfile.userId}` : null
+          });
+        }
       }
     } else {
       storage.removeItem('access_token');

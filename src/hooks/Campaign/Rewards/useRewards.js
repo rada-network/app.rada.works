@@ -3,7 +3,7 @@ import TextLink from '../../../components/atoms/TextLink';
 import { ellipsify } from '../../../utils/strUtils';
 import { EvmChain } from '@moralisweb3/evm-utils';
 import Moralis from 'moralis';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import { useMutation } from '@apollo/client';
 import API from './api.gql';
 import { toast } from 'react-toastify';
@@ -13,6 +13,7 @@ import {
   saveSocialLink,
   checkExistsSocialLink
 } from 'src/hooks/User/useSocial';
+import BrowserPersistence from '../../../utils/simplePersistence';
 
 export default (props) => {
   const { campaign, classes } = props;
@@ -23,52 +24,65 @@ export default (props) => {
 
   const { data: session } = useSession();
 
-  /*const checkExistSocialLink = async (socialName, userCreated) => {
-    const rs = await checkExistsSocialLink(socialName, userCreated);
-    return rs;
-  }
-  const userEmail = session?.user?.email;
-  if (userEmail) {
-    const rs = checkExistSocialLink(
-      { _eq: 'twitter' },
-      { email: { _eq: session?.user?.email } }
-    );
-    console.log("rs:", rs);
-  }*/
+  const storage = new BrowserPersistence();
 
-  let twLoginResult = { status: null, screen_name: null };
-  const router = useRouter();
-  if (router.query.user) {
-    const { user, name, uid } = router.query;
-    twLoginResult.name = name;
-    twLoginResult.status = true;
-    twLoginResult.uid = uid;
-    twLoginResult.screen_name = user;
-    // saveSocialLink({
-    //   name: 'twitter',
-    //   username: user,
-    //   uid
-    // });
-
-    // Refresh page
-    twLoginResult && router.push('/campaign-details/' + router.query.slug[0]);
-  }
   const requiredTasks = {};
+  let finishedTasks = storage.getItem('finishedTasks');
+
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
       id: 1,
-      /*status: true,
-      screen_name: 'Qvv85',*/
-      status: twLoginResult?.status,
-      screen_name: twLoginResult?.screen_name,
+      status: finishedTasks ? finishedTasks.ck_twitter_login.status : null,
+      screen_name: finishedTasks
+        ? finishedTasks.ck_twitter_login.screen_name
+        : null,
       msg: null
     };
+
+    let socialLink = null;
+    const router = useRouter();
+    if (router.query.user) {
+      const { user, name, uid } = router.query;
+      // Checking and saving to social link
+      getSession().then(async () => {
+        //check exits and saving to social link
+        const found = await checkExistsSocialLink(
+          { _eq: 'twitter' },
+          { _eq: `${uid}` }
+        );
+        if (!found) {
+          socialLink = await saveSocialLink({
+            name: 'twitter',
+            username: user,
+            uid
+          });
+        } else {
+          socialLink = found;
+        }
+        if (socialLink && socialLink.uid) {
+          requiredTasks.ck_twitter_login.status = true;
+          requiredTasks.ck_twitter_login.screen_name = socialLink.username;
+          //saving to local storage for other contexts
+          storage.setItem('twSocialLink', socialLink, 24 * 60 * 60); //1 days
+        }
+        // Refresh page
+        socialLink && router.push('/campaign-details/' + router.query.slug[0]);
+      });
+    } else {
+      //check local storage
+      socialLink = storage.getItem('twSocialLink');
+      if (socialLink && socialLink.uid) {
+        requiredTasks.ck_twitter_login.status = true;
+        requiredTasks.ck_twitter_login.screen_name = socialLink.username;
+      }
+    }
   }
+
   if (campaign.twitter_username) {
     requiredTasks.ck_twitter_follow = {
       id: 2,
       username: campaign.twitter_username,
-      status: null,
+      status: finishedTasks ? finishedTasks.ck_twitter_follow.status : null,
       msg: null
     };
   }
@@ -76,7 +90,7 @@ export default (props) => {
     requiredTasks.ck_twitter_retweet = {
       id: 3,
       tweet_url: campaign.twitter_tweet,
-      status: null,
+      status: finishedTasks ? finishedTasks.ck_twitter_retweet.status : null,
       msg: null
     };
   }
@@ -118,7 +132,7 @@ export default (props) => {
     requiredTasks.ck_nft_ownership = {
       id: 4,
       nftCollectionInfo,
-      status: null,
+      status: finishedTasks ? finishedTasks.ck_nft_ownership.status : null,
       msg: null
     };
   }
@@ -250,9 +264,9 @@ export default (props) => {
   // Handle saving quest result
   useEffect(() => {
     if (saveQuestResult) {
+      //storage.setItem('finishedTasks', finishedTasks, 24*60*60);
       return toast.success(t('Submitted successfully!'));
     }
-
     if (saveQuesterError) {
       if (process.env.NODE_ENV !== 'production') {
         console.error(saveQuesterError);

@@ -124,11 +124,11 @@ export default async function auth(
       async jwt({ token, user, account, profile }) {
         if (account?.provider === 'twitter') {
           if (profile) {
-            token['userProfile'] = {
+            token['twUserProfile'] = {
               followersCount: profile.followers_count,
-              twitterHandle: profile.screen_name,
+              screenName: profile.screen_name,
               followingCount: profile.friends_count,
-              userID: profile.id
+              userId: profile.id
             };
           }
           if (account) {
@@ -164,12 +164,9 @@ export default async function auth(
         session.id = token.id;
         session.access_token = token.access_token;
         session.provider = token.provider;
-        session.userProfile = token.userProfile;
+        session.twUserProfile = token.twUserProfile;
         session.credentials = token.credentials;
         session.error = token.error;
-        /*console.log('====================================');
-        console.log('session', session);
-        console.log('====================================');*/
         return session;
       }
     }
