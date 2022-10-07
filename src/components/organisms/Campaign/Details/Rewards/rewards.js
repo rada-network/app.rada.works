@@ -36,13 +36,14 @@ const Rewards = (props) => {
       {rewardOverview}
       {/*<HowClaim campaign={campaign} />*/}
       <Quest
+        campaignId={parseInt(campaign.id)}
         tasks={tasks}
         setTasks={setTasks}
         onClaimReward={handleClaimReward}
         verifyNftOwnership={handleVerifyNftOwnership}
       />
       <Coupon campaign={campaign} />
-      <Questers campaign={campaign} />
+      <Questers campaignId={campaign.id} />
     </Fragment>
   );
 };

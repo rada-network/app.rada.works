@@ -14,8 +14,8 @@
   composes: boxBody from '../../Campaign/Details/detail.module.css';
 }
 
-.couponList {
-  composes: couponList from '../../Campaign/Details/detail.module.css';
+.campaignList {
+
 }
 
 .infiniteFinished {

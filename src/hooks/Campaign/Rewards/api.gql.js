@@ -43,7 +43,75 @@ export const isQuesterExists = async (campaign_id, user_created) => {
   return rs;
 };
 
+export const GET_TOTAL_QUESTER = gql`
+  query getQuesters($filter: quester_filter, $search: String) {
+    quester(filter: $filter, search: $search) {
+      id
+    }
+  }
+`;
+
+export const GET_QUESTERS = gql`
+  query getQuesters(
+    $filter: quester_filter
+    $sort: [String]
+    $limit: Int
+    $offset: Int
+    $page: Int
+    $search: String
+  ) {
+    quester(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      offset: $offset
+      page: $page
+      search: $search
+    ) {
+      id
+      campaign_id
+      user_created {
+        id
+        email
+      }
+    }
+  }
+`;
+
+export const getNextQuesters = async (props) => {
+  const { search, filter, limit, page, sort } = props;
+
+  let rs = [];
+  const client = initializeApollo();
+  try {
+    const { data } = await client.query({
+      query: GET_QUESTERS,
+      variables: {
+        search,
+        filter,
+        limit,
+        page,
+        sort
+      }
+      // fetchPolicy: 'no-cache'
+    });
+    if (data && data.quester) {
+      rs = data.quester;
+    }
+  } catch (error) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(error);
+    }
+    return error;
+  }
+
+  return rs;
+};
+
 export default {
   createQuester: CREATE_QUESTER,
-  isQuesterExistsFunc: isQuesterExists
+  isQuesterExistsFunc: isQuesterExists,
+  getQuesters: GET_QUESTERS,
+  getTotalQuesters: GET_TOTAL_QUESTER,
+  getNextQuestersFunc: getNextQuesters
 };

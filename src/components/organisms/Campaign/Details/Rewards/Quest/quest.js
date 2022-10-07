@@ -8,7 +8,7 @@ import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
-import TwitterLogin from '../../../../../../hooks/Rewards/useTwitter';
+import TwitterLogin from '../../../../../../hooks/Campaign/Rewards/useTwitter';
 import {
   TwitterIcon,
   TwitterAuthIcon,
@@ -31,10 +31,6 @@ const Quest = (props) => {
 
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const social_exits = CheckSocial(session);
-  console.log('====================================');
-  console.log(tasks.ck_twitter_login);
-  console.log('====================================');
   const [twitterVerifiedName, setTwitterVerifiedName] = useState(
     tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
   );
