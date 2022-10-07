@@ -35,12 +35,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.end();
       } else {
         res.redirect(decodeURIComponent(state as string));
-        res.end();
       }
     }
     if (error) {
       res.redirect(decodeURIComponent(state as string) + '?error=' + error);
-      res.end();
     }
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
