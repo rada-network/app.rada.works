@@ -244,7 +244,7 @@ const Quest = (props) => {
         {t('SoulBound Token Ownership')}
       </h4>
       <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-        {t('Must hold Binance Account Bound Token in wallet')}
+        {t('Must hold Binance Account Bound Token in wallet.')}
       </p>
       <div className="p-4">
         {/*{tasks.ck_nft_ownership.nftCollectionInfo}*/}
@@ -300,11 +300,11 @@ const Quest = (props) => {
 
   const child = Object.keys(tasks).length ? (
     <Fragment>
-      <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
-        <h3 className="mt-0 mb-0 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
+      <div className="py-3 px-4">
+        <h3 className="mt-0 mb-1 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
           {t('Require tasks')}
         </h3>
-        <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+        <p className="text-sm text-gray-600 font-normal mt-0 mb-0">
           {t('Complete all task below to be eligible.')}
         </p>
       </div>
