@@ -12,6 +12,10 @@
   @apply bg-blue-100 content-[''] block w-0.5 absolute top-4 bottom-10 left-5 ml-0.5;
 }
 
-.howToClaim {
+.howToClaim p {
+  @apply mt-0;
+}
 
+.howToClaim p + p {
+  @apply mt-3;
 }
