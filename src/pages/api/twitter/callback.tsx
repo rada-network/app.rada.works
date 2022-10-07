@@ -1,29 +1,27 @@
-import { Client, auth } from 'twitter-api-sdk';
+import {
+  initTwitterAuthClient,
+  initTwitterClient
+} from 'src/libs/twitterAuthClient';
 import { NextApiRequest, NextApiResponse } from 'next';
-
-// eslint-disable-next-line import/no-anonymous-default-export
-const authClient = new auth.OAuth2User({
-  client_id: process.env.TWITTER_ID,
-  client_secret: process.env.TWITTER_SECRET,
-  callback: process.env.NEXTAUTH_URL + '/api/twitter/callback',
-  scopes: ['tweet.read', 'users.read', 'offline.access']
-});
-const client = new Client(authClient);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    const twitterAuthClient = initTwitterAuthClient();
+    const twitterClient = initTwitterClient();
     const { code, state, reference_url, error } = req.query;
     if (state === 'login') {
-      const authUrl = authClient.generateAuthURL({
+      const authUrl = twitterAuthClient.generateAuthURL({
         state: `${reference_url}`,
         code_challenge_method: 's256'
       });
       res.redirect(authUrl);
       res.end();
-    } else if (state) {
-      const accessToken = await authClient.requestAccessToken(code as string);
+    } else if (state && code) {
+      const accessToken = await twitterAuthClient.requestAccessToken(
+        code as string
+      );
       if (accessToken) {
-        const response = await client.users.findMyUser();
+        const response = await twitterClient.users.findMyUser();
         const redirectUrl = state
           ? `${state}?user=${encodeURIComponent(
               response.data.username
