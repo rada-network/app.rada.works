@@ -6,7 +6,7 @@ import { useStyle } from '../../../../classify';
 import Coupon from './Coupon';
 import Quest from './Quest';
 import Questers from './Questers';
-// import HowClaim from './HowClaim';
+import HowClaim from './HowClaim';
 import { useRewards } from '../../../../../hooks/Campaign/Rewards';
 
 const Rewards = (props) => {
@@ -33,10 +33,14 @@ const Rewards = (props) => {
     </div>
   ) : null;
 
+  const howToClaim = campaign.how_to_claim ? (
+    <HowClaim content={campaign.how_to_claim} />
+  ) : null;
+
   return (
     <Fragment>
       {rewardOverview}
-      {/*<HowClaim campaign={campaign} />*/}
+      {howToClaim}
       <Quest
         campaignId={parseInt(campaign.id)}
         tasks={tasks}

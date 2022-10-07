@@ -40,6 +40,7 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       user_created {
         id
       }
+      how_to_claim
     }
   }
 `;

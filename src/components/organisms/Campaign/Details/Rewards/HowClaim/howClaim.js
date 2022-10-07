@@ -5,7 +5,7 @@ import defaultClasses from './howClaim.module.css';
 import { useStyle } from '../../../../../classify';
 
 const HowClaim = (props) => {
-  const { classes: propClasses } = props;
+  const { classes: propClasses, content } = props;
   const classes = useStyle(defaultClasses, propClasses);
 
   const { t } = useTranslation('campaign_details');
@@ -16,13 +16,17 @@ const HowClaim = (props) => {
         <h3 className="mt-0 mb-0 leading-normal text-xl lg:text-2xl font-bold text-gray-800">
           {t('How to claim?')}
         </h3>
-        <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+        {/*<p className="text-sm text-gray-500 font-normal mt-0 mb-0">
           {t('Follow the steps below to claim your rewards.')}
-        </p>
+        </p>*/}
       </div>
 
       <div className="p-4">
-        <div className={`${classes.howtoSteps}`}>
+        <div
+          className={classes.howToClaim}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+        {/*<div className={`${classes.howtoSteps}`}>
           <div className="flex items-center mb-8 z-10">
             <strong className="bg-blue-100 border border-4 border-white text-blue-500 flex items-center justify-center h-11 w-11 rounded-full">
               1
@@ -49,7 +53,7 @@ const HowClaim = (props) => {
               )}
             </div>
           </div>
-        </div>
+        </div>*/}
       </div>
     </div>
   );
@@ -59,9 +63,7 @@ HowClaim.propTypes = {
   classes: shape({
     root: string
   }),
-  campaign: shape({
-    id: string
-  })
+  content: string
 };
 
 export default HowClaim;

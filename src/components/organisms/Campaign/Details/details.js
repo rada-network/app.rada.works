@@ -121,10 +121,11 @@ const Details = (props) => {
         campaign.date_start || campaign.date_end ? (
           <div>
             <span className={classes.dateStart}>
+              {t('Start: ')}
               {startDate.format('DD MMM YYYY')}
             </span>
             <span className={classes.dateEnd}>
-              {endDate.format('DD MMM YYYY')}
+              {t('Ends: ')} {endDate.format('DD MMM YYYY')}
             </span>
           </div>
         ) : null;
