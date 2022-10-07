@@ -241,7 +241,7 @@ const Quest = (props) => {
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
     <div className={classes.nftOwnershipTask}>
       {/* <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span> */}
-      <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
+      <h4 className="mt-0 mb-1 leading-normal text-md font-extrabold text-gray-800">
         {t('NFT Ownership')}
       </h4>
       <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
@@ -303,11 +303,11 @@ const Quest = (props) => {
 
   const child = Object.keys(tasks).length ? (
     <Fragment>
-      <div className="border-b border-gray-200 border-opacity-60 py-3 px-4">
-        <h3 className="mt-0 mb-0 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
+      <div className="py-3 px-4">
+        <h3 className="mt-0 mb-1 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
           {t('How to Claim?')}
         </h3>
-        <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+        <p className="text-sm text-gray-600 font-normal mt-0 mb-0">
           {t(
             'After connected your wallet. Please do the social tasks below. And then click to "Claim Reward" button to add yourself to whitelist of this campaign.'
           )}
