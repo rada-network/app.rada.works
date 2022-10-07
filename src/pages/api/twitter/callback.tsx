@@ -42,7 +42,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.redirect(decodeURIComponent(state as string));
       }
     }
+    res.status(404).json({ error: 'Action not found' });
   } catch (error) {
     console.log(error);
+    res.status(404).json({ error: 'Action not found' });
   }
 };
