@@ -12,7 +12,7 @@ const client = new Client(authClient);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { code, state, reference_url } = req.query;
+    const { code, state, reference_url, error } = req.query;
     console.log('====================================');
     console.log(req.query);
     console.log('====================================');
@@ -22,7 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         code_challenge_method: 's256'
       });
       res.redirect(authUrl);
-    } else {
+      res.end();
+    } else if (!error) {
       const access_res = await authClient.requestAccessToken(code as string);
       if (access_res) {
         const response = await client.users.findMyUser();
@@ -38,11 +39,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 response.data.id
             : '/'
         );
+        res.end();
       } else {
         res.redirect(decodeURIComponent(state as string));
+        res.end();
       }
     }
+    if (error) {
+      res.redirect(decodeURIComponent(state as string) + '?error=' + error);
+      res.end();
+    }
     res.status(404).json({ error: 'Action not found' });
+    res.end();
   } catch (error) {
     console.log(error);
     res.status(404).json({ error: 'Action not found' });
