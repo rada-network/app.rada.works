@@ -28,11 +28,10 @@ const Quest = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
   const router = useRouter();
   const { t } = useTranslation('campaign_details');
-  const { handleCheckTwitterFollow, handleCheckTwitterLogin } =
-    useTwitterFollow({
-      user_id: '805827086787035136',
-      owner_id: '1574963666918600704'
-    });
+  const { handleCheckTwitterFollow } = useTwitterFollow({
+    user_id: '805827086787035136',
+    owner_id: '1574963666918600704'
+  });
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [twitterVerifiedName, setTwitterVerifiedName] = useState(
@@ -89,7 +88,7 @@ const Quest = (props) => {
       );
     }
 
-    await TwitterLogin({ reference_url: router.asPath });
+    TwitterLogin({ reference_url: router.asPath });
     // do twitter login here...
 
     // assume that

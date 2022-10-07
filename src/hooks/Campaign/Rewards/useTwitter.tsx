@@ -17,7 +17,6 @@ const TwitterFollow = async (props: any) => {
     .then((res) => res.json())
     .then((data) => {
       checked = data.checked;
-
       console.log('====================================');
       console.log(data);
       console.log('====================================');
