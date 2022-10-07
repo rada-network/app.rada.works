@@ -24,7 +24,7 @@
 
 .root_highPriority {
   composes: root;
-  @apply bg-blue-600 text-white hover:bg-blue-700 hover:text-white font-normal;
+  @apply bg-violet-600 text-white hover:bg-violet-700 hover:text-white font-normal;
 }
 
 .root_lowPriorityNegative,
