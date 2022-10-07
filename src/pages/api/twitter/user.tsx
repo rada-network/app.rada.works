@@ -1,40 +1,25 @@
-import { getToken } from 'next-auth/jwt';
-import Twitter from 'twitter-lite';
+import { Client } from 'twitter-api-sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const token = await getToken({
-    req,
-    secret: process.env.NEXTAUTH_SECRET
-  });
-
   try {
-    const access_token: any = token?.credentials;
-    const userProfile: any = token?.userProfile;
-    const twitterClient = new Twitter({
-      consumer_key: `${process.env.TWITTER_CONSUMER_KEY}`,
-      consumer_secret: `${process.env.TWITTER_CONSUMER_SECRET}`,
-      access_token_key: access_token?.authToken, // from your User (oauth_token)
-      access_token_secret: access_token?.authSecret // from your User (oauth_token_secret)
-    });
-    //
-    const userData = await twitterClient.get('users/show', {
-      id: userProfile.userID,
-      screen_name: userProfile.twitterHandle
-    });
-
-    const data = {
-      twitterHandle: userData.screen_name,
-      followersCount: userData.followers_count,
-      followingCount: userData.friends_count,
-      description: userData.description,
-      location: userData.location
-    };
+    const userId = req.query.userId;
+    const client = new Client(process.env.TWITTER_BEARER_TOKEN);
+    const followers = client.users.usersIdFollowers('1574963666918600704');
+    const checked = false;
+    for await (const page of followers) {
+      page.data.forEach((item) => {
+        console.log(item.name + ':' + item.id);
+        // if (item.id === userId) {
+        //   checked = true;
+        // }
+      });
+    }
 
     return res.status(200).json({
       status: 'Ok',
-      data
+      checked
     });
   } catch (error) {
     // return error;

@@ -57,8 +57,8 @@ export default (props) => {
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
       id: 1,
-      /*status: true,
-      screen_name: 'Qvv85',*/
+      /* status: true,
+      screen_name: 'Qvv85', */
       status: twLoginResult?.status,
       screen_name: twLoginResult?.screen_name,
       msg: null
@@ -68,7 +68,7 @@ export default (props) => {
     requiredTasks.ck_twitter_follow = {
       id: 2,
       username: campaign.twitter_username,
-      status: null,
+      status: false,
       msg: null
     };
   }
@@ -76,7 +76,7 @@ export default (props) => {
     requiredTasks.ck_twitter_retweet = {
       id: 3,
       tweet_url: campaign.twitter_tweet,
-      status: null,
+      status: true,
       msg: null
     };
   }
@@ -118,7 +118,7 @@ export default (props) => {
     requiredTasks.ck_nft_ownership = {
       id: 4,
       nftCollectionInfo,
-      status: null,
+      status: true,
       msg: null
     };
   }

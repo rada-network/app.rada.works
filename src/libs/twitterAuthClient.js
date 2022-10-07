@@ -6,7 +6,13 @@ const CreateTwitterAuthClient = () => {
     client_id: process.env.TWITTER_ID,
     client_secret: process.env.TWITTER_SECRET,
     callback: process.env.NEXTAUTH_URL + '/api/twitter/callback',
-    scopes: ['tweet.read', 'users.read', 'offline.access']
+    scopes: [
+      'tweet.read',
+      'users.read',
+      'offline.access',
+      'like.write',
+      'follows.read'
+    ]
   });
 };
 const CreateTwitterClient = () => {
