@@ -310,9 +310,11 @@ const Quest = (props) => {
         <h3 className="mt-0 mb-0 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
           {t('How to Claim?')}
         </h3>
-        {/*<p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-            Follow the steps below to add yourself to this list.
-          </p>*/}
+        <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+          {t(
+            'After connected your wallet. Please do the social tasks below. And then click to "Claim Reward" button to add yourself to whitelist of this campaign.'
+          )}
+        </p>
       </div>
 
       <div className="p-4">
