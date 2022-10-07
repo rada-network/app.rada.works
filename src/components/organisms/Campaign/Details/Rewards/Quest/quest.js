@@ -63,9 +63,15 @@ const Quest = (props) => {
     );
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
-        <span className={classes.taskIndex}>{tasks.ck_twitter_login.id}</span>
+        <span
+          className={`${classes.taskIndex} ${
+            tasks.ck_twitter_login.status ? classes.taskSuccess : ''
+          }`}
+        >
+          {tasks.ck_twitter_login.id}
+        </span>
         <div className="flex items-center flex-1">
-        {TwitterIcon} {t('Login Twitter')} {twitterLoginStatus}
+          {TwitterIcon} {t('Login Twitter')} {twitterLoginStatus}
         </div>
       </div>
     );
@@ -119,7 +125,13 @@ const Quest = (props) => {
     );
     twitterFollowTask = (
       <div className={classes.twitterFollowTask}>
-        <span className={classes.taskIndex}>{tasks.ck_twitter_follow.id}</span>
+        <span
+          className={`${classes.taskIndex} ${
+            tasks.ck_twitter_follow.status ? classes.taskSuccess : ''
+          }`}
+        >
+          {tasks.ck_twitter_follow.id}
+        </span>
         {t('Follow')}
         <TextLink
           target="_blank"
@@ -183,7 +195,13 @@ const Quest = (props) => {
     );
     twitterReTweetTask = (
       <div className={classes.twitterRetweetTask}>
-        <span className={classes.taskIndex}>{tasks.ck_twitter_retweet.id}</span>
+        <span
+          className={`${classes.taskIndex} ${
+            tasks.ck_twitter_retweet.status ? classes.taskSuccess : ''
+          }`}
+        >
+          {tasks.ck_twitter_retweet.id}
+        </span>
         {t('Must')}&nbsp;{t('Retweet')}&nbsp;
         <TextLink
           target="_blank"
@@ -211,7 +229,7 @@ const Quest = (props) => {
 
     // assume that
     let result = {
-      status: false
+      status: true
     };
 
     // update state
@@ -241,16 +259,22 @@ const Quest = (props) => {
     </span>
   );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
-
     <div className={classes.soulBoundTokenTask}>
-      <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span>
+      <span
+        className={`${classes.taskIndex} ${
+          tasks.ck_nft_ownership.status ? classes.taskSuccess : ''
+        }`}
+      >
+        {tasks.ck_nft_ownership.id}
+      </span>
       <div className="flex-1 flex">
         <div>
           <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
             {t('SoulBound Token Ownership')}
           </h4>
           <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-            {t('Must hold Binance Account Bound Token in wallet.')} <span className={classes.bsc}></span>
+            {t('Must hold Binance Account Bound Token in wallet.')}{' '}
+            <span className={classes.bsc} />
           </p>
         </div>
 
@@ -259,7 +283,6 @@ const Quest = (props) => {
           {nftOwnershipStatus}
           {verifyNftOwnershipBtn}
         </div>
-
       </div>
     </div>
   ) : null;
@@ -274,6 +297,8 @@ const Quest = (props) => {
 
     // verify NFT ownership here...
     let result = await verifyNftOwnership();
+    console.log('ckOwnership Result:', result);
+    result = true; //coming soon
     // update state
     tasks.ck_nft_ownership.status = result;
     //trigger to re-render

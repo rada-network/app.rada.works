@@ -217,29 +217,26 @@ export default (props) => {
       return toast.warning(t('You must finish all required tasks!'));
     } else {
       try {
-        /*const rs = await checkExistsSocialLink(
-          { _eq: 'twitter' },
-          { email: { _eq: session?.user?.email } }
-        );
-        console.log('checkExistsSocialLink:', rs);*/
-
-        // If all required tasks done
+        // All require tasks done
         // 1. Check was joined
-        const userEmail = session?.user?.email;
-        const found = await isQuesterExistsFunc(
-          { _eq: campaign.id },
-          { email: { _eq: userEmail } }
-        );
-        if (!found) {
-          // 2. Save if has not join yet
-          await saveQuester({
-            variables: {
-              campaign_id: campaign.id,
-              status: 'approved'
-            }
-          });
-        } else {
-          return toast.warning(t('You have submitted!'));
+        //const userEmail = session?.user?.email;
+        const userEmail = session && session.user ? session.user.email : null;
+        if (userEmail) {
+          const found = await isQuesterExistsFunc(
+            { _eq: campaign.id },
+            { email: { _eq: userEmail } }
+          );
+          if (!found) {
+            // 2. Save if has not join yet
+            await saveQuester({
+              variables: {
+                campaign_id: campaign.id,
+                status: 'approved'
+              }
+            });
+          } else {
+            return toast.warning(t('You have submitted!'));
+          }
         }
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {
@@ -253,7 +250,7 @@ export default (props) => {
   // Handle saving quest result
   useEffect(() => {
     if (saveQuestResult) {
-      return toast.success(t('Your request was saved successfully!'));
+      return toast.success(t('Submitted successfully!'));
     }
 
     if (saveQuesterError) {

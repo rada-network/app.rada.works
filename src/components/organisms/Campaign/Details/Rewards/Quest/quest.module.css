@@ -53,6 +53,9 @@
 .taskIndex {
   @apply bg-white border border-gray-200 text-gray-500 flex items-center justify-center font-bold block w-8 h-8 rounded-full mr-2 text-center shadow-sm -ml-6;
 }
+.taskSuccess {
+  @apply bg-green-600 text-white;
+}
 
 .soulBoundTokenTask {
   @apply border border-gray-200 rounded-lg mt-3 flex items-start p-2 ml-3;

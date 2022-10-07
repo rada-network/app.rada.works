@@ -7,8 +7,6 @@ export default (props) => {
 
   const { campaignId } = props;
 
-  console.log(campaignId);
-
   //vars for infinite loading
   const [page, setPage] = useState(2);
   const [infiniteItems, setInfiniteItems] = useState([]);
