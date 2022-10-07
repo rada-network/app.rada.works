@@ -28,7 +28,7 @@
 }
 
 .btnVerifyTwitter {
-  @apply bg-violet-600 text-white font-medium rounded-md py-1.5 px-2 text-xs ml-auto shadow-none;
+  @apply border border-violet-300 hover:border-violet-600 hover:bg-violet-600 hover:text-white text-violet-600 font-semibold rounded-md py-1 px-2 text-xs ml-auto shadow-none;
 }
 
 .btnClaimRewardWrap {
