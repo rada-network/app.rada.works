@@ -21,7 +21,9 @@ const Rewards = (props) => {
     });
 
   const rewardOverview = campaign.reward_overview ? (
-    <div className={`${classes.rewardOverview} bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6`}>
+    <div
+      className={`${classes.rewardOverview} bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6`}
+    >
       <div className="p-4">
         <div
           className={classes.rewardOverview}
@@ -36,13 +38,14 @@ const Rewards = (props) => {
       {rewardOverview}
       {/*<HowClaim campaign={campaign} />*/}
       <Quest
+        campaignId={parseInt(campaign.id)}
         tasks={tasks}
         setTasks={setTasks}
         onClaimReward={handleClaimReward}
         verifyNftOwnership={handleVerifyNftOwnership}
       />
       <Coupon campaign={campaign} />
-      <Questers campaign={campaign} />
+      <Questers campaignId={campaign.id} />
     </Fragment>
   );
 };

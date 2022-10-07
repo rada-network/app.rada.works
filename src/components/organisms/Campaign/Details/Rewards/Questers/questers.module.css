@@ -1,5 +1,40 @@
 .root {
+    @apply bg-white shadow-sm rounded-lg mb-6 mt-10
+}
+
+.questers {
+    @apply flex flex-wrap items-center justify-between py-6 px-4 gap-3;
 }
 .questerAvt {
     @apply block w-12 h-12 rounded-full flex items-center justify-center font-semibold shadow-sm;
+}
+.loadMore {
+    @apply hover:bg-blue-600 hover:text-white inline-block border border-2 border-gray-200 hover:border-blue-600 rounded-md py-2 px-6 text-center w-52;
+}
+
+.rootDark .loadMore {
+    @apply border border-gray-700;
+}
+
+.loading {
+    padding: 10px;
+    text-align: center;
+}
+
+.noResult {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.infiniteLoading {
+    @apply text-gray-800 col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+}
+
+.infiniteFinished {
+    @apply text-gray-600 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+}
+
+.rootDark .infiniteFinished {
+    @apply bg-gray-800 text-gray-600;
 }

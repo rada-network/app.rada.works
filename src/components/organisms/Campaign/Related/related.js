@@ -83,7 +83,7 @@ const Related = (props) => {
 
       child = (
         <InfiniteScroll
-          className={classes.couponList}
+          className={classes.campaignList}
           dataLength={infiniteItems.length}
           next={fetchMoreData}
           hasMore={infiniteHasMore}

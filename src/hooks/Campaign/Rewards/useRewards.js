@@ -217,11 +217,11 @@ export default (props) => {
       return toast.warning(t('You must finish all required tasks!'));
     } else {
       try {
-        const rs = await checkExistsSocialLink(
+        /*const rs = await checkExistsSocialLink(
           { _eq: 'twitter' },
           { email: { _eq: session?.user?.email } }
         );
-        console.log('checkExistsSocialLink:', rs);
+        console.log('checkExistsSocialLink:', rs);*/
 
         // If all required tasks done
         // 1. Check was joined
@@ -235,11 +235,11 @@ export default (props) => {
           await saveQuester({
             variables: {
               campaign_id: campaign.id,
-              status: 'published'
+              status: 'approved'
             }
           });
         } else {
-          return toast.warning(t('You have joined!'));
+          return toast.warning(t('You have submitted!'));
         }
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {

@@ -8,7 +8,7 @@ import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
-import TwitterLogin from '../../../../../../hooks/Rewards/useTwitter';
+import TwitterLogin from '../../../../../../hooks/Campaign/Rewards/useTwitter';
 import {
   TwitterIcon,
   TwitterAuthIcon,
@@ -31,7 +31,6 @@ const Quest = (props) => {
 
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const social_exits = CheckSocial(session);
   const [twitterVerifiedName, setTwitterVerifiedName] = useState(
     tasks.ck_twitter_login ? tasks.ck_twitter_login.screen_name : true
   );
@@ -240,18 +239,17 @@ const Quest = (props) => {
     </span>
   );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
-    <div className={classes.nftOwnershipTask}>
-      <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span>
-      <h4 className="mt-0 mb-1 leading-normal text-md font-extrabold text-gray-800">
-        {t('NFT Ownership')}
+
+    <div className={classes.soulBoundTokenTask}>
+      {/* <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span> */}
+      <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
+        {t('SoulBound Token Ownership')}
       </h4>
       <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-        {t(
-          'You must be holder of one NFT in the one of the following NFT collections'
-        )}
+        {t('Must hold Binance Account Bound Token in wallet.')}
       </p>
       <div className="p-4">
-        {tasks.ck_nft_ownership.nftCollectionInfo}
+        {/*{tasks.ck_nft_ownership.nftCollectionInfo}*/}
         {nftOwnershipStatus}
         {verifyNftOwnershipBtn}
       </div>
@@ -297,7 +295,7 @@ const Quest = (props) => {
           isWalletConnected && isFinishedTasks ? () => onClaimReward() : null
         }
       >
-        {t('Claim Reward')}
+        {t('Submit')}
       </Button>
     </div>
   );
@@ -306,12 +304,10 @@ const Quest = (props) => {
     <Fragment>
       <div className="py-3 px-4">
         <h3 className="mt-0 mb-1 leading-normal text-xl lg:text-2xl font-bold text-gray-800 tracking-tight">
-          {t('How to Claim?')}
+          {t('Require tasks')}
         </h3>
         <p className="text-sm text-gray-600 font-normal mt-0 mb-0">
-          {t(
-            'After connected your wallet. Please do the social tasks below. And then click to "Claim Reward" button to add yourself to whitelist of this campaign.'
-          )}
+          {t('Complete all task below to be eligible.')}
         </p>
       </div>
 
