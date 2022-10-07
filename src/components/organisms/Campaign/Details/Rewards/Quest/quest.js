@@ -124,8 +124,8 @@ const Quest = (props) => {
           title={t('Go to this Twitter channel.')}
           href={`https://twitter.com/${tasks.ck_twitter_follow.username}`}
         >
-          <strong className="text-blue-600 font-semibold">
-            &nbsp; @{tasks.ck_twitter_follow.username}
+          <strong className="text-violet-600 hover:text-violet-700 font-bold">
+            &nbsp;@{tasks.ck_twitter_follow.username}
           </strong>
           &nbsp;
         </TextLink>
@@ -182,11 +182,12 @@ const Quest = (props) => {
     twitterReTweetTask = (
       <div className={classes.twitterRetweetTask}>
         {/* <span className={classes.taskIndex}>{tasks.ck_twitter_retweet.id}</span> */}
-        {t('Must')}&nbsp;<strong>{t('Retweet')}</strong>&nbsp;
+        {t('Must')}&nbsp;{t('Retweet')}&nbsp;
         <TextLink
           target="_blank"
           title={t('Open this tweet.')}
           href={`${tasks.ck_twitter_retweet.tweet_url}`}
+          className="text-violet-600 hover:text-violet-700 font-bold"
         >
           {t('this tweet')}
         </TextLink>
