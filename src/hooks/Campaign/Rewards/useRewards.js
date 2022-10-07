@@ -68,7 +68,7 @@ export default (props) => {
     requiredTasks.ck_twitter_follow = {
       id: 2,
       username: campaign.twitter_username,
-      status: true,
+      status: null,
       msg: null
     };
   }
@@ -76,7 +76,7 @@ export default (props) => {
     requiredTasks.ck_twitter_retweet = {
       id: 3,
       tweet_url: campaign.twitter_tweet,
-      status: true,
+      status: null,
       msg: null
     };
   }
@@ -118,7 +118,7 @@ export default (props) => {
     requiredTasks.ck_nft_ownership = {
       id: 4,
       nftCollectionInfo,
-      status: true,
+      status: null,
       msg: null
     };
   }
