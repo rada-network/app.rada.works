@@ -22,8 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         code_challenge_method: 's256'
       });
       res.redirect(authUrl);
-      res.end();
-    } else if (!error) {
+    } else if (code && state) {
       const access_res = await authClient.requestAccessToken(code as string);
       if (access_res) {
         const response = await client.users.findMyUser();
@@ -39,20 +38,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 response.data.id
             : '/'
         );
-        res.end();
       } else {
         res.redirect(decodeURIComponent(state as string));
-        res.end();
       }
     }
     if (error) {
       res.redirect(decodeURIComponent(state as string) + '?error=' + error);
-      res.end();
     }
     res.status(404).json({ error: 'Action not found' });
     res.end();
   } catch (error) {
-    console.log(error);
-    res.status(404).json({ error: 'Action not found' });
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('error:', error);
+    }
+    res.status(404).json({ error: 'Action not founds' });
   }
 };

@@ -59,10 +59,10 @@ export default (props) => {
     console.log('====================================');
     requiredTasks.ck_twitter_login = {
       id: 1,
-      status: true,
-      screen_name: 'Qvv885',
-      /*status: result_tw?.status,
-      screen_name: result_tw?.screen_name,*/
+      // status: false,
+      // screen_name: 'Qvv885',
+      status: result_tw?.status,
+      screen_name: result_tw?.screen_name,
       msg: null
     };
   }

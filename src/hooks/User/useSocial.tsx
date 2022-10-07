@@ -15,17 +15,7 @@ export const saveSocialLink = async (data: any) => {
     return error;
   }
 };
-/*export const CheckSocial = (sestion: any) => {
-  const user_email = sestion?.user?.email;
-  const filter = {
-    user_created: { email: { _eq: user_email } }
-  };
-  const { data, loading, error } = useQuery(GET_SOCIAL_LINK_GQL, {
-    variables: { filter },
-    fetchPolicy: 'no-cache'
-  });
-  return { data, loading, error };
-};*/
+
 export const checkExistsSocialLink = async (
   socialName: any,
   userCreated: any
