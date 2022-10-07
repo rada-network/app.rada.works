@@ -7,7 +7,7 @@
 }
 
 .btnTwitterLogin {
-  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-lg py-1.5 pl-2 pr-3 ml-2 transition duration-300 ml-auto;
+  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-xs font-medium rounded-md py-1.5 pl-2 pr-3 ml-2 transition duration-300 ml-auto;
 }
 
 .twitterFollowTask {
@@ -28,11 +28,11 @@
 }
 
 .btnVerifyTwitter {
-  @apply bg-violet-500 text-white font-medium rounded-md py-1 px-2 ml-auto shadow-none;
+  @apply bg-violet-600 text-white font-medium rounded-md py-1.5 px-2 text-xs ml-auto shadow-none;
 }
 
 .btnClaimRewardWrap {
-  @apply bg-gray-50 border-t border-t-gray-200 border-opacity-80 mt-4 -mx-4 pt-4 px-4;
+  @apply mt-4 -mx-4 pt-4 px-4;
 }
 
 .btnClaimRewardWrap button {

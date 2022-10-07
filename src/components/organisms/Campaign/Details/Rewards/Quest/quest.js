@@ -244,18 +244,22 @@ const Quest = (props) => {
 
     <div className={classes.soulBoundTokenTask}>
       <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span>
-      <div className="flex-1">
-        <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
-          {t('SoulBound Token Ownership')}
-        </h4>
-        <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-          {t('Must hold Binance Account Bound Token in wallet.')} <span className={classes.bsc}></span>
-        </p>
+      <div className="flex-1 flex">
+        <div>
+          <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
+            {t('SoulBound Token Ownership')}
+          </h4>
+          <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+            {t('Must hold Binance Account Bound Token in wallet.')} <span className={classes.bsc}></span>
+          </p>
+        </div>
+
         <div className="">
           {/*{tasks.ck_nft_ownership.nftCollectionInfo}*/}
           {nftOwnershipStatus}
           {verifyNftOwnershipBtn}
         </div>
+
       </div>
     </div>
   ) : null;
