@@ -31,3 +31,7 @@
 .contractAdd {
     composes: contractAdd from '../../List/item.module.css';
 }
+
+.rewardOverview p {
+  @apply my-0;
+}

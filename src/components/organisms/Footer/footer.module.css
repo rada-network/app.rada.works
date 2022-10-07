@@ -19,7 +19,7 @@
 }
 
 .menuItems ul a {
-  @apply inline-block border-b border-dotted border-gray-400 hover:border-blue-600 cursor-pointer hover:text-blue-600;
+  @apply inline-block border-b border-dotted border-gray-400 hover:border-violet-500 cursor-pointer hover:text-violet-600;
 }
 
 .social {
