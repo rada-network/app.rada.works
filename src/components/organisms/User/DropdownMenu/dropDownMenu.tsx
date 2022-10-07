@@ -45,17 +45,17 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
           style={{ display: expanded ? 'block' : 'none' }}
           className="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
         >
-          <ul className="py-1 text-sm text-gray-700 dark:text-gray-200">
-            <li>
-              <Link href="/create-campaign"> {t('Create Campaign')}</Link>
-            </li>
-            <li>
-              <Link href="/my-campaign"> {t('My Campaigns')}</Link>
-            </li>
-            <li>
-              <Link href="/user/settings">{t('Settings')}</Link>
-            </li>
-          </ul>
+          {/*<ul className="py-1 text-sm text-gray-700 dark:text-gray-200">*/}
+          {/*  <li>*/}
+          {/*    <Link href="/create-campaign"> {t('Create Campaign')}</Link>*/}
+          {/*  </li>*/}
+          {/*  <li>*/}
+          {/*    <Link href="/my-campaign"> {t('My Campaigns')}</Link>*/}
+          {/*  </li>*/}
+          {/*  <li>*/}
+          {/*    <Link href="/user/settings">{t('Settings')}</Link>*/}
+          {/*  </li>*/}
+          {/*</ul>*/}
           <div className="py-1">
             <Link href="#" onClick={disConnect}>
               {t('Sign out')}
