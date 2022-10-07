@@ -3,15 +3,15 @@
 }
 
 .twitterLoginTask {
-  @apply flex items-center text-sm mb-3;
+  @apply border border-gray-200 flex items-center text-sm mb-3 ml-3 py-2 px-2 rounded-lg;
 }
 
 .btnTwitterLogin {
-  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-full py-1.5 pl-3 pr-4 ml-2 transition duration-300 ml-auto
+  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-sm font-medium rounded-lg py-1.5 pl-2 pr-3 ml-2 transition duration-300 ml-auto;
 }
 
 .twitterFollowTask {
-   @apply text-sm font-medium flex items-center rounded-lg py-3 transition-all duration-300 mb-3
+   @apply border border-gray-200 text-sm font-medium flex items-center rounded-lg p-2 transition-all duration-300 mb-3 ml-3;
 }
 
 .twitterFollowTaskError {
@@ -20,7 +20,7 @@
 }
 
 .twitterRetweetTask {
-  @apply bg-white text-sm font-medium flex items-center rounded-lg py-3 transition-all duration-300
+  @apply border border-gray-200 text-sm font-medium flex items-center rounded-lg p-2 transition-all duration-300 ml-3;
 }
 
 .nftOwnershipTask {
@@ -51,6 +51,9 @@
 }
 
 .taskIndex {
+  @apply bg-white border border-gray-200 text-gray-500 flex items-center justify-center font-bold block w-8 h-8 rounded-full mr-2 text-center shadow-sm -ml-6;
 }
+
 .soulBoundTokenTask {
+  @apply border border-gray-200 rounded-lg mt-3 flex items-start p-2 ml-3;
 }

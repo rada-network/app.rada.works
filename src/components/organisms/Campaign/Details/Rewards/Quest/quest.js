@@ -56,7 +56,7 @@ const Quest = (props) => {
         type="button"
         onPress={() => handleTwitterLogin()}
       >
-        {TwitterAuthIcon} {t('Login')}
+        {t('Login')}
       </Button>
     ) : (
       <span className={`ml-auto text-blue-600`}>@{twitterVerifiedName}</span>
@@ -64,7 +64,9 @@ const Quest = (props) => {
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
         <span className={classes.taskIndex}>{tasks.ck_twitter_login.id}</span>
-        {TwitterIcon} {t('Twitter')} {twitterLoginStatus}
+        <div className="flex items-center flex-1">
+        {TwitterIcon} {t('Login Twitter')} {twitterLoginStatus}
+        </div>
       </div>
     );
   }
@@ -117,7 +119,7 @@ const Quest = (props) => {
     );
     twitterFollowTask = (
       <div className={classes.twitterFollowTask}>
-        {/* <span className={classes.taskIndex}>{tasks.ck_twitter_follow.id}</span> */}
+        <span className={classes.taskIndex}>{tasks.ck_twitter_follow.id}</span>
         {t('Follow')}
         <TextLink
           target="_blank"
@@ -181,7 +183,7 @@ const Quest = (props) => {
     );
     twitterReTweetTask = (
       <div className={classes.twitterRetweetTask}>
-        {/* <span className={classes.taskIndex}>{tasks.ck_twitter_retweet.id}</span> */}
+        <span className={classes.taskIndex}>{tasks.ck_twitter_retweet.id}</span>
         {t('Must')}&nbsp;{t('Retweet')}&nbsp;
         <TextLink
           target="_blank"
@@ -241,17 +243,19 @@ const Quest = (props) => {
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
 
     <div className={classes.soulBoundTokenTask}>
-      {/* <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span> */}
-      <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
-        {t('SoulBound Token Ownership')}
-      </h4>
-      <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
-        {t('Must hold Binance Account Bound Token in wallet.')}
-      </p>
-      <div className="p-4">
-        {/*{tasks.ck_nft_ownership.nftCollectionInfo}*/}
-        {nftOwnershipStatus}
-        {verifyNftOwnershipBtn}
+      <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span>
+      <div className="flex-1">
+        <h4 className="mt-0 mb-0 leading-normal text-md font-bold text-gray-800">
+          {t('SoulBound Token Ownership')}
+        </h4>
+        <p className="text-sm text-gray-500 font-normal mt-0 mb-0">
+          {t('Must hold Binance Account Bound Token in wallet.')} <span className={classes.bsc}></span>
+        </p>
+        <div className="">
+          {/*{tasks.ck_nft_ownership.nftCollectionInfo}*/}
+          {nftOwnershipStatus}
+          {verifyNftOwnershipBtn}
+        </div>
       </div>
     </div>
   ) : null;
