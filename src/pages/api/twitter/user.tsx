@@ -5,16 +5,17 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const userId = req.query.userId;
+    const owner_id = `${req.query.owner_id}` || '1574963666918600704';
     const client = new Client(process.env.TWITTER_BEARER_TOKEN);
-    const followers = client.users.usersIdFollowers('1574963666918600704');
-    const checked = false;
+    const followers = client.users.usersIdFollowers(owner_id);
+    let checked = false;
     for await (const page of followers) {
       page.data.forEach((item) => {
-        console.log(item.name + ':' + item.id);
-        // if (item.id === userId) {
-        //   checked = true;
-        // }
+        if (item.id === userId) {
+          checked = true;
+        }
       });
+      if (checked) break;
     }
 
     return res.status(200).json({

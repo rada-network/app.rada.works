@@ -30,7 +30,8 @@ const Quest = (props) => {
   const { t } = useTranslation('campaign_details');
   const { handleCheckTwitterFollow, handleCheckTwitterLogin } =
     useTwitterFollow({
-      user_id: '805827086787035136'
+      user_id: '805827086787035136',
+      owner_id: '1574963666918600704'
     });
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
