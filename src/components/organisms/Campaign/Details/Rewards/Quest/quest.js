@@ -64,7 +64,7 @@ const Quest = (props) => {
     );
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
-        {/* <span className={classes.taskIndex}>{tasks.ck_twitter_login.id}</span> */}
+        <span className={classes.taskIndex}>{tasks.ck_twitter_login.id}</span>
         {TwitterIcon} {t('Twitter')} {twitterLoginStatus}
       </div>
     );
@@ -241,7 +241,7 @@ const Quest = (props) => {
   );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
     <div className={classes.nftOwnershipTask}>
-      {/* <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span> */}
+      <span className={classes.taskIndex}>{tasks.ck_nft_ownership.id}</span>
       <h4 className="mt-0 mb-1 leading-normal text-md font-extrabold text-gray-800">
         {t('NFT Ownership')}
       </h4>

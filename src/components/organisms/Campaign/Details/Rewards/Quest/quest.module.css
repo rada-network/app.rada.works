@@ -32,7 +32,7 @@
 }
 
 .btnClaimRewardWrap {
-  @apply border-t border-t-gray-200 border-opacity-60 mt-4 -mx-4 pt-4 px-4;
+  @apply bg-gray-50 border-t border-t-gray-200 border-opacity-80 mt-4 -mx-4 pt-4 px-4;
 }
 
 .btnClaimRewardWrap button {
