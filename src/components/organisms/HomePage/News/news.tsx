@@ -11,7 +11,7 @@ const News = () => {
         <div className="container max-w-screen-xl mx-auto px-4">
           <div className="mb-14 text-center">
             <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0 tracking-tight">
-              Related Articles
+              SoulMint Academy
             </h2>
           </div>
 
@@ -86,7 +86,7 @@ const News = () => {
                   title="Sample link"
                   className="hover:text-indigo-600 transition-all duration-300"
                 >
-                  MetaMask Se Integra Ao Sistema Brasileiro De Pagamentos via
+                  What can you do with Soulbound token?
                 </a>
               </h3>
 
@@ -96,9 +96,7 @@ const News = () => {
               </div>
 
               <p className="md:hidden lg:block my-0 text-gray-400 leading-relaxed">
-                ConsenSys and StarkWare have expanded their partnership to
-                include ConsenSys Diligence smart contract auditing, providing a
-                one-stop-shop for Web3 development.
+              SBTs can be used, at a fundamental level, as proof of credentials to quickly reveal and verify a person’s identity. Exchanges can issue SBTs for the customers wallet to verify and satisfy their Know-Your-Client requirement. SBTs’ features, such as public visibility and non-transferability, have lots of potential and will accelerate the adoption of a decentralised society. Let us explore the potential of SBTs through their various use cases.
               </p>
             </div>
           </div>
