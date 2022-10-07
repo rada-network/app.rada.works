@@ -18,7 +18,7 @@ const News = () => {
           <div className="flex flex-wrap md:flex-nowrap items-stretch gap-0 md:gap-8">
             <div className="basis-full md:basis-1/3 mb-8 md:mb-0">
               <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-xl mb-6">
-                <img src="/samples/news-1.jpg" alt="Sample image" />
+                <img src="/news/news-1.jpg" alt="SouldMint - The Ultimate HUB for all soul" />
               </div>
 
               <h3 className="mt-0 mb-2 text-gray-200 text-xl">
@@ -49,7 +49,7 @@ const News = () => {
 
             <div className="basis-full md:basis-1/3 mb-8 md:mb-0">
               <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-xl mb-6">
-                <img src="/samples/news-2.jpg" alt="Sample image" />
+                <img src="/news/news-2.webp" alt="Soulbound token - The nex big thing in Blockchain" />
               </div>
 
               <h3 className="mt-0 mb-2 text-gray-200 text-xl">
@@ -77,7 +77,7 @@ const News = () => {
 
             <div className="basis-full md:basis-1/3">
               <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-xl mb-6">
-                <img src="/samples/news-4.png" alt="Sample image" />
+                <img src="/news/news-3.jpeg" alt="Soulbound token - The nex big thing in Blockchain" />
               </div>
 
               <h3 className="mt-0 mb-2 text-gray-200 text-xl overflow-hidden ellipsis">

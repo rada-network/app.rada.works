@@ -10,13 +10,11 @@ const Hero = () => {
               <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-relaxed tracking-tight mt-0 mb-8 font-pt-ui tracking-tight">
                 <span className="text-violet-600">SoulMint</span>
                 <span className="block">
-                  the reward-focused platform for verifiable credentials
+                  Reward distribution platform for SoulBound Tokens
                 </span>
               </h1>
               <p className="lg:text-2xl font-normal my-0 text-gray-900">
-                Build your <strong>Web3</strong> reputation through your{' '}
-                <strong>SoulBound</strong> tokens. Explore and earn special
-                rewards, curated by us.
+                Build your Web3 reputation through SoulBound Tokens. Explore and earn.
               </p>
             </div>
 

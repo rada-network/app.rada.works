@@ -21,10 +21,10 @@ const Features = () => {
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
               <h3 className="my-0 text-xl lg:text-2xl font-bold text-gray-800 mb-4">
-                Incentivized participation
+                SoulBound Token curator
               </h3>
               <p className="my-0 text-lg">
-                Users earn rewards by completing tasks. No extra steps, no KYC
+                Issue non-transferable NFT as on-chain credentials
               </p>
             </div>
 
@@ -33,11 +33,10 @@ const Features = () => {
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
               <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4 font-extrabold">
-                Chain-agnostic
+                Chain agnostic
               </h3>
               <p className="my-0 text-lg">
-                No more pain switching between chains. One profile with verified
-                identity can enjoy perks on any chain.
+                No more pain switching between chains. Enjoy perks on multi-chain.
               </p>
             </div>
 
@@ -46,11 +45,10 @@ const Features = () => {
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
               <h3 className="my-0 text-xl lg:text-2xl font-bold text-gray-800 mb-4">
-                Rewards, aggregated
+                No-code campaign creator
               </h3>
               <p className="my-0 text-xl">
-                Verified Souls get privileged access to various allow-lists, all
-                in one place.
+                Easily create a campaign with customized social task.
               </p>
             </div>
 
@@ -59,11 +57,10 @@ const Features = () => {
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
               <h3 className="my-0 text-xl lg:text-2xl font-bold text-gray-800 mb-4">
-                No-code campaign creator tool
+                On-chain reward distribution
               </h3>
               <p className="my-0 text-lg">
-                Projects can freely apply to create a campaign and reward users
-                via SoulBound tokens.
+                Distribute rewards through smart-contract
               </p>
             </div>
           </div>
