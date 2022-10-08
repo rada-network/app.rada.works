@@ -28,25 +28,44 @@ export default (props) => {
   const { data: session } = useSession();
 
   const storage = new BrowserPersistence();
+  const ttl = 24 * 60 * 60; // 1day
 
-  const requiredTasks = {};
-  let finishedTasks = storage.getItem('finishedTasks');
-  requiredTasks.wallet = {
-    id: 1
+  const tasks = {};
+  // Check current User was finished
+  const [submitted, setSubmitted] = useState(false);
+  useEffect(async () => {
+    const userAddress = session && session.user ? session.user.email : null;
+    if (userAddress) {
+      const found = await isQuesterExistsFunc(
+        { _eq: campaign.id },
+        { email: { _eq: userAddress } }
+      );
+      if (found) {
+        setSubmitted(true);
+      }
+    }
+  }, [session]);
+
+  let twSocialLink = storage.getItem('twSocialLink');
+  tasks.wallet = {
+    id: 1,
+    status: null
   };
   if (campaign.twitter_tweet || campaign.twitter_username) {
-    requiredTasks.ck_twitter_login = {
+    tasks.ck_twitter_login = {
       id: 2,
-      status: finishedTasks ? finishedTasks.ck_twitter_login.status : null,
-      screen_name: finishedTasks
-        ? finishedTasks.ck_twitter_login.screen_name
-        : null,
+      status: submitted || twSocialLink ? true : null,
+      screen_name: twSocialLink ? twSocialLink.username : null,
       msg: null
     };
 
+    /**
+     * Handle callback of twitter login
+     * and sync to social_link data to the backend
+     */
     let socialLink = null;
     const router = useRouter();
-    if (router.query.user) {
+    if (!submitted && router.query.user) {
       const { user, name, uid } = router.query;
       // Checking and saving to social link
       getSession().then(async () => {
@@ -65,10 +84,10 @@ export default (props) => {
           socialLink = found;
         }
         if (socialLink && socialLink.uid) {
-          requiredTasks.ck_twitter_login.status = true;
-          requiredTasks.ck_twitter_login.screen_name = socialLink.username;
+          tasks.ck_twitter_login.status = true;
+          tasks.ck_twitter_login.screen_name = socialLink.username;
           //saving to local storage for other contexts
-          storage.setItem('twSocialLink', socialLink, 24 * 60 * 60); //1 days
+          storage.setItem('twSocialLink', socialLink, ttl);
         }
         // Refresh page
         socialLink && router.push('/campaign-details/' + router.query.slug[0]);
@@ -77,8 +96,8 @@ export default (props) => {
       //check local storage
       socialLink = storage.getItem('twSocialLink');
       if (socialLink && socialLink.uid) {
-        requiredTasks.ck_twitter_login.status = true;
-        requiredTasks.ck_twitter_login.screen_name = socialLink.username;
+        tasks.ck_twitter_login.status = true;
+        tasks.ck_twitter_login.screen_name = socialLink.username;
       }
     }
   }
@@ -90,19 +109,19 @@ export default (props) => {
       });
       return TwitterId;
     }, [campaign.twitter_username]);
-    requiredTasks.ck_twitter_follow = {
+    tasks.ck_twitter_follow = {
       id: 3,
       twOwnerId: TwitterOwnersId,
       username: campaign.twitter_username,
-      status: finishedTasks ? finishedTasks.ck_twitter_follow.status : null,
+      status: submitted ? true : null,
       msg: null
     };
   }
   if (campaign.twitter_tweet) {
-    requiredTasks.ck_twitter_retweet = {
+    tasks.ck_twitter_retweet = {
       id: 4,
       tweet_url: campaign.twitter_tweet,
-      status: finishedTasks ? finishedTasks.ck_twitter_retweet.status : null,
+      status: submitted ? true : null,
       msg: null
     };
   }
@@ -141,21 +160,20 @@ export default (props) => {
             </div>
           ))
         : null;
-    requiredTasks.ck_nft_ownership = {
+    tasks.ck_nft_ownership = {
       id: 5,
       nftCollectionInfo,
-      status: finishedTasks ? finishedTasks.ck_nft_ownership.status : null,
+      status: submitted ? true : null,
       msg: null
     };
   }
-  const [tasks, setTasks] = useState(requiredTasks);
 
   const isFinishedTasks = () => {
     let rs = true;
     const keys = Object.keys(tasks);
     if (keys.length) {
       for (let i = 0; i < keys.length; i++) {
-        if (tasks[keys[i]] && tasks[keys[i]].status === false) {
+        if (tasks[keys[i]] && !tasks[keys[i]].status) {
           rs = false;
           break;
         }
@@ -236,7 +254,7 @@ export default (props) => {
   });
 
   const handleClaimReward = useCallback(async () => {
-    console.log('claimReward()');
+    console.log('submitted()');
 
     //Check required tasks
     if (!isFinishedTasks()) {
@@ -244,26 +262,12 @@ export default (props) => {
     } else {
       try {
         // All require tasks done
-        // 1. Check was joined
-        //const userEmail = session?.user?.email;
-        const userEmail = session && session.user ? session.user.email : null;
-        if (userEmail) {
-          const found = await isQuesterExistsFunc(
-            { _eq: campaign.id },
-            { email: { _eq: userEmail } }
-          );
-          if (!found) {
-            // 2. Save if has not join yet
-            await saveQuester({
-              variables: {
-                campaign_id: campaign.id,
-                status: 'approved'
-              }
-            });
-          } else {
-            return toast.warning(t('You have submitted!'));
+        await saveQuester({
+          variables: {
+            campaign_id: campaign.id,
+            status: 'approved'
           }
-        }
+        });
       } catch (error) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(error);
@@ -276,8 +280,8 @@ export default (props) => {
   // Handle saving quest result
   useEffect(() => {
     if (saveQuestResult) {
-      //storage.setItem('finishedTasks', finishedTasks, 24*60*60);
-      return toast.success(t('Submitted successfully!'));
+      setSubmitted(true);
+      return toast.success(t('Submitted.'));
     }
     if (saveQuesterError) {
       if (process.env.NODE_ENV !== 'production') {
@@ -289,7 +293,8 @@ export default (props) => {
 
   return {
     tasks,
-    setTasks,
+    isFinishedTasks,
+    submitted,
     handleClaimReward,
     handleVerifyNftOwnership,
     saveQuesterLoading,

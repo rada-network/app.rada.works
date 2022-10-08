@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { shape, string, object, func } from 'prop-types';
+import { shape, string, object, func, bool } from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -21,7 +21,8 @@ const Quest = (props) => {
   const {
     classes: propClasses,
     tasks,
-    setTasks,
+    submitted,
+    isFinishedTasks,
     onClaimReward,
     verifyNftOwnership
   } = props;
@@ -33,18 +34,24 @@ const Quest = (props) => {
     owner_id: '1574963666918600704'
   });*/
   const { data: session } = useSession();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [twitterFollowState, setTwitterFollowState] = useState(
-    tasks.ck_twitter_follow ? tasks.ck_twitter_follow.status : true
+    tasks.ck_twitter_follow.status
   );
   const [twitterReTweetState, setTwitterReTweetState] = useState(
-    tasks.ck_twitter_retweet ? tasks.ck_twitter_retweet.status : true
+    tasks.ck_twitter_retweet.status
   );
   const [nftOwnershipState, setNftOwnershipState] = useState(
-    tasks.ck_nft_ownership ? tasks.ck_nft_ownership.status : true
+    tasks.ck_nft_ownership.status
   );
+
   const isWalletConnected =
     !session || (session && session.user.email.includes('@')) ? false : true;
+
+  if (isWalletConnected) {
+    tasks.wallet.status = true;
+  }
   let walletConnect = isWalletConnected ? (
     <span>{TaskSuccessIcon}</span>
   ) : (
@@ -110,7 +117,7 @@ const Quest = (props) => {
 
   let twitterFollowTask = null;
   if (tasks.ck_twitter_follow) {
-    const verifyTwitterFollowBtn = !twitterFollowState ? (
+    const verifyTwitterFollowBtn = !tasks.ck_twitter_follow.status ? (
       <Button
         id={`btn-verify-twitter-follow`}
         priority="high"
@@ -123,9 +130,9 @@ const Quest = (props) => {
     ) : null;
     const twitterFollowStatus = (
       <span className={`ml-auto`}>
-        {twitterFollowState === true
+        {tasks.ck_twitter_follow.status === true
           ? TaskSuccessIcon
-          : twitterFollowState === false
+          : tasks.ck_twitter_follow.status === false
           ? TaskFailIcon
           : ''}
       </span>
@@ -139,15 +146,16 @@ const Quest = (props) => {
         >
           Task {tasks.ck_twitter_follow.id}
         </span>
-        {t('Follow')}&nbsp;
+        {TwitterIcon} {t('Follow')}&nbsp;
         <TextLink
           target="_blank"
           title={t('Go to this Twitter channel.')}
           href={`https://twitter.com/${tasks.ck_twitter_follow.username}`}
           className="border-b border-dotted hover:border-solid border-b-sky-500 hover:border-b-sky-600 text-sky-500 font-semibold"
         >
-          @{tasks.ck_twitter_follow.username}          
-        </TextLink>&nbsp;
+          @{tasks.ck_twitter_follow.username}
+        </TextLink>
+        &nbsp;
         {t('on Twitter')}
         {twitterFollowStatus}
         {verifyTwitterFollowBtn}
@@ -185,7 +193,7 @@ const Quest = (props) => {
 
   let twitterReTweetTask = null;
   if (tasks.ck_twitter_retweet) {
-    const verifyTwitterReTweetBtn = !twitterReTweetState ? (
+    const verifyTwitterReTweetBtn = !tasks.ck_twitter_retweet.status ? (
       <Button
         id={`btn-verify-twitter-re-tweet`}
         priority="high"
@@ -198,9 +206,9 @@ const Quest = (props) => {
     ) : null;
     const twitterReTweetStatus = (
       <span className={`ml-auto`}>
-        {twitterReTweetState === true
+        {tasks.ck_twitter_retweet.status === true
           ? TaskSuccessIcon
-          : twitterReTweetState === false
+          : tasks.ck_twitter_retweet.status === false
           ? TaskFailIcon
           : ''}
       </span>
@@ -214,7 +222,7 @@ const Quest = (props) => {
         >
           Task {tasks.ck_twitter_retweet.id}
         </span>
-        {t('Must')}&nbsp;{t('Retweet')}&nbsp;
+        {TwitterIcon} {t('Must')}&nbsp;{t('Retweet')}&nbsp;
         <TextLink
           target="_blank"
           title={t('Open this tweet.')}
@@ -250,7 +258,7 @@ const Quest = (props) => {
     setTwitterReTweetState(tasks.ck_twitter_retweet.status);
   };
 
-  const verifyNftOwnershipBtn = !nftOwnershipState ? (
+  const verifyNftOwnershipBtn = !tasks.ck_nft_ownership.status ? (
     <Button
       id={`btn-verify-nft-ownership`}
       priority="high"
@@ -263,9 +271,9 @@ const Quest = (props) => {
   ) : null;
   const nftOwnershipStatus = (
     <span className={`ml-auto`}>
-      {nftOwnershipState === true
+      {tasks.ck_nft_ownership.status === true
         ? TaskSuccessIcon
-        : nftOwnershipState === false
+        : tasks.ck_nft_ownership.status === false
         ? TaskFailIcon
         : ''}
     </span>
@@ -308,34 +316,31 @@ const Quest = (props) => {
     }
 
     // verify NFT ownership here...
-    let result = await verifyNftOwnership();
-    console.log('ckOwnership Result:', result);
-    result = true; //coming soon
+    let status = await verifyNftOwnership();
+    console.log('ckOwnership Result:', status);
+    status = true; //coming soon
     // update state
-    tasks.ck_nft_ownership.status = result;
+    tasks.ck_nft_ownership.status = status;
     //trigger to re-render
     setNftOwnershipState(tasks.ck_nft_ownership.status);
   };
 
-  const isFinishedTasks =
-    !twitterFollowState || !twitterReTweetState || !nftOwnershipState
-      ? false
-      : true;
+  const canSubmit =
+    isWalletConnected && isFinishedTasks() && submitted === false
+      ? true
+      : false;
   const btnClaimReward = (
     <div className={`${classes.btnClaimRewardWrap}`}>
       <Button
         id={`btn-claim-reward`}
         priority="high"
         classes={{
-          root_highPriority:
-            isWalletConnected && isFinishedTasks
-              ? classes.btnClaimReward
-              : classes.btnClaimRewardDisabled
+          root_highPriority: canSubmit
+            ? classes.btnClaimReward
+            : classes.btnClaimRewardDisabled
         }}
         type="button"
-        onPress={
-          isWalletConnected && isFinishedTasks ? () => onClaimReward() : null
-        }
+        onPress={canSubmit ? () => onClaimReward() : null}
       >
         {t('Submit')}
       </Button>
@@ -372,7 +377,8 @@ Quest.propTypes = {
     root: string
   }),
   tasks: object,
-  setTasks: func,
+  isFinishedTasks: func,
+  submitted: bool,
   verifyNftOwnership: func,
   onClaimReward: func
 };
