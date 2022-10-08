@@ -138,7 +138,7 @@ const Details = (props) => {
       );
 
       child = (
-        <div className={`${classes.pageWrapper}`}>
+        <div className={`${classes.pageWrapper} dark:bg-gray-900`}>
           <div className={`${classes.pageContainer}`}>
             <div className={`${classes.pageContent}`}>
               <div className={`${classes.pageContentInner}`}>
