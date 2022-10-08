@@ -35,11 +35,11 @@
 }
 
 .pageContentInner {
-  @apply bg-white rounded-lg shadow-sm p-4 pt-0
+  @apply bg-white rounded-lg shadow-sm py-4 px-6 pt-0
 }
 
 .coverImage {
-  @apply rounded-t-lg overflow-hidden mb-8 -mx-4;
+  @apply rounded-t-lg overflow-hidden mb-8 -mx-6;
 }
 
 .campaignMeta {
