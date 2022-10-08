@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
       res.redirect(authUrl);
       res.end();
-    } else if (state && code) {
+    } else if (code) {
       const accessToken = await twitterAuthClient.requestAccessToken(
         code as string
       );
@@ -38,7 +38,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (error) {
       res.redirect(decodeURIComponent(state as string) + '?error=' + error);
     }
-    res.redirect(decodeURIComponent(state as string) + '?error=' + error);
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
       console.log(error);
