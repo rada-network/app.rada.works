@@ -138,8 +138,12 @@ const Quest = (props) => {
           : ''}
       </span>
     );
+    let twFollowTaskClasses = [classes.twitterFollowTask];
+    twFollowTaskClasses.push(
+      twitterFollowState == 'loading' ? classes.taskLoading : null
+    );
     twitterFollowTask = (
-      <div className={classes.twitterFollowTask}>
+      <div className={`${twFollowTaskClasses.join(' ')}`}>
         <span
           className={`${classes.taskIndex} ${
             tasks.ck_twitter_follow.status ? classes.taskSuccess : ''
@@ -170,8 +174,11 @@ const Quest = (props) => {
       );
     }
     if (!tasks.ck_twitter_login.uid) {
-      return toast.warning(t('You must login twitter before do this task!'));
+      return toast.warning(t('You must login Twitter before do this task!'));
     }
+
+    setTwitterFollowState('loading');
+
     const twOwnerId = await getTwitterUserIdByUsermame({
       screen_name: tasks.ck_twitter_follow.username
     });
@@ -186,8 +193,12 @@ const Quest = (props) => {
       setTwitterFollowState(tasks.ck_twitter_follow.status);
       //toast.success(t('You have successfully completed this task!'));
     } else {
-      // setTwitterFollowState(false);
-      toast.error(t('You have not completed this task yet!'));
+      tasks.ck_twitter_follow.status = false;
+      //trigger to re-render
+      setTwitterFollowState(tasks.ck_twitter_follow.status);
+      toast.error(
+        t('You have not completed this task yet!  Please try again later!')
+      );
     }
   };
 
@@ -213,8 +224,12 @@ const Quest = (props) => {
           : ''}
       </span>
     );
+    let twReTeetTaskClasses = [classes.twitterRetweetTask];
+    twReTeetTaskClasses.push(
+      twitterReTweetState == 'loading' ? classes.taskLoading : null
+    );
     twitterReTweetTask = (
-      <div className={classes.twitterRetweetTask}>
+      <div className={`${twReTeetTaskClasses.join(' ')}`}>
         <span
           className={`${classes.taskIndex} ${
             tasks.ck_twitter_retweet.status ? classes.taskSuccess : ''
@@ -254,13 +269,19 @@ const Quest = (props) => {
       user_id: socialLink.uid,
       tweet_id: tasks.ck_twitter_retweet.tweet_id
     });
+    setTwitterReTweetState('loading');
     if (tw_tweet_status) {
-      //trigger to re-render
       tasks.ck_twitter_retweet.status = true;
+      //trigger to re-render
       setTwitterReTweetState(tasks.ck_twitter_retweet.status);
       //toast.success(t('You have successfully completed this task!'));
     } else {
-      toast.error(t('You have not completed this task yet!'));
+      tasks.ck_twitter_retweet.status = false;
+      //trigger to re-render
+      setTwitterReTweetState(tasks.ck_twitter_retweet.status);
+      toast.error(
+        t('You have not completed this task yet. Please try again later!')
+      );
     }
   };
 
@@ -284,8 +305,12 @@ const Quest = (props) => {
         : ''}
     </span>
   );
+  let nftTaskClasses = [classes.soulBoundTokenTask];
+  nftTaskClasses.push(
+    nftOwnershipState == 'loading' ? classes.taskLoading : null
+  );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
-    <div className={classes.soulBoundTokenTask}>
+    <div className={nftTaskClasses.join(' ')}>
       <span
         className={`${classes.taskIndex} ${
           tasks.ck_nft_ownership.status ? classes.taskSuccess : ''
@@ -321,10 +346,12 @@ const Quest = (props) => {
       );
     }
 
+    setNftOwnershipState('loading');
+
     // verify NFT ownership here...
     let status = await verifyNftOwnership();
     console.log('ckOwnership Result:', status);
-    status = true; //coming soon
+
     // update state
     tasks.ck_nft_ownership.status = status;
     //trigger to re-render
