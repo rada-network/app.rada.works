@@ -20,7 +20,7 @@ const Features = () => {
               <div className="mb-4">
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
-              <h3 className="my-0 text-xl lg:text-2xl font-bold text-gray-800 mb-4">
+              <h3 className="my-0 text-lg lg:text-xl font-bold text-gray-800 mb-4">
                 SoulBound Token curator
               </h3>
               <p className="my-0 text-lg">
@@ -32,7 +32,7 @@ const Features = () => {
               <div className="mb-4">
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
-              <h3 className="my-0 text-xl lg:text-2xl text-gray-800 mb-4 font-extrabold">
+              <h3 className="my-0 text-lg lg:text-xl text-gray-800 mb-4 font-bold">
                 Chain agnostic
               </h3>
               <p className="my-0 text-lg">
@@ -45,10 +45,10 @@ const Features = () => {
               <div className="mb-4">
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
-              <h3 className="my-0 text-xl lg:text-2xl font-bold text-gray-800 mb-4">
+              <h3 className="my-0 text-lg lg:text-xl font-bold text-gray-800 mb-4">
                 No-code campaign creator
               </h3>
-              <p className="my-0 text-xl">
+              <p className="my-0 text-lg">
                 Easily create a campaign with customized social task.
               </p>
             </div>
@@ -57,7 +57,7 @@ const Features = () => {
               <div className="mb-4">
                 <img src="/samples/sample-feature.svg" alt="Sample feature" />
               </div>
-              <h3 className="my-0 text-xl lg:text-2xl font-bold text-gray-800 mb-4">
+              <h3 className="my-0 text-lg lg:text-xl font-bold text-gray-800 mb-4">
                 On-chain reward distribution
               </h3>
               <p className="my-0 text-lg">
