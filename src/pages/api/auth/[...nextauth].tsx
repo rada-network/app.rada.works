@@ -36,7 +36,10 @@ export default async function auth(
       credentials: {},
       authorize: async (credentials: any) => {
         try {
-          const nonce = '0x' + credentials?.csrfToken;
+          //const nonce = '0x' + credentials?.csrfToken;
+          const nonce = `Welcome to SoulMint!
+
+Signing is the only way we can truly know that you are the owner of the wallet you are connecting. Signing is a safe, gas - less transaction that does not in any way give Soulmint permission to perform any transactions with your wallet.`;
           const address = utils.verifyMessage(
             nonce,
             credentials?.signedMessage
