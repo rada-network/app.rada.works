@@ -39,15 +39,12 @@ const getTwitterUserIdByUsermame = async (props: any) => {
 const getTweetsStatus = async (props: any) => {
   const { user_id, tweet_id } = props;
   let checked = false;
-  const url =
-    '/api/twitter/user?task=tweets&user_id=' +
-    user_id +
-    '&tweet_id=' +
-    tweet_id;
-  await fetch(url)
+  await fetch(
+    '/api/twitter/user?task=tweets&user_id=' + user_id + '&tweet_id=' + tweet_id
+  )
     .then((res) => res.json())
     .then((data) => {
-      checked = data?.data?.checked;
+      checked = data?.checked;
     });
 
   return checked;

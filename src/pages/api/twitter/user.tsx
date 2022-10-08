@@ -32,21 +32,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json(user);
     } else if (task === 'tweets') {
       const { user_id, tweet_id } = req.query;
-      const lists = client.users.tweetsIdRetweetingUsers(tweet_id as string);
-
+      const lists = await client.users.tweetsIdRetweetingUsers(
+        tweet_id as string,
+        {
+          'user.fields': ['id', 'name', 'username']
+        }
+      );
       let checked = false;
-      for await (const list of lists) {
-        console.log('====================================');
-        console.log(list.data);
-        console.log('====================================');
-        if (!list.data) break;
-        list.data.forEach((item) => {
-          if (item.id === user_id) {
-            checked = true;
-          }
-        });
-        if (checked) break;
-      }
+      lists.data.forEach((item) => {
+        if (item.id === user_id) {
+          checked = true;
+        }
+      });
 
       return res.status(200).json({
         status: 'Ok',
@@ -58,9 +55,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       let checked = false;
       for await (const list of lists) {
-        console.log('====================================');
-        console.log(list.data);
-        console.log('====================================');
         if (!list.data) break;
         list.data.forEach((item) => {
           if (item.id === user_id) {
