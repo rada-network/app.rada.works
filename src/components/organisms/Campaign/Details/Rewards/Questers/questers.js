@@ -40,7 +40,7 @@ const Questers = (props) => {
   }, [data]);
 
   const blockHeading = (
-    <h3 className="border-b border-gray-200 border-opacity-60 py-3 px-4">
+    <h3 className="border-b border-gray-200 border-opacity-60 text-lg lg:text-lg font-semibold py-3 px-6">
       {t('Souls')} ({totalItems})
     </h3>
   );

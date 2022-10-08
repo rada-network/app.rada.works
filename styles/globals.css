@@ -24,7 +24,7 @@ body {
   @apply antialiased text-gray-700 dark:text-gray-400 bg-white dark:bg-gray-900;
 }
 
-.font-pt-root-ui {
+h1, h2 {
   font-family: 'PT Root UI', sans-serif;
 }
 

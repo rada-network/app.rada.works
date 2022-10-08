@@ -1,9 +1,9 @@
 .root {
-  @apply bg-white shadow-sm rounded-lg mb-6 mt-10 pb-6;
+  @apply bg-white shadow-sm rounded-lg mt-10 pb-6;
 }
 
 .questers {
-  @apply flex flex-wrap items-center justify-between px-4 gap-3;
+  @apply flex flex-wrap items-center justify-between px-6 gap-3;
 }
 
 .questers > div {

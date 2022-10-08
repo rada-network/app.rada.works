@@ -6,14 +6,14 @@ const Hero = () => {
       <div className={`${classes.root} bg-[#5fe0b0] relative`}>
         <div className="container max-w-screen-xl mx-auto px-4 lg:px-4 z-10">
           <div className="flex flex-wrap items-center py-10 md:py-16 lg:py-16">
-            <div className="basis-full lg:basis-7/12 text-center lg:text-left pr-4">
-              <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-relaxed tracking-tight mt-0 mb-8 font-pt-ui tracking-tight">
+            <div className="basis-full lg:basis-7/12 text-center lg:text-left lg:pr-4">
+              <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 dark:text-white lg:leading-relaxed tracking-tight mt-0 mb-4 lg:mb-8 font-pt-ui">
                 <span className="text-violet-600">SoulMint</span>
                 <span className="block">
                   Reward distribution platform for SoulBound Tokens
                 </span>
               </h1>
-              <p className="lg:text-2xl font-normal my-0 text-gray-900">
+              <p className="text-lg lg:text-2xl font-normal my-0 text-gray-900">
                 Build your Web3 reputation through SoulBound Tokens. Explore and
                 earn.
               </p>

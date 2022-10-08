@@ -7,7 +7,7 @@ const News = () => {
   const rootClass = isDark ? classes.rootDark : classes.root;
   return (
     <Fragment>
-      <div className={`${rootClass} bg-gray-900 py-24`}>
+      <div className={`${rootClass} bg-gray-900 py-12 lg:py-24`}>
         <div className="container max-w-screen-xl mx-auto px-4">
           <div className="mb-14 text-center">
             <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0 tracking-tight">
