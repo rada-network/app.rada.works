@@ -1,5 +1,9 @@
 .root {
-  @apply bg-white shadow-sm rounded-lg mt-10 pb-6;
+  @apply bg-white shadow-sm rounded-xl mt-10 pb-6;
+}
+
+.rootDark {
+  @apply bg-gray-800 rounded-xl;
 }
 
 .questers {
