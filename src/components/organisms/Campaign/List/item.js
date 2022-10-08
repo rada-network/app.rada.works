@@ -138,31 +138,35 @@ const Item = (props) => {
 
   return (
     <div className={`${classes[rootClassName]} p-4`}>
-      <div
-        className={`${classes.itemCover} bg-gray-100 dark:bg-gray-900 overflow-hidden relative rounded-lg mb-5 shadow-sm flex items-center justify-center`}
-      >
-        {coverImage}
-        {storeInfo}
+      <div className="mb-6 relative">
+        <div
+          className={`${classes.itemCover} bg-gray-100 dark:bg-gray-900 overflow-hidden relative rounded-lg shadow-sm flex items-center justify-center`}
+        >
+          {coverImage}
+          {/* {storeInfo} */}
+
+
+        </div>
+
+        <span className="bg-green-100 text-green-600 inline-block absolute -bottom-3 left-4 flex items-center rounded-xl text-xs py-1 pl-1.5 pr-2 w-auto">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              fill="currentColor"
+              className="bi bi-check-circle-fill mr-1"
+              viewBox="0 0 16 16"
+            >
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            {t('Verified')}
+        </span>
       </div>
 
-      <div className="flex items-start mb-4">
-        <h3 className="flex-1 text-xl text-gray-800 dark:text-white font-semibold leading-6 my-0">
+      <div className="mb-4">
+        <h3 className="text-[22px] lg:text-xl text-gray-800 dark:text-white font-semibold leading-7 my-0">
           {data.title}
         </h3>
-
-        <span className="bg-green-100 text-green-600 flex items-center rounded-xl text-xs py-1 pl-1 pr-2 ml-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="12"
-            fill="currentColor"
-            className="bi bi-check-circle-fill mr-1"
-            viewBox="0 0 16 16"
-          >
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-          </svg>
-          {t('Verified')}
-        </span>
       </div>
 
       <div className="flex flex-wrap items-center text-sm justify-between mb-4 -mt-2">
@@ -193,7 +197,7 @@ const Item = (props) => {
           priority="high"
           type="button"
           onPress={viewDetails}
-          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-violet-600 text-gray-700 dark:text-gray-400 hover:text-white rounded-lg font-medium flex jusity-center block w-full text-center text-md py-3 px-0 mt-auto transition-all duration-300`}
+          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-violet-600 focus:bg-violet-600 text-gray-700 dark:text-gray-400 hover:text-white focus:text-white focus:outline-none rounded-lg font-medium flex jusity-center block w-full text-center text-md py-3 px-0 mt-auto transition-all duration-300`}
         >
           {t('Join this quest')}
         </Button>
