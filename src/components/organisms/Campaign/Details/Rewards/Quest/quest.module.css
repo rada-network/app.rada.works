@@ -46,7 +46,6 @@
 
 .btnClaimRewardDisabled {
   composes: btnClaimReward;
-  /*@apply bg-gray-600 hover:bg-gray-600;*/
   @apply bg-gray-200 flex items-center justify-center text-gray-500 text-center font-medium;
   cursor: not-allowed;
   pointer-events: none;
@@ -56,6 +55,7 @@
 .taskIndex {
   @apply bg-white border border-gray-200 text-gray-500 flex items-center justify-center font-bold block w-8 h-8 rounded-full mr-2 text-center shadow-sm -ml-6;
 }
+
 .taskSuccess {
   @apply bg-green-600 text-white;
 }

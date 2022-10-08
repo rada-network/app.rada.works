@@ -22,9 +22,9 @@ const Rewards = (props) => {
 
   const rewardOverview = campaign.reward_overview ? (
     <div
-      className={`${classes.rewardOverview} bg-orange-50 border border-orange-200 shadow-sm rounded-lg mb-6`}
+      className={`${classes.rewardOverview} bg-orange-50 border border-orange-200 shadow-md rounded-xl mb-6`}
     >
-      <div className="p-4">
+      <div className="p-6">
         <div
           className={classes.rewardOverview}
           dangerouslySetInnerHTML={{ __html: campaign.reward_overview }}
