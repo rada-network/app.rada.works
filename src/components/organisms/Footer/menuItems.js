@@ -25,9 +25,9 @@ export const socialData = [
   }
 ];
 
-export const menuItemsData = new Map()
-  .set('Term of Service', '/term-of-service')
-  .set('Privacy Policy', '/privacy-policy');
+export const menuItemsData = new Map();
+// .set('Term of Service', '/term-of-service')
+// .set('Privacy Policy', '/privacy-policy');
 
 export const DEFAULT_LINKS = new Map()
   .set('socialData', socialData)

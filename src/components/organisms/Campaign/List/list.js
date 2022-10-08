@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'next-i18next';
 import { Heading } from '../../../atoms/Heading';
 import classes from './list.module.css';
+import TextLink from '../../../atoms/TextLink';
 import useThemes from '../../../../hooks/useThemes';
 import { useList } from '../../../../hooks/Campaign';
 import Item from './item';
@@ -70,7 +71,13 @@ const List = (props) => {
       );
       const endMessage = (
         <div className={classes.infiniteFinished}>
-          <span>{t('That is all!')}</span>
+          <TextLink
+            title={t('Create a quest')}
+            className={classes.btnCreateQuest}
+            href="/"
+          >
+            <span>{t('Create a quest')}</span>
+          </TextLink>
         </div>
       );
       child = (
