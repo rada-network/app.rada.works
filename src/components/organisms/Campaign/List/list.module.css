@@ -2,7 +2,7 @@
 }
 
 .headingWrap {
-	@apply mb-20;
+	@apply mb-8 lg:mb-20;
 }
 
 .filter {
@@ -47,7 +47,7 @@
 }
 
 .infiniteFinished {
-	@apply text-gray-600 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+	@apply hidden text-gray-600 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
 }
 
 .rootDark .infiniteFinished {

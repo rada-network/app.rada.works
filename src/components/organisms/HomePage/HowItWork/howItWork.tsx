@@ -7,7 +7,7 @@ const HowItWork = () => {
   return (
     <Fragment>
       <div className={`${rootClass} bg-violet-600 dark:bg-gray-800`}>
-        <div className="container max-w-screen-xl mx-auto py-24">
+        <div className="container max-w-screen-xl mx-auto py-12 lg:py-24">
           <div className="mb-20 text-center">
             <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-semibold text-white dark:text-white mt-0 mb-0 tracking-tight">
               How it works

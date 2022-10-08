@@ -13,7 +13,7 @@
 }
 
 .howToClaim p {
-  @apply mt-0;
+  @apply my-0;
 }
 
 .howToClaim p + p {

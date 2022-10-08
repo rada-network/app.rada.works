@@ -1,9 +1,9 @@
 .root {
-  @apply bg-white shadow-sm rounded-lg mb-6 mt-10 pb-6;
+  @apply bg-white shadow-sm rounded-lg mt-10 pb-6;
 }
 
 .questers {
-  @apply flex flex-wrap items-center justify-between px-4 gap-3;
+  @apply flex flex-wrap items-center justify-between px-6 gap-3;
 }
 
 .questers > div {
@@ -11,11 +11,11 @@
 }
 
 .questers > div > div {
-  @apply flex items-center gap-3;
+  @apply flex flex-wrap items-center gap-3;
 }
 
 .questerAvt {
-  @apply inline-block rounded-full flex items-center justify-center py-1 px-3 font-medium shadow-sm;
+  @apply rounded-full flex flex-wrap items-center justify-center py-1 px-3 font-medium shadow-sm;
 }
 
 .loadMore {
@@ -32,19 +32,19 @@
 }
 
 .noResult {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
 }
 
 .infiniteLoading {
-    @apply text-gray-800 col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+  @apply text-gray-800 col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
 }
 
 .infiniteFinished {
-    @apply text-gray-600 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+  @apply hidden text-gray-600 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
 }
 
 .rootDark .infiniteFinished {
-    @apply bg-gray-800 text-gray-600;
+  @apply bg-gray-800 text-gray-600;
 }
