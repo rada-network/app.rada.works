@@ -374,12 +374,14 @@ const Quest = (props) => {
         classes={{
           root_highPriority: canSubmit
             ? classes.btnClaimReward
-            : classes.btnClaimRewardDisabled
+            : !submitted
+            ? classes.btnClaimRewardDisabled
+            : classes.btnClaimRewardSubmitted
         }}
         type="button"
         onPress={canSubmit ? () => onClaimReward() : null}
       >
-        {t('Submit')}
+        {!submitted ? t('Submit') : t('You submitted!')}
       </Button>
     </div>
   );
