@@ -47,7 +47,7 @@
 }
 
 .infiniteFinished {
-	@apply hidden text-gray-600 rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center pt-3 pb-3;
+	@apply bg-violet-600 hover:bg-violet-700 cursor-pointer text-white max-w-xs rounded-md col-start-1 col-end-1 md:col-end-3 lg:col-end-4 text-center mt-4 py-3 px-20 hover:px-24 mx-auto transition-all duration-300;
 }
 
 .rootDark .infiniteFinished {
