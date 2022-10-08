@@ -7,7 +7,7 @@ const Hero = () => {
         <div className="container max-w-screen-xl mx-auto px-4 lg:px-4 z-10">
           <div className="flex flex-wrap items-center py-10 md:py-16 lg:py-16">
             <div className="basis-full lg:basis-7/12 text-center lg:text-left lg:pr-4">
-              <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 leading-normal tracking-tight mt-0 mb-4 lg:mb-8">
+              <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 tracking-tight mt-0 mb-4 lg:mb-8">
                 <span className="text-violet-600">SoulMint</span>
                 <span className="block">
                   Reward distribution platform for SoulBound Tokens

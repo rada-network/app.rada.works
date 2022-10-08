@@ -8,15 +8,15 @@ const News = () => {
   return (
     <Fragment>
       <div className={`${rootClass} bg-gray-900 py-12 lg:py-24`}>
-        <div className="container max-w-screen-xl mx-auto px-4">
+        <div className="container max-w-screen-xl mx-auto px-6 lg:px-4">
           <div className="mb-14 text-center">
-            <h2 className="text-center text-3xl md:text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0 tracking-tight">
+            <h2 className="text-center text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0 tracking-tight">
               SoulMint Academy
             </h2>
           </div>
 
           <div className="flex flex-wrap md:flex-nowrap items-stretch gap-0 md:gap-8">
-            <div className="basis-full md:basis-1/3 mb-8 md:mb-0">
+            <div className="basis-full md:basis-1/3 mb-12 md:mb-0">
               <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-xl mb-6">
                 <img
                   src="/news/news-1.jpg"
@@ -50,7 +50,7 @@ const News = () => {
             </div>
             {/* // News item */}
 
-            <div className="basis-full md:basis-1/3 mb-8 md:mb-0">
+            <div className="basis-full md:basis-1/3 mb-12 md:mb-0">
               <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-xl mb-6">
                 <img
                   src="/news/news-2.webp"
