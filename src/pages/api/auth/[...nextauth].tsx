@@ -32,26 +32,28 @@ export default async function auth(
       clientSecret: `${process.env.TWITTER_CONSUMER_SECRET}`
     }),
     CredentialsProvider({
-      name: 'BSC',
+      name: 'SOULMINT',
       credentials: {},
       authorize: async (credentials: any) => {
         try {
-          //const nonce = '0x' + credentials?.csrfToken;
-          const nonce = `Welcome to SoulMint!
+          const nonce = '0x' + credentials?.csrfToken;
+          let message = process.env.CONNECT_WALLET_WELCOME_MSG;
+          message = `${message}\n\nAddress:\n${credentials?.address}\n\nNonce:\n${nonce}`;
 
-Signing is the only way we can truly know that you are the owner of the wallet you are connecting. Signing is a safe, gas - less transaction that does not in any way give Soulmint permission to perform any transactions with your wallet.`;
           const address = utils.verifyMessage(
-            nonce,
+            message,
             credentials?.signedMessage
           );
-          if (address.toLowerCase() != credentials?.address?.toLowerCase())
+
+          if (address.toLowerCase() != credentials?.address?.toLowerCase()) {
             return null;
+          }
+
           const user = {
             email: address,
             name: address
           };
           // console.log('authorize user', user);
-
           return user;
         } catch (e) {
           return null;

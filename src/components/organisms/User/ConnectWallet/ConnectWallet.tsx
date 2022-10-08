@@ -3,7 +3,7 @@ import Web3 from 'web3';
 import Web3Modal from 'web3modal';
 import { useDispatch } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
-import { useSession, /*getCsrfToken,*/ signIn } from 'next-auth/react';
+import { useSession, getCsrfToken, signIn } from 'next-auth/react';
 import { ethers } from 'ethers';
 import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
@@ -11,7 +11,7 @@ import providerOptions from './providers';
 // import { Modal } from './../Modal';
 import DropDownMenu from './../DropdownMenu';
 import Button from 'src/components/atoms/Button';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -48,21 +48,19 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
       //   alert('Invalid bsc chain id. Need to switch to bsc testnet');
       //   throw new Error('Invalid bsc chain id. Need to switch to bsc testnet');
       // }
-      let signedMessage;
-      // const rawMessage = '0x' + (await getCsrfToken()) || '';
-      const rawMessage = `Welcome to SoulMint!
 
-Signing is the only way we can truly know that you are the owner of the wallet you are connecting. Signing is a safe, gas - less transaction that does not in any way give Soulmint permission to perform any transactions with your wallet.`;
-      const callbackUrl = '/';
       const signer = pp.getSigner();
-      signer.getBalance().then(function (rs) {
+      /*signer.getBalance().then(function (rs) {
         console.log(ethers.utils.formatEther(rs));
-      });
+      });*/
 
+      const callbackUrl = '/';
+      const nonce = '0x' + (await getCsrfToken()) || '';
+      let signedMessage = `${process.env.CONNECT_WALLET_WELCOME_MSG}\n\nAddress:\n${accounts[0]}\n\nNonce:\n${nonce}`;
       // eslint-disable-next-line prefer-const
-      signedMessage = await signer.signMessage(rawMessage);
+      signedMessage = await signer.signMessage(signedMessage);
       await signIn('credentials', {
-        message: rawMessage,
+        message: nonce,
         redirect: false,
         address: accounts[0],
         signedMessage,
@@ -73,7 +71,7 @@ Signing is the only way we can truly know that you are the owner of the wallet y
       if (process.env.NODE_ENV !== 'production') {
         console.error(e);
       }
-      toast.error(t('access denied'));
+      // toast.error(t('access denied'));
     }
   };
 
