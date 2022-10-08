@@ -23,11 +23,11 @@
 }
 
 .pageContainer {
-  @apply container mx-auto max-w-screen-xl flex items-stretch py-12;
+  @apply container mx-auto max-w-screen-xl flex flex-wrap lg:flex-nowrap items-stretch py-12 px-4;
 }
 
 .pageContent {
-  @apply px-4 basis-full md:basis-2/3;
+  @apply lg:px-4 basis-full md:basis-2/3 mb-4 lg:mb-0;
 }
 
 .rootDark .pageContent {
@@ -43,11 +43,11 @@
 }
 
 .campaignMeta {
-  @apply border-b border-gray-200 flex items-center justify-start pb-4 mb-6 gap-6;
+  @apply border-b border-gray-200 flex flex-wrap items-center justify-start lg:pb-4 mb-6 gap-6 text-sm;
 }
 
 .pageSidebar {
-  @apply basis-1/3 px-4;
+  @apply basis-full md:basis-1/3 lg:px-4 max-w-full;
 }
 
 .loading {
