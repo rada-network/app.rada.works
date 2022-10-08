@@ -278,7 +278,7 @@ const Quest = (props) => {
           tasks.ck_nft_ownership.status ? classes.taskSuccess : ''
         }`}
       >
-        {tasks.ck_nft_ownership.id}
+        Task {tasks.ck_nft_ownership.id}
       </span>
       <div className="flex-1 flex">
         <div className="pr-4 pl-9 relative">
@@ -345,7 +345,7 @@ const Quest = (props) => {
 
   const child = Object.keys(tasks).length ? (
     <Fragment>
-      <div className="border-b border-b-gray-200 border-opacity-60 py-3 px-6">
+      <div className="border-b border-b-gray-200 border-opacity-60 py-3 px-6 mb-4">
         <h3 className="mt-0 mb-1 text-lg lg:text-xl font-semibold text-gray-800 tracking-tight">
           {t('Require tasks')}
         </h3>
