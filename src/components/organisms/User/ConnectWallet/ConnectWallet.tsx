@@ -3,7 +3,7 @@ import Web3 from 'web3';
 import Web3Modal from 'web3modal';
 import { useDispatch } from 'react-redux';
 import { connectWallet } from 'src/ducks/wallets/wallets.operations';
-import { useSession, getCsrfToken, signIn } from 'next-auth/react';
+import { useSession, /*getCsrfToken,*/ signIn } from 'next-auth/react';
 import { ethers } from 'ethers';
 import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
