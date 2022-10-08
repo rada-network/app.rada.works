@@ -8,16 +8,20 @@ import defaultClasses from './quest.module.css';
 import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
-import { TwitterLogin } from '../../../../../../hooks/Campaign/Rewards/useTwitter';
-
+import BrowserPersistence from '../../../../../../utils/simplePersistence';
+import {
+  TwitterLogin,
+  getTwitterUserIdByUsermame,
+  getTweetsStatus,
+  TwitterFollow
+} from '../../../../../../hooks/Campaign/Rewards/useTwitter';
 import ConnectWallet from '../../../../../../components/organisms/User/ConnectWallet';
 import {
   TwitterIcon,
   TaskFailIcon,
   TaskSuccessIcon
 } from '../../../../Svg/SvgIcons';
-import { useTwitterFollow } from '../../../../../../hooks/Campaign/Rewards';
-
+const storage = new BrowserPersistence();
 const Quest = (props) => {
   const {
     classes: propClasses,
@@ -29,10 +33,6 @@ const Quest = (props) => {
   const classes = useStyle(defaultClasses, propClasses);
   const router = useRouter();
   const { t } = useTranslation('campaign_details');
-  /*const { handleCheckTwitterFollow } = useTwitterFollow({
-    user_id: '805827086787035136',
-    owner_id: '1574963666918600704'
-  });*/
   const { data: session } = useSession();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [twitterFollowState, setTwitterFollowState] = useState(
@@ -147,8 +147,9 @@ const Quest = (props) => {
           href={`https://twitter.com/${tasks.ck_twitter_follow.username}`}
           className="border-b border-dotted hover:border-solid border-b-sky-500 hover:border-b-sky-600 text-sky-500 font-semibold"
         >
-          @{tasks.ck_twitter_follow.username}          
-        </TextLink>&nbsp;
+          @{tasks.ck_twitter_follow.username}
+        </TextLink>
+        &nbsp;
         {t('on Twitter')}
         {twitterFollowStatus}
         {verifyTwitterFollowBtn}
@@ -156,32 +157,37 @@ const Quest = (props) => {
     );
   }
   const handleCheckTwitterFollow = async () => {
-    console.log('handleCheckTwitterFollow()');
-
     if (!isWalletConnected) {
       return toast.warning(
         t('You must connect your wallet before do this task!')
       );
     }
-    const twOwnerId = await tasks.ck_twitter_follow.twOwnerId();
-    console.log('====================================');
-    console.log(twOwnerId);
-    console.log('====================================');
-    // const data = TwitterFollow({ uid: 1, twOwnerId: twOwnerId });
-    // // checking twitter follow here...
-    // console.log('====================================');
-    // console.log(data);
-    // console.log('====================================');
-
-    // assume that
-    let result = {
-      status: true
-    };
-
-    // update state
-    tasks.ck_twitter_follow.status = result.status;
-    //trigger to re-render
-    setTwitterFollowState(tasks.ck_twitter_follow.status);
+    if (!tasks.ck_twitter_login.uid) {
+      return toast.warning(t('You must login twitter before do this task!'));
+    }
+    const twOwnerId = await getTwitterUserIdByUsermame({
+      screen_name: tasks.ck_twitter_follow.username
+    });
+    // checking twitter follow here...
+    const tw_follower_status = await TwitterFollow({
+      user_id: tasks.ck_twitter_login.uid,
+      owner_id: twOwnerId
+    });
+    if (tw_follower_status) {
+      //trigger to re-render
+      setTwitterFollowState(true);
+      setTasks({
+        ...tasks,
+        ck_twitter_follow: {
+          ...tasks.ck_twitter_follow,
+          status: true
+        }
+      });
+      toast.success(t('You have successfully completed this task!'));
+    } else {
+      setTwitterFollowState(false);
+      toast.error(t('You have not completed this task!'));
+    }
   };
 
   let twitterReTweetTask = null;
@@ -229,7 +235,7 @@ const Quest = (props) => {
       </div>
     );
   }
-  const handleCheckTwitterReTweet = () => {
+  const handleCheckTwitterReTweet = async () => {
     console.log('handleCheckTwitterReTweet()');
 
     if (!isWalletConnected) {
@@ -238,17 +244,30 @@ const Quest = (props) => {
       );
     }
 
+    if (!tasks.ck_twitter_login.uid) {
+      return toast.warning(t('You must login twitter before do this task!'));
+    }
     // checking twitter re-tweet here...
-
-    // assume that
-    let result = {
-      status: true
-    };
-
-    // update state
-    tasks.ck_twitter_retweet.status = result.status;
-    //trigger to re-render
-    setTwitterReTweetState(tasks.ck_twitter_retweet.status);
+    const socialLink = storage.getItem('twSocialLink');
+    const tw_tweet_status = await getTweetsStatus({
+      user_id: socialLink.uid,
+      tweet_id: tasks.ck_twitter_retweet.tweet_id
+    });
+    if (tw_tweet_status) {
+      //trigger to re-render
+      setTwitterReTweetState(true);
+      setTasks({
+        ...tasks,
+        ck_twitter_retweet: {
+          ...tasks.ck_twitter_retweet,
+          status: true
+        }
+      });
+      toast.success(t('You have successfully completed this task!'));
+    } else {
+      setTwitterReTweetState(false);
+      toast.error(t('You have not completed this task!'));
+    }
   };
 
   const verifyNftOwnershipBtn = !nftOwnershipState ? (

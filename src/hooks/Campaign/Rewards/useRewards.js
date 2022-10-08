@@ -14,10 +14,6 @@ import {
   checkExistsSocialLink
 } from 'src/hooks/User/useSocial';
 import BrowserPersistence from '../../../utils/simplePersistence';
-import { getTwitterId } from 'src/libs/useFunc';
-import { getTwitterUserIdByUsermame } from './useTwitter';
-import { Client } from 'twitter-api-sdk';
-const twitterClient = new Client(process.env.TWITTER_BEARER_TOKEN);
 export default (props) => {
   const { campaign, classes } = props;
 
@@ -47,7 +43,7 @@ export default (props) => {
     let socialLink = null;
     const router = useRouter();
     if (router.query.user) {
-      const { user, name, uid } = router.query;
+      const { user, uid } = router.query;
       // Checking and saving to social link
       getSession().then(async () => {
         //check exits and saving to social link
@@ -66,6 +62,7 @@ export default (props) => {
         }
         if (socialLink && socialLink.uid) {
           requiredTasks.ck_twitter_login.status = true;
+          requiredTasks.ck_twitter_login.uid = socialLink.uid;
           requiredTasks.ck_twitter_login.screen_name = socialLink.username;
           //saving to local storage for other contexts
           storage.setItem('twSocialLink', socialLink, 24 * 60 * 60); //1 days
@@ -78,21 +75,15 @@ export default (props) => {
       socialLink = storage.getItem('twSocialLink');
       if (socialLink && socialLink.uid) {
         requiredTasks.ck_twitter_login.status = true;
+        requiredTasks.ck_twitter_login.uid = socialLink.uid;
         requiredTasks.ck_twitter_login.screen_name = socialLink.username;
       }
     }
   }
 
   if (campaign.twitter_username) {
-    const TwitterOwnersId = useCallback(async () => {
-      const TwitterId = await getTwitterUserIdByUsermame({
-        user_id: campaign.twitter_username
-      });
-      return TwitterId;
-    }, [campaign.twitter_username]);
     requiredTasks.ck_twitter_follow = {
       id: 3,
-      twOwnerId: TwitterOwnersId,
       username: campaign.twitter_username,
       status: finishedTasks ? finishedTasks.ck_twitter_follow.status : null,
       msg: null
@@ -102,6 +93,7 @@ export default (props) => {
     requiredTasks.ck_twitter_retweet = {
       id: 4,
       tweet_url: campaign.twitter_tweet,
+      tweet_id: campaign.twitter_tweet.split('/').pop(),
       status: finishedTasks ? finishedTasks.ck_twitter_retweet.status : null,
       msg: null
     };
