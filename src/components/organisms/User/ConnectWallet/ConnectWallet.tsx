@@ -11,6 +11,7 @@ import providerOptions from './providers';
 // import { Modal } from './../Modal';
 import DropDownMenu from './../DropdownMenu';
 import Button from 'src/components/atoms/Button';
+import { toast } from 'react-toastify';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -48,7 +49,10 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
       //   throw new Error('Invalid bsc chain id. Need to switch to bsc testnet');
       // }
       let signedMessage;
-      const rawMessage = '0x' + (await getCsrfToken()) || '';
+      // const rawMessage = '0x' + (await getCsrfToken()) || '';
+      const rawMessage = `Welcome to SoulMint!
+
+Signing is the only way we can truly know that you are the owner of the wallet you are connecting. Signing is a safe, gas - less transaction that does not in any way give Soulmint permission to perform any transactions with your wallet.`;
       const callbackUrl = '/';
       const signer = pp.getSigner();
       signer.getBalance().then(function (rs) {
@@ -66,7 +70,10 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
       });
       connectWallet(dispatch, provider, web3, accounts[0]);
     } catch (e) {
-      console.error(e);
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(e);
+      }
+      toast.error(t('access denied'));
     }
   };
 
