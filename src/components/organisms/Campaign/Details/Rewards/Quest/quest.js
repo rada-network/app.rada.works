@@ -9,7 +9,6 @@ import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
 import { TwitterLogin } from '../../../../../../hooks/Campaign/Rewards/useTwitter';
-
 import ConnectWallet from '../../../../../../components/organisms/User/ConnectWallet';
 import {
   TwitterIcon,
