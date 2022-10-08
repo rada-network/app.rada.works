@@ -20,7 +20,7 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
     setExpanded(!expanded);
   };
   const disConnect = async () => {
-    await signOut({ callbackUrl: '/' });
+    await signOut();
   };
 
   return (

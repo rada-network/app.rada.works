@@ -38,6 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (error) {
       res.redirect(decodeURIComponent(state as string) + '?error=' + error);
     }
+    res.redirect(decodeURIComponent(state as string) + '?error=' + error);
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
       console.log(error);

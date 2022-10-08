@@ -14,7 +14,10 @@ import {
   checkExistsSocialLink
 } from 'src/hooks/User/useSocial';
 import BrowserPersistence from '../../../utils/simplePersistence';
-
+import { getTwitterId } from 'src/libs/useFunc';
+import { getTwitterUserIdByUsermame } from './useTwitter';
+import { Client } from 'twitter-api-sdk';
+const twitterClient = new Client(process.env.TWITTER_BEARER_TOKEN);
 export default (props) => {
   const { campaign, classes } = props;
 
@@ -28,10 +31,12 @@ export default (props) => {
 
   const requiredTasks = {};
   let finishedTasks = storage.getItem('finishedTasks');
-
+  requiredTasks.wallet = {
+    id: 1
+  };
   if (campaign.twitter_tweet || campaign.twitter_username) {
     requiredTasks.ck_twitter_login = {
-      id: 1,
+      id: 2,
       status: finishedTasks ? finishedTasks.ck_twitter_login.status : null,
       screen_name: finishedTasks
         ? finishedTasks.ck_twitter_login.screen_name
@@ -79,8 +84,15 @@ export default (props) => {
   }
 
   if (campaign.twitter_username) {
+    const TwitterOwnersId = useCallback(async () => {
+      const TwitterId = await getTwitterUserIdByUsermame({
+        user_id: campaign.twitter_username
+      });
+      return TwitterId;
+    }, [campaign.twitter_username]);
     requiredTasks.ck_twitter_follow = {
-      id: 2,
+      id: 3,
+      twOwnerId: TwitterOwnersId,
       username: campaign.twitter_username,
       status: finishedTasks ? finishedTasks.ck_twitter_follow.status : null,
       msg: null
@@ -88,7 +100,7 @@ export default (props) => {
   }
   if (campaign.twitter_tweet) {
     requiredTasks.ck_twitter_retweet = {
-      id: 3,
+      id: 4,
       tweet_url: campaign.twitter_tweet,
       status: finishedTasks ? finishedTasks.ck_twitter_retweet.status : null,
       msg: null
@@ -130,7 +142,7 @@ export default (props) => {
           ))
         : null;
     requiredTasks.ck_nft_ownership = {
-      id: 4,
+      id: 5,
       nftCollectionInfo,
       status: finishedTasks ? finishedTasks.ck_nft_ownership.status : null,
       msg: null

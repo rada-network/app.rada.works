@@ -146,14 +146,16 @@ export default async function auth(
           token.id = user.id;
           token.provider = account.provider;
         } else {
-          const { needRefresh } = getTokenState(token.access_token);
-          // console.log('needRefresh', needRefresh);
-          if (needRefresh) {
-            const { access_token, refresh_token } = await refreshAccessToken(
-              token.refresh_token
-            );
-            token.access_token = access_token;
-            token.refresh_token = refresh_token;
+          if (token.access_token) {
+            const { needRefresh } = getTokenState(token.access_token);
+            // console.log('needRefresh', needRefresh);
+            if (needRefresh) {
+              const { access_token, refresh_token } = await refreshAccessToken(
+                token.refresh_token
+              );
+              token.access_token = access_token;
+              token.refresh_token = refresh_token;
+            }
           }
         }
 

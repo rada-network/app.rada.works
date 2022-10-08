@@ -25,7 +25,9 @@ const Rewards = (props) => {
       className={`${classes.rewardOverview} bg-white shadow-sm rounded-xl mb-6`}
     >
       <div className="border-b border-b-gray-200 border-opacity-60 py-3 px-6">
-        <h3 className="font-semibold text-lg text-xl text-gray-800 my-0">Reward Overview</h3>
+        <h3 className="font-semibold text-lg text-xl text-gray-800 my-0">
+          Reward Overview
+        </h3>
       </div>
       <div className="p-6">
         <div

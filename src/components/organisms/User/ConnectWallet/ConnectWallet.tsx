@@ -8,8 +8,9 @@ import { ethers } from 'ethers';
 import { subString } from 'src/libs/useFunc';
 import { useTranslation } from 'next-i18next';
 import providerOptions from './providers';
-import { Modal } from './../Modal';
+// import { Modal } from './../Modal';
 import DropDownMenu from './../DropdownMenu';
+import Button from 'src/components/atoms/Button';
 
 export type ConnectWalletProps = {
   name?: string;
@@ -86,7 +87,15 @@ const ConnectWallet: FunctionComponent<ConnectWalletProps> = () => {
         </div>
       ) : (
         <>
-          <Modal connect={connect} />
+          {/* <Modal connect={connect} /> */}
+          <Button
+            onPress={() => connect()}
+            priority="high"
+            type="button"
+            data-modal-toggle="crypto-modal"
+          >
+            Connect wallet
+          </Button>
         </>
       );
   }

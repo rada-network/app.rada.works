@@ -9,6 +9,8 @@ import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
 import { TwitterLogin } from '../../../../../../hooks/Campaign/Rewards/useTwitter';
+
+import ConnectWallet from '../../../../../../components/organisms/User/ConnectWallet';
 import {
   TwitterIcon,
   TaskFailIcon,
@@ -44,7 +46,25 @@ const Quest = (props) => {
   );
   const isWalletConnected =
     !session || (session && session.user.email.includes('@')) ? false : true;
-
+  let walletConnect = isWalletConnected ? (
+    <span>{TaskSuccessIcon}</span>
+  ) : (
+    <ConnectWallet />
+  );
+  const connectWalletTask = (
+    <div className={classes.connectWalletTask}>
+      <span
+        className={`${classes.taskIndex} ${
+          isWalletConnected ? classes.taskSuccess : ''
+        }`}
+      >
+        {tasks.wallet.id}
+      </span>
+      <div className="flex items-center flex-1">
+        {t('Connectwallet')} {walletConnect}
+      </div>
+    </div>
+  );
   let twitterLoginTask = null;
   if (tasks.ck_twitter_login) {
     const twitterLoginStatus = !tasks.ck_twitter_login.status ? (
@@ -137,7 +157,7 @@ const Quest = (props) => {
       </div>
     );
   }
-  const handleCheckTwitterFollow = () => {
+  const handleCheckTwitterFollow = async () => {
     console.log('handleCheckTwitterFollow()');
 
     if (!isWalletConnected) {
@@ -145,12 +165,15 @@ const Quest = (props) => {
         t('You must connect your wallet before do this task!')
       );
     }
-
-    /*const data = TwitterFollow({ uid: 1, twitter_id: 2 });
-    // checking twitter follow here...
+    const twOwnerId = await tasks.ck_twitter_follow.twOwnerId();
     console.log('====================================');
-    console.log(data);
-    console.log('====================================');*/
+    console.log(twOwnerId);
+    console.log('====================================');
+    // const data = TwitterFollow({ uid: 1, twOwnerId: twOwnerId });
+    // // checking twitter follow here...
+    // console.log('====================================');
+    // console.log(data);
+    // console.log('====================================');
 
     // assume that
     let result = {
@@ -334,6 +357,7 @@ const Quest = (props) => {
       </div>
 
       <div className="p-4">
+        {connectWalletTask}
         {twitterLoginTask}
         {twitterFollowTask}
         {twitterReTweetTask}

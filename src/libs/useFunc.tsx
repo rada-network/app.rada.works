@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 export const subString = (props: any) => {
   if (typeof props.start === 'undefined') props.start = 5;
   if (!props.end) props.end = 3;
@@ -36,4 +38,12 @@ export const formatEndDate = (
     padTo2Digits(date.getDate() + duration),
     date.getFullYear()
   ].join('/');
+};
+export const getTwitterId = (url: string) => {
+  const regex = /twitter\.com\/(\w+)/;
+  const match = regex.exec(url);
+  if (match) {
+    return match[1];
+  }
+  return null;
 };
