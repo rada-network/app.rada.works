@@ -356,6 +356,9 @@ const Quest = (props) => {
     tasks.ck_nft_ownership.status = status;
     //trigger to re-render
     setNftOwnershipState(tasks.ck_nft_ownership.status);
+    if (!tasks.ck_nft_ownership.status) {
+      toast.error(t('You are not owner of any SoulBound Token!'));
+    }
   };
 
   const canSubmit =
