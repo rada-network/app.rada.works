@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 export const subString = (props: any) => {
   if (typeof props.start === 'undefined') props.start = 5;
   if (!props.end) props.end = 3;
