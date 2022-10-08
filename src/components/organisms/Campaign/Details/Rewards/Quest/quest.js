@@ -38,13 +38,13 @@ const Quest = (props) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [twitterFollowState, setTwitterFollowState] = useState(
-    tasks.ck_twitter_follow.status
+    tasks.ck_twitter_follow ? tasks.ck_twitter_follow.status : true
   );
   const [twitterReTweetState, setTwitterReTweetState] = useState(
-    tasks.ck_twitter_retweet.status
+    tasks.ck_twitter_retweet ? tasks.ck_twitter_retweet.status : true
   );
   const [nftOwnershipState, setNftOwnershipState] = useState(
-    tasks.ck_nft_ownership.status
+    tasks.ck_nft_ownership ? tasks.ck_nft_ownership.status : true
   );
 
   const isWalletConnected =
@@ -285,22 +285,23 @@ const Quest = (props) => {
     }
   };
 
-  const verifyNftOwnershipBtn = !tasks.ck_nft_ownership.status ? (
-    <Button
-      id={`btn-verify-nft-ownership`}
-      priority="high"
-      classes={{ root_highPriority: classes.btnVerifyTwitter }}
-      type="button"
-      onPress={() => handleCheckNftOwnership()}
-    >
-      {t('Verify')}
-    </Button>
-  ) : null;
+  const verifyNftOwnershipBtn =
+    tasks.ck_nft_ownership && !tasks.ck_nft_ownership.status ? (
+      <Button
+        id={`btn-verify-nft-ownership`}
+        priority="high"
+        classes={{ root_highPriority: classes.btnVerifyTwitter }}
+        type="button"
+        onPress={() => handleCheckNftOwnership()}
+      >
+        {t('Verify')}
+      </Button>
+    ) : null;
   const nftOwnershipStatus = (
     <span className={`ml-auto`}>
-      {tasks.ck_nft_ownership.status === true
+      {tasks.ck_nft_ownership && tasks.ck_nft_ownership.status === true
         ? TaskSuccessIcon
-        : tasks.ck_nft_ownership.status === false
+        : tasks.ck_nft_ownership && tasks.ck_nft_ownership.status === false
         ? TaskFailIcon
         : ''}
     </span>
