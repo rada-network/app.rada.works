@@ -7,7 +7,7 @@ const Features = () => {
   const rootClass = isDark ? classes.rootDark : classes.root;
   return (
     <Fragment>
-      <div className={`${rootClass} bg-white`}>
+      <div className={`${rootClass} bg-white dark:bg-gray-800`}>
         <div className="container max-w-screen-xl mx-auto py-12 lg:py-24 px-4">
           <div className="mb-20 text-center">
             <h2 className="text-center text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">

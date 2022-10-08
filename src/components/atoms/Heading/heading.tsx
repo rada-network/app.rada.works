@@ -21,7 +21,7 @@ export const Heading: FunctionComponent<HeadingProps> = ({
     <HeadingType className={headingCls}>{children}</HeadingType>
   ) : null;
   const SubHeading = subHeading ? (
-    <div className={`${classes.subHeading}`}>{subHeading}</div>
+    <div className={`${classes.subHeading} dark:text-gray-300`}>{subHeading}</div>
   ) : null;
 
   return (
