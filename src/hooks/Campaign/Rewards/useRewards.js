@@ -24,7 +24,7 @@ export default (props) => {
   const { data: session } = useSession();
 
   const storage = new BrowserPersistence();
-  const ttl = 24 * 60 * 60; // 1day
+  const twSocialLinkTtl = 30 * 24 * 60 * 60; // 30 days
 
   const tasks = {};
   const add = session && session.user ? session.user.email : null;
@@ -92,7 +92,7 @@ export default (props) => {
           tasks.ck_twitter_login.uid = socialLink.uid;
           tasks.ck_twitter_login.screen_name = socialLink.username;
           //saving to local storage for other contexts
-          storage.setItem('twSocialLink', socialLink, ttl);
+          storage.setItem('twSocialLink', socialLink, twSocialLinkTtl);
         }
         // Refresh page
         socialLink && router.push('/campaign-details/' + router.query.slug[0]);

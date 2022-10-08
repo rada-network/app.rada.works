@@ -72,7 +72,7 @@ const Quest = (props) => {
         Task {tasks.wallet.id}
       </span>
       <div className="flex items-center justify-between flex-1">
-        {t('Connectwallet')} {walletConnect}
+        {t('Connect Wallet')} {walletConnect}
       </div>
     </div>
   );
