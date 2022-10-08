@@ -10,6 +10,7 @@ const TwitterLogin = (props: any) => {
       encodeURIComponent(reference_url)
   );
 };
+
 const TwitterFollow = async (props: any) => {
   const { user_id, owner_id } = props;
   let checked = false;
@@ -22,36 +23,38 @@ const TwitterFollow = async (props: any) => {
     .then((res) => res.json())
     .then((data) => {
       checked = data.checked;
-      console.log('====================================');
-      console.log(data);
-      console.log('====================================');
     });
-  console.log('====================================');
-  console.log(checked);
-  console.log('====================================');
   return checked;
 };
 const getTwitterUserIdByUsermame = async (props: any) => {
-  const { user_id } = props;
+  const { screen_name } = props;
   let id = 0;
-  await fetch('/api/twitter/user?task=getid&screen_name=' + user_id)
+  await fetch('/api/twitter/user?task=getid&screen_name=' + screen_name)
     .then((res) => res.json())
     .then((data) => {
       id = data?.data?.id;
     });
   return id;
 };
-const TwitterLike = async (props: any) => {
+const getTweetsStatus = async (props: any) => {
   const { user_id, tweet_id } = props;
   let checked = false;
-  await fetch(
-    '/api/twitter/user?task=tweets&user_id=' + user_id + '&tweet_id=' + tweet_id
-  )
+  const url =
+    '/api/twitter/user?task=tweets&user_id=' +
+    user_id +
+    '&tweet_id=' +
+    tweet_id;
+  await fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      checked = data.checked;
+      checked = data?.data?.checked;
     });
 
   return checked;
 };
-export { TwitterLogin, TwitterFollow, TwitterLike, getTwitterUserIdByUsermame };
+export {
+  TwitterLogin,
+  TwitterFollow,
+  getTweetsStatus,
+  getTwitterUserIdByUsermame
+};

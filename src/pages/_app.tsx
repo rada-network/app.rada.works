@@ -24,11 +24,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   getSession().then(async (session) => {
     const storage = new BrowserPersistence();
     if (session && session.access_token) {
-      storage.setItem(
-        'access_token',
-        session.access_token,
-        24 * 60 * 60 * 1000
-      );
+      storage.setItem('access_token', session.access_token, 24 * 60 * 60); //1 days
       //Auto sync social link if is social login
       const twUserProfile: any = session?.twUserProfile;
       if (twUserProfile) {

@@ -14,10 +14,6 @@ import {
   checkExistsSocialLink
 } from 'src/hooks/User/useSocial';
 import BrowserPersistence from '../../../utils/simplePersistence';
-import { getTwitterId } from 'src/libs/useFunc';
-import { getTwitterUserIdByUsermame } from './useTwitter';
-import { Client } from 'twitter-api-sdk';
-const twitterClient = new Client(process.env.TWITTER_BEARER_TOKEN);
 export default (props) => {
   const { campaign, classes } = props;
 
@@ -85,6 +81,7 @@ export default (props) => {
         }
         if (socialLink && socialLink.uid) {
           tasks.ck_twitter_login.status = true;
+          tasks.ck_twitter_login.uid = socialLink.uid;
           tasks.ck_twitter_login.screen_name = socialLink.username;
           //saving to local storage for other contexts
           storage.setItem('twSocialLink', socialLink, ttl);
@@ -97,21 +94,15 @@ export default (props) => {
       socialLink = storage.getItem('twSocialLink');
       if (socialLink && socialLink.uid) {
         tasks.ck_twitter_login.status = true;
+        tasks.ck_twitter_login.uid = socialLink.uid;
         tasks.ck_twitter_login.screen_name = socialLink.username;
       }
     }
   }
 
   if (campaign.twitter_username) {
-    const TwitterOwnersId = useCallback(async () => {
-      const TwitterId = await getTwitterUserIdByUsermame({
-        user_id: campaign.twitter_username
-      });
-      return TwitterId;
-    }, [campaign.twitter_username]);
     tasks.ck_twitter_follow = {
       id: 3,
-      twOwnerId: TwitterOwnersId,
       username: campaign.twitter_username,
       status: submitted ? true : null,
       msg: null
@@ -121,6 +112,7 @@ export default (props) => {
     tasks.ck_twitter_retweet = {
       id: 4,
       tweet_url: campaign.twitter_tweet,
+      tweet_id: campaign.twitter_tweet.split('/').pop(),
       status: submitted ? true : null,
       msg: null
     };
