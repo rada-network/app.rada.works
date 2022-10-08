@@ -2,16 +2,35 @@
   @apply bg-white border-2 border-violet-500 shadow-sm rounded-lg mb-6
 }
 
+.taskIndex {
+  @apply bg-white border border-gray-200 text-xs text-gray-700 font-semibold flex items-center justify-center block rounded-full text-center py-0.5 px-2 absolute -top-2.5 left-2;
+}
+
+.taskSuccess {
+  @apply border border-green-600 text-green-600;
+}
+
+/* Step 1 */
+.connectWalletTask {
+  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
+}
+
+.connectWalletTask button {
+  @apply py-1.5 px-3 text-xs rounded-full;
+}
+
+/* Step 2 */
 .twitterLoginTask {
-  @apply border border-gray-200 flex items-center text-sm mb-3 ml-3 py-2 px-2 rounded-lg;
+  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
 }
 
 .btnTwitterLogin {
-  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-xs font-medium rounded-md py-1.5 pl-2 pr-3 ml-2 transition duration-300 ml-auto;
+  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-xs font-medium rounded-full py-1.5 px-3 transition duration-300 ml-auto;
 }
 
+/* Step 3 */
 .twitterFollowTask {
-   @apply border border-gray-200 text-sm font-medium flex items-center rounded-lg p-2 transition-all duration-300 mb-3 ml-3;
+  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
 }
 
 .twitterFollowTaskError {
@@ -19,8 +38,9 @@
   @apply border-red-500 hover:border-red-500;
 }
 
+/* Step 4 */
 .twitterRetweetTask {
-  @apply border border-gray-200 text-sm font-medium flex items-center rounded-lg p-2 transition-all duration-300 ml-3;
+  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
 }
 
 .nftOwnershipTask {
@@ -28,11 +48,21 @@
 }
 
 .btnVerifyTwitter {
-  @apply border border-violet-300 hover:border-violet-600 hover:bg-violet-600 hover:text-white text-violet-600 font-semibold rounded-md py-1 px-2 text-xs ml-auto shadow-none;
+  @apply bg-gray-200 hover:bg-sky-500 hover:text-white text-gray-700 font-semibold rounded-full py-1.5 px-3 text-xs ml-auto transition-all duration-300;
+}
+
+/* Step 5 */
+.soulBoundTokenTask {
+  @apply border border-violet-400 rounded-md flex items-start relative pt-4 pb-3 px-2;
+}
+
+.bsc {
+  composes: bsc from '../../Rewards/rewards.module.css';
+  float: left;
 }
 
 .btnClaimRewardWrap {
-  @apply mt-4 -mx-4 pt-4 px-6;
+  @apply mt-4 pt-4;
 }
 
 .btnClaimRewardWrap button {
@@ -49,21 +79,4 @@
   @apply bg-gray-200 flex items-center justify-center text-gray-500 text-center font-medium;
   cursor: not-allowed;
   pointer-events: none;
-}
-
-.taskIndex {
-  @apply bg-white border border-gray-200 text-gray-500 flex items-center justify-center font-bold block w-8 h-8 rounded-full mr-2 text-center shadow-sm -ml-6;
-}
-
-.taskSuccess {
-  @apply bg-green-600 text-white;
-}
-
-.soulBoundTokenTask {
-  @apply border border-gray-200 rounded-lg mt-3 flex items-start p-2 ml-3;
-}
-
-.bsc {
-  composes: bsc from '../../Rewards/rewards.module.css';
-  float: left;
 }
