@@ -27,11 +27,16 @@ export default (props) => {
   const ttl = 24 * 60 * 60; // 1day
 
   const tasks = {};
+  tasks.wallet = {
+    id: 1,
+    status: null
+  };
   // Check current User was finished
   const [submitted, setSubmitted] = useState(false);
   useEffect(async () => {
     const userAddress = session && session.user ? session.user.email : null;
     if (userAddress) {
+      tasks.wallet.status = true;
       const found = await isQuesterExistsFunc(
         { _eq: campaign.id },
         { email: { _eq: userAddress } }
@@ -43,10 +48,6 @@ export default (props) => {
   }, [session]);
 
   let twSocialLink = storage.getItem('twSocialLink');
-  tasks.wallet = {
-    id: 1,
-    status: null
-  };
   if (campaign.twitter_tweet || campaign.twitter_username) {
     tasks.ck_twitter_login = {
       id: 2,
