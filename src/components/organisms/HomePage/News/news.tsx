@@ -24,10 +24,10 @@ const News = () => {
                 />
               </div>
 
-              <h3 className="mt-0 mb-2 text-gray-200 text-xl">
+              <h3 className="mt-0 mb-2 text-gray-200 font-medium text-xl">
                 <a
                   href="#"
-                  title="Sample link"
+                  title="SouldMint - The Ultimate HUB for all soul"
                   className="hover:text-indigo-600 transition-all duration-300"
                 >
                   SouldMint - The Ultimate HUB for all soul
@@ -58,10 +58,10 @@ const News = () => {
                 />
               </div>
 
-              <h3 className="mt-0 mb-2 text-gray-200 text-xl">
+              <h3 className="mt-0 mb-2 font-medium text-gray-200 text-xl">
                 <a
                   href="#"
-                  title="Sample link"
+                  title="Soulbound token - The nex big thing in Blockchain"
                   className="hover:text-indigo-600 transition-all duration-300"
                 >
                   Soulbound token - The nex big thing in Blockchain
@@ -89,7 +89,7 @@ const News = () => {
                 />
               </div>
 
-              <h3 className="mt-0 mb-2 text-gray-200 text-xl overflow-hidden ellipsis">
+              <h3 className="mt-0 mb-2 text-gray-200 text-xl font-medium overflow-hidden ellipsis">
                 <a
                   href="#"
                   title="Sample link"

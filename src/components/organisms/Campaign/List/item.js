@@ -189,9 +189,9 @@ const Item = (props) => {
           priority="high"
           type="button"
           onPress={viewDetails}
-          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-violet-600 text-gray-700 dark:text-gray-400 hover:text-white rounded-lg font-medium flex jusity-center block w-full text-center text-lg py-3 px-0 transition-all duration-300`}
+          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-violet-600 text-gray-700 dark:text-gray-400 hover:text-white rounded-lg font-medium flex jusity-center block w-full text-center text-md py-3 px-0 transition-all duration-300`}
         >
-          {t('Get this deal')}
+          {t('Join this quest')}
         </Button>
       </div>
 

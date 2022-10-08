@@ -61,13 +61,13 @@ const Footer = (_props) => {
         <div className="container max-w-screen-xl mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center px-4">
           <div className="block text-sm text-gray-500 w-full md:w-auto text-center md:text-left dark:text-gray-400">
             <span>
-              {year}{' '}
+              &copy; {year}{' '}
               <a href="/" className="hover:underline hover:text-blue-600">
                 SoulMint
               </a>
             </span>
           </div>
-          <div className={classes.menuItems}>{menuItems}</div>
+          {/* <div className={classes.menuItems}>{menuItems}</div> */}
           <div className={classes.social}>{socialItem}</div>
         </div>
       </footer>
