@@ -16,7 +16,12 @@ export const formatBytes = (bytes, decimals = 2) => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
+export const randomNumber = (min, max) => {
+  return Math.random() * (max - min) + min;
+};
+
 export default {
   kFormatter,
-  formatBytes
+  formatBytes,
+  randomNumber
 };

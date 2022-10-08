@@ -7,6 +7,7 @@ import { useQuesters } from '../../../../../../hooks/Campaign/Rewards';
 import defaultClasses from './questers.module.css';
 import { useStyle } from '../../../../../classify';
 import { ellipsify } from '../../../../../../utils/strUtils';
+import { randomNumber } from '../../../../../../utils/numberUtils';
 // import Avatar from 'boring-avatars';
 
 const Questers = (props) => {
@@ -108,8 +109,8 @@ const Questers = (props) => {
             >
               {ellipsify({
                 str: quester.user_created.email,
-                start: 6,
-                end: 4
+                start: randomNumber(4, 12),
+                end: randomNumber(4, 12)
               })}
             </div>
           ))}
