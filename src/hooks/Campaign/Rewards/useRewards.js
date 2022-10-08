@@ -27,11 +27,18 @@ export default (props) => {
   const ttl = 24 * 60 * 60; // 1day
 
   const tasks = {};
+  const add = session && session.user ? session.user.email : null;
+  let doneTasks = storage.getItem(
+    `user_${add}_campaign_${campaign.id}_doneTasks`
+  );
+  if (doneTasks === undefined) {
+    doneTasks = {};
+  }
   tasks.wallet = {
     id: 1,
     status: null
   };
-  // Check current User was finished
+  // Check current User was submitted
   const [submitted, setSubmitted] = useState(false);
   useEffect(async () => {
     const userAddress = session && session.user ? session.user.email : null;
@@ -105,7 +112,8 @@ export default (props) => {
     tasks.ck_twitter_follow = {
       id: 3,
       username: campaign.twitter_username,
-      status: submitted ? true : null,
+      status:
+        submitted || (doneTasks && doneTasks.ck_twitter_follow) ? true : null,
       msg: null
     };
   }
@@ -114,7 +122,8 @@ export default (props) => {
       id: 4,
       tweet_url: campaign.twitter_tweet,
       tweet_id: campaign.twitter_tweet.split('/').pop(),
-      status: submitted ? true : null,
+      status:
+        submitted || (doneTasks && doneTasks.ck_twitter_retweet) ? true : null,
       msg: null
     };
   }
@@ -156,7 +165,8 @@ export default (props) => {
     tasks.ck_nft_ownership = {
       id: 5,
       nftCollectionInfo,
-      status: submitted ? true : null,
+      status:
+        submitted || (doneTasks && doneTasks.ck_nft_ownership) ? true : null,
       msg: null
     };
   }
@@ -286,6 +296,7 @@ export default (props) => {
 
   return {
     tasks,
+    doneTasks,
     isFinishedTasks,
     submitted,
     handleClaimReward,

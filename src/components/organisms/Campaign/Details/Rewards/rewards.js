@@ -16,6 +16,7 @@ const Rewards = (props) => {
 
   const {
     tasks,
+    doneTasks,
     isFinishedTasks,
     submitted,
     handleClaimReward,
@@ -54,6 +55,7 @@ const Rewards = (props) => {
       <Quest
         campaignId={parseInt(campaign.id)}
         tasks={tasks}
+        doneTasks={doneTasks}
         isFinishedTasks={isFinishedTasks}
         submitted={submitted}
         onClaimReward={handleClaimReward}

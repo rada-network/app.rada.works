@@ -25,7 +25,9 @@ const storage = new BrowserPersistence();
 const Quest = (props) => {
   const {
     classes: propClasses,
+    campaignId,
     tasks,
+    doneTasks,
     submitted,
     isFinishedTasks,
     onClaimReward,
@@ -37,6 +39,7 @@ const Quest = (props) => {
   const { data: session } = useSession();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const taskLogTtl = 30 * 24 * 60 * 60;
   const [twitterFollowState, setTwitterFollowState] = useState(
     tasks.ck_twitter_follow ? tasks.ck_twitter_follow.status : true
   );
@@ -47,8 +50,9 @@ const Quest = (props) => {
     tasks.ck_nft_ownership ? tasks.ck_nft_ownership.status : true
   );
 
+  const add = session && session.user ? session.user.email : null;
   const isWalletConnected =
-    !session || (session && session.user.email.includes('@')) ? false : true;
+    !session || (session && add.includes('@')) ? false : true;
 
   if (isWalletConnected) {
     tasks.wallet.status = true;
@@ -191,7 +195,13 @@ const Quest = (props) => {
       tasks.ck_twitter_follow.status = true;
       //trigger to re-render
       setTwitterFollowState(tasks.ck_twitter_follow.status);
-      //toast.success(t('You have successfully completed this task!'));
+      //saving for resume later
+      doneTasks.ck_twitter_follow = true;
+      storage.setItem(
+        `user_${add}_campaign_${campaignId}_doneTasks`,
+        doneTasks,
+        taskLogTtl
+      );
     } else {
       tasks.ck_twitter_follow.status = false;
       //trigger to re-render
@@ -274,7 +284,13 @@ const Quest = (props) => {
       tasks.ck_twitter_retweet.status = true;
       //trigger to re-render
       setTwitterReTweetState(tasks.ck_twitter_retweet.status);
-      //toast.success(t('You have successfully completed this task!'));
+      //saving for resume later
+      doneTasks.ck_twitter_retweet = true;
+      storage.setItem(
+        `user_${add}_campaign_${campaignId}_doneTasks`,
+        doneTasks,
+        taskLogTtl
+      );
     } else {
       tasks.ck_twitter_retweet.status = false;
       //trigger to re-render
@@ -349,8 +365,8 @@ const Quest = (props) => {
 
     setNftOwnershipState('loading');
 
-    // verify NFT ownership here...
-    let status = await verifyNftOwnership();
+    // submit to verify NFT ownership
+    const status = await verifyNftOwnership();
     console.log('ckOwnership Result:', status);
 
     // update state
@@ -359,6 +375,14 @@ const Quest = (props) => {
     setNftOwnershipState(tasks.ck_nft_ownership.status);
     if (!tasks.ck_nft_ownership.status) {
       toast.error(t('You are not owner of any SoulBound Token!'));
+    } else {
+      //saving for resume later
+      doneTasks.ck_nft_ownership = true;
+      storage.setItem(
+        `user_${add}_campaign_${campaignId}_doneTasks`,
+        doneTasks,
+        taskLogTtl
+      );
     }
   };
 
@@ -381,7 +405,7 @@ const Quest = (props) => {
         type="button"
         onPress={canSubmit ? () => onClaimReward() : null}
       >
-        {!submitted ? t('Submit') : t('You submitted!')}
+        {!submitted ? t('Submit') : t('Submission Completed.')}
       </Button>
     </div>
   );
@@ -416,6 +440,7 @@ Quest.propTypes = {
     root: string
   }),
   tasks: object,
+  doneTasks: object,
   isFinishedTasks: func,
   submitted: bool,
   verifyNftOwnership: func,

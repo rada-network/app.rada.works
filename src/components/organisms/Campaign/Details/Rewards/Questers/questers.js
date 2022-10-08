@@ -8,7 +8,6 @@ import defaultClasses from './questers.module.css';
 import { useStyle } from '../../../../../classify';
 import { ellipsify } from '../../../../../../utils/strUtils';
 import { randomNumber } from '../../../../../../utils/numberUtils';
-// import Avatar from 'boring-avatars';
 
 const Questers = (props) => {
   const { classes: propClasses, campaignId } = props;
@@ -89,19 +88,6 @@ const Questers = (props) => {
           endMessage={null}
         >
           {infiniteItems.map((quester) => (
-            /*<Avatar
-              key={quester.id}
-              size={50}
-              square={false}
-              title={true}
-              name={ellipsify({
-                str: quester.user_created.email,
-                start: 6,
-                end: 4
-              })}
-              variant="marble" //oneOf: marble (default), beam, pixel,sunset, ring, bauhaus
-              colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
-            />*/
             <div
               key={quester.id}
               title={quester.user_created.email}
