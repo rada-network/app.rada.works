@@ -14,25 +14,32 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   let token = false;
-
-  getSession().then(async (session) => {
+  getSession().then((session) => {
     if (session && session.access_token) {
+      console.log('session:', session);
       token = session.access_token;
+      if (token) {
+        console.log(`Bearer ${token}`);
+        // return the headers to the context so httpLink can read them
+        return {
+          headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}` : ''
+          }
+        };
+      }
     }
   });
   // const storage = new BrowserPersistence();
   /*const accessToken = storage.getItem('access_token');
   token = accessToken ? accessToken : token;*/
 
-  if (token) {
-    // return the headers to the context so httpLink can read them
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : ''
-      }
-    };
-  }
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers
+    }
+  };
 });
 
 function createApolloClient() {
