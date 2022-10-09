@@ -7,7 +7,9 @@
 }
 
 .taskIndex {
-  @apply bg-white border border-gray-200 text-xs text-gray-700 font-semibold flex items-center justify-center block rounded-full text-center py-0.5 px-2 absolute -top-2.5 left-2;
+  @apply text-[10px] text-gray-500 font-medium block uppercase py-0;
+  line-height: 1;
+  letter-spacing: .5px;
 }
 
 .taskSuccess {
@@ -16,16 +18,16 @@
 
 /* Step 1 */
 .connectWalletTask {
-  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
+  @apply border-b border-b-gray-200 flex items-center text-sm relative pb-4 font-medium;
 }
 
 .connectWalletTask button {
-  @apply py-1.5 px-3 text-xs rounded-full;
+  @apply py-1.5 px-3 text-xs rounded-full ml-auto;
 }
 
 /* Step 2 */
 .twitterLoginTask {
-  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
+  @apply border-b border-b-gray-200 flex items-center text-sm relative py-4 font-medium;
 }
 
 .btnTwitterLogin {
@@ -34,7 +36,7 @@
 
 /* Step 3 */
 .twitterFollowTask {
-  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
+  @apply border-b border-b-gray-200 flex items-center text-sm relative py-4 font-medium;
 }
 
 .twitterFollowTaskError {
@@ -44,7 +46,7 @@
 
 /* Step 4 */
 .twitterRetweetTask {
-  @apply border border-violet-400 flex items-center text-sm rounded-md relative mb-5 py-3 px-2 shadow-sm font-medium;
+  @apply border-b border-b-gray-200 flex items-center text-sm relative py-4 font-medium;
 }
 
 .nftOwnershipTask {
@@ -57,7 +59,7 @@
 
 /* Step 5 */
 .soulBoundTokenTask {
-  @apply border border-violet-400 rounded-md flex items-start relative pt-4 pb-3 px-2;
+  @apply flex items-start relative pt-4;
 }
 
 .bsc {

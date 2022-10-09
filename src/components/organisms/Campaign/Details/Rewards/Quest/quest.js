@@ -64,15 +64,19 @@ const Quest = (props) => {
   );
   const connectWalletTask = (
     <div className={classes.connectWalletTask}>
-      <span
-        className={`${classes.taskIndex} ${
-          isWalletConnected ? classes.taskSuccess : ''
-        }`}
-      >
-        Task {tasks.wallet.id}
-      </span>
+      <img src="/icons/wallet-ico.svg" alt="Connect wallet" className="w-6 h-6 mr-4" />
       <div className="flex items-center justify-between flex-1">
-        {t('Connect Wallet')} {walletConnect}
+        <div className="flex-1">
+          <span
+            className={`${classes.taskIndex} ${
+              isWalletConnected ? classes.taskSuccess : ''
+            }`}
+          >
+            Task {tasks.wallet.id}
+          </span>
+          {t('Connect Wallet')} 
+        </div>
+        {walletConnect}
       </div>
     </div>
   );
@@ -95,15 +99,19 @@ const Quest = (props) => {
     );
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
-        <span
-          className={`${classes.taskIndex} ${
-            tasks.ck_twitter_login.status ? classes.taskSuccess : ''
-          }`}
-        >
-          Task {tasks.ck_twitter_login.id}
-        </span>
+        {TwitterIcon}
         <div className="flex items-center flex-1">
-          {TwitterIcon} {t('Login Twitter')} {twitterLoginStatus}
+          <div className="flex-1 pl-3">
+            <span
+            className={`${classes.taskIndex} ${
+              tasks.ck_twitter_login.status ? classes.taskSuccess : ''
+            }`}
+          >
+            Task {tasks.ck_twitter_login.id}
+          </span>
+          {t('Login Twitter')}
+          </div>
+          {twitterLoginStatus}
         </div>
       </div>
     );
@@ -146,8 +154,10 @@ const Quest = (props) => {
     twFollowTaskClasses.push(
       twitterFollowState == 'loading' ? classes.taskLoading : null
     );
-    twitterFollowTask = (
+    twitterFollowTask = (      
       <div className={`${twFollowTaskClasses.join(' ')}`}>
+        <img src="/icons/user-plus.svg" alt="Follow Twitter" className="w-6 h-6 mr-4" />
+        <div className="flex-1">
         <span
           className={`${classes.taskIndex} ${
             tasks.ck_twitter_follow.status ? classes.taskSuccess : ''
@@ -155,7 +165,7 @@ const Quest = (props) => {
         >
           Task {tasks.ck_twitter_follow.id}
         </span>
-        {TwitterIcon} {t('Follow')}&nbsp;
+        {t('Follow')}&nbsp;
         <TextLink
           target="_blank"
           title={t('Go to this Twitter channel.')}
@@ -167,6 +177,8 @@ const Quest = (props) => {
         &nbsp;
         {t('on Twitter')}
         {twitterFollowStatus}
+        </div>
+        
         {verifyTwitterFollowBtn}
       </div>
     );
@@ -240,22 +252,25 @@ const Quest = (props) => {
     );
     twitterReTweetTask = (
       <div className={`${twReTeetTaskClasses.join(' ')}`}>
-        <span
-          className={`${classes.taskIndex} ${
-            tasks.ck_twitter_retweet.status ? classes.taskSuccess : ''
-          }`}
-        >
-          Task {tasks.ck_twitter_retweet.id}
-        </span>
-        {TwitterIcon} {t('Must')}&nbsp;{t('Retweet')}&nbsp;
-        <TextLink
-          target="_blank"
-          title={t('Open this tweet.')}
-          href={`${tasks.ck_twitter_retweet.tweet_url}`}
-          className="border-b border-dotted hover:border-solid border-b-sky-500 hover:border-b-sky-600 text-sky-500 font-semibold"
-        >
-          {t('this tweet')}
-        </TextLink>
+        <img src="/icons/retweet-ico.svg" alt="Follow Twitter" className="w-6 h-6 mr-4" />
+        <div className="flex-1">
+          <span
+            className={`${classes.taskIndex} ${
+              tasks.ck_twitter_retweet.status ? classes.taskSuccess : ''
+            }`}
+          >
+            Task {tasks.ck_twitter_retweet.id}
+          </span>
+          {t('Must')}&nbsp;{t('Retweet')}&nbsp;
+          <TextLink
+            target="_blank"
+            title={t('Open this tweet.')}
+            href={`${tasks.ck_twitter_retweet.tweet_url}`}
+            className="border-b border-dotted hover:border-solid border-b-sky-500 hover:border-b-sky-600 text-sky-500 font-semibold"
+          >
+            {t('this tweet')}
+          </TextLink>
+        </div>
         {twitterReTweetStatus}
         {verifyTwitterReTweetBtn}
       </div>
@@ -328,16 +343,16 @@ const Quest = (props) => {
   );
   const nftOwnershipTask = tasks.ck_nft_ownership ? (
     <div className={nftTaskClasses.join(' ')}>
-      <span
-        className={`${classes.taskIndex} ${
-          tasks.ck_nft_ownership.status ? classes.taskSuccess : ''
-        }`}
-      >
-        Task {tasks.ck_nft_ownership.id}
-      </span>
       <div className="flex-1 flex">
-        <div className="pr-4 pl-9 relative">
-          <span className={`${classes.bsc} absolute left-0 top-1`} />
+        <span className={`${classes.bsc} absolute left-0 top-4`} />
+        <div className="pr-4 pl-10 relative">
+          <span
+            className={`${classes.taskIndex} ${
+              tasks.ck_nft_ownership.status ? classes.taskSuccess : ''
+            }`}
+          >
+            Task {tasks.ck_nft_ownership.id}
+          </span>
           <h4 className="mt-0 mb-0 leading-normal text-sm font-semibold text-gray-800">
             {t('SoulBound Token Ownership')}
           </h4>
