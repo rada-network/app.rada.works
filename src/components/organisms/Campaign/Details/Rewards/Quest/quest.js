@@ -99,9 +99,9 @@ const Quest = (props) => {
     );
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
-        {TwitterIcon}
+        <img src="/icons/twitter-ico.svg" alt="Login Twitter" className="w-6 h-6 mr-4" />
         <div className="flex items-center flex-1">
-          <div className="flex-1 pl-3">
+          <div className="flex-1">
             <span
             className={`${classes.taskIndex} ${
               tasks.ck_twitter_login.status ? classes.taskSuccess : ''

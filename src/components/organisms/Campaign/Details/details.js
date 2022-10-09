@@ -109,17 +109,17 @@ const Details = (props) => {
       const now = Moment();
       let stateInfo =
         now > endDate ? (
-          <div className="bg-gray-100 text-red-600 rounded-full py-1 px-3 text-sm font-medium">
+          <div className="bg-gray-100 text-red-600 rounded-full py-1 px-3 text-sm font-medium mr-4">
             {t('Ended')}
           </div>
         ) : (
-          <div className="bg-green-100 text-green-600 rounded-full py-1 px-3 text-sm font-medium">
+          <div className="bg-green-100 text-green-600 rounded-full py-1 px-3 text-sm font-medium mr-4">
             {t('Ongoing')}
           </div>
         );
       const datesInfo =
         campaign.date_start || campaign.date_end ? (
-          <div>
+          <div className="bg-gray-100 rounded-full px-3 py-1 font-medium text-sm">
             <span className={classes.dateStart}>
               {t('Start: ')}
               {startDate.format('DD MMM YYYY')}

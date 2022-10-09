@@ -47,7 +47,7 @@
 }
 
 .campaignMeta {
-  @apply flex flex-wrap items-center justify-start mb-6 gap-6 text-sm;
+  @apply flex flex-wrap items-center justify-start mb-6 text-sm;
 }
 
 .pageSidebar {
@@ -65,11 +65,7 @@
 }
 
 .dateStart {
-  @apply border-r border-gray-200 pr-4;
-}
-
-.rootDark .dateStart {
-  @apply border-gray-800;
+  @apply pr-4;
 }
 
 .dateEnd {
