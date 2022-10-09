@@ -22,7 +22,7 @@
 }
 
 .connectWalletTask button {
-  @apply py-1.5 px-3 text-xs rounded-full ml-auto;
+  @apply py-1.5 px-3 text-xs rounded-md ml-auto;
 }
 
 /* Step 2 */
@@ -31,7 +31,7 @@
 }
 
 .btnTwitterLogin {
-  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-xs font-medium rounded-full py-1.5 px-3 transition duration-300 ml-auto;
+  @apply bg-sky-400 hover:bg-sky-500 text-white flex items-center text-xs font-medium rounded-md py-1.5 px-3 transition duration-300 ml-auto;
 }
 
 /* Step 3 */
@@ -54,7 +54,7 @@
 }
 
 .btnVerifyTwitter {
-  @apply bg-gray-200 hover:bg-sky-500 hover:text-white text-gray-700 font-semibold rounded-full py-1.5 px-3 text-xs ml-auto transition-all duration-300;
+  @apply bg-gray-200 hover:bg-sky-400 hover:text-white text-gray-600 font-semibold rounded-md py-1.5 px-3 text-xs ml-auto transition-all duration-300;
 }
 
 /* Step 5 */

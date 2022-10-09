@@ -119,7 +119,7 @@ const Details = (props) => {
         );
       const datesInfo =
         campaign.date_start || campaign.date_end ? (
-          <div className="bg-gray-100 rounded-full px-3 py-1 font-medium text-sm">
+          <div className="bg-violet-100 text-violet-600 rounded-full px-3 py-1 font-medium text-sm">
             <span className={classes.dateStart}>
               {t('Start: ')}
               {startDate.format('DD MMM YYYY')}
