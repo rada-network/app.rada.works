@@ -21,7 +21,7 @@ import {
   TaskFailIcon,
   TaskSuccessIcon
 } from '../../../../Svg/SvgIcons';
-const storage = new BrowserPersistence();
+
 const Quest = (props) => {
   const {
     classes: propClasses,
@@ -50,12 +50,15 @@ const Quest = (props) => {
     tasks.ck_nft_ownership ? tasks.ck_nft_ownership.status : true
   );
 
-  const add = session && session.user ? session.user.email : null;
+  const storage = new BrowserPersistence();
+  const user = storage.getItem('user');
+
+  const add = user && user.email ? user.email : null;
   const isWalletConnected =
     !session || (session && add.includes('@')) ? false : true;
 
   if (isWalletConnected) {
-    tasks.wallet.status = true;
+    tasks.ck_connect_wallet.status = true;
   }
   let walletConnect = isWalletConnected ? (
     <span>{TaskSuccessIcon}</span>
@@ -64,7 +67,11 @@ const Quest = (props) => {
   );
   const connectWalletTask = (
     <div className={classes.connectWalletTask}>
-      <img src="/icons/wallet-ico.svg" alt="Connect wallet" className="w-6 h-6 mr-4" />
+      <img
+        src="/icons/wallet-ico.svg"
+        alt="Connect wallet"
+        className="w-6 h-6 mr-4"
+      />
       <div className="flex items-center justify-between flex-1">
         <div className="flex-1">
           <span
@@ -72,9 +79,9 @@ const Quest = (props) => {
               isWalletConnected ? classes.taskSuccess : ''
             }`}
           >
-            Task {tasks.wallet.id}
+            Task {tasks.ck_connect_wallet.id}
           </span>
-          {t('Connect Wallet')} 
+          {t('Connect Wallet')}
         </div>
         {walletConnect}
       </div>
@@ -99,17 +106,21 @@ const Quest = (props) => {
     );
     twitterLoginTask = (
       <div className={classes.twitterLoginTask}>
-        <img src="/icons/twitter-ico.svg" alt="Login Twitter" className="w-6 h-6 mr-4" />
+        <img
+          src="/icons/twitter-ico.svg"
+          alt="Login Twitter"
+          className="w-6 h-6 mr-4"
+        />
         <div className="flex items-center flex-1">
           <div className="flex-1">
             <span
-            className={`${classes.taskIndex} ${
-              tasks.ck_twitter_login.status ? classes.taskSuccess : ''
-            }`}
-          >
-            Task {tasks.ck_twitter_login.id}
-          </span>
-          {t('Login Twitter')}
+              className={`${classes.taskIndex} ${
+                tasks.ck_twitter_login.status ? classes.taskSuccess : ''
+              }`}
+            >
+              Task {tasks.ck_twitter_login.id}
+            </span>
+            {t('Login Twitter')}
           </div>
           {twitterLoginStatus}
         </div>
@@ -154,31 +165,35 @@ const Quest = (props) => {
     twFollowTaskClasses.push(
       twitterFollowState == 'loading' ? classes.taskLoading : null
     );
-    twitterFollowTask = (      
+    twitterFollowTask = (
       <div className={`${twFollowTaskClasses.join(' ')}`}>
-        <img src="/icons/user-plus.svg" alt="Follow Twitter" className="w-6 h-6 mr-4" />
+        <img
+          src="/icons/user-plus.svg"
+          alt="Follow Twitter"
+          className="w-6 h-6 mr-4"
+        />
         <div className="flex-1">
-        <span
-          className={`${classes.taskIndex} ${
-            tasks.ck_twitter_follow.status ? classes.taskSuccess : ''
-          }`}
-        >
-          Task {tasks.ck_twitter_follow.id}
-        </span>
-        {t('Follow')}&nbsp;
-        <TextLink
-          target="_blank"
-          title={t('Go to this Twitter channel.')}
-          href={`https://twitter.com/${tasks.ck_twitter_follow.username}`}
-          className="border-b border-dotted hover:border-solid border-b-sky-500 hover:border-b-sky-600 text-sky-500 font-semibold"
-        >
-          @{tasks.ck_twitter_follow.username}
-        </TextLink>
-        &nbsp;
-        {t('on Twitter')}
-        {twitterFollowStatus}
+          <span
+            className={`${classes.taskIndex} ${
+              tasks.ck_twitter_follow.status ? classes.taskSuccess : ''
+            }`}
+          >
+            Task {tasks.ck_twitter_follow.id}
+          </span>
+          {t('Follow')}&nbsp;
+          <TextLink
+            target="_blank"
+            title={t('Go to this Twitter channel.')}
+            href={`https://twitter.com/${tasks.ck_twitter_follow.username}`}
+            className="border-b border-dotted hover:border-solid border-b-sky-500 hover:border-b-sky-600 text-sky-500 font-semibold"
+          >
+            @{tasks.ck_twitter_follow.username}
+          </TextLink>
+          &nbsp;
+          {t('on Twitter')}
+          {twitterFollowStatus}
         </div>
-        
+
         {verifyTwitterFollowBtn}
       </div>
     );
@@ -252,7 +267,11 @@ const Quest = (props) => {
     );
     twitterReTweetTask = (
       <div className={`${twReTeetTaskClasses.join(' ')}`}>
-        <img src="/icons/retweet-ico.svg" alt="Follow Twitter" className="w-6 h-6 mr-4" />
+        <img
+          src="/icons/retweet-ico.svg"
+          alt="Follow Twitter"
+          className="w-6 h-6 mr-4"
+        />
         <div className="flex-1">
           <span
             className={`${classes.taskIndex} ${

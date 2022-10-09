@@ -9,6 +9,7 @@ import API from './api.gql';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { useStore } from 'src/libs/redux';
 import {
   saveSocialLink,
   checkExistsSocialLink
@@ -24,17 +25,20 @@ export default (props) => {
   const { data: session } = useSession();
 
   const storage = new BrowserPersistence();
+
+  const user = storage.getItem('user');
+
   const twSocialLinkTtl = 30 * 24 * 60 * 60; // 30 days
 
   const tasks = {};
-  const add = session && session.user ? session.user.email : null;
+  const add = user && user.email ? user.email : null;
   let doneTasks = storage.getItem(
     `user_${add}_campaign_${campaign.id}_doneTasks`
   );
   if (doneTasks === undefined) {
     doneTasks = {};
   }
-  tasks.wallet = {
+  tasks.ck_connect_wallet = {
     id: 1,
     status: null
   };
@@ -43,7 +47,7 @@ export default (props) => {
   useEffect(async () => {
     const userAddress = session && session.user ? session.user.email : null;
     if (userAddress) {
-      tasks.wallet.status = true;
+      tasks.ck_connect_wallet.status = true;
       const found = await isQuesterExistsFunc(
         { _eq: campaign.id },
         { email: { _eq: userAddress } }
@@ -258,9 +262,23 @@ export default (props) => {
 
   const handleClaimReward = useCallback(async () => {
     console.log('submitted()');
+    try {
+      // All require tasks done
+      await saveQuester({
+        variables: {
+          campaign_id: campaign.id,
+          status: 'approved'
+        }
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(error);
+      }
+      return;
+    }
 
     //Check required tasks
-    if (!isFinishedTasks()) {
+    /*if (!isFinishedTasks()) {
       return toast.warning(t('You must finish all required tasks!'));
     } else {
       try {
@@ -277,7 +295,7 @@ export default (props) => {
         }
         return;
       }
-    }
+    }*/
   }, [campaign]);
 
   // Handle saving quest result

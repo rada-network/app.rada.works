@@ -15,10 +15,10 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
   const { t } = useTranslation('common');
   const { isDark } = useThemes();
   const rootClass = isDark ? classes.rootDark : classes.root;
-  const [expanded, setExpanded] = useState(false);
-  const handleDropDownMenu = () => {
-    setExpanded(!expanded);
-  };
+  const [expanded /*, setExpanded*/] = useState(false);
+  // const handleDropDownMenu = () => {
+  //   setExpanded(!expanded);
+  // };
   const disConnect = async () => {
     await signOut();
   };
@@ -42,11 +42,7 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
 
         <div className="bg-gray-100 rounded-lg py-1 px-3">
           <span>Hi: {t(name)}</span>
-          <Link
-            href="#"
-            onClick={disConnect}
-            className=""
-          >
+          <Link href="#" onClick={disConnect} className="">
             {t('Sign out')}
           </Link>
         </div>
@@ -67,11 +63,10 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
           {/*    <Link href="/user/settings">{t('Settings')}</Link>*/}
           {/*  </li>*/}
           {/*</ul>*/}
-            {/* <Link href="#" onClick={disConnect}>
+          {/* <Link href="#" onClick={disConnect}>
               {t('Sign out')}
             </Link> */}
         </div>
-        
       </div>
     </Fragment>
   );
