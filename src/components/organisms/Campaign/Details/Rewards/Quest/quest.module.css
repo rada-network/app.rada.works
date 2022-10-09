@@ -13,7 +13,7 @@
 }
 
 .taskSuccess {
-  @apply border border-green-600 text-green-600;
+  @apply /*border border-green-600*/ text-green-600;
 }
 
 /* Step 1 */

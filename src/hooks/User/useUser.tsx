@@ -24,7 +24,9 @@ export const authRefresh = async (auth: any) => {
     mutation: AUTH_REFRESH_GQL,
     variables: { refresh_token }
   });
-  console.log(data);
+
+  console.log('authRefresh: ', data);
+
   return data.auth_refresh;
 };
 export const isExistsUser = async (email: string) => {
@@ -96,7 +98,6 @@ export const getTokenState = (token: any) => {
 export async function refreshAccessToken(token: any) {
   if (!token) return null;
   try {
-    console.log('refreshAccessToken', token);
     const refreshedTokens = await authRefresh({
       refresh_token: token
     });

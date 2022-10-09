@@ -12,21 +12,20 @@ import Toast from '../components/organisms/Toast';
 import { ThemeProvider } from 'next-themes';
 import { getSession } from 'next-auth/react';
 import Head from 'next/head';
-import BrowserPersistence from '../utils/simplePersistence';
-import {
+// import BrowserPersistence from '../utils/simplePersistence';
+/*import {
   checkExistsSocialLink,
   saveSocialLink
-} from 'src/hooks/User/useSocial';
+} from 'src/hooks/User/useSocial';*/
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const store = useStore();
-
   getSession().then(async (session) => {
-    const storage = new BrowserPersistence();
+    /*const storage = new BrowserPersistence();
     if (session && session.access_token) {
-      storage.setItem('access_token', session.access_token, 24 * 60 * 60); //1 days
+      storage.setItem('access_token', session.access_token);
       //Auto sync social link if is social login
-      const twUserProfile: any = session?.twUserProfile;
+      /!*const twUserProfile: any = session?.twUserProfile;
       if (twUserProfile) {
         //check exits
         const found = await checkExistsSocialLink(
@@ -40,12 +39,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             uid: twUserProfile.userId ? `${twUserProfile.userId}` : null
           });
         }
-      }
+      }*!/
     } else {
       storage.removeItem('access_token');
-    }
+    }*/
     if (session?.error === 'RefreshAccessTokenError') {
-      signOut(); // Force sign in to hopefully resolve error
+      await signOut(); // Force sign in to hopefully resolve error
     }
   });
   const apolloClient = useApollo(

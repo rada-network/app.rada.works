@@ -155,11 +155,11 @@ export default async function auth(
             const { needRefresh } = getTokenState(token.access_token);
             // console.log('needRefresh', needRefresh);
             if (needRefresh) {
-              const { access_token, refresh_token } = await refreshAccessToken(
-                token.refresh_token
-              );
+              const { access_token, refresh_token, error } =
+                await refreshAccessToken(token.refresh_token);
               token.access_token = access_token;
               token.refresh_token = refresh_token;
+              token.error = error ? error : null;
             }
           }
         }

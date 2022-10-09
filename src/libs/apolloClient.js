@@ -1,11 +1,10 @@
 import { useMemo } from 'react';
-import BrowserPersistence from '../utils/simplePersistence';
-
+// import BrowserPersistence from '../utils/simplePersistence';
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { getSession } from 'next-auth/react';
 
 let apolloClient;
-
 const GRAPHQL_ENDPOINT_URL = process.env.GRAPHQL_ENDPOINT_URL;
 
 const httpLink = createHttpLink({
@@ -15,9 +14,16 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   let token = false;
-  const storage = new BrowserPersistence();
-  const accessToken = storage.getItem('access_token');
-  token = accessToken ? accessToken : token;
+
+  getSession().then(async (session) => {
+    if (session && session.access_token) {
+      token = session.access_token;
+    }
+  });
+  // const storage = new BrowserPersistence();
+  /*const accessToken = storage.getItem('access_token');
+  token = accessToken ? accessToken : token;*/
+
   if (token) {
     // return the headers to the context so httpLink can read them
     return {
