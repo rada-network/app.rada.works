@@ -1,5 +1,5 @@
 .root {
-  @apply bg-white border-2 border-violet-500 shadow-sm rounded-lg mb-6
+  @apply bg-white border-2 border-violet-500 shadow-sm rounded-xl mb-6
 }
 
 .rootDark {
@@ -54,7 +54,7 @@
 }
 
 .btnVerifyTwitter {
-  @apply bg-gray-200 hover:bg-sky-400 hover:text-white text-gray-600 font-semibold rounded-md py-1.5 px-3 text-xs ml-auto transition-all duration-300;
+  @apply bg-gray-200 hover:bg-sky-400 hover:text-white text-gray-600 font-semibold rounded-md py-1.5 px-2.5 text-xs ml-auto transition-all duration-300;
 }
 
 /* Step 5 */
