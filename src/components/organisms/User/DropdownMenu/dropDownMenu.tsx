@@ -26,10 +26,10 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
   return (
     <Fragment>
       <div className={rootClass}>
-        <button
+        {/* <button
           id="dropdownInformationButton"
           onClick={handleDropDownMenu}
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white bg-violet-600 hover:bg-violet-700 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
           type="button"
         >
           Hi: {t(name)}
@@ -38,7 +38,18 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
             className={classes.dropdownIcon}
             alt="up"
           />
-        </button>
+        </button> */}
+
+        <div className="bg-gray-100 rounded-lg py-1 px-3">
+          <span>Hi: {t(name)}</span>
+          <Link
+            href="#"
+            onClick={disConnect}
+            className=""
+          >
+            {t('Sign out')}
+          </Link>
+        </div>
 
         <div
           id="dropdownInformation"
@@ -56,12 +67,11 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
           {/*    <Link href="/user/settings">{t('Settings')}</Link>*/}
           {/*  </li>*/}
           {/*</ul>*/}
-          <div className="py-1">
-            <Link href="#" onClick={disConnect}>
+            {/* <Link href="#" onClick={disConnect}>
               {t('Sign out')}
-            </Link>
-          </div>
+            </Link> */}
         </div>
+        
       </div>
     </Fragment>
   );
