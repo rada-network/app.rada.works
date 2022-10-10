@@ -1,7 +1,6 @@
 import { Client, auth } from 'twitter-api-sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
 import nextCookies from 'next-cookies';
-import { initTwitterClient } from 'src/libs/twitterAuthClient';
 import { twDecode } from 'src/libs/useFunc';
 
 // eslint-disable-next-line import/no-anonymous-default-export
