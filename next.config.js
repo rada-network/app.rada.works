@@ -19,6 +19,9 @@ const nextConfig = {
   devIndicators: {
     buildActivity: false
   },
+	typescript: {
+		 ignoreBuildErrors: true,
+	},
   env: {
     BSC_URL: process.env.BSC_URL,
     BSC_CHAIN_ID: process.env.BSC_CHAIN_ID,

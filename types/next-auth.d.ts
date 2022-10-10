@@ -18,6 +18,12 @@ declare module 'next-auth' {
       address: string;
     } & DefaultSession['user'];
   }
+
+  interface User extends Record<string, unknown>, DefaultUser {
+    /** The user's postal address. */
+    access_token: string | unknown;
+    refresh_token: string | unknown;
+  }
 }
 declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
@@ -28,9 +34,4 @@ declare module 'next-auth/jwt' {
     access_tooken: unknown;
     refresh_token: unknown;
   }
-}
-interface User extends Record<string, unknown>, DefaultUser {
-  /** The user's postal address. */
-  access_token: string | unknown;
-  refresh_token: string | unknown;
 }
