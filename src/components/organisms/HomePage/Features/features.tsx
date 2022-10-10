@@ -18,9 +18,9 @@ const Features = () => {
           <div className="flex flex-wrap lg:flex-nowrap items-start lg:gap-8">
             <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
               <div className="lg:mb-4">
-                <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                <img src="/samples/SoulBound.jpg" alt="Sample feature" />
               </div>
-              <h3 className="my-0 text-xl font-bold text-gray-800 mb-4">
+              <h3 className="my-0 text-xl font-bold text-gray-800 mb-4 dark:text-white">
                 SoulBound Token curator
               </h3>
               <p className="my-0 lg:text-lg">
@@ -30,9 +30,9 @@ const Features = () => {
 
             <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
               <div className="lg:mb-4">
-                <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                <img src="/samples/cross-chains.png" alt="Sample feature" />
               </div>
-              <h3 className="my-0 text-xl text-gray-800 mb-4 font-bold">
+              <h3 className="my-0 text-xl text-gray-800 mb-4 font-bold dark:text-white">
                 Chain agnostic
               </h3>
               <p className="my-0 lg:text-lg">
@@ -43,9 +43,12 @@ const Features = () => {
 
             <div className="basis-full md:basis-1/4 text-center mb-12 md:mb-0">
               <div className="lg:mb-4">
-                <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                <img
+                  src="/samples/No-code-campaign-creator.png"
+                  alt="Sample feature"
+                />
               </div>
-              <h3 className="my-0 text-lg lg:text-xl font-bold text-gray-800 mb-4">
+              <h3 className="my-0 text-lg lg:text-xl font-bold text-gray-800 mb-4 dark:text-white">
                 No-code campaign creator
               </h3>
               <p className="my-0 lg:text-lg">
@@ -55,9 +58,12 @@ const Features = () => {
 
             <div className="basis-full md:basis-1/4 text-center">
               <div className="lg:mb-4">
-                <img src="/samples/sample-feature.svg" alt="Sample feature" />
+                <img
+                  src="/samples/On-chain-reward-distribution.png"
+                  alt="Sample feature"
+                />
               </div>
-              <h3 className="my-0 text-lg lg:text-xl font-bold text-gray-800 mb-4">
+              <h3 className="my-0 text-lg lg:text-xl font-bold text-gray-800 mb-4 dark:text-white">
                 On-chain reward distribution
               </h3>
               <p className="my-0 lg:text-lg">
