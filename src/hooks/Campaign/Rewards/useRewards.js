@@ -48,7 +48,8 @@ export default (props) => {
   const [submitted, setSubmitted] = useState(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
-    const userAddress = session && session.user ? session.user.email : null;
+    //const userAddress = session && session.user ? session.user.email : null;
+    const userAddress = user && user.email ? user.email : null;
     if (userAddress) {
       tasks.ck_connect_wallet.status = true;
       const found = await isQuesterExistsFunc(
@@ -56,10 +57,10 @@ export default (props) => {
         { email: { _eq: userAddress } }
       );
       if (found) {
-        setSubmitted(false);
+        setSubmitted(true);
       }
     }
-  }, [campaign, isQuesterExistsFunc, session, tasks]);
+  }, [campaign, isQuesterExistsFunc, user, tasks]);
 
   let twSocialLink = storage.getItem('twSocialLink');
   if (campaign.twitter_tweet || campaign.twitter_username) {
