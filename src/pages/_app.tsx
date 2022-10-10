@@ -28,7 +28,7 @@ const MyApp = function MyApp({
   pageProps: { ...pageProps }
 }: AppProps) {
   // const router = useRouter();
-  const store = useStore();
+  // const store = useStore();
   const { data: session } = useSession();
   const [accessToken, setAccessToken] = useState(null);
   const localStorage = new BrowserPersistence();
@@ -38,10 +38,11 @@ const MyApp = function MyApp({
       setAccessToken(session.access_token);
     }
     if (session?.error === 'RefreshAccessTokenError') {
+      localStorage.removeItem('user');
       signOut();
     }
     // return () => {};
-  }, [session, store]);
+  }, [session /*, store*/]);
 
   useEffect(() => {
     if (session) {

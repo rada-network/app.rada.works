@@ -8,7 +8,6 @@ src/generated/graphql.tsx
 stories
 tailwind.config.js
 server.js
-src/utils/simplePersistence.js
 build-tinymce.js
 tus-server.js
 src/pages/_offline.js

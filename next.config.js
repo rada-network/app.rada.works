@@ -16,6 +16,9 @@ const { i18n } = require("./next-i18next.config");
 const nextConfig = {
   // next.js config
   reactStrictMode: false,
+  devIndicators: {
+    buildActivity: false
+  },
   env: {
     BSC_URL: process.env.BSC_URL,
     BSC_CHAIN_ID: process.env.BSC_CHAIN_ID,
