@@ -9,11 +9,11 @@ const Hero = () => {
             <div className="basis-full lg:basis-7/12 text-center lg:text-left lg:pr-4">
               <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 tracking-tight mt-0 mb-4 lg:mb-6">
                 <span className="text-violet-600">
-                  <span className="font-normal">Soul</span>Mint
+                  <span className="font-light">Soul</span>Mint
                 </span>
                 <span className="block">
                   Reward distribution platform for{' '}
-                  <span className="font-normal">Soul</span>Bound Tokens
+                  <span className="font-light">Soul</span>Bound Tokens
                 </span>
               </h1>
               <p className="text-lg lg:text-2xl font-normal my-0 text-gray-900">
