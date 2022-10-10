@@ -38,7 +38,7 @@ export default async function auth(
         try {
           const nonce = '0x' + credentials?.csrfToken;
           let message = process.env.CONNECT_WALLET_WELCOME_MSG;
-          message = `Address:\n${credentials?.address}\n\nNonce:\n${nonce}`;
+          message = `${message}\n\nAddress:\n${credentials?.address}\n\nNonce:\n${nonce}`;
 
           const address = utils.verifyMessage(
             message,
