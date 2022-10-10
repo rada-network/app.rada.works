@@ -32,7 +32,7 @@ const Hero = () => {
                   href="#"
                   title="Create Campaign"
                   target="_blank"
-                  className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white inline-block rounded-xl py-4 ring-4 ring-white ring-opacity-20 px-6 text-xl font-medium text-shadow-sm shadow-sm ml-6"
+                  className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white inline-block rounded-xl py-4 px-5 ring-4 ring-white ring-opacity-20 text-xl font-medium text-shadow-sm shadow-sm ml-6"
                 >
                   Create Campaign
                 </a>
