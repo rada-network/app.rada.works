@@ -42,6 +42,10 @@
   @apply bg-gray-800;
 }
 
+.shortDesc {
+  @apply font-semibold mb-8;
+}
+
 .coverImage {
   @apply rounded-t-lg overflow-hidden mb-8 -mx-6;
 }

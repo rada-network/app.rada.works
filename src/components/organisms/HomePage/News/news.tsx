@@ -26,11 +26,11 @@ const News = () => {
 
               <h3 className="mt-0 mb-2 text-gray-200 font-medium text-xl">
                 <a
-                  href="#"
-                  title="SouldMint - The Ultimate HUB for all soul"
+                  href="//soulmint.notion.site/SoulMint-The-ultimate-hub-for-all-Souls-53848408e33a44fe8dcf566cbe80766e"
+                  title="SoulMint - The ultimate hub for all Souls"
                   className="hover:text-indigo-600 transition-all duration-300"
                 >
-                  SouldMint - The Ultimate HUB for all soul
+                  SoulMint - The ultimate hub for all Souls
                 </a>
               </h3>
 
@@ -40,12 +40,7 @@ const News = () => {
               </div>
 
               <p className="md:hidden lg:block my-0 text-gray-400 leading-relaxed">
-                <strong>About Soulmint:</strong> Since its proposal in May 2022,
-                Soulbound token have become an emerging tool for verification in
-                the blockchain world, which can be deployed to showcase
-                provenance of employment or education history, identity
-                verification, credit-relevant history. In the future, we will be
-                able to see even more application of SBT in our daily lives...
+              Since its proposal in May 2022, Soulbound token have become an emerging tool for verification in the blockchain world, which can be deployed to showcase provenance of employment or education history, identity verification, credit-relevant history. In the future, we will be able to see even more application of SBT in our daily lives.
               </p>
             </div>
             {/* // News item */}
@@ -53,30 +48,28 @@ const News = () => {
             <div className="basis-full md:basis-1/3 mb-12 md:mb-0">
               <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-xl mb-6">
                 <img
-                  src="/news/news-2.webp"
+                  src="/news/news-3.jpeg"
                   alt="Soulbound token - The nex big thing in Blockchain"
                 />
               </div>
 
               <h3 className="mt-0 mb-2 font-medium text-gray-200 text-xl">
                 <a
-                  href="#"
-                  title="Soulbound token - The nex big thing in Blockchain"
+                  href="//soulmint.notion.site/SoulBound-Token-The-next-big-thing-in-blockchain-90f1e55e8fdc4bc7b5d862e8fe77d775"
+                  title="SoulBound Token - The next big thing in blockchain"
                   className="hover:text-indigo-600 transition-all duration-300"
                 >
-                  Soulbound token - The nex big thing in Blockchain
+                  SoulBound Token - The next big thing in blockchain
                 </a>
               </h3>
 
               <div className="text-sm mb-4 text-gray-500">
                 <span className="font-semibold mr-2">SoulMint</span>
-                <span>Oct 01, 2022</span>
+                <span>Oct 10, 2022</span>
               </div>
 
               <p className="md:hidden lg:block my-0 text-gray-400 leading-relaxed">
-                ConsenSys and StarkWare have expanded their partnership to
-                include ConsenSys Diligence smart contract auditing, providing a
-                one-stop-shop for Web3 development.
+              Imagine you are living in 2030, you are getting a tokenized version of your degree from your dream university, which is stored on-chain and completely secured, not to mention that your profile will be visible to all employers who are looking for suitable candidates without you having to publish your profile through different recruitment platforms like LinkedIn, Glints or Glassdoor.
               </p>
             </div>
             {/* // News item */}
@@ -84,24 +77,24 @@ const News = () => {
             <div className="basis-full md:basis-1/3">
               <div className="h-56 md:h-40 lg:h-56 overflow-hidden rounded-xl mb-6">
                 <img
-                  src="/news/news-3.jpeg"
+                  src="/news/news-2.webp"
                   alt="Soulbound token - The nex big thing in Blockchain"
                 />
               </div>
 
               <h3 className="mt-0 mb-2 text-gray-200 text-xl font-medium overflow-hidden ellipsis">
                 <a
-                  href="#"
-                  title="Sample link"
+                  href="//soulmint.notion.site/What-can-you-do-with-Soulbound-tokens-ff8e8f4b17ae41b2a7c8a2cb88fde22c"
+                  title="What can you do with Soulbound tokens?"
                   className="hover:text-indigo-600 transition-all duration-300"
                 >
-                  What can you do with Soulbound token?
+                  What can you do with Soulbound tokens?
                 </a>
               </h3>
 
               <div className="text-sm mb-4 text-gray-500">
                 <span className="font-semibold mr-2">SoulMint</span>
-                <span>Sep 10, 2022</span>
+                <span>Oct 10, 2022</span>
               </div>
 
               <p className="md:hidden lg:block my-0 text-gray-400 leading-relaxed">
