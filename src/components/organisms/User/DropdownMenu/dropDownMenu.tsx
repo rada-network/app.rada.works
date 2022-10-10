@@ -15,7 +15,7 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
   const { t } = useTranslation('common');
   const { isDark } = useThemes();
   const rootClass = isDark ? classes.rootDark : classes.root;
-  const [expanded /*, setExpanded*/] = useState(false);
+  // const [expanded /*, setExpanded*/] = useState(false);
   // const handleDropDownMenu = () => {
   //   setExpanded(!expanded);
   // };
@@ -40,7 +40,9 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
           />
         </button> */}
 
-        <div className={`${classes.userInfo} bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex flex-nowrap items-center shadow-none rounded-full py-1 pl-3 pr-1`}>
+        <div
+          className={`${classes.userInfo} bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex flex-nowrap items-center shadow-none rounded-full py-1 pl-3 pr-1`}
+        >
           <span className="mr-2">Hi: {t(name)}</span>
           <Link href="#" onClick={disConnect}>
             {t('Sign out')}
@@ -52,18 +54,18 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
           style={{ display: expanded ? 'block' : 'none' }}
           className="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
         > */}
-          {/*<ul className="py-1 text-sm text-gray-700 dark:text-gray-200">*/}
-          {/*  <li>*/}
-          {/*    <Link href="/create-campaign"> {t('Create Campaign')}</Link>*/}
-          {/*  </li>*/}
-          {/*  <li>*/}
-          {/*    <Link href="/my-campaign"> {t('My Campaigns')}</Link>*/}
-          {/*  </li>*/}
-          {/*  <li>*/}
-          {/*    <Link href="/user/settings">{t('Settings')}</Link>*/}
-          {/*  </li>*/}
-          {/*</ul>*/}
-          {/* <Link href="#" onClick={disConnect}>
+        {/*<ul className="py-1 text-sm text-gray-700 dark:text-gray-200">*/}
+        {/*  <li>*/}
+        {/*    <Link href="/create-campaign"> {t('Create Campaign')}</Link>*/}
+        {/*  </li>*/}
+        {/*  <li>*/}
+        {/*    <Link href="/my-campaign"> {t('My Campaigns')}</Link>*/}
+        {/*  </li>*/}
+        {/*  <li>*/}
+        {/*    <Link href="/user/settings">{t('Settings')}</Link>*/}
+        {/*  </li>*/}
+        {/*</ul>*/}
+        {/* <Link href="#" onClick={disConnect}>
               {t('Sign out')}
             </Link> */}
         {/* </div> */}
