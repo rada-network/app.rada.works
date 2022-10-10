@@ -1,33 +1,27 @@
-import React from 'react';
 import '../../styles/globals.css';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { SessionProvider, signOut, useSession } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
 import { appWithTranslation } from 'next-i18next';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../libs/apolloClient';
-
 import { Provider } from 'react-redux';
 import { useStore } from 'src/libs/redux';
-
-import { SessionProvider, signOut, useSession } from 'next-auth/react';
-
-import { useEffect, useState } from 'react';
-// import { useRouter } from "next/router";
-
 import dynamic from 'next/dynamic';
 const FullPageLoader = dynamic(
   () => import('../components/organisms/FullPageLoader')
 );
 const Toast = dynamic(() => import('../components/organisms/Toast'));
 const Providers = dynamic(() => import('../utils/providers'));
-import Head from 'next/head';
 import BrowserPersistence from '../utils/simplePersistence';
 
 const MyApp = function MyApp({
   Component,
   pageProps: { session: Session, ...pageProps }
 }: AppProps) {
-  // const router = useRouter();
   // const store = useStore();
   const { data: session } = useSession();
   const [accessToken, setAccessToken] = useState(null);
@@ -53,7 +47,7 @@ const MyApp = function MyApp({
         access_token: accessToken
       };
       localStorage.setItem('user', userData);
-      console.log('USER:', localStorage.getItem('user'));
+      // console.log('USER:', localStorage.getItem('user'));
     }
     // return () => {};
   }, [accessToken, session]);
