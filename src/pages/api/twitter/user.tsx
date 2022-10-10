@@ -1,33 +1,29 @@
-import { Client /* , auth */ } from 'twitter-api-sdk';
+import { Client, auth } from 'twitter-api-sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
-// import nextCookies from 'next-cookies';
-// import { initTwitterClient } from 'src/libs/twitterAuthClient';
-// import { twDecode } from 'src/libs/useFunc';
+import nextCookies from 'next-cookies';
+import { initTwitterClient } from 'src/libs/twitterAuthClient';
+import { twDecode } from 'src/libs/useFunc';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  // const token = nextCookies({ req }).twt;
-  // const accessToken = JSON.parse(twDecode(token));
-  // console.log('====================================');
-  // console.log(accessToken);
-  // console.log('====================================');
+  const token = nextCookies({ req }).twt;
+  const accessToken = JSON.parse(twDecode(token));
   const client = new Client(process.env.TWITTER_BEARER_TOKEN);
-  // const twAuthClient = new auth.OAuth2User({
-  //   client_id: process.env.TWITTER_ID,
-  //   client_secret: process.env.TWITTER_SECRET,
-  //   callback: process.env.NEXTAUTH_URL + '/api/twitter/callback',
-  //   scopes: [
-  //     'tweet.read',
-  //     'users.read',
-  //     'offline.access',
-  //     'tweet.write',
-  //     'like.write',
-  //     'follows.read'
-  //   ],
-  //   token: accessToken.token ?? null
-  // });
+  const twAuthClient = new auth.OAuth2User({
+    client_id: process.env.TWITTER_ID,
+    client_secret: process.env.TWITTER_SECRET,
+    callback: process.env.NEXTAUTH_URL + '/api/twitter/callback',
+    scopes: [
+      'tweet.read',
+      'users.read',
+      'offline.access',
+      /* 'like.write', */
+      'follows.read'
+    ],
+    token: accessToken.token ?? null
+  });
 
-  // const twClient = new Client(twAuthClient);
+  const twClient = new Client(twAuthClient);
   try {
     const { task } = req.query;
     if (task === 'follower') {
@@ -55,22 +51,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json(user);
     } else if (task === 'tweets') {
       const { user_id, tweet_id } = req.query;
-      const lists = await client.users.tweetsIdRetweetingUsers(
-        tweet_id as string,
-        {
-          'user.fields': ['id', 'name', 'username']
-        }
-      );
-      let checked = false;
-      lists.data.forEach((item) => {
-        if (item.id === user_id) {
-          checked = true;
-        }
+      const data = await twClient.tweets.usersIdRetweets(user_id as string, {
+        tweet_id: tweet_id as string
       });
-
+      // const lists = await client.users.tweetsIdRetweetingUsers(
+      //   tweet_id as string,
+      //   {
+      //     'user.fields': ['id', 'name', 'username']
+      //   }
+      // );
+      // let checked = false;
+      // lists.data.forEach((item) => {
+      //   if (item.id === user_id) {
+      //     checked = true;
+      //   }
+      // });
       return res.status(200).json({
         status: 'Ok',
-        checked
+        checked: data.data?.retweeted ?? false
       });
     } else if (task === 'liked') {
       const { user_id, tweet_id } = req.query;
