@@ -81,10 +81,7 @@ const SoulMintApp = ({
       <ApolloProvider client={apolloClient}>
         <Provider store={store}>
           <FullPageLoader />
-          <SessionProvider
-            session={pageProps.session}
-            refetchInterval={20 * 60}
-          >
+          <SessionProvider session={session} refetchInterval={20 * 60}>
             <MyApp Component={Component} pageProps={pageProps} router={null} />
             <Toast />
           </SessionProvider>
