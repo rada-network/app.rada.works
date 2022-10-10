@@ -40,18 +40,18 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
           />
         </button> */}
 
-        <div className="bg-gray-100 rounded-lg py-1 px-3">
-          <span>Hi: {t(name)}</span>
-          <Link href="#" onClick={disConnect} className="">
+        <div className={`${classes.userInfo} bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex flex-nowrap items-center shadow-none rounded-full py-1 pl-3 pr-1`}>
+          <span className="mr-2">Hi: {t(name)}</span>
+          <Link href="#" onClick={disConnect}>
             {t('Sign out')}
           </Link>
         </div>
 
-        <div
+        {/* <div
           id="dropdownInformation"
           style={{ display: expanded ? 'block' : 'none' }}
           className="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-        >
+        > */}
           {/*<ul className="py-1 text-sm text-gray-700 dark:text-gray-200">*/}
           {/*  <li>*/}
           {/*    <Link href="/create-campaign"> {t('Create Campaign')}</Link>*/}
@@ -66,7 +66,7 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
           {/* <Link href="#" onClick={disConnect}>
               {t('Sign out')}
             </Link> */}
-        </div>
+        {/* </div> */}
       </div>
     </Fragment>
   );

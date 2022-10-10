@@ -8,9 +8,9 @@ const Hero = () => {
           <div className="flex flex-wrap items-center py-10 md:py-16 lg:py-16">
             <div className="basis-full lg:basis-7/12 text-center lg:text-left lg:pr-4">
               <h1 className="text-4xl lg:text-7xl font-extrabold text-gray-900 tracking-tight mt-0 mb-4 lg:mb-6">
-                <span className="text-violet-600">SoulMint</span>
+                <span className="text-violet-600"><span className="font-normal">Soul</span>Mint</span>
                 <span className="block">
-                  Reward distribution platform for SoulBound Tokens
+                  Reward distribution platform for <span className="font-normal">Soul</span>Bound Tokens
                 </span>
               </h1>
               <p className="text-lg lg:text-2xl font-normal my-0 text-gray-900">
@@ -23,7 +23,7 @@ const Hero = () => {
                   href="https://soulmint.notion.site/SoulMint-e036b079a12b41ee8bf150689ff4af22"
                   title=""
                   target="_blank"
-                  className="border-2 border-white border-opacity-70 text-lg text-white font-semibold rounded-xl py-3 px-6"
+                  className="bg-teal-500 hover:bg-teal-600 text-lg text-white font-medium rounded-xl py-3 px-6 tracking-wide transition-all duration-300"
                 >
                   Campaigns
                 </a>
@@ -32,7 +32,7 @@ const Hero = () => {
                   href="#"
                   title="Create Campaign"
                   target="_blank"
-                  className="bg-violet-500 text-white inline-block rounded-xl py-3 px-6 text-xl font-medium text-shadow-sm shadow-sm ml-6"
+                  className="bg-violet-500 hover:bg-violet-600 text-white inline-block rounded-xl py-3 px-6 text-lg font-base tracking-wide text-shadow-sm shadow-sm ml-4 transition-all duration-300"
                 >
                   Create Campaign
                 </a>

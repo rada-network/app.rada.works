@@ -1,11 +1,22 @@
 .root {
-    @apply z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow;
+    @apply z-10;
 }
 
 .rootDark {
-    composes: root;
-    @apply dark:bg-gray-700 dark:divide-gray-600;
+  composes: root;
+  @apply dark:bg-gray-700 dark:divide-gray-600;
 }
+
+.userInfo {}
+
+.userInfo a {
+  @apply bg-gray-200 hover:bg-violet-500 hover:text-white rounded-full py-1 px-3 transition-all duration-300;
+}
+
+.rootDark .userInfo a {
+  @apply bg-gray-700 hover:bg-violet-500 hover:text-white dark:text-white rounded-full py-1 px-3 transition-all duration-300;
+}
+
 .submenu {
     @apply py-3 px-4 text-sm text-gray-900;
 }
