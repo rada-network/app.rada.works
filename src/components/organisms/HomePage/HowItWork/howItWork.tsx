@@ -15,17 +15,17 @@ const HowItWork = () => {
           </div>
 
           <div
-            className={`${classes.steps} flex flex-wrap items-start justify-center`}
+            className={`${classes.steps} flex flex-wrap items-start justify-center relative`}
           >
-            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full md:basis-1/2 lg:basis-1/4 mb-8 lg:mb-0">
-              <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
+            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full lg:basis-1/4 pb-4 lg:pb-0 relative">
+              <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0 z-10">
                 1
               </span>
               <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">Connect wallet</h4>
             </div>
 
-            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full md:basis-1/2 lg:basis-1/4 mb-8 lg:mb-0">
-              <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
+            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full lg:basis-1/4 py-4 lg:py-0 relative">
+              <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0 z-10">
                 2
               </span>
               <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">
@@ -33,8 +33,8 @@ const HowItWork = () => {
               </h4>
             </div>
 
-            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full md:basis-1/2 lg:basis-1/4 mb-8 lg:mb-0">
-              <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
+            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full lg:basis-1/4 py-4 lg:py-0 relative">
+              <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0 z-10">
                 3
               </span>
               <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">
@@ -42,8 +42,8 @@ const HowItWork = () => {
               </h4>
             </div>
 
-            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full md:basis-1/2 lg:basis-1/4 mb-8 lg:mb-0">
-              <span className="block bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
+            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full lg:basis-1/4 pt-4 lg:pt-0 relative">
+              <span className="block bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0 z-10">
                 4
               </span>
               <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">
