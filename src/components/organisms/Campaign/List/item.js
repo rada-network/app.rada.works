@@ -198,6 +198,14 @@ const Item = (props) => {
       >
         <span>{t('Join this quest')}</span>
       </TextLink>
+
+      <TextLink
+        title={t('Join this quest')}
+        className="block absolute left-0 top-0 right-0 bottom-0 w-full"
+        href={`/campaign-details/${data.slug}`}
+      >
+        <span>{t('')}</span>
+      </TextLink>
     </div>
   );
 };

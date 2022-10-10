@@ -11,10 +11,6 @@
 	@apply bg-violet-600 text-white;
 }
 
-.getCoupon::before {
-	@apply content-[""] block absolute top-0 right-0 bottom-0 left-0;
-}
-
 .couponAmoun {
 	@apply inline-block text-2xl font-bold text-gray-800 mr-4;
 }
