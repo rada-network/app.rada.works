@@ -3,7 +3,7 @@ import classes from './hero.module.css';
 const Hero = () => {
   return (
     <Fragment>
-      <div className={`${classes.root} bg-[#5fe0b0] relative`}>
+      <div className={`${classes.root} bg-teal-400 relative`}>
         <div className="container max-w-screen-xl mx-auto px-4 lg:px-4 z-10">
           <div className="flex flex-wrap items-center py-10 md:py-16 lg:py-16">
             <div className="basis-full lg:basis-7/12 text-center lg:text-left lg:pr-4">
@@ -23,7 +23,7 @@ const Hero = () => {
                   href="https://soulmint.notion.site/SoulMint-e036b079a12b41ee8bf150689ff4af22"
                   title=""
                   target="_blank"
-                  className="border-2 border-white border-opacity-70 text-lg text-white font-semibold rounded-xl py-4 px-6"
+                  className="border-2 border-white border-opacity-70 text-lg text-white font-semibold rounded-xl py-3 px-6"
                 >
                   Campaigns
                 </a>
@@ -32,7 +32,7 @@ const Hero = () => {
                   href="#"
                   title="Create Campaign"
                   target="_blank"
-                  className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white inline-block rounded-xl py-4 px-5 ring-4 ring-white ring-opacity-20 text-xl font-medium text-shadow-sm shadow-sm ml-6"
+                  className="bg-violet-500 text-white inline-block rounded-xl py-3 px-6 text-xl font-medium text-shadow-sm shadow-sm ml-6"
                 >
                   Create Campaign
                 </a>

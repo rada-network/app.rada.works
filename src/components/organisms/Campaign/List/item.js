@@ -197,7 +197,7 @@ const Item = (props) => {
           priority="high"
           type="button"
           onPress={viewDetails}
-          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-gradient-to-r from-cyan-500 to-violet-500 focus:bg-violet-600 text-gray-700 dark:text-gray-400 hover:text-white focus:text-white focus:outline-none rounded-lg font-medium flex jusity-center block w-full text-center text-md py-3 px-0 mt-auto transition-all duration-300`}
+          className={`${classes.getCoupon} bg-gray-200 dark:bg-gray-700 hover:bg-violet-500 focus:bg-violet-500 text-gray-700 dark:text-gray-400 hover:text-white focus:text-white focus:outline-none rounded-lg font-medium flex jusity-center block w-full text-center text-md py-3 px-0 mt-auto transition-all duration-300`}
         >
           {t('Join this quest')}
         </Button>

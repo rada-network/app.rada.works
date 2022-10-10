@@ -10,7 +10,7 @@ const Features = () => {
       <div className={`${rootClass} bg-white dark:bg-gray-800`}>
         <div className="container max-w-screen-xl mx-auto py-12 lg:py-24 px-4">
           <div className="mb-12 lg:mb-20 text-center">
-            <h2 className="text-center text-4xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r bg-cyan-500 bg-violet-500 dark:text-white mt-0 mb-0 tracking-tight">
+            <h2 className="text-center text-4xl lg:text-6xl font-bold text-gray-800 dark:text-white mt-0 mb-0 tracking-tight">
               SoulMint Features
             </h2>
           </div>
