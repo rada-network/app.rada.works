@@ -5,6 +5,7 @@ import useThemes from '../../../../hooks/useThemes';
 import defaultClasses from './dropDownMenu.module.css';
 import { signOut } from 'next-auth/react';
 import Link from 'src/components/atoms/Link';
+import BrowserPersistence from '../../../../utils/simplePersistence';
 interface DropDownMenuProps {
   name?: string;
   classes?: object;
@@ -20,6 +21,8 @@ const DropDownMenu: FunctionComponent<DropDownMenuProps> = (props) => {
   //   setExpanded(!expanded);
   // };
   const disConnect = async () => {
+    const localStorage = new BrowserPersistence();
+    localStorage.removeItem('user');
     await signOut();
   };
 
