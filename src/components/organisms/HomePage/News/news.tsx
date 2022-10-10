@@ -11,7 +11,7 @@ const News = () => {
         <div className="container max-w-screen-xl mx-auto px-6 lg:px-4">
           <div className="mb-14 text-center">
             <h2 className="text-center text-4xl lg:text-6xl font-bold text-white dark:text-white mt-0 mb-0 tracking-tight">
-              SoulMint Academy
+              <span className="font-light">Soul</span>Mint Academy
             </h2>
           </div>
 
