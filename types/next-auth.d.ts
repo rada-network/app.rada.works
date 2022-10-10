@@ -11,7 +11,7 @@ declare module 'next-auth' {
     error: string;
     user: {
       id: string;
-      access_tooken: string;
+      access_token: string;
       refresh_token: string;
       /** The user's postal address. */
       address: string;
