@@ -3,6 +3,7 @@ import {
   initTwitterClient
 } from 'src/libs/twitterAuthClient';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { twEncode } from 'src/libs/useFunc';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -20,6 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const accessToken = await twitterAuthClient.requestAccessToken(
         code as string
       );
+      const access_token = twEncode(JSON.stringify(accessToken));
       if (accessToken) {
         const response = await twitterClient.users.findMyUser();
         const redirectUrl = state
@@ -27,7 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               response.data.username
             )}&name=${encodeURIComponent(response.data.name)}&uid=${
               response.data.id
-            }`
+            }&twt=${access_token}`
           : '/';
         res.redirect(redirectUrl);
         res.end();

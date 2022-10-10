@@ -9,6 +9,7 @@ import { useStyle } from '../../../../../classify';
 import Button from '../../../../../atoms/Button';
 import TextLink from '../../../../../../components/atoms/TextLink';
 import BrowserPersistence from '../../../../../../utils/simplePersistence';
+import Cookie from 'js-cookie';
 import {
   TwitterLogin,
   getTwitterUserIdByUsermame,
@@ -210,13 +211,10 @@ const Quest = (props) => {
 
     setTwitterFollowState('loading');
 
-    const twOwnerId = await getTwitterUserIdByUsermame({
-      screen_name: tasks.ck_twitter_follow.username
-    });
     // checking twitter follow here...
     const tw_follower_status = await TwitterFollow({
       user_id: tasks.ck_twitter_login.uid,
-      owner_id: twOwnerId
+      owner_id: tasks.ck_twitter_follow.owner_id
     });
     if (tw_follower_status) {
       tasks.ck_twitter_follow.status = true;

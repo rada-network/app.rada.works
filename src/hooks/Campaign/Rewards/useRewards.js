@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useStore } from 'src/libs/redux';
+import Cookies from 'js-cookie';
 import {
   saveSocialLink,
   checkExistsSocialLink
@@ -29,7 +30,7 @@ export default (props) => {
   const user = storage.getItem('user');
 
   const twSocialLinkTtl = 30 * 24 * 60 * 60; // 30 days
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const tasks = {};
   const add = user && user.email ? user.email : null;
   let doneTasks = storage.getItem(
@@ -44,6 +45,7 @@ export default (props) => {
   };
   // Check current User was submitted
   const [submitted, setSubmitted] = useState(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const userAddress = session && session.user ? session.user.email : null;
     if (userAddress) {
@@ -53,10 +55,10 @@ export default (props) => {
         { email: { _eq: userAddress } }
       );
       if (found) {
-        setSubmitted(true);
+        setSubmitted(false);
       }
     }
-  }, [session]);
+  }, [campaign, isQuesterExistsFunc, session, tasks]);
 
   let twSocialLink = storage.getItem('twSocialLink');
   if (campaign.twitter_tweet || campaign.twitter_username) {
@@ -74,7 +76,14 @@ export default (props) => {
     let socialLink = null;
     const router = useRouter();
     if (!submitted && router.query.user) {
-      const { user, name, uid } = router.query;
+      const { user, uid, twt } = router.query;
+      if (twt) {
+        Cookies.set('twt', twt, {
+          expires: 1 / 24,
+          path: '/',
+          sameSite: 'lax'
+        });
+      }
       // Checking and saving to social link
       getSession().then(async () => {
         //check exits and saving to social link
@@ -104,6 +113,7 @@ export default (props) => {
     } else {
       //check local storage
       socialLink = storage.getItem('twSocialLink');
+
       if (socialLink && socialLink.uid) {
         tasks.ck_twitter_login.status = true;
         tasks.ck_twitter_login.uid = socialLink.uid;
@@ -116,6 +126,7 @@ export default (props) => {
     tasks.ck_twitter_follow = {
       id: 3,
       username: campaign.twitter_username,
+      owner_id: campaign.twitter_owner_id,
       status:
         submitted || (doneTasks && doneTasks.ck_twitter_follow) ? true : null,
       msg: null
@@ -125,7 +136,7 @@ export default (props) => {
     tasks.ck_twitter_retweet = {
       id: 4,
       tweet_url: campaign.twitter_tweet,
-      tweet_id: campaign.twitter_tweet.split('/').pop(),
+      tweet_id: campaign.twitter_tweet_id,
       status:
         submitted || (doneTasks && doneTasks.ck_twitter_retweet) ? true : null,
       msg: null
@@ -175,7 +186,7 @@ export default (props) => {
     };
   }
 
-  const isFinishedTasks = () => {
+  const isFinishedTasks = useCallback(() => {
     let rs = true;
     const keys = Object.keys(tasks);
     if (keys.length) {
@@ -188,7 +199,7 @@ export default (props) => {
     }
 
     return rs;
-  };
+  }, [tasks]);
 
   // Checking via Moralis APIs: https://docs.moralis.io/reference/getnftsforcontract
   const verifyNFTOwnership = async (chainName, tokenAddress, address) => {
@@ -247,7 +258,7 @@ export default (props) => {
     }
 
     return isNFTOwnership;
-  }, [campaign]);
+  }, [campaign, session]);
 
   const [
     saveQuester,
@@ -296,7 +307,7 @@ export default (props) => {
         return;
       }
     }*/
-  }, [campaign]);
+  }, [campaign, saveQuester]);
 
   // Handle saving quest result
   useEffect(() => {
@@ -310,7 +321,7 @@ export default (props) => {
       }
       return toast.error(t('Something went wrong. Please try again!'));
     }
-  }, [saveQuestResult, saveQuesterError]);
+  }, [saveQuestResult, saveQuesterError, t]);
 
   return {
     tasks,

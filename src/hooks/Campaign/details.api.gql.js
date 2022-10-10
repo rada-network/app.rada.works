@@ -30,7 +30,9 @@ export const LOAD_CAMPAIGN_BY_SLUG = gql`
       }
       reward_overview
       twitter_username
+      twitter_owner_id
       twitter_tweet
+      twitter_tweet_id
       discount_value
       store_name
       store_logo_url

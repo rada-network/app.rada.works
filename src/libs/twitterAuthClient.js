@@ -10,7 +10,8 @@ const CreateTwitterAuthClient = () => {
       'tweet.read',
       'users.read',
       'offline.access',
-      'like.write',
+      'tweet.write',
+      /* 'like.write', */
       'follows.read'
     ]
   });

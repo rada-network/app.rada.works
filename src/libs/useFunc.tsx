@@ -37,11 +37,7 @@ export const formatEndDate = (
     date.getFullYear()
   ].join('/');
 };
-export const getTwitterId = (url: string) => {
-  const regex = /twitter\.com\/(\w+)/;
-  const match = regex.exec(url);
-  if (match) {
-    return match[1];
-  }
-  return null;
-};
+export const twDecode = (str: string): string =>
+  Buffer.from(str, 'base64').toString('binary');
+export const twEncode = (str: string): string =>
+  Buffer.from(str, 'binary').toString('base64');

@@ -1,10 +1,33 @@
-import { Client } from 'twitter-api-sdk';
+import { Client /* , auth */ } from 'twitter-api-sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
+// import nextCookies from 'next-cookies';
+// import { initTwitterClient } from 'src/libs/twitterAuthClient';
+// import { twDecode } from 'src/libs/useFunc';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  // const token = nextCookies({ req }).twt;
+  // const accessToken = JSON.parse(twDecode(token));
+  // console.log('====================================');
+  // console.log(accessToken);
+  // console.log('====================================');
   const client = new Client(process.env.TWITTER_BEARER_TOKEN);
+  // const twAuthClient = new auth.OAuth2User({
+  //   client_id: process.env.TWITTER_ID,
+  //   client_secret: process.env.TWITTER_SECRET,
+  //   callback: process.env.NEXTAUTH_URL + '/api/twitter/callback',
+  //   scopes: [
+  //     'tweet.read',
+  //     'users.read',
+  //     'offline.access',
+  //     'tweet.write',
+  //     'like.write',
+  //     'follows.read'
+  //   ],
+  //   token: accessToken.token ?? null
+  // });
 
+  // const twClient = new Client(twAuthClient);
   try {
     const { task } = req.query;
     if (task === 'follower') {

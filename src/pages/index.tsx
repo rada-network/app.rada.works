@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextPage } from 'next';
+import { NextPage, GetStaticProps } from 'next';
 import HomeTmpl from '../components/templates/homeTmpl';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -10,11 +10,11 @@ const HomePage: NextPage = () => {
 
 export default HomePage;
 
-export async function getStaticProps(props: { locale: string }) {
-  props.locale = props.locale ? props.locale : 'en';
+export const getStaticProps: GetStaticProps = async (context) => {
+  context.locale = context.locale ? context.locale : 'en';
   return {
     props: {
-      ...(await serverSideTranslations(props.locale, ['common']))
+      ...(await serverSideTranslations(context.locale, ['common']))
     }
   };
-}
+};
