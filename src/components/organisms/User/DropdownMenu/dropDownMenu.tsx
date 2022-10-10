@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, useState } from 'react';
+import React, { Fragment, FunctionComponent /*, useState*/ } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useStyle } from '../../../classify';
 import useThemes from '../../../../hooks/useThemes';
