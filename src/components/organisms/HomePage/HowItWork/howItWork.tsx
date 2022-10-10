@@ -21,14 +21,14 @@ const HowItWork = () => {
               <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
                 1
               </span>
-              <h4 className="flex-1 font-semibold lg:font-normal text-white">Connect wallet</h4>
+              <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">Connect wallet</h4>
             </div>
 
             <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full md:basis-1/2 lg:basis-1/4 mb-8 lg:mb-0">
               <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
                 2
               </span>
-              <h4 className="flex-1 font-semibold lg:font-normal text-white">
+              <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">
                 Browse available campaigns
               </h4>
             </div>
@@ -37,16 +37,16 @@ const HowItWork = () => {
               <span className="bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
                 3
               </span>
-              <h4 className="flex-1 font-semibold lg:font-normal text-white">
+              <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">
                 Complete tasks and receive rewards
               </h4>
             </div>
 
-            <div className="flex flex-row lg:flex-col items-start lg:text-center px-4 basis-full md:basis-1/2 lg:basis-1/4 mb-8 lg:mb-0">
+            <div className="flex flex-row lg:flex-col items-center lg:text-center px-4 basis-full md:basis-1/2 lg:basis-1/4 mb-8 lg:mb-0">
               <span className="block bg-white text-violet-600 flex items-center justify-center h-10 w-10 lg:h-16 lg:w-16 rounded-full ring-4 ring-violet-700 text-lg lg:text-2xl font-bold mb-2 lg:mb-8 mr-4 lg:mr-0">
                 4
               </span>
-              <h4 className="flex-1 font-semibold lg:font-normal text-white">
+              <h4 className="flex-1 font-semibold lg:font-normal text-white lg:text-xl">
                 Manage your profile &amp; view achievements
               </h4>
             </div>
