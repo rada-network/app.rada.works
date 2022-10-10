@@ -25,7 +25,7 @@ import BrowserPersistence from '../utils/simplePersistence';
 
 const MyApp = function MyApp({
   Component,
-  pageProps: { ...pageProps }
+  pageProps: { session: Session, ...pageProps }
 }: AppProps) {
   // const router = useRouter();
   // const store = useStore();
