@@ -5,9 +5,10 @@ declare module 'next-auth' {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
-  interface Session {
-    id: string;
-    access_token: string;
+  interface Session extends Record<string, unknown> {
+    id: string | unknown;
+    access_token: string | unknown;
+    refresh_token: string | unknown;
     error: string;
     user: {
       id: string;
@@ -24,7 +25,12 @@ declare module 'next-auth/jwt' {
     /** OpenID ID Token */
     idToken?: string;
     error: string;
-    access_tooken: string;
-    refresh_token: string;
+    access_tooken: unknown;
+    refresh_token: unknown;
   }
+}
+interface User extends Record<string, unknown>, DefaultUser {
+  /** The user's postal address. */
+  access_token: string | unknown;
+  refresh_token: string | unknown;
 }
