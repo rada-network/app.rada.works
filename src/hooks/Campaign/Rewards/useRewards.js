@@ -9,7 +9,6 @@ import API from './api.gql';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useStore } from 'src/libs/redux';
 import Cookies from 'js-cookie';
 import {
   saveSocialLink,
@@ -48,7 +47,6 @@ export default (props) => {
   const [submitted, setSubmitted] = useState(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
-    //const userAddress = session && session.user ? session.user.email : null;
     const userAddress = user && user.email ? user.email : null;
     if (userAddress) {
       tasks.ck_connect_wallet.status = true;
