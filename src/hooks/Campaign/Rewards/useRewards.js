@@ -32,6 +32,7 @@ export default (props) => {
   const twSocialLinkTtl = 30 * 24 * 60 * 60; // 30 days
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const tasks = {};
+  let taskTotal = 0;
   const add = user && user.email ? user.email : null;
   let doneTasks = storage.getItem(
     `user_${add}_campaign_${campaign.id}_doneTasks`
@@ -40,7 +41,7 @@ export default (props) => {
     doneTasks = {};
   }
   tasks.ck_connect_wallet = {
-    id: 1,
+    id: ++taskTotal,
     status: null
   };
   // Check current User was submitted
@@ -63,7 +64,7 @@ export default (props) => {
   let twSocialLink = storage.getItem('twSocialLink');
   if (campaign.twitter_tweet || campaign.twitter_username) {
     tasks.ck_twitter_login = {
-      id: 2,
+      id: ++taskTotal,
       status: submitted || twSocialLink ? true : null,
       screen_name: twSocialLink ? twSocialLink.username : null,
       msg: null
@@ -124,7 +125,7 @@ export default (props) => {
 
   if (campaign.twitter_username) {
     tasks.ck_twitter_follow = {
-      id: 3,
+      id: ++taskTotal,
       username: campaign.twitter_username,
       owner_id: campaign.twitter_owner_id,
       status:
@@ -134,7 +135,7 @@ export default (props) => {
   }
   if (campaign.twitter_tweet) {
     tasks.ck_twitter_retweet = {
-      id: 4,
+      id: ++taskTotal,
       tweet_url: campaign.twitter_tweet,
       tweet_id: campaign.twitter_tweet_id,
       status:
@@ -178,7 +179,7 @@ export default (props) => {
           ))
         : null;
     tasks.ck_nft_ownership = {
-      id: 5,
+      id: ++taskTotal,
       nftCollectionInfo,
       status:
         submitted || (doneTasks && doneTasks.ck_nft_ownership) ? true : null,
